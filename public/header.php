@@ -66,34 +66,57 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../index.php" >智能物联网</a>
+                <a class="navbar-brand" href="../index.php" >极客物联网</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li><a href="../index.php">Home</a></li>
-                    <li><a href="../device/userdevice.php">Device</a></li>
-                    <li><a href="../Weather/Weather.php">Weather</a></li>
-                    <li><a href="../blog/index.php">论坛</a></li>
-                    <li><a href="../about/about.php">About</a></li>
-                    
+                    <li><a href="../index.php">首页</a></li>
+                    <!-- <li><a href="../device/userdevice.php">设备</a></li> -->
                     <li>
                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        设备 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../device/userdevice.php">远程设备</a></li>
+                            <li class="divider"></li>
+                            <li><a href="../tools/control.php">蓝牙遥控</a></li>
+                            <!-- <li class="divider"></li>
+                            <li><a href="#">Udp Data</a></li>
+                            <li class="divider"></li>
+                            <li><a href="../phpMyAdmin/index.php">Mysql</a></li>
+                            <li class="divider"></li>
+                            <li><a href="../public/log.php">log</a></li>
+                            <li class="divider"></li>
+                            <li><a href="../public/onlinetxt.php">online</a></li> -->
+                        </ul>
+                    </li>
+
+
+
+
+
+                    <!-- <li><a href="../Weather/Weather.php">Weather</a></li> -->
+                    <li><a href="../blog/index.php">论坛</a></li>
+                    <li><a href="../about/about.php">关于</a></li>
+                    
+                   <!--  <li>
+                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         Tools <b class="caret"></b>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a href="../tools/touch.php">摇杆</a></li>
-                        <li class="divider"></li>
-                        <li><a href="../tools/control.php">遥控器</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Udp Data</a></li>
-                        <li class="divider"></li>
-                        <li><a href="../phpMyAdmin/index.php">Mysql</a></li>
-                        <li class="divider"></li>
-                        <li><a href="../public/log.php">log</a></li>
-                        <li class="divider"></li>
-                        <li><a href="../public/onlinetxt.php">online</a></li>
-                    </ul>
-                </li>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="../tools/touch.php">摇杆</a></li>
+                            <li class="divider"></li>
+                            <li><a href="../tools/control.php">遥控器</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#">Udp Data</a></li>
+                            <li class="divider"></li>
+                            <li><a href="../phpMyAdmin/index.php">Mysql</a></li>
+                            <li class="divider"></li>
+                            <li><a href="../public/log.php">log</a></li>
+                            <li class="divider"></li>
+                            <li><a href="../public/onlinetxt.php">online</a></li>
+                        </ul>
+                    </li> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
                <?php
