@@ -77,9 +77,9 @@
                         设备 <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="../device/userdevice.php">远程设备</a></li>
+                            <li><a href="<?php echo $_SERVER['localhost'] ?>/device/userdevice.php">远程设备</a></li>
                             <li class="divider"></li>
-                            <li><a href="../tools/control.php">蓝牙遥控</a></li>
+                            <li><a href="../device/bluetooth/index.php">蓝牙遥控</a></li>
                             <!-- <li class="divider"></li>
                             <li><a href="#">Udp Data</a></li>
                             <li class="divider"></li>
@@ -123,7 +123,7 @@
                if($_SESSION['login'])
                {
                     //用户头像
-                    $file = "public/upload-head/userheadimg/".$_SESSION['login'].".jpg";
+                    $file = $_SERVER['localhost']."public/upload-head/userheadimg/".$_SESSION['login'].".jpg";
                     if(file_exists($file))
                     {
                         //存在
@@ -132,7 +132,7 @@
                     else
                     {
                         //不存在
-                        $avatar = "public/upload-head/default.jpg";
+                        $avatar = $_SERVER['localhost']."public/upload-head/default.jpg";
                     }
 
                 echo '<li><a href="../public/upload-head/index.html" >欢迎 '.$_SESSION['login'].'</a></li><li><a href="../accut/logout.php" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
@@ -140,7 +140,7 @@
             }
             else
             {
-                echo '<li><a href="../accut/login.php" ><span class="glyphicon glyphicon-log-in"></span> Login</a></li><li><a href="../accut/register.php" >Register</a></li>';
+                echo '<li><a href="'.$_SERVER['localhost'].'/accut/login.php" ><span class="glyphicon glyphicon-log-in"></span> Login</a></li><li><a href="'.$_SERVER['localhost'].'/accut/register.php" >Register</a></li>';
             }
             ?>
         </ul>
