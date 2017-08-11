@@ -1,7 +1,7 @@
 <?php session_start();
     error_reporting(E_ALL^E_NOTICE); //取消警告显示
-    include $_SERVER ['DOCUMENT_ROOT']."/public/online.php";
-    ?>
+    // include $_SERVER ['DOCUMENT_ROOT']."/public/online.php";
+?>
     <!DOCTYPE html>
     <html>
     <head>
@@ -79,7 +79,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo $_SERVER['localhost'] ?>/device/userdevice.php">远程设备</a></li>
                             <li class="divider"></li>
-                            <li><a href="../device/bluetooth/index.php">蓝牙遥控</a></li>
+                            <li><a href="<?php echo $_SERVER['localhost'] ?>/device/bluetooth/index.php">蓝牙遥控</a></li>
                             <!-- <li class="divider"></li>
                             <li><a href="#">Udp Data</a></li>
                             <li class="divider"></li>
@@ -132,7 +132,7 @@
                     else
                     {
                         //不存在
-                        $avatar = $_SERVER['localhost']."public/upload-head/default.jpg";
+                        $avatar = $_SERVER['localhost']."/public/upload-head/default.jpg";
                     }
 
                 echo '<li><a href="../public/upload-head/index.html" >欢迎 '.$_SESSION['login'].'</a></li><li><a href="../accut/logout.php" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
