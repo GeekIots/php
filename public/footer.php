@@ -5,7 +5,7 @@
 <footer class="box-shadow" style="background-color: #555;color:#fff;font-size: 28px;text-align: center;">
     更多精彩内容，正在持续开发中...
     <p style="font-size: 20px">备案信息：陕ICP备16012349号</p>
-    <p style="font-size: 20px"> 友情连接：<a href="http://www.tiangk.top">糖客视频</a></p>
+    <p style="font-size: 20px"> 友情连接：<a href="http://www.tiangk.top">糖客视频</a><a href="http://www.easyicon.net">easyicon</a></p>
      <p style="color: orange">
         当前在线人数：
         <?php 

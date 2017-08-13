@@ -1,6 +1,16 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT']."/public/header.php";
 //phpinfo();
+if(!$_SESSION['login'])
+{
+	//跳转到登录界面
+	echo '<script>window.location = "../../accut/login.php";</script>'; 
+	exit;
+}
+else
+{
+	$userid = $_SESSION['login'];
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,7 +20,6 @@ include $_SERVER['DOCUMENT_ROOT']."/public/header.php";
 </head>
 <body>
 <main class="contain">
-
 	<ul id="myTab" class="nav nav-tabs">
 		<li class="active">
 			<a href="#config1" data-toggle="tab" style="font-size: 25px;">配置1</a>
@@ -39,17 +48,17 @@ include $_SERVER['DOCUMENT_ROOT']."/public/header.php";
 			  for ($i=0; $i < 12; $i++) { 
 			  	echo "<tr>
 					    <td>$i</td>
-					    <td><input type='text' id='a1$i' style='width:95%;height:90%;'></td>
-					    <td><input type='text' id='b1$i' style='width:95%;height:90%;'></td>
-					    <td><input type='text' id='c1$i' style='width:95%;height:90%;'></td>
-					    <td><img id='img1$i' src='http://www.easyicon.net/api/resizeApi.php?id=1206083&size=128' style='width: 95%;height:auto; '></td>
-					    <td><input type='text' id='e1$i' style='width:95%;height:90%;'></td>
+					    <td><input type='text' id='1-1-$i' style='width:95%;height:90%;'></td>
+					    <td><input type='text' id='1-2-$i' style='width:95%;height:90%;'></td>
+					    <td><input type='text' id='1-3-$i' style='width:95%;height:90%;'></td>
+					    <td><img id='1-4-$i' src='http://www.easyicon.net/api/resizeApi.php?id=1206083&size=128' style='width: 95%;height:auto; '></td>
+					    <td><input type='text' id='1-5-$i' style='width:95%;height:90%;'></td>
 					  </tr>";
 			  }
 			  ?>
 			</table>
 			<div style="text-align: center;">
-				<button id="upload1" class="btn btn-default" style="width: 15%;height: auto;font-size: 30px;margin-top: 3%;">上传到服务器</button>
+				<button id="upload1" class="btn btn-default _button" >上传到服务器</button>
 			</div>
 		</div>
 		<div class="tab-pane fade" id="config2">
@@ -67,17 +76,17 @@ include $_SERVER['DOCUMENT_ROOT']."/public/header.php";
 			  for ($i=0; $i < 12; $i++) { 
 			  	echo "<tr>
 					    <td>$i</td>
-					    <td><input type='text' id='a2$i' style='width:95%;height:90%;'></td>
-					    <td><input type='text' id='b2$i' style='width:95%;height:90%;'></td>
-					    <td><input type='text' id='c2$i' style='width:95%;height:90%;'></td>
-					    <td><img id='img2$i' src='http://www.easyicon.net/api/resizeApi.php?id=1206083&size=128' style='width: 95%;height:auto; '></td>
-					    <td><input type='text' id='e2$i' style='width:95%;height:90%;'></td>
+					    <td><input type='text' id='2-1-$i' style='width:95%;height:90%;'></td>
+					    <td><input type='text' id='2-2-$i' style='width:95%;height:90%;'></td>
+					    <td><input type='text' id='2-3-$i' style='width:95%;height:90%;'></td>
+					    <td><img id='2-4-$i' src='http://www.easyicon.net/api/resizeApi.php?id=1206083&size=128' style='width: 95%;height:auto; '></td>
+					    <td><input type='text' id='2-5-$i' style='width:95%;height:90%;'></td>
 					  </tr>";
 			  }
 			  ?>
 			</table>
 			<div style="text-align: center;">
-				<button id="upload2" class="btn btn-default" style="width: 15%;height: auto;font-size: 30px;margin-top: 3%;">上传到服务器</button>
+				<button id="upload2" class="btn btn-default _button">上传到服务器</button>
 			</div>
 		</div>
 		<div class="tab-pane fade" id="config3">
@@ -94,18 +103,18 @@ include $_SERVER['DOCUMENT_ROOT']."/public/header.php";
 			  <?php 
 			  for ($i=0; $i < 12; $i++) { 
 			  	echo "<tr>
-					    <td>$i</td>
-					    <td><input type='text' id='a3$i' style='width:95%;height:90%;'></td>
-					    <td><input type='text' id='b3$i' style='width:95%;height:90%;'></td>
-					    <td><input type='text' id='c3$i' style='width:95%;height:90%;'></td>
-					    <td><img id='img3$i' src='http://www.easyicon.net/api/resizeApi.php?id=1206083&size=128' style='width: 95%;height:auto; '></td>
-					    <td><input type='text' id='e3$i' style='width:95%;height:90%;'></td>
+					   <td>$i</td>
+					    <td><input type='text' id='3-1-$i' style='width:95%;height:90%;'></td>
+					    <td><input type='text' id='3-2-$i' style='width:95%;height:90%;'></td>
+					    <td><input type='text' id='3-3-$i' style='width:95%;height:90%;'></td>
+					    <td><img id='3-4-$i' src='http://www.easyicon.net/api/resizeApi.php?id=1206083&size=128' style='width: 95%;height:auto; '></td>
+					    <td><input type='text' id='3-5-$i' style='width:95%;height:90%;'></td>
 					  </tr>";
 			  }
 			  ?>
 			</table>
 			<div style="text-align: center;">
-				<button id="upload3" class="btn btn-default" style="width: 15%;height: auto;font-size: 30px;margin-top: 3%;">上传到服务器</button>
+				<button id="upload3" class="btn btn-default _button">上传到服务器</button>
 			</div>
 		</div>
 	</div>
@@ -120,33 +129,57 @@ include $_SERVER['DOCUMENT_ROOT']."/public/header.php";
 	$(document).ready(function(){
 	    //获取遥控器界面参数
 		$.ajax({
-		url: "fun.php?type=get&num=1",
-		// cache:false,
-		// data: '',
+		url: "fun.php?type=get&num=1&userid=<?php echo $userid; ?>",
 		success: function (argument) {
 			console.log(argument);
+			// 将json字符串转换为json对象
+			item1=JSON.parse(argument.item[0]);
+			// 将拉取的数据显示到页面
+			for (var i = 12 - 1; i >= 0; i--) {
+				$("#1-1-"+i.toString()).val(item1[i].name);
+				$("#1-2-"+i.toString()).val(item1[i].down);
+				$("#1-3-"+i.toString()).val(item1[i].up);
+				$("#1-5-"+i.toString()).val(item1[i].icon);
+				$("#1-4-"+i.toString()).attr("src",item1[i].icon);
+			}
 		},
 		error:function (argument) {
 			console.log(argument);
 		}
 		});
 		$.ajax({
-		url: "fun.php?type=get&num=2",
-		// cache:false,
-		// data: '',
+		url: "fun.php?type=get&num=2&userid=<?php echo $userid; ?>",
 		success: function (argument) {
 			console.log(argument);
+			// 将json字符串转换为json对象
+			item2=JSON.parse(argument.item[0]);
+			// 将拉取的数据显示到页面
+			for (var i = 12 - 1; i >= 0; i--) {
+				$("#2-1-"+i.toString()).val(item2[i].name);
+				$("#2-2-"+i.toString()).val(item2[i].down);
+				$("#2-3-"+i.toString()).val(item2[i].up);
+				$("#2-5-"+i.toString()).val(item2[i].icon);
+				$("#2-4-"+i.toString()).attr("src",item2[i].icon);
+			}
 		},
 		error:function (argument) {
 			console.log(argument);
 		}
 		});
 		$.ajax({
-		url: "fun.php?type=get&num=3",
-		// cache:false,
-		// data: '',
+		url: "fun.php?type=get&num=3&userid=<?php echo $userid; ?>",
 		success: function (argument) {
 			console.log(argument);
+			// 将json字符串转换为json对象
+			item3=JSON.parse(argument.item[0]);
+			// 将拉取的数据显示到页面
+			for (var i = 12 - 1; i >= 0; i--) {
+				$("#3-1-"+i.toString()).val(item3[i].name);
+				$("#3-2-"+i.toString()).val(item3[i].down);
+				$("#3-3-"+i.toString()).val(item3[i].up);
+				$("#3-5-"+i.toString()).val(item3[i].icon);
+				$("#3-4-"+i.toString()).attr("src",item3[i].icon);
+			}
 		},
 		error:function (argument) {
 			console.log(argument);
@@ -154,26 +187,60 @@ include $_SERVER['DOCUMENT_ROOT']."/public/header.php";
 		});
 	})
 
-	//图片链接变化时赋给预览图
-	$('[id^="e"]').bind("change",function(){
+	//所有的input引起的变化
+	$(":input").bind("change",function(){
 		//打印引起事件的标签信息
-  		// console.log('change:', this);
-  		//打印ID号
-  		// console.log('change:', $(this).attr('id'));
-  		var imgid = $(this).attr('id').replace('e','#img');
-  		//将当前值赋给预览框
-  		 $(imgid).attr("src",$(this).val());
+  		console.log('change:', this);
+  		var arr = $(this).attr('id').split('-');
+		console.log('configID:', arr[0]);
+		console.log('列:', arr[1]);
+		console.log('行号:', arr[2]);
+  		
+  		switch(arr[1])
+  		{
+  			case '1'://name
+				eval('item' + arr[0])[arr[2]].name = $(this).val();
+  				break;
+			case '2'://down
+				eval('item' + arr[0])[arr[2]].down = $(this).val();
+  				break;
+  			case '3'://up
+				eval('item' + arr[0])[arr[2]].up = $(this).val();
+  				break;
+  			case '5'://icon
+				eval('item' + arr[0])[arr[2]].icon = $(this).val();
+				//更新显示图片
+				var id = '#'+arr[0]+'-4-'+arr[2];
+				console.log(id);
+				$(id).attr("src",$(this).val());
+  				break;
+  		}
+		// console.log('1:',item1);
+		// console.log('2:',item2);
+		// console.log('3:',item3);
 	});	
 
 	//上传到服务器
 	$('[id^="upload"]').click(function(){
 		console.log('开始上传');
 		var id = $(this).attr('id').replace('upload','');
-
+		var item;	 
+		if (id==1) {
+			item = item1;
+		}
+		else
+		if (id==2) {
+			item = item2;
+		}
+		else
+		if (id==3) {
+			item = item3;	
+		}
+		var str = JSON.stringify(item);
+		// console.log(str);
 		$.ajax({
-		url: "fun.php",
-		// cache:false,
-		data: JSON.stringify(item),
+		url: "fun.php?type=set&num="+id+"&userid=<?php echo $userid; ?>",
+		data:{"str":str},//数据长度太长，放到data里面传送
 		success: function (argument) {
 			console.log(argument);
 		},
@@ -182,9 +249,6 @@ include $_SERVER['DOCUMENT_ROOT']."/public/header.php";
 		}
 		});
 	});
-
-
-
 </script>
 
 <?php include $_SERVER['DOCUMENT_ROOT'].'/public/footer.php';?>

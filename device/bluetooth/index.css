@@ -3,8 +3,6 @@
 	padding-top: 2%;
 	background-color: white;
 }
-
-
 /*表格样式*/
 table {
     border-collapse: collapse;
@@ -30,3 +28,10 @@ input{
 	border-style: none;
 	text-align: center;	
 }
+._button{
+	width:auto;
+	height: auto;
+	font-size: 200%;
+	margin-top: 3%;
+}
+
