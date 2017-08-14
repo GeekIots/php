@@ -43,6 +43,7 @@ else
 			    <th style="width: 15%">抬起指令</th>
 			    <th style="width: 10%">预览</th>
 			    <th style="width: 20%">链接</th>
+			    <th style="width: 10%">显示/隐藏</th>
 			  </tr>
 			  <?php 
 			  for ($i=0; $i < 12; $i++) { 
@@ -51,8 +52,9 @@ else
 					    <td><input type='text' id='1-1-$i' style='width:95%;height:90%;'></td>
 					    <td><input type='text' id='1-2-$i' style='width:95%;height:90%;'></td>
 					    <td><input type='text' id='1-3-$i' style='width:95%;height:90%;'></td>
-					    <td><img id='1-4-$i' src='http://www.easyicon.net/api/resizeApi.php?id=1206083&size=128' style='width: 95%;height:auto; '></td>
+					    <td><img id='1-4-$i' style='width: 95%;height:auto; '></td>
 					    <td><input type='text' id='1-5-$i' style='width:95%;height:90%;'></td>
+					    <td><input type='checkbox' id='1-6-$i' checked='checked' style='width: 20%;height: 100%'/></td>
 					  </tr>";
 			  }
 			  ?>
@@ -71,6 +73,7 @@ else
 			    <th style="width: 15%">抬起指令</th>
 			    <th style="width: 10%">预览</th>
 			    <th style="width: 20%">链接</th>
+			    <th style="width: 10%">显示/隐藏</th>
 			  </tr>
 			  <?php 
 			  for ($i=0; $i < 12; $i++) { 
@@ -79,8 +82,9 @@ else
 					    <td><input type='text' id='2-1-$i' style='width:95%;height:90%;'></td>
 					    <td><input type='text' id='2-2-$i' style='width:95%;height:90%;'></td>
 					    <td><input type='text' id='2-3-$i' style='width:95%;height:90%;'></td>
-					    <td><img id='2-4-$i' src='http://www.easyicon.net/api/resizeApi.php?id=1206083&size=128' style='width: 95%;height:auto; '></td>
+					    <td><img id='2-4-$i' style='width: 95%;height:auto; '></td>
 					    <td><input type='text' id='2-5-$i' style='width:95%;height:90%;'></td>
+					    <td><input type='checkbox' id='2-6-$i' checked='checked' style='width: 20%;height: 100%'/></td>
 					  </tr>";
 			  }
 			  ?>
@@ -99,6 +103,7 @@ else
 			    <th style="width: 15%">抬起指令</th>
 			    <th style="width: 10%">预览</th>
 			    <th style="width: 20%">链接</th>
+			    <th style="width: 10%">显示/隐藏</th>
 			  </tr>
 			  <?php 
 			  for ($i=0; $i < 12; $i++) { 
@@ -107,8 +112,9 @@ else
 					    <td><input type='text' id='3-1-$i' style='width:95%;height:90%;'></td>
 					    <td><input type='text' id='3-2-$i' style='width:95%;height:90%;'></td>
 					    <td><input type='text' id='3-3-$i' style='width:95%;height:90%;'></td>
-					    <td><img id='3-4-$i' src='http://www.easyicon.net/api/resizeApi.php?id=1206083&size=128' style='width: 95%;height:auto; '></td>
+					    <td><img id='3-4-$i' style='width: 95%;height:auto; '></td>
 					    <td><input type='text' id='3-5-$i' style='width:95%;height:90%;'></td>
+					    <td><input type='checkbox' id='3-6-$i' checked='checked' style='width: 20%;height: 100%'/></td>
 					  </tr>";
 			  }
 			  ?>
@@ -140,6 +146,7 @@ else
 				$("#1-2-"+i.toString()).val(item1[i].down);
 				$("#1-3-"+i.toString()).val(item1[i].up);
 				$("#1-5-"+i.toString()).val(item1[i].icon);
+				$("#1-6-"+i.toString()).attr("checked",item1[i].show);
 				$("#1-4-"+i.toString()).attr("src",item1[i].icon);
 			}
 		},
@@ -159,6 +166,7 @@ else
 				$("#2-2-"+i.toString()).val(item2[i].down);
 				$("#2-3-"+i.toString()).val(item2[i].up);
 				$("#2-5-"+i.toString()).val(item2[i].icon);
+				$("#2-6-"+i.toString()).attr("checked",item2[i].show);
 				$("#2-4-"+i.toString()).attr("src",item2[i].icon);
 			}
 		},
@@ -178,6 +186,7 @@ else
 				$("#3-2-"+i.toString()).val(item3[i].down);
 				$("#3-3-"+i.toString()).val(item3[i].up);
 				$("#3-5-"+i.toString()).val(item3[i].icon);
+				$("#3-6-"+i.toString()).attr("checked",item3[i].show);
 				$("#3-4-"+i.toString()).attr("src",item3[i].icon);
 			}
 		},
@@ -207,6 +216,7 @@ else
   			case '3'://up
 				eval('item' + arr[0])[arr[2]].up = $(this).val();
   				break;
+			
   			case '5'://icon
 				eval('item' + arr[0])[arr[2]].icon = $(this).val();
 				//更新显示图片
@@ -214,6 +224,9 @@ else
 				console.log(id);
 				$(id).attr("src",$(this).val());
   				break;
+  			case '6'://show
+				eval('item' + arr[0])[arr[2]].show = $(this).prop('checked');
+				break;
   		}
 		// console.log('1:',item1);
 		// console.log('2:',item2);

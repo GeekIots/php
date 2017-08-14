@@ -66,9 +66,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../index.php" >极客物联网</a>
+                <a class="navbar-brand" style="font-size: 25px" href="../index.php" >极客物联网</a>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
+            <div class="collapse navbar-collapse" style="font-size: 20px" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li><a href="../index.php">首页</a></li>
                     <!-- <li><a href="../device/userdevice.php">设备</a></li> -->
@@ -76,7 +76,7 @@
                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         设备 <b class="caret"></b>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style="font-size: 20px">
                             <li><a href="<?php echo $_SERVER['localhost'] ?>/device/userdevice.php">远程设备</a></li>
                             <li class="divider"></li>
                             <li><a href="<?php echo $_SERVER['localhost'] ?>/device/bluetooth/index.php">蓝牙遥控</a></li>
@@ -135,7 +135,7 @@
                         $avatar = $_SERVER['localhost']."/public/upload-head/default.jpg";
                     }
 
-                echo '<li><a href="../public/upload-head/index.html" >欢迎 '.$_SESSION['login'].'</a></li><li><a href="../accut/logout.php" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
+                echo '<li><a href="'.$_SERVER['localhost'].'/public/upload-head/index.html" >欢迎 '.$_SESSION['login'].'</a></li><li><a href="'.$_SERVER['localhost'].'/accut/logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
                 echo '<li><img src="'.$avatar.'" width="35px" height="35" style="margin-left:5px; margin-top: 8px; border-radius: 35px;" /></li>';
             }
             else

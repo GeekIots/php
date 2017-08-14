@@ -56,7 +56,7 @@
 </html>
 
 <script src="js/classie.js"></script>
-<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="../js/jquery.min.js"></script>
 <script>
     // 界面
     (function() {
@@ -105,7 +105,7 @@
         var password = $("#password").val();
         var confirm = $("#confirm").val();
         var email = $("#email").val();
-        $.getJSON("../https/register.php?username="+username+"&password="+password+"&confirm="+confirm+"&email="+email, function(json){
+        $.getJSON("../api/register.php?username="+username+"&password="+password+"&confirm="+confirm+"&email="+email, function(json){
          console.log(json);/** 打印对像**/
          if (json.result=="ok") {
             alert('注册成功,激活邮件已经发送到'+email+'请激活后登录！');
@@ -118,76 +118,3 @@
         });
     }); 
 </script>
-
-
-
-
-
-<!-- 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>用户注册</title>
-<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/my.css">
-</head>
-<script type="text/javascript">
-  src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"
-</script>
-<body>
-	<div style = "text-align:center;">
-      <div>
-        <img src="1.png" style="width: 450px;height: 300px;margin-bottom: 50px;">
-      </div>
-      <div >
-        <input  style="height: 45px;width: 300px;" placeholder="用户名" type="text" id="username">
-      </div>
-		
-      <br>
-      <div >
-          <input  style="height: 45px;width: 300px;" placeholder="密码" type="password" id="password">
-      </div>
-	
-      <br>
-      <div >
-          <input  style="height: 45px;width: 300px;" placeholder="确认密码" type="password" id="confirm">
-      </div>
-
-      <br>
-      <div >
-          <input  style="height: 45px;width: 300px;" placeholder="注册邮箱"  type="text" id="email">
-      </div>
-      
-      <br>
-		<div>
-		<button id="Submit" class="btn btn-primary" style=" height: 45px;width: 200px;">提交</button>
-		</div>
-</div>
-</body>
- <script>
-    $(document).ready(function(){
-        // 监控文本框变化事件，动态提示用户信息是否正确
-        $("#username").change('input',function(e){  
-               var result1 = $("#username").val();
-               console.log(result1);
-            }); 
-        $("#Submit").click(function(){
-        var username = $("#username").val();
-        var password = $("#password").val();
-        var confirm = $("#confirm").val();
-        var email = $("#email").val();
-        $.getJSON("http://www.smtvoice.com/https/register.php?username="+username+"&password="+password+"&confirm="+confirm+"&email="+email, function(json){
-         console.log(json);/** 打印对像**/
-         if (json.result=="ok") {
-            alert('注册成功,激活邮件已经发送到'+email+'请激活后登录！');
-            window.location = "login.php"; 
-         }
-         else
-            alert(json.username+json.password+json.confirm+json.email);
-        // JSON.stringify(json)
-        }); 
-        });
-    }); 
-</script>
-</html> -->

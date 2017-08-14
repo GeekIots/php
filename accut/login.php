@@ -91,7 +91,7 @@
         var username = $("#username").val();
         var password = $("#password").val();
         console.log(password);
-        $.getJSON("../https/login.php?username="+username+"&password="+password, function(json){
+        $.getJSON("../api/login.php?username="+username+"&password="+password, function(json){
          console.log(json);/** 打印对像**/
          if (json.status=="success") {
             // alert('登录成功！');

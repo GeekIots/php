@@ -5,18 +5,18 @@
 
    $default  = array
     (
-    array("wid"=>"1","name"=>"左上","up"=>"TZ","down"=>"ZS","icon"=>"img/1.png"),
-    array("wid"=>"2","name"=>"前进","up"=>"TZ","down"=>"QJ","icon"=>"img/2.png"),
-    array("wid"=>"3","name"=>"右上","up"=>"TZ","down"=>"YS","icon"=>"img/3.png"),
-    array("wid"=>"4","name"=>"左移","up"=>"TZ","down"=>"ZY","icon"=>"img/4.png"),
-    array("wid"=>"5","name"=>"停止","up"=>"TZ","down"=>"TZ","icon"=>"img/5.png"),
-    array("wid"=>"6","name"=>"右移","up"=>"TZ","down"=>"YY","icon"=>"img/6.png"),
-    array("wid"=>"7","name"=>"左下","up"=>"TZ","down"=>"ZX","icon"=>"img/7.png"),
-    array("wid"=>"8","name"=>"后退","up"=>"TZ","down"=>"HT","icon"=>"img/8.png"),
-    array("wid"=>"9","name"=>"右下","up"=>"TZ","down"=>"YX","icon"=>"img/9.png"),
-    array("wid"=>"10","name"=>"左转","up"=>"TZ","down"=>"ZZ","icon"=>"img/10.png"),
-    array("wid"=>"11","name"=>"演示","up"=>"TZ","down"=>"YS","icon"=>"img/11.png"),
-    array("wid"=>"12","name"=>"右转","up"=>"TZ","down"=>"YZ","icon"=>"img/12.png"),
+    array("wid"=>"1","name"=>"左上","up"=>"TZ","down"=>"ZS","show"=>"true","icon"=>"http://cdn-img.easyicon.net/png/12053/1205394.gif"),
+    array("wid"=>"2","name"=>"前进","up"=>"TZ","down"=>"QJ","show"=>"true","icon"=>"http://cdn-img.easyicon.net/png/12055/1205508.gif"),
+    array("wid"=>"3","name"=>"右上","up"=>"TZ","down"=>"YS","show"=>"true","icon"=>"http://cdn-img.easyicon.net/png/12053/1205396.gif"),
+    array("wid"=>"4","name"=>"左移","up"=>"TZ","down"=>"ZY","show"=>"true","icon"=>"http://cdn-img.easyicon.net/png/12054/1205454.gif"),
+    array("wid"=>"5","name"=>"停止","up"=>"TZ","down"=>"TZ","show"=>"true","icon"=>"http://cdn-img.easyicon.net/png/11807/1180724.gif"),
+    array("wid"=>"6","name"=>"右移","up"=>"TZ","down"=>"YY","show"=>"true","icon"=>"http://cdn-img.easyicon.net/png/12054/1205488.gif"),
+    array("wid"=>"7","name"=>"左下","up"=>"TZ","down"=>"ZX","show"=>"true","icon"=>"http://cdn-img.easyicon.net/png/12053/1205397.gif"),
+    array("wid"=>"8","name"=>"后退","up"=>"TZ","down"=>"HT","show"=>"true","icon"=>"http://cdn-img.easyicon.net/png/12054/1205410.gif"),
+    array("wid"=>"9","name"=>"右下","up"=>"TZ","down"=>"YX","show"=>"true","icon"=>"http://cdn-img.easyicon.net/png/12053/1205395.gif"),
+    array("wid"=>"10","name"=>"左转","up"=>"TZ","down"=>"ZZ","show"=>"true","icon"=>"http://cdn-img.easyicon.net/png/11862/1186276.gif"),
+    array("wid"=>"11","name"=>"演示","up"=>"TZ","down"=>"YS","show"=>"true","icon"=>"http://cdn-img.easyicon.net/png/11135/1113546.gif"),
+    array("wid"=>"12","name"=>"右转","up"=>"TZ","down"=>"YZ","show"=>"true","icon"=>"http://cdn-img.easyicon.net/png/11862/1186277.gif"),
     );
 
     // var_dump($default);
@@ -60,7 +60,7 @@
                         }
                         else
                         {
-                            $myArray["item"] = $default_json;
+                            $myArray["item"][] = $default_json;
                             $myArray["resault"] = 'success';
                         }
                     }
