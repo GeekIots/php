@@ -5,6 +5,8 @@ include "./public/header.php";
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 </head>  
 <body>
 <main style="background-color: white">
@@ -30,7 +32,7 @@ include "./public/header.php";
                               
                 } 
 
-      window.setInterval(showalert,200 ); 
+      // window.setInterval(showalert,200 ); 
     function showalert() 
     { 
        btnclick();
@@ -39,13 +41,13 @@ include "./public/header.php";
 
 
 
-    <div style="text-align: center; font-size: 38px">
-    <div>图片拉取测试</div>
-        <div><button onclick="btnclick()">拉取</button></div>
+    <!-- <div style="text-align: center; font-size: 38px"> -->
+    <!-- <div>图片拉取测试</div> -->
+        <!-- <div><button onclick="btnclick()">拉取</button></div> -->
         
         <!-- <textarea id="txt"></textarea> -->
-        <div><img src="" id="img_a" style="border:#000 1px solid; width: 640px;height: 360px;"></div>
-    </div>
+        <!-- <div><img src="" id="img_a" style="border:#000 1px solid; width: 640px;height: 360px;"></div> -->
+    <!-- </div> -->
 
 
 

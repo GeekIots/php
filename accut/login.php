@@ -39,7 +39,7 @@
     </body>
 </html>
 <script src="js/classie.js"></script>
-<script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="../js/jquery.min.js"></script>
 <script>
     // 界面
     (function() {

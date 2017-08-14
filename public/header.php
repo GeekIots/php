@@ -8,9 +8,9 @@
         <title>smtvoice</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.bootcss.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="<?php echo $_SERVER ['localhost'];?>/css/bootstrap.min.css">
+        <script src="<?php echo $_SERVER ['localhost'];?>/js/jquery.min.js"></script>
+        <script src="<?php echo $_SERVER ['localhost'];?>/js/bootstrap.min.js"></script>
         <style>
             /* Remove the navbar's default margin-bottom and rounded borders */
             .navbar {
@@ -96,8 +96,8 @@
 
 
                     <!-- <li><a href="../Weather/Weather.php">Weather</a></li> -->
-                    <li><a href="../blog/index.php">论坛</a></li>
-                    <li><a href="../about/about.php">关于</a></li>
+                    <li><a href="<?php echo $_SERVER['localhost'] ?>/blog/index.php">论坛</a></li>
+                    <li><a href="<?php echo $_SERVER['localhost'] ?>/about/about.php">关于</a></li>
                     
                    <!--  <li>
                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
