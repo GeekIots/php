@@ -135,7 +135,7 @@ else
 	$(document).ready(function(){
 	    //获取遥控器界面参数
 		$.ajax({
-		url: "fun.php?type=get&num=1&userid=<?php echo $userid; ?>",
+		url: "<?php echo $_SERVER['localhost'] ?>/api/bluetooth/config.php?type=get&num=1&userid=<?php echo $userid; ?>",
 		success: function (argument) {
 			console.log(argument);
 			// 将json字符串转换为json对象
@@ -155,7 +155,7 @@ else
 		}
 		});
 		$.ajax({
-		url: "fun.php?type=get&num=2&userid=<?php echo $userid; ?>",
+		url: "<?php echo $_SERVER['localhost'] ?>/api/bluetooth/config.php?type=get&num=2&userid=<?php echo $userid; ?>",
 		success: function (argument) {
 			console.log(argument);
 			// 将json字符串转换为json对象
@@ -175,7 +175,7 @@ else
 		}
 		});
 		$.ajax({
-		url: "fun.php?type=get&num=3&userid=<?php echo $userid; ?>",
+		url: "<?php echo $_SERVER['localhost'] ?>/api/bluetooth/config.php?type=get&num=3&userid=<?php echo $userid; ?>",
 		success: function (argument) {
 			console.log(argument);
 			// 将json字符串转换为json对象
@@ -252,7 +252,7 @@ else
 		var str = JSON.stringify(item);
 		// console.log(str);
 		$.ajax({
-		url: "fun.php?type=set&num="+id+"&userid=<?php echo $userid; ?>",
+		url: "<?php echo $_SERVER['localhost'] ?>/api/bluetooth/config.php?type=set&num="+id+"&userid=<?php echo $userid; ?>",
 		data:{"str":str},//数据长度太长，放到data里面传送
 		success: function (argument) {
 			console.log(argument);
