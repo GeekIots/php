@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿<?php
+include "../../public/header.php";
+//phpinfo();
+?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -8,30 +12,30 @@
 <body>
 <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script> 
 <script type="text/javascript" src="js/cropbox.js"></script>
-<div class="container">
-  <div class="imageBox">
-    <div class="thumbBox"></div>
-    <div class="spinner" style="display: none">Loading...</div>
-  </div>
-  <div class="action"> 
-    <!-- <input type="file" id="file" style=" width: 200px">-->
-    <div class="new-contentarea tc"> <a href="javascript:void(0)" class="upload-img">
-      <label for="upload-file">选择</label>
-      </a>
-      <input type="file" class="" name="upload-file" id="upload-file" />
-    </div>
-    <input type="button" id="btnupload"   class="Btnsty_peyton" value="上传">
-    <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+"  >
-    <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-" >
-  </div>
-  <!-- 右边预览图 -->
-  <div class="cropped"></div>
-</div>
+<main>
+	<div class="container">
+	  <div class="imageBox">
+	    <div class="thumbBox"></div>
+	    <div class="spinner" style="display: none">Loading...</div>
+	  </div>
+	  <div class="action"> 
+	    <!-- <input type="file" id="file" style=" width: 200px">-->
+	    <div class="new-contentarea tc"> <a href="javascript:void(0)" class="upload-img">
+	      <label for="upload-file">选择</label>
+	      </a>
+	      <input type="file" class="" name="upload-file" id="upload-file" />
+	    </div>
+	    <input type="button" id="btnupload"   class="Btnsty_peyton" value="上传">
+	    <input type="button" id="btnZoomIn" class="Btnsty_peyton" value="+"  >
+	    <input type="button" id="btnZoomOut" class="Btnsty_peyton" value="-" >
+	  </div>
+	  <!-- 右边预览图 -->
+	  <div class="cropped"></div>
+	</div>	
+</main>
+
 <script type="text/javascript">
 var cropper;
-
-
-
 $(window).load(function() {
 	console.log('2');
 	var options =
@@ -48,7 +52,7 @@ $(window).load(function() {
 			cropper = $('.imageBox').cropbox(options);
 		}
 		reader.readAsDataURL(this.files[0]);
-		this.files = [];
+		// this.files = [];
 	})
 	 // 更新预览
     var img = cropper.getDataURL();
@@ -69,6 +73,7 @@ $(window).load(function() {
 
   function getBlobBydataURI(dataURI,type) 
 	 {   
+	 	console.log(dataURI);
 	    var binary = atob(dataURI.split(',')[1]);  
 	    var array = [];  
 	    for(var i = 0; i < binary.length; i++) {   
@@ -84,7 +89,7 @@ $(window).load(function() {
 
 	/**       * 上传       */  
 	function upload(){        //base64 转 blob       
-	  var $Blob= getBlobBydataURI(document.getElementsByTagName("img")[0].currentSrc,'image/jpeg');        
+	  var $Blob= getBlobBydataURI(document.getElementsByTagName("img")[1].currentSrc,'image/jpeg');        
 	  var formData = new FormData();        
 	  formData.append("files", $Blob ,"file_"+Date.parse(new Date())+".jpeg");        //组建XMLHttpRequest 上传文件       
 	  var request = new XMLHttpRequest();//上传连接地址        

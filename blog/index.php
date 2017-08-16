@@ -70,8 +70,8 @@
 				        <!-- 用户头像 -->
 				        <?php 
 			           //用户头像
-			              $file = "../public/upload-head/userheadimg/".$_SESSION['login'].".jpg";
-			              if(file_exists($file))
+			              $file = "http://www.smtvoice.com/public/upload-head/userheadimg/".$rs['userid'].".jpg";
+			              if(my_file_exists($file))
 			              {
 			                  //存在
 			                  $avatar = $file;
@@ -79,7 +79,7 @@
 			              else
 			              {
 			                  //不存在
-			                  $avatar = "../public/upload-head/default.jpg";
+			                  $avatar = "http://www.smtvoice.com/public/upload-head/default.jpg";
 			              }           
 			          ?>
 				        <img src="<?php echo $avatar?>" width="30px" height="30px" style="border-radius: 5px;">

@@ -1,6 +1,31 @@
 <?php session_start();
     error_reporting(E_ALL^E_NOTICE); //取消警告显示
     // include $_SERVER ['DOCUMENT_ROOT']."/public/online.php";
+     function console($value='')
+    {
+        echo("<script>console.log('".$value."');</script>");
+    }
+
+    function my_file_exists($file)  
+            {  
+                if(preg_match('/^http:\/\//',$file)){  
+                    //远程文件  
+                    if(ini_get('allow_url_fopen')){  
+                        if(@fopen($file,'r')) return true;  
+                    }  
+                    else{  
+                        $parseurl=parse_url($file);  
+                        $host=$parseurl['host'];  
+                        $path=$parseurl['path'];  
+                        $fp=fsockopen($host,80, $errno, $errstr, 10);  
+                        if(!$fp)return false;  
+                        fputs($fp,"GET {$path} HTTP/1.1 \r\nhost:{$host}\r\n\r\n");  
+                        if(preg_match('/HTTP\/1.1 200/',fgets($fp,1024))) return true;  
+                    }  
+                    return false;  
+                }  
+                return file_exists($file);  
+            }       
 ?>
     <!DOCTYPE html>
     <html>
@@ -8,10 +33,18 @@
         <title>smtvoice</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="<?php echo $_SERVER ['localhost'];?>/css/bootstrap.min.css">
         <script src="<?php echo $_SERVER ['localhost'];?>/js/jquery.min.js"></script>
-        <script src="<?php echo $_SERVER ['localhost'];?>/js/bootstrap.min.js"></script>
-        <style>
+        
+        <!--  Bootstrap 核心 CSS 文件 -->
+        <link rel="stylesheet" href="<?php echo $_SERVER ['localhost'];?>/bootstrap/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!--  主题文件（一般不用引入） -->
+        <link rel="stylesheet" href="<?php echo $_SERVER ['localhost'];?>/bootstrap/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Bootstrap 核心 JavaScript 文件 -->
+        <script src="<?php echo $_SERVER ['localhost'];?>/bootstrap/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+                <style>
             /* Remove the navbar's default margin-bottom and rounded borders */
             .navbar {
                 margin-bottom: 0;
@@ -36,7 +69,7 @@
                 margin:0;
                 padding:0;
                 position:relative;
-                background-color: lightgray;
+                /*background-color: lightgray;*/
             }
             header
             {
@@ -66,11 +99,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" style="font-size: 25px" href="../index.php" >极客物联网</a>
+                <a class="navbar-brand" style="font-size: 25px" href="<?php echo $_SERVER['localhost'] ?>/index.php" >极客物联网</a>
             </div>
             <div class="collapse navbar-collapse" style="font-size: 20px" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li><a href="../index.php">首页</a></li>
+                    <li><a href="<?php echo $_SERVER['localhost'] ?>/index.php">首页</a></li>
                     <!-- <li><a href="../device/userdevice.php">设备</a></li> -->
                     <li>
                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -120,22 +153,26 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                <?php
-               if($_SESSION['login'])
+                if($_SESSION['login'])
                {
                     //用户头像
-                    $file = $_SERVER['localhost']."public/upload-head/userheadimg/".$_SESSION['login'].".jpg";
-                    if(file_exists($file))
+                    $file = "http://www.smtvoice.com/public/upload-head/userheadimg/".$_SESSION['login'].".jpg";
+                    console($file);
+                    if(my_file_exists($file))
                     {
                         //存在
                         $avatar = $file;
+                        console('存在');
                     }
                     else
                     {
                         //不存在
-                        $avatar = $_SERVER['localhost']."/public/upload-head/default.jpg";
+                        $avatar = "http://www.smtvoice.com/public/upload-head/default.jpg";
+                        console('不存在');
                     }
 
-                echo '<li><a href="'.$_SERVER['localhost'].'/public/upload-head/index.html" >欢迎 '.$_SESSION['login'].'</a></li><li><a href="'.$_SERVER['localhost'].'/accut/logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
+
+                echo '<li><a href="'.$_SERVER['localhost'].'/public/upload-head/index.php" >欢迎 '.$_SESSION['login'].'</a></li><li><a href="'.$_SERVER['localhost'].'/accut/logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
                 echo '<li><img src="'.$avatar.'" width="35px" height="35" style="margin-left:5px; margin-top: 8px; border-radius: 35px;" /></li>';
             }
             else

@@ -1,6 +1,6 @@
 @charset "utf-8";
 .container {
-	width: 400px;
+	width: 600px;
 	margin: 40px auto 0 auto;
 	position: relative;
 	font-family: 微软雅黑;
@@ -20,7 +20,7 @@
 }
 .cropped {
 	position: absolute;
-	right: -230px;
+	right: -50px;
 	top: 0;
 	width: 200px;
 	border: 1px #ddd solid;
