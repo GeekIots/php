@@ -1,0 +1,24 @@
+.contain{
+	padding-left: 5%;
+	padding-right:5%; 
+	padding-top: 2%;
+	background-color: white;
+}
+/*表格样式*/
+table {
+    border-collapse: collapse;
+    width:95%;
+}
+
+table, td, th {
+    border: 1px solid black;
+    height:80px;
+    text-align: center;
+    font-size: 25px;
+}
+/*标题颜色*/
+th
+{
+	background-color:gray;
+	color:black;
+}

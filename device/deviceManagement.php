@@ -11,9 +11,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>  
 <body>
-	<main style="background-color: white">
+	<main class="contain">
 	<?php
         if (!$con)
         {
@@ -27,7 +28,6 @@
  	?>
         
         <!--显示到列表-->
-        <div class="container">
 		  <h2>设备管理</h2>
 		  <div>
 		  	<a class="btn btn-default" href="addDevice.php">添加开关</a>
@@ -36,44 +36,43 @@
 		  </div>
 		  <br \>&nbsp;
 		  <!--<p>查看和管理您的设备！</p>-->           
-		  <h4>我的开关</h4>		  
-		  <table class="table table-striped  table-hover">
-		    <thead>
+		  <h4>我的开关</h4>	
+		  <div>
+		  	<table class="table table-striped  table-hover">
 		      <tr>
-		        <th>ID</th>
-		        <th>名称</th>
-		        <th>状态</th>
-		        <th>图片</th>
-		        <th>开指令</th>
-		        <th>关指令</th>
-		        <th>热度</th>
-		        <th>更改</th>
-		        <th>删除</th>
+		        <th style="width: 30px">ID1</th>
+		        <th style="width: 30px">名称</th>
+		        <th style="width: 30px">状态</th>
+		        <th style="width: 30px">图片</th>
+		        <th style="width: 30px">开指令</th>
+		        <th style="width: 30px">关指令</th>
+		        <th style="width: 30px">热度</th>
+		        <th style="width: 30px">更改</th>
+		        <th style="width: 30px">删除</th>
 		      </tr>
-		    </thead>
-		    <tbody>
 		    	<?php
 		    		// $num = 0;
 		    		while($row = mysqli_fetch_array($result))
 		    		{
 		    			// $num++;
-			    		echo '<tr>';
-			    		echo '<td>'.$row['id'].'</td>';
-			    		echo '<td>'.$row['name'].'</td>';
-			    		echo '<td>'.$row['state'].'</td>';
-			    		echo '<td>'.$row['pic'].'</td>';
-			    		echo '<td>'.$row['opencmd'].'</td>';
-			    		echo '<td>'.$row['closecmd'].'</td>';
-			    		echo '<td>'.$row['heat'].'</td>';
-						echo '<td><a href="updataDevice.php?id='.$row['id'].'">更改</a></td>';
-						echo '<td><a href="deleteDevice.php?id='.$row['id'].'">删除</a></td>';
-						echo '</tr>';
+				    	echo "<tr>
+				    		<td>".$row['id']."</td>
+				    		<td>".$row['name']."</td>
+				    		<td>".$row['state']."</td>
+				    		<td><img src='".$row['pic']."' style='width: 50px;width: 50px;border-radius:5px; '></td>
+				    		<td>".$row['opencmd']."</td>
+				    		<td>".$row['closecmd']."</td>
+				    		<td>".$row['heat']."</td>
+				    		<td><a href='updataDevice.php?id=".$row['id']."'>更改</a></td>
+				    		<td><a href='deleteDevice.php?id=".$row['id']."'>删除</a></td>
+				    		</tr>";
 		     	}
 		     	
 		     	//mysqli_close($con);
 		     ?>
-		    </tbody>
 		  </table>
+		  </div>	  
+		  
 		  
 		  <br>
 		  <hr />
@@ -113,7 +112,6 @@
 				?>
 		    </tbody>
 		  </table>
-		</div>	
     </main>
 </body>
 </html>

@@ -16,7 +16,7 @@ else
 <html>
 <head>
 	<title>遥控器设置</title>
-	<link rel="stylesheet" type="text/css" href="index.css">
+	<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <main class="contain">
