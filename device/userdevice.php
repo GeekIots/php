@@ -22,7 +22,7 @@
 		    <a href="deviceManagement.php">设备管理</a>
 		    </div>
 		    </br><p></p>
-		    <h4>我的设备：</h4>
+		    <h4>开关：</h4>
 		    <?php
 		        if (!$con)
 		        {
@@ -39,7 +39,16 @@
 		            $closecmd = $row['closecmd'];
 		            $pic = $row['pic'];
 		           ?>
+		           <!-- 名称 -->
+		           <?php  echo($row['name']);?>
+		           <!-- 图片 -->
 		           <img style="width: 50px;height: 50px; border-radius: 20px;" src="<?php echo $pic ?>">
+				   <!-- 打开 -->
+				   <button class="btn btn-default">打开</button>
+				   <!-- 关闭 -->
+				   <button class="btn btn-default">关闭</button>
+				   <!-- 状态 -->
+				   
 		           <?php
 		            echo '<button type="button" class="btn btn-default" style="height: 50px;"onclick="btnclick(\''.$row['deviceType'].'\',\''.$row['id'].'\',\''.$row['deviceid'].'\',\''.$row['opencmd'].'\')">'.$row['name'].'</button>';
 		            echo '<label id="'.$row['id'].'"></label>';

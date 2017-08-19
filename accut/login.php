@@ -1,3 +1,6 @@
+<!-- <?php 
+// include "../public/header.php";
+ ?> -->
 <!DOCTYPE html>
 <html lang="zh" class="no-js">
     <head>
@@ -88,19 +91,37 @@
            console.log(result1);
         }); 
         $("#btn").click(function(){
+        var inputFlag = true;
         var username = $("#username").val();
         var password = $("#password").val();
-        console.log(password);
-        $.getJSON("../api/login.php?username="+username+"&password="+password, function(json){
-         console.log(json);/** 打印对像**/
-         if (json.status=="success") {
-            // alert('登录成功！');
-            history.go(-1);
-            location.reload();
-         }
-         else
-            alert(json.error);
-        }); 
+        if (!username) {
+            console.log('用户名不能为空！');
+            alert('用户名不能为空！');
+            inputFlag = false;
+        }
+        else if (!password) {
+            console.log('密码不能为空！');
+            alert('密码不能为空！');
+            inputFlag = false;
+        }
+        if (inputFlag) {
+            $.getJSON("<?php echo $_SERVER['localhost'] ?>/api/login.php?username="+username+"&password="+password, function(json){
+             // console.log(json);/** 打印对像**/
+             if (json.status=="success") {
+                console.log('登录成功');
+                // alert('登录成功！');
+                // history.go(-1);
+                // location.reload();
+                // 跳转到首页
+                window.location.href="<?php echo $_SERVER['localhost'] ?>/index.php"; 
+             }
+             else{
+                console.log('登录失败:',json.error);
+                alert(json.error);
+             }
+                
+            }); 
+        }
         });
     }); 
 </script>
