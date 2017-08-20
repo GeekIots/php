@@ -36,13 +36,13 @@
         <script src="<?php echo $_SERVER ['localhost'];?>/js/jquery.min.js"></script>
         
         <!--  Bootstrap 核心 CSS 文件 -->
-        <link rel="stylesheet" href="<?php echo $_SERVER ['localhost'];?>/bootstrap/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="<?php echo $_SERVER ['localhost'];?>/bootstrap/css/bootstrap.min.css"  crossorigin="anonymous">
 
         <!--  主题文件（一般不用引入） -->
-        <link rel="stylesheet" href="<?php echo $_SERVER ['localhost'];?>/bootstrap/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <link rel="stylesheet" href="<?php echo $_SERVER ['localhost'];?>/bootstrap/css/bootstrap-theme.min.css" crossorigin="anonymous">
 
         <!-- Bootstrap 核心 JavaScript 文件 -->
-        <script src="<?php echo $_SERVER ['localhost'];?>/bootstrap/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="<?php echo $_SERVER ['localhost'];?>/bootstrap/js/bootstrap.min.js"  crossorigin="anonymous"></script>
 
                 <style>
             /* Remove the navbar's default margin-bottom and rounded borders */
@@ -110,9 +110,11 @@
                         设备 <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu" style="font-size: 20px">
-                            <li><a href="<?php echo $_SERVER['localhost'] ?>/device/userdevice.php">远程设备</a></li>
+                            <li><a href="<?php echo $_SERVER['localhost'] ?>/device/userdevice.php">查看设备</a></li>
                             <li class="divider"></li>
-                            <li><a href="<?php echo $_SERVER['localhost'] ?>/device/bluetooth/index.php">蓝牙遥控</a></li>
+                            <li><a href="<?php echo $_SERVER['localhost'] ?>/device/deviceManagement.php">管理设备</a></li>
+                            <li class="divider"></li>
+                            <li><a href="<?php echo $_SERVER['localhost'] ?>/device/bluetooth/index.php">小程序遥控配置</a></li>
                             <!-- <li class="divider"></li>
                             <li><a href="#">Udp Data</a></li>
                             <li class="divider"></li>
