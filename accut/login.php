@@ -1,6 +1,7 @@
-<!-- <?php 
+<?php 
 // include "../public/header.php";
- ?> -->
+error_reporting(E_ALL^E_NOTICE); //取消警告显示
+?> 
 <!DOCTYPE html>
 <html lang="zh" class="no-js">
     <head>

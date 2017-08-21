@@ -74,10 +74,8 @@
   		padding-top:20px;
   	}
   </style>
-
 </head>
 <body>
-
 	<?php
 	    if (!$con)
 	    {
@@ -94,7 +92,7 @@
 	        $pic = $row['pic'];
 	       ?>
 	      
-	       	<div class="container" style="margin-left: 130px;padding-top: 10px;padding-bottom: 10px;">
+	       	<div class="container" style="margin-left: 20%;padding-top: 10px;padding-bottom: 10px;">
 			   <div class="row">
 			      <div class="col-md-2 first_dev_title">
 			      	 <div class="row dev_title_color">
