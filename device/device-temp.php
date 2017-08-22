@@ -140,3 +140,112 @@
             <script type="text/javascript" src="http://v1.ujian.cc/code/ujian.js"></script>
           <!-- UJian Button END -->
 	</main>
+
+
+
+
+
+	<?php
+	    if (!$con)
+	    {
+	        die('数据库连接失败: '.mysqli_error());
+	    }
+	    else
+	    {
+	        $name = $_SESSION['login'];
+	        $result = mysqli_query($con, "SELECT * FROM switch WHERE userid = '$name' ");
+	    }
+	    while ($row = mysqli_fetch_array($result)) {
+	        $opencmd = $row['opencmd'];
+	        $closecmd = $row['closecmd'];
+	        $pic = $row['pic'];
+	       ?>
+	      
+	       	<div class="container" style="margin-left: 12%;padding-top: 10px;padding-bottom: 10px;">
+			   <div class="row">
+			      <div class="col-md-2 first_dev_title">
+			      	 <div class="row dev_title_color">
+			         	<h4><?php echo($row['name']); ?></h4>
+			      	 </div>
+			         <div class="row dev_border_Top" style="text-align: center;">
+						<img src="<?php echo($row['pic']); ?>" class="dev_icon">
+			         </div>
+			      </div>
+
+			      <div class="col-md-5 dev_title">
+			      	 <div class="row dev_title_color" style="">
+			         	<h4 style="float: left;">控制设备</h4> 
+			         	<h4 style="float: right;margin-right: 10px;color: #CC33CC;">message</h4> 
+			      	 </div>
+			         <div class="row dev_border_Top" >
+			            <div class="col-md-4">
+			               <button type="button" class="dev_button btn btn-default">打开</button>
+			            </div>
+			            <div class="col-md-4 dev_border_Light_Right">
+			               <button type="button" class="dev_button btn btn-default">关闭</button>
+			            </div>
+			            <div class="col-md-4 dev_message">
+			               <p><?php echo($row['state']); ?></p>
+			            </div>
+			         </div>
+			      </div>
+			      <div class="col-md-3 dev_title">
+			         <div class="row dev_title_color">
+			         	<h4>设备信息</h4>
+			      	 </div>
+
+			          <div class="row dev_border_Top">
+			            <div class="col-md-5 dev_border_list_BR">
+			               <div class="dev_info_list">
+			               <p>控制次数:</p>
+			               </div>
+			            </div>
+			            <div class="col-md-7 dev_border_list_B" >
+			               <div class="dev_info_list">
+			               <p><?php echo($row['heat']); ?></p>
+			               </div>
+			            </div>
+			         </div>
+			         <div class="row">
+			            <div class="col-md-5 dev_border_list_BR">
+			               <div class="dev_info_list">
+			               <p>是否在线:</p>
+			               </div>
+			            </div>
+			            <div class="col-md-7 dev_border_list_B">
+			               <div class="dev_info_list">
+			               <p><?php echo($row['online']); ?></p>
+			               </div>
+			            </div>
+			         </div>
+					 <div class="row">
+			            <div class="col-md-5 dev_border_list_BR">
+			               <div class="dev_info_list">
+			               <p>最近操作:</p>
+			               </div>
+			            </div>
+			            <div class="col-md-7 dev_border_list_B">
+			               <div class="dev_info_list">
+			               <p><?php echo($row['latest']); ?></p>
+			               </div>
+			            </div>
+			         </div>
+			         <div class="row">
+			            <div class="col-md-5 dev_border_list_R">
+			               <div class="dev_info_list">
+			               <p>创建时间:</p>
+			               </div>
+			            </div>
+			            <div class="col-md-7 ">
+			               <div class="dev_info_list">
+			               <p><?php echo($row['create']); ?></p>
+			               </div>
+			            </div>
+			         </div>
+			      </div>
+			   </div>
+			</div>
+	       <?php
+	    }
+	    mysqli_close($con);
+	?>

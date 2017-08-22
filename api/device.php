@@ -19,11 +19,11 @@
     }
     else
     {
-      //判断用户密码
-      $result = mysqli_query($con, "SELECT * FROM user WHERE username = '$userid' ");
-      $row = mysqli_fetch_array($result);
-      if($row['password']==md5($password))
-      {
+      // //判断用户密码
+      // $result = mysqli_query($con, "SELECT * FROM user WHERE username = '$userid' ");
+      // $row = mysqli_fetch_array($result);
+      // if($row['password']==md5($password))
+      // {
        if ($device=='switch') 
        {
         if ($type=='getlist') 
@@ -173,14 +173,14 @@
         }
 
   }
-}
-else
-{
-  $myArray["resault"]='fail';
-  $myArray["error"]='密码错误！';
-  $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
-  echo $json;
-}
+// }
+// else
+// {
+//   $myArray["resault"]='fail';
+//   $myArray["error"]='密码错误！';
+//   $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
+//   echo $json;
+// }
 }
 ?>
 
