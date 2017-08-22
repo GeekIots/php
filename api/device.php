@@ -1,6 +1,7 @@
 <?php 
 	error_reporting(E_ALL^E_NOTICE); //取消警告显示
 	header('Content-type:text/json');
+  date_default_timezone_set("Asia/Shanghai");
   include "conn.php";//https
 
   $device = $_GET['device'];
@@ -89,7 +90,9 @@
           $myArray["resault"] = 'success';
           if ($con)
           {
-            $insertResault = mysqli_query($con, "update switch set state='$cmd' where userid='$userid' and id='$id'");
+            $userdate = date("Y-m-d H:i:s",time());
+             $myArray["latest"] = $userdate;
+            $insertResault = mysqli_query($con, "update switch set state='$cmd' ,latest='$userdate' where userid='$userid' and id='$id'");
              //控制次数加一
 	         $sql="UPDATE switch set heat = heat+1 where id='$id'";
 	         mysqli_query($con,$sql);

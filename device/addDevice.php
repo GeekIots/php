@@ -1,13 +1,13 @@
 <?php include "../public/header.php";?>
 <?php include "../public/conn.php";?>
 <?php
-function create_id($prefix = ""){    //可以指定前缀
-    $str = md5(uniqid(mt_rand(), true));   
-    $uuid  = substr($str,0,4);   
-    return $prefix . $uuid;
-}
+    date_default_timezone_set("Asia/Shanghai");
+    function create_id($prefix = ""){    //可以指定前缀
+        $str = md5(uniqid(mt_rand(), true));   
+        $uuid  = substr($str,0,4);   
+        return $prefix . $uuid;
+    }
 ?>
-
 <?php
 if (isset($_POST["Submit"]) && $_POST["Submit"] == "添加") {
     $name = $_POST["devicename"];
@@ -15,8 +15,19 @@ if (isset($_POST["Submit"]) && $_POST["Submit"] == "添加") {
     $closecmd = $_POST["closeCmd"];
     $pic = $_POST["pic"];
 
+    if(@fopen( $pic, 'r' ))
+    {
+        
+    }
+    else
+    {
+        //不存在
+        $pic = "http://www.smtvoice.com/device/default.jpg";
+    }
+
     $userid = $_SESSION['login'];
-    $sql_insert = "insert into switch (userid,name,state,pic,opencmd,closecmd,heat) values('$userid','$name','$closecmd','$pic','$opencmd','$closecmd','0')";
+    $userdate = date("Y-m-d H:i:s",time());
+    $sql_insert = "insert into switch (userid,name,state,pic,opencmd,closecmd,heat,online,latest,created) values('$userid','$name','$closecmd','$pic','$opencmd','$closecmd','0','离线','$userdate','$userdate')";
     $res_insert = mysqli_query($con,$sql_insert);
     if ($res_insert) 
     {
@@ -24,9 +35,13 @@ if (isset($_POST["Submit"]) && $_POST["Submit"] == "添加") {
     } 
     else
 	{
-		echo "<script>alert('添加失败！');history.go(-1);</script>";
+		// echo "<script>alert('添加失败！');history.go(-1);</script>";
+        // console('fail'+$res_insert);
+        echo($res_insert);
+        var_dump($res_insert);
+        printf($res_insert);
 	}
-    exit;
+    // exit;
 }
 ?>
 
@@ -35,7 +50,6 @@ if (isset($_POST["Submit"]) && $_POST["Submit"] == "添加") {
 <head>
     <meta charset="utf-8">
     <title>添加设备</title>
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -60,12 +74,13 @@ if (isset($_POST["Submit"]) && $_POST["Submit"] == "添加") {
                 <input type="text" class="form-control" name="closeCmd" placeholder="close" value="close">
             </div>
         </div>
-<!--         <div class="form-group">
+
+        <div class="form-group">
             <label class="col-sm-2 control-label">图片:</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="pic" placeholder="" value="">
+                <input type="text" class="form-control" name="pic" placeholder="url" value="">
             </div>
-        </div> -->
+        </div>
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
