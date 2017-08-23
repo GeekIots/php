@@ -119,7 +119,7 @@
 			               <button type="button" id="<?php echo($row['id']);?>" name="<?php echo($row['closecmd']);?>" class="dev_button btn btn-default">关闭</button>
 			            </div>
 			            <div class="col-md-4 dev_message">
-			               <p><?php echo($row['state']); ?></p>
+			               <p id="state<?php echo($row['id']); ?>"><?php echo($row['state']); ?></p>
 			            </div>
 			         </div>
 			      </div>
@@ -194,11 +194,11 @@
 		var stop=false;
 		get_code_time = function (o) { 
 			if (!stop) {
-				o.text(wait/10+'s');
+				o.text('响应:'+wait/100+'s');
 		        wait++;  
 		        setTimeout(function() {  
 		            get_code_time(o)  
-		        }, 100)  
+		        }, 10)  
 			}
 		}  
 		//打印引起事件的标签信息
@@ -217,9 +217,10 @@
 			success: function (res) {
 				console.log('success:',res);
 				stop=true;
-				$("#msg"+id).text($("#msg"+id).text()+' '+res.return);
+				$("#msg"+id).text(res.return+' '+$("#msg"+id).text());
 				$("#heat"+id).text(parseInt($("#heat"+id).text())+1);
 				$("#latest"+id).text(res.latest);
+				$("#state"+id).text(cmd);
 			},
 			error:function (res) {
 				console.log('fail:',res);

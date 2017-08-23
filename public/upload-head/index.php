@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 include "../../public/header.php";
 //phpinfo();
 ?>
@@ -10,7 +10,6 @@ include "../../public/header.php";
 <link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 <body>
-<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script> 
 <script type="text/javascript" src="js/cropbox.js"></script>
 <main>
 	<div class="container">
@@ -63,10 +62,12 @@ $(window).load(function() {
 	// 缩小图像
 	$('#btnZoomIn').on('click', function(){
 		cropper.zoomIn();
+		console.log('btnZoomIn');
 	})
 	// 放大图像
 	$('#btnZoomOut').on('click', function(){
 		cropper.zoomOut();
+		console.log('btnZoomOut');
 	})
 });
 
@@ -87,30 +88,28 @@ $(window).load(function() {
 		upload();
 	})
 
-	/**       * 上传       */  
+	/***上传*/  
 	function upload(){        //base64 转 blob       
-	  var $Blob= getBlobBydataURI(document.getElementsByTagName("img")[1].currentSrc,'image/jpeg');        
-	  var formData = new FormData();        
-	  formData.append("files", $Blob ,"file_"+Date.parse(new Date())+".jpeg");        //组建XMLHttpRequest 上传文件       
+	  var $Blob= getBlobBydataURI(document.getElementsByTagName("img")[1].currentSrc,'image/jpeg');
+	  var formData = new FormData();
+	  	  formData.append("files", $Blob ,"file_"+Date.parse(new Date())+".jpeg");//组建XMLHttpRequest 上传文件       
 	  var request = new XMLHttpRequest();//上传连接地址        
-	  request.open("POST", "uploadhead.php");           
+	  request.open("POST", "uploadhead.php");
 	  request.onreadystatechange=function(res){
-	                
-	  	if (request.readyState==4){                
-	  		if(request.status==200){     
+	  	if (request.readyState==4){
+	  		if(request.status==200){
 	  		var obj = JSON.parse(res.currentTarget.response);  
-console.log(obj.resault) ; 
-	  			console.log("上传成功");
-	  			if (obj.resault=='ok') {
-	  				alert('上传成功！')
-	  				//返回上一页并刷新
-	  				self.location=document.referrer;
-	  			}
-	  			else
-	  			alert(obj.resault);
-	  			}else{              
-	  				console.log("上传失败,检查上传地址是否正确");           
-	  				 }          
+			console.log(obj.resault);
+  			console.log("上传成功");
+  			if (obj.resault=='ok') {
+  				alert('上传成功！')
+  				//返回上一页并刷新
+  				self.location=document.referrer;
+  			}else
+  				alert(obj.resault);}
+  			else{        
+  				console.log("上传失败,检查上传地址是否正确");           
+  			}          
 	  	}        
 	  }           
 	 	request.send(formData);      

@@ -5,6 +5,9 @@ include "./public/header.php";
 <!DOCTYPE html>
 <html>
 <head>
+<title>极客物联网</title>
+<meta name="keywords" content="极客物联网,远程控制,stm32,Arduino">
+<meta name="description" content="可以轻松控制控制家里的灯泡，电饭煲，热水器的物联网平台！">
 <link rel="icon" href="favicon.ico" type="image/x-icon" />
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 </head>  

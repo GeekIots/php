@@ -33,6 +33,8 @@
         <title>smtvoice</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keywords" content="极客物联网,远程控制,stm32,Arduino">
+        <meta name="description" content="可以轻松控制控制家里的灯泡，电饭煲，热水器的物联网平台！">
         <script src="<?php echo $_SERVER ['localhost'];?>/js/jquery.min.js"></script>
         
         <!--  Bootstrap 核心 CSS 文件 -->
@@ -131,8 +133,8 @@
 
 
                     <!-- <li><a href="../Weather/Weather.php">Weather</a></li> -->
-                    <li><a href="<?php echo $_SERVER['localhost'] ?>/blog/index.php">论坛</a></li>
-                    <li><a href="<?php echo $_SERVER['localhost'] ?>/about/about.php">关于</a></li>
+                    <li><a href="<?php echo $_SERVER['localhost'] ?>/blog/index.php">论坛</a></li>.
+                    <li><a href="<?php echo $_SERVER['localhost'] ?>/about/index.php">关于</a></li>
                     
                    <!--  <li>
                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">

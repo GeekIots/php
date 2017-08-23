@@ -60,6 +60,7 @@
                 setBackground();
                 // 更新预览
                 Preview(obj);
+                console.log('zoomIn');
             },
             zoomOut: function ()
             {
@@ -67,6 +68,7 @@
                 setBackground();
                 // 更新预览
                 Preview(obj);
+                console.log('zoomOut');
             }
         },
         setBackground = function()
@@ -86,10 +88,10 @@
         imgMouseDown = function(e)
         {
             e.stopImmediatePropagation();
-
             obj.state.dragable = true;
             obj.state.mouseX = e.clientX;
             obj.state.mouseY = e.clientY;
+            console.log('imgMouseDown');
         },
         imgMouseMove = function(e)
         {
@@ -115,6 +117,7 @@
         {
             e.stopImmediatePropagation();
             obj.state.dragable = false;
+            console.log('imgMouseUp');
             // 更新预览
             Preview(obj);
         },
@@ -124,6 +127,7 @@
             setBackground();
             // 更新预览
             Preview(obj);
+            console.log('zoomImage');
         }
         obj.spinner.show();
         obj.image.onload = function() {
@@ -137,6 +141,7 @@
 
             // 更新预览
             Preview(obj);
+            console.log('image.onload');
         };
         obj.image.src = options.imgSrc;
         el.on('remove', function(){$(window).unbind('mouseup', imgMouseUp)});
