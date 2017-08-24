@@ -1,0 +1,37 @@
+<!doctype html>  
+<head>  
+    <meta charset="utf-8">  
+  
+    <!-- <script src="jquery.js"></script>   -->
+  
+    <script src="https://cdn.bootcss.com/showdown/1.3.0/showdown.min.js"></script>  
+  
+    <script>  
+        // $(function() {  
+        //     var converter = new showdown.Converter();  
+        //     var text      = '#hello, markdown!',  
+        //     html      = converter.makeHtml(text);  
+        //     // alert(html); 
+        //     $('#md').html(html); 
+        // });  
+$(document).ready(function(){
+  $("#txt").bind("input propertychange change",function(event){
+        var converter = new showdown.Converter();  
+            html      = converter.makeHtml($("#txt").val());  
+        $("#md").html(html);
+        console.log(html);
+        });
+});
+        
+    </script>  
+</head>  
+<body>  
+  
+  <div style="color: red;">
+  <textarea id="txt"></textarea>
+      <p id="md">2</p>
+  </div>
+
+
+</body>  
+</html>  

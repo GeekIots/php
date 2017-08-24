@@ -1,6 +1,6 @@
 <?php 
   error_reporting(E_ALL^E_NOTICE); //取消警告显示
-  header('Content-type:text/json');
+  header('Content-type:application/json');
    include "conn.php";//https
    if (!$con)
    {

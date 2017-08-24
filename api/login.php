@@ -1,7 +1,7 @@
 <?php session_start();
 	error_reporting(E_ALL^E_NOTICE); //取消警告显示
 	include "conn.php";
-	header('Content-type:text/json');
+	header('Content-type:application/json');
 	$username=isset($_GET['username']) ? htmlspecialchars($_GET['username']) : '';;
 	$password=isset($_GET['password']) ? htmlspecialchars($_GET['password']) : '';;
 

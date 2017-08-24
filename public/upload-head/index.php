@@ -13,7 +13,7 @@ include "../../public/header.php";
 <script type="text/javascript" src="js/cropbox.js"></script>
 <main>
 	<div class="container">
-	  <div class="imageBox">
+	  <div id="images" class="imageBox">
 	    <div class="thumbBox"></div>
 	    <div class="spinner" style="display: none">Loading...</div>
 	  </div>
@@ -34,6 +34,12 @@ include "../../public/header.php";
 </main>
 
 <script type="text/javascript">
+
+document.getElementById('images').onmousewheel = function(event) { 
+if (!event) event = window.event; 
+this.scrollTop = this.scrollTop - (event.wheelDelta ? event.wheelDelta : -event.detail * 10); 
+return false; 
+}
 var cropper;
 $(window).load(function() {
 	console.log('2');

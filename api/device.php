@@ -1,6 +1,6 @@
 <?php 
 	error_reporting(E_ALL^E_NOTICE); //取消警告显示
-	header('Content-type:text/json');
+	header('Content-type:application/json');
   date_default_timezone_set("Asia/Shanghai");
   include "conn.php";//https
 
@@ -38,6 +38,7 @@
         else
         {
          $myArray["resault"] = 'success';
+         $myArray["status"] = 200;
          $result = mysqli_query($con, "SELECT * FROM switch WHERE userid = '$userid' ");
          $myArray["num"] = $result->num_rows;
          $num=0;
