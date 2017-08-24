@@ -60,42 +60,7 @@
                 4px 5px 5px rgba(100,100,80,0.4), /*顶部阴影*/ 
                 4px 6px 5px rgba(100,100,80,0.4); /*底边阴影*/  
             } 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> origin/master
-            /*下面几个样式规定了头，身，和底部的位置关系，不可随意更改！*/
-            html
-            {
-                height:100%;
-            }
-            body
-            {
-                min-height:100%;
-                margin:0;
-                padding:0;
-                position:relative;
-                /*background-color: lightgray;*/
-            }
-            header
-            {
-                /*background-color: #39C7AF;*/
-            }
-            main
-            {
-                padding-bottom:20%;
-                
-            }
-            /* main的padding-bottom值要等于或大于footer的height值 */
-            footer
-            {
-                position:absolute;
-                bottom:0;
-                width:100%;
-                background-color: #ffc0cb;
-            }
->>>>>>> origin/master
+
         </style>
     </head>
 
