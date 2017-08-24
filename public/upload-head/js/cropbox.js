@@ -111,10 +111,7 @@
 
                 obj.state.mouseX = e.clientX;
                 obj.state.mouseY = e.clientY;
-
-                Preview(obj);
             }
-
         },
         imgMouseUp = function(e)
         {
@@ -122,7 +119,7 @@
             obj.state.dragable = false;
             console.log('imgMouseUp');
             // 更新预览
-             Preview(obj);
+            Preview(obj);
         },
         zoomImage = function(e)
         {
@@ -156,8 +153,8 @@
 }));
 
 // 更新预览
-function Preview(obj) {   
-    var img = cropper.getDataURL();;
+function Preview(obj) {
+    var img = obj.getDataURL();
     $('.cropped').html('');
     $('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:64px;margin-top:4px;border-radius:64px;box-shadow:0px 0px 12px #7E7E7E;" ><p>64px*64px</p>');
     $('.cropped').append('<img src="'+img+'" align="absmiddle" style="width:128px;margin-top:4px;border-radius:128px;box-shadow:0px 0px 12px #7E7E7E;"><p>128px*128px</p>');

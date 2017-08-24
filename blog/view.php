@@ -45,20 +45,19 @@
       <tr>
         <!-- 用户信息 -->
         <td style="background-color: #E0EEEE">
+          <!-- 用户头像 -->
           <?php 
-              //用户头像
-              $file = "http://www.smtvoice.com/public/upload-head/userheadimg/".$rs['userid'].".jpg";
-              if(my_file_exists($file))
+           //用户头像
+              $file = "../public/upload-head/userheadimg/".$_SESSION['login'].".jpg";
+              if(file_exists($file))
               {
                   //存在
                   $avatar = $file;
-                  // console.log('存在');
               }
               else
               {
                   //不存在
-                  $avatar = "http://www.smtvoice.com/public/upload-head/default.jpg";
-                  // console.log('不存在');
+                  $avatar = "../public/upload-head/default.jpg";
               }           
           ?>
 

@@ -1,6 +1,6 @@
 <?php 
 	error_reporting(E_ALL^E_NOTICE); //取消警告显示
-	header('Content-type:application/json');
+	header('Content-type:text/json');
 	date_default_timezone_set("Asia/Shanghai");
 
 	$myArray["year"] = date("Y");

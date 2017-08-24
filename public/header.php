@@ -30,7 +30,7 @@
     <!DOCTYPE html>
     <html>
     <head>
-        <!-- <title>smtvoice</title> -->
+        <title>smtvoice</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="keywords" content="极客物联网,远程控制,stm32,Arduino">
@@ -60,7 +60,6 @@
                 4px 5px 5px rgba(100,100,80,0.4), /*顶部阴影*/ 
                 4px 6px 5px rgba(100,100,80,0.4); /*底边阴影*/  
             } 
-            
             /*下面几个样式规定了头，身，和底部的位置关系，不可随意更改！*/
             html
             {
