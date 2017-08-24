@@ -30,7 +30,7 @@
     <!DOCTYPE html>
     <html>
     <head>
-        <!-- <title>smtvoice</title> -->
+        <title>smtvoice</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="keywords" content="极客物联网,远程控制,stm32,Arduino">
@@ -48,10 +48,10 @@
 
                 <style>
             /* Remove the navbar's default margin-bottom and rounded borders */
-            .navbar {
+           /* .navbar {
                 margin-bottom: 0;
                 border-radius: 0;
-            } 
+            } */
             /*阴影效果，悬浮效果*/
             /*{box-shadow:[inset] x-offset y-offset blur-radius spread-radiuscolor}*/
             .box-shadow{  
@@ -60,7 +60,8 @@
                 4px 5px 5px rgba(100,100,80,0.4), /*顶部阴影*/ 
                 4px 6px 5px rgba(100,100,80,0.4); /*底边阴影*/  
             } 
-            
+<<<<<<< HEAD
+=======
             /*下面几个样式规定了头，身，和底部的位置关系，不可随意更改！*/
             html
             {
@@ -91,6 +92,7 @@
                 width:100%;
                 background-color: #ffc0cb;
             }
+>>>>>>> origin/master
         </style>
     </head>
 
@@ -134,7 +136,7 @@
 
 
                     <!-- <li><a href="../Weather/Weather.php">Weather</a></li> -->
-                    <li><a href="<?php echo $_SERVER['localhost'] ?>/blog/index.php">论坛</a></li>.
+                    <li><a href="<?php echo $_SERVER['localhost'] ?>/blog/index.php">论坛</a></li>
                     <li><a href="<?php echo $_SERVER['localhost'] ?>/about/index.php">关于</a></li>
                     
                    <!--  <li>
@@ -177,7 +179,15 @@
                     }
 
 
-                echo '<li><a href="'.$_SERVER['localhost'].'/public/upload-head/index.php" >欢迎 '.$_SESSION['login'].'</a></li><li><a href="'.$_SERVER['localhost'].'/accut/logout.php"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>';
+                echo '
+                <li>
+                    <a href="'.$_SERVER['localhost'].'/public/upload-head/index.php" >欢迎 '.$_SESSION['login'].'</a>
+                </li>
+                <li>
+                    <a href="'.$_SERVER['localhost'].'/accut/logout.php">
+                    <span class="glyphicon glyphicon-log-out"></span>&nbsp Logout
+                    </a>
+                </li>';
                 echo '<li><img src="'.$avatar.'" width="35px" height="35" style="margin-left:5px; margin-top: 8px; border-radius: 35px;" /></li>';
             }
             else

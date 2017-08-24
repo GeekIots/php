@@ -1,6 +1,6 @@
 <?php 
   error_reporting(E_ALL^E_NOTICE); //取消警告显示
-  header('Content-type:application/json');
+  header('Content-type:text/json');
   include "conn.php";//http
 ?>
 <?php
@@ -12,8 +12,23 @@
    }
    else
    {
-    if(!empty($_GET['type']))
+    if($_GET['type']=='set'&&(!empty($_GET['content']))&&(!empty($_GET['id'])))
     { 
+      $result = mysqli_query($con, "UPDATE info set content = '{$_GET['content']}' where id='{$_GET['id']}'");
+      if ($result) {
+        $myArray["status"] = 'success';  
+      }
+      else
+      {
+        $myArray["status"] = 'error';
+        $myArray["msg"] = '网络错误！';    
+      }
+      // var_dump($result);
+      $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
+      echo $json;
+    }
+    else
+    {
       $myArray["status"] = 'success';  
       $result = mysqli_query($con, "SELECT * FROM info where name = '{$_GET['type']}'");
       $myArray["num"] = $result->num_rows;

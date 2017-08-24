@@ -15,14 +15,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script> <!-- 腾讯地图 -->
-  <meta name="description" content="极客物联网，属于每个人的DIY物联网开发平台，欢迎到小程序微信搜索“极客物联网”，更多精彩期待您的加入！"/>
-  <style> 
-</style> 
+<title>信息管理</title>
 </head>
 <body>
-<div class="container" style="margin-left: 12%;padding-top: 10px;padding-bottom: 10px;">
-<div> 
+<div style="width: 90%;padding-left: 10%;padding-top: 10px;padding-bottom: 10px;">
 <table class="table table-bordered"> 
 		<tr> 
 		<td>用户名</td> 
