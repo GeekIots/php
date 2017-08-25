@@ -3,7 +3,7 @@
 	// https://smtvoice.com/scancode.php?type=set&text=resault&note=note&nick=nickName
 	include "conn.php";
 	date_default_timezone_set("Asia/Shanghai");
-	header('Content-type:text/json');
+	header('Content-type:application/json');
 	$type=$_GET['type'];
 	$text=$_GET['text'];
 	$note=$_GET['note'];
