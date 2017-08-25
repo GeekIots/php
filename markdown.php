@@ -12,17 +12,15 @@
     <link rel="stylesheet" href="markdown/src/styles/rainbow.css">
     <link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
 	<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
-	
-     <!-- <script src="js/jquery.min.js"></script> -->
 </head>
 <body>
-
-    <div style="padding-left: 10%;padding-right: 10%;padding-top: 2%;">
-	    <textarea id="txt" style="width: 50%;height: 600px;" placeholder="请输入Markdown代码"></textarea>
-	    <div style="width: 50%;float: right;border:1px solid lightgray; height:600px;word-wrap:break-word;padding: 2%;">
-	    <p id="content"></p>
+    <div style="padding-left: 2%;padding-right: 2%;padding-top: 1%;">
+      <div><h2 style="float: left;padding-left: 0%;color: orange;">源代码:</h2><h2 style="float: right;padding-right: 38%; color: orange;">效果预览:</h2></div>
+	    <textarea class="form-control"  id="txt" style="width: 50%;height: 600px;float: left; resize: none;" placeholder="请输入Markdown代码" ></textarea>
+      
+	    <div class="form-control" style="width: 49%;float: right;border:1px solid lightgray; height:600px;word-wrap:break-word;padding: 2%;">
+	    <div style="overflow-y:auto;overflow-x: hidden; margin:-20px; height: 107%;" id="content"></div>
 	    </div>
-        
     </div>
 </body>
 </html>
@@ -54,4 +52,4 @@ $("#txt").bind("input propertychange", function () {
 
 </script>   
 
-<!-- <?php include './public/footer.php';?> -->
+<?php include './public/footer.php';?>
