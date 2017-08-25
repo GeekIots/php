@@ -19,12 +19,11 @@
 	    <textarea class="form-control"  id="txt" style="width: 50%;height: 600px;float: left; resize: none;" placeholder="请输入Markdown代码" ></textarea>
       
 	    <div class="form-control" style="width: 49%;float: right;border:1px solid lightgray; height:600px;word-wrap:break-word;padding: 2%;">
-	    <div style="overflow-y:auto;overflow-x: hidden; margin:-20px; height: 107%;" id="content"></div>
+	    <div style="overflow-y:auto;overflow-x: hidden; margin:-10px; height: 104%;" id="content"></div>
 	    </div>
     </div>
 </body>
 </html>
-
 <script>  
 hljs.initHighlightingOnLoad(); 
 
@@ -44,10 +43,14 @@ var rendererMD = new marked.Renderer();
         return hljs.highlightAuto(code).value;
       }
     });
-    
 $("#txt").bind("input propertychange", function () {
     // alert($(this).text());
-    $("#content").html(marked($(this).val())); 
+    // var lexer = new marked.Lexer({sanitize: true});//放option信息
+    // var tokens = lexer.lex($(this).val());//<p>&lt;h1&gt;hello&lt;/h1&gt;</p>
+    // var str = tokens;
+    var tokens = marked($(this).val());
+    console.log(tokens);  
+    $("#content").html(tokens); 
 })
 
 </script>   
