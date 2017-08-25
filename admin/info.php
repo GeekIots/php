@@ -70,7 +70,7 @@ input{
 				<tr> 
 					<td><?php echo($row['id']); ?></td>
 			  		<td><?php echo($row['name']); ?></td>
-			  		<td><input id="<?php echo($row['id']); ?>" value="<?php echo($row['content']); ?>"></td>
+			  		<td><textarea id="<?php echo($row['id']); ?>"><?php echo($row['content']); ?></textarea></td>
 			  		<td><button id="clear-<?php echo($row['id']); ?>"  style="width: 40px;height: 30px;"  ></button></td>
 			  		<td><button id="update-<?php echo($row['id']); ?>" style="width: 40px;height: 30px;"></button></td>
 				</tr> 

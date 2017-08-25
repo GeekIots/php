@@ -8,7 +8,7 @@ include "../public/header.php";
 <head>
     <title>极客物联网 一个开源的物联网开发平台！</title>
     <meta charset="utf-8">  
-    <script src="http://cdn.bootcss.com/pagedown/1.0/Markdown.Converter.js"></script>
+    <script src="../js/Markdown.Converter.js"></script>
 </head>
 <body>
     <div style="padding-left: 10%;padding-right: 10%;padding-top: 2%;">
@@ -18,7 +18,7 @@ include "../public/header.php";
 </html>
 
 <script>  
-function convert(str) {
+function convert(str) { 
     var converter = new Markdown.Converter();  
         html      = converter.makeHtml(str);  
     return html;
