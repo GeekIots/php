@@ -56,3 +56,5 @@ $("#txt").bind("input propertychange", function () {
 </script>   
 
 <?php include './public/footer.php';?>
+
+

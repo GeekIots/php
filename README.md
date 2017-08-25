@@ -5,6 +5,7 @@
 1.markdown编辑器搞定
 2.更新footer
 3.md目前支持html标签 不支持table主要问题在1087行escape函数，需要深入研究
+4.md兼容html标签，支持样式
 
 2017.8.24 
 1.增加markdown文件夹
