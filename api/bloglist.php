@@ -29,6 +29,7 @@
             $indexArray["title"]=$row['title']; 
             $indexArray["userid"]=$row['userid']; 
             $indexArray["dates"]=$row['dates']; 
+            $indexArray["hits"]=$row['hits']; 
             $myArray["list"][]=$indexArray;
           }
         }
@@ -44,6 +45,7 @@
             $indexArray["pic"]=$row['picture'];
             $indexArray["title"]=$row['title']; 
             $indexArray["dates"]=$row['dates']; 
+            $indexArray["hits"]=$row['hits']; 
             $myArray["list"][]=$indexArray;
           }
 

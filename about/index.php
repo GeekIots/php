@@ -27,10 +27,10 @@ function convert(str) {
 $(document).ready(function(){
   console.log('开始加载');  
 $.ajax({
-    url: "<?php echo $_SERVER['localhost'] ?>/api/info.php?type=geekiot_about",
+    url: "<?php echo $_SERVER['localhost'] ?>/api/info.php?type=get&name=geekiot_about",
     success: function (res) {
         console.log('success:',res);
-        var str = convert(res.list["0"].content);
+        var str = convert(res.list["0"].content_html);
        str = str.replace(/<img/g,'<img style="width:60%;margin-left: 10%;"');
         $("#md").html(str);
     },

@@ -1,9 +1,9 @@
 <?php session_start();
     error_reporting(E_ALL^E_NOTICE); //取消警告显示
     // include $_SERVER ['DOCUMENT_ROOT']."/public/online.php";
-     function console($value='')
+    function console($value='')
     {
-        echo("<script>console.log('".$value."');</script>");
+        echo("<script>console.log('{$value}');</script>");
     }
 
     function my_file_exists($file)  

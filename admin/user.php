@@ -1,5 +1,8 @@
+<?php
+include "../public/header.php";
+//phpinfo();
+?>
 <?php 
-	include "../public/header.php";
 	include "../public/conn.php";
 	if(!$_SESSION['login'])
 	{
@@ -57,4 +60,4 @@
 </script>
 
 
-<!-- <?php include '../public/footer.php';?> -->
+<?php include '../public/footer.php';?>
