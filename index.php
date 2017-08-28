@@ -11,7 +11,8 @@ include "./public/header.php";
     <script src="js/Markdown.Converter.js"></script>
 </head>
 <body>
-    <div style="padding-left: 10%;padding-right: 10%;padding-top: 2%;">
+<img src="http://a4.qpic.cn/psb?/V132Fiv00gblPA/Kcl8uE4ZnmQdJ11QRoDa2vGDeuOG6TEyF3AobuLGLq4!/m/dPcAAAAAAAAA&bo=rgGuAQAAAAARBzA!&rf=photolist" width="200">
+    <div style="padding-left: 15%;padding-right: 15%;padding-top: 2%;">
         <p id="md">还未更新！</p>
     </div>
 </body>
@@ -31,7 +32,7 @@ $.ajax({
     success: function (res) {
         console.log('success:',res);
         var str = convert(res.list["0"].content_html);
-       str = str.replace(/<img/g,'<img style="width:60%;margin-left: 10%;"');
+       // str = str.replace(/<img/g,'<img style="width:60%;margin-left: 10%;"');
         $("#md").html(str);
     },
     error:function (res) {

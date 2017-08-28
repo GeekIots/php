@@ -50,13 +50,14 @@ input{
 textarea{
 	resize: none;
 	border: 0px;
+
 }
 </style>
 
     <script src="../markdown/marked.js"></script>
     <link rel="stylesheet" href="../markdown/src/styles/github.css">
-	<!-- <script src="../markdown/src/highlight.js"></script> -->
-	<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+	<script src="../markdown/highlight.min.js"></script>
+	<!-- <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script> -->
 </head>
 <body >
 <div style="width: 100%;align-items: center;padding: 2%;padding-top: 10px;"> 
@@ -83,13 +84,13 @@ textarea{
 		<tr> 
 			<td><?php echo($row['id']); ?></td>
 			<!-- name 名称-->
-	  		<td><textarea id="name-<?php echo($row['id']); ?>" onclick=edit('name-<?php echo($row['id']); ?>') rows="1" cols="20" readonly="readonly"  ><?php echo($row['name']);?></textarea></td>
+	  		<td><textarea id="name-<?php echo($row['id']); ?>" onclick=edit('name-<?php echo($row['id']); ?>') rows="1" cols="20" readonly="readonly" style="overflow-y:hidden" ><?php echo($row['name']);?></textarea></td>
 	  		<!-- des 功能描述-->
-	  		<td><textarea id="des-<?php echo($row['id']); ?>" onclick=edit('des-<?php echo($row['id']); ?>') rows="1" cols="20" readonly="readonly"  ><?php echo($row['des']);?></textarea></td>
+	  		<td><textarea id="des-<?php echo($row['id']); ?>" onclick=edit('des-<?php echo($row['id']); ?>') rows="1" cols="20" readonly="readonly"  style="overflow-y:hidden"><?php echo($row['des']);?></textarea></td>
 	  		<!-- content_md 原格式内容-->
-	  		<td><textarea id="content_md-<?php echo($row['id']); ?>" onclick=edit('content_md-<?php echo($row['id']); ?>') rows="1" cols="20" readonly="readonly" id="<?php echo($row['id']); ?>"><?php echo($row['content_md']);?></textarea></td>
+	  		<td><textarea id="content_md-<?php echo($row['id']); ?>" onclick=edit('content_md-<?php echo($row['id']); ?>') rows="1" cols="20" readonly="readonly" id="<?php echo($row['id']); ?>" style="overflow-y:hidden"><?php echo($row['content_md']);?></textarea></td>
 	  		<!-- latest 更新 时间-->
-	  		<td><textarea rows="1" cols="20" readonly="readonly" id="latest-<?php echo($row['id']); ?>"><?php echo($row['latest']);?></textarea></td>
+	  		<td><textarea rows="1" cols="20" readonly="readonly" id="latest-<?php echo($row['id']); ?>" style="overflow-y:hidden"><?php echo($row['latest']);?></textarea></td>
 		</tr> 
 	<?php
 	    }
