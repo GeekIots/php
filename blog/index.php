@@ -19,14 +19,14 @@
 <body class="zh_CN">
  <div class="head" id="header">
   <div class="head_box js_head_box">
-    <h1 class="logo"><a href="/index.php?" title="极客物联网 论坛"></a></h1>
+    <h1 ><a class="logo" href="/index.php?" title="极客物联网 论坛">极客物联网</a></h1>
     <div class="header_ctrls js_header_ctrls">
       <div class="header_ctrls_meta">
-        <a href="https://developers.weixin.qq.com/">社区</a>
+        <a href="/blog/index.php">社区</a>
       </div>
 
       <div class="header_ctrls_meta">
-        <a href="https://mp.weixin.qq.com/debug/wxadoc/dev/index.html">文档</a>
+        <a href="/blog/index.php">文档</a>
       </div>
 
 
@@ -125,9 +125,9 @@
           <a class="btn btn_primary js_new_blog_btn" href="/blog/add.php"><span class="icon_write"></span>发表新帖</a>
         </div>
         <div class="title_tab_wrp title_tab post_filter_opr" id="topTab"><ul class="tab_navs title_tab" data-index="0">
-          <li data-index="0" class="tab_nav first selected" ><a href="/blog/index.php">未解决</a></li>
-          <li data-index="1" class="tab_nav "><a href="/blog/index.php">已解决</a></li>
-          <li data-index="2" class="tab_nav "><a href="/blog/index.php">全部</a></li>
+          <li data-index="0" class="tab_nav first selected" ><a href="/blog/index.php">全部</a></li>
+          <li data-index="1" class="tab_nav "><a href="/blog/index.php">未解决</a></li>
+          <li data-index="2" class="tab_nav "><a href="/blog/index.php">已解决</a></li>
         </ul>
       </div>
     </div>
@@ -140,7 +140,11 @@
           $InPageNumber = 2;
           //页数初始化为0
           $PageNumber = 0;
-          $NowPageNuber = $_GET['page'];
+          if (!empty($_GET['page'])) {
+            $NowPageNuber = $_GET['page'];
+          }
+          else
+            $NowPageNuber = 1;
 
           //获取帖子总量
           $sqlselect="select count(*) from blog";
@@ -273,10 +277,10 @@
 
 <div class="foot blur_row page_full" id="footer">
   <ul class="links ft"> 
-    <li class="links_item"><a href="http://www.smtvoice.com/about/index.php" target="_blank">关于极客物联网</a></li>
-    <li class="links_item"><a href="https://mp.weixin.qq.com/debug/wxadoc/dev/index.html" target="_blank">文档中心</a></li>
-    <li class="links_item"><a href="http://mp.weixin.qq.com/cgi-bin/opshowpage?action=dispelinfo&lang=zh_CN&begin=1&count=9" target="_blank">辟谣中心</a></li>
-    <li class="links_item"><a href="http://kf.qq.com/faq/120911VrYVrA1509086vyumm.html" target="_blank">客服中心</a></li>
+    <li class="links_item"><a href="/about/index.php" target="_blank">关于极客物联网</a></li>
+    <li class="links_item"><a href="#" target="_blank">文档中心</a></li>
+    <li class="links_item"><a href="#" target="_blank">辟谣中心</a></li>
+    <li class="links_item"><a href="#" target="_blank">客服中心</a></li>
     <li class="links_item"><a href="mailto:sunyiming537@126.com" target="_blank">联系邮箱</a></li>
     <li class="links_item"><p class="copyright">Copyright &copy; 2012-2017 Geek-iot. All Rights Reserved.</p></li>
   </ul>
