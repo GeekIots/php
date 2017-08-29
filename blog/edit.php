@@ -1,6 +1,6 @@
 <?php include("../public/header.php");?>
 <script type="text/javascript">
-document.domain = "http://www.smtvoice.com";
+// document.domain = "http://www.smtvoice.com";
 	
 </script>
 <!DOCTYPE HTML>
