@@ -1,249 +1,130 @@
-<?php include("../public/header.php");?>
 <!DOCTYPE html>
 <html>
 <head>
-  <head>
-  <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
-  <script type="text/javascript" charset="utf-8" src="ueditor/_examples/editor_api.js"></script>
-  <script src="ueditor/ueditor.parse.js" type="text/javascript"></script>
-  <meta name="description" content="极客物联网，属于每个人的DIY物联网开发平台，欢迎到小程序微信搜索“极客物联网”，更多精彩期待您的加入！"/>
+  <title>开发者社区 | 极客物联网 </title>
+  <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/c/=/wxopenforumres/htmledition/style/widget/colorpicker/colorpicker3793d0.css,/wxopenforumres/htmledition/style/biz_web/widget/dropdown3793d0.css,/wxopenforumres/htmledition/style/widget/upload3793d0.css,/wxopenforumres/htmledition/style/widget/ueditor_new/codemirror/codemirror3793d0.css,/wxopenforumres/htmledition/style/widget/tooltip3793d0.css,/wxopenforumres/htmledition/style/widget/ueditor_new/themes/default/css/ueditor3793d0.css,/wxopenforumres/htmledition/style/widget/ueditor_new/themes/default/ueditor3793d0.css,/wxopenforumres/htmledition/style/widget/pagination3793d0.css" />
+  <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/wxopenforumres/htmledition/style/base/lib3793d0.css"/>
+  <link rel="stylesheet" href="https://res.wx.qq.com/wxopenforumres/htmledition/style/page/discussion/detail3793d0.css" media="all">
 </head>
-<!-- 读取博文数据 -->
-<?php
-    date_default_timezone_set('prc');
-    include("conn.php");
-    if(!empty($_GET['id']))
-    { 
-      $sql="select * from blog where id='".$_GET['id']."'";
-      $query=mysql_query($sql);
-      $rs=mysql_fetch_array($query);
-      
-      $sql="update blog  set hits = hits+1 where id='".$_GET['id']."'";
-      mysql_query($sql);
-    }
-?>
-<body>
-<main>
- <div style="margin-left: 10%;margin-right: 10%;margin-top: 1%;">
-  <!--  <a href="index.php" class="btn btn-default">首页</a> -->
-      <table class="table table-bordered box-shadow">
-      <tbody>
-      <tr style="background-color: #555;color:#fff">
-        <th style="width:22%;">
-        <h4>
-            用户信息
-        </h4>
-        </th>
-        <!-- 文章标题 -->
-        <th style="width:80%;">
-          <h4>
-            <?php echo $rs['title']?>
-          </h4>
-        </th>
-      </tr>
-      
-      <tr>
-        <!-- 用户信息 -->
-        <td style="background-color: #E0EEEE">
-          <!-- 用户头像 -->
-          <?php 
-           //用户头像
-              $file = "../public/upload-head/userheadimg/".$_SESSION['login'].".jpg";
-              if(file_exists($file))
-              {
-                  //存在
-                  $avatar = $file;
-              }
-              else
-              {
-                  //不存在
-                  $avatar = "../public/upload-head/default.jpg";
-              }           
-          ?>
+<body class="zh_CN">
+    <?php include('header.php'); ?>
+    <?php include("conn.php");
+        if(!empty($_GET['id']))
+        { 
+          $sql="select * from blog where id='".$_GET['id']."'";
+          $query=mysql_query($sql);
+          $rs=mysql_fetch_array($query);
+          
+          //增加点击量
+          $sql="update blog  set hits = hits+1 where id='".$_GET['id']."'";
+          mysql_query($sql);
 
-          <img src="<?php echo $avatar?>" width="80px" height="80px" style="border-radius: 5px;">
-          <h5>昵  称：<?php echo $rs['userid']?></h5>
-          <h5>点击量：<?php echo $rs['hits']?></h5>
-          <h5>发布时间：<?php echo $rs['dates']?></h5>
-        </td>
-        <!-- 内容 -->
-        <td style="background-color:#EEE5DE">
-          <!-- 编辑和删除按钮 -->
-          <?php 
-            if($_SESSION['login']==$rs['userid'])
-            {
-              echo '<a href="edit.php?id='.$rs['id'].'">编辑</a>';
-              // echo '<a href="edit.php?id='.$rs['id'].'">编辑</a> | <a href="del.php?del='.$rs['id'].'">删除</a>';
-              echo "<hr>";
-            } 
-          ?>
-               
-          <!-- 文章内容 -->
-          <?php
-          echo  htmlspecialchars_decode($rs['contents']); 
-          ?>
-          <!--分享接口 JiaThis Button BEGIN -->
-          <div class="jiathis_style_32x32" style="float: right;">
-            <a class="jiathis_button_tsina"></a>
-            <a class="jiathis_button_qzone"></a>
-            <a class="jiathis_button_tqq"></a>
-            <a class="jiathis_button_weixin"></a>
-            <a class="jiathis_button_renren"></a>
-            <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-            <a class="jiathis_counter_style"></a>
-          </div>
-          <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
-          <!-- JiaThis Button END -->
-          <!-- UJian Button BEGIN -->
-            <div class="ujian-hook"></div>
-<!--             <script type="text/javascript" src="http://v1.ujian.cc/code/ujian.js"></script> -->
-          <!-- UJian Button END -->
-
-        </td>
-      </tr>
-      <!-- 遍历回复内容 -->
-      <?php
-        $sqlanswer="select * from bloganswer where toid='".$rs['id']."'";
-        $queryanswer=mysql_query($sqlanswer);
-        $answernum = 0;
-        while($rsanswer=mysql_fetch_array($queryanswer))
-        {
-          $answernum++;
-      ?>
-        <!-- 回复标题 -->
-        <tr>
-          <td style="background-color:#BDBDBD">
-            <h7>
-              <?php echo $answernum; ?>楼
-          </h7> 
-          </td>
-          <td style="background-color:#BDBDBD">
-            <h7>
-              回复时间：<?php echo $rsanswer['dates']?>
-            </h7>
-          </td>
-        </tr>
-          <!-- 回复内容 -->
-          <tr>
-            <td style="background-color:#E0EEEE">
-              <h5>昵称：<?php echo $rsanswer['userid'] ?></h5>
-            </td>
-            <td style="background-color:#EEE5DE">
-              
-              <?php
-                echo  htmlspecialchars_decode($rsanswer['contents']); 
-              ?>
-            </td>
-          </tr>
-      <?php 
+          //获取回复
+          $sqlanswer="select * from bloganswer where toid='".$rs['id']."'";
+          $queryanswer=mysql_query($sqlanswer);
+          $answernum = mysql_fetch_array($queryanswer)[0];
+          $queryanswer=mysql_query($sqlanswer);
         }
-      ?>
-       <tr hidden id="huifu1">
-        <td style="background-color:#E0EEEE">
-        </td>
-        <td style="background-color:#EEE5DE">
-        </td>
-      </tr>     
-      <tr >
-        <td style="background-color:#E0EEEE">
-        </td>
-        <td style="background-color:#EEE5DE;">
-          <div id="collapseOne" class="panel-collapse collapse in">
-            <div class="panel panel-primary" id="liuyankuang">
-              <div class="panel-heading">
-                    <h3 class="panel-title">留言</h3>
-              </div>
-              <div class="panel-body">
-                <script type="text/plain" id="myEditor" name="myEditor">
-                </script>
-                <div style="text-align: right;padding-top: 5px">
-                  <button id="queding" class="btn btn-default">回复</button>
-                  <a class="btn btn-default" href="index.php" >返回</a> 
+    ?>
+    <div id="body" class="body page_simple " style="min-height: 257px;background: white;">
+        <div class="container_box">
+            <div class="post_detail">
+                <div class="post_overview">
+                    <!-- 帖子标题 -->
+                    <h4 class="post_title">
+                        <?php echo $rs['title']?>
+                    </h4>
+                    <div class="post_info">
+                        <!-- 发帖人 -->
+                        <strong class="post_owner post_info_meta"><?php echo $rs['userid']?></strong>
+                        <!-- 发帖时间 -->
+                        <em id="create_time" class="post_time post_info_meta"><?php echo $rs['dates']?></em>
+                        <!-- 标签，分类 -->
+                        <span class="post_tags post_info_meta">
+                            <a class="post_tag" href="/blog/index.php">STM32</a>
+                        </span>
+                        <!-- 回复数 -->
+                        <span class="js_comment_num_frame post_discuss_num post_info_meta"><i class="icon_post_opr discuss"></i><span id="comment_num"><?php echo $answernum; ?></span></span>
+                    </div>
                 </div>
-              </div>
+                <!-- 正文 -->
+                <div id="content" class="post_content">
+                    <p><?php echo htmlspecialchars_decode($rs['contents']);?></p>
+                </div>
+                <!-- 更新时间 -->
+                <div class="post_extra_info">
+                    <div class="js_updatetime post_tips" style="">最后一次编辑于&nbsp;&nbsp;<span id="update_time"><?php echo $rs['dates']?></span></div>
+                    <div class="post_opr">
+                        <a style="" id="comment_btn" class="post_opr_meta" href="javascript:;"><i class="icon_post_opr discuss"></i>评论</a>
+                    </div>
+                </div>
+                <!-- 回复 -->
+                <ul id="comment_list" class="post_comment_list">
+                <?php 
+                    // 计算楼层
+                    $floornumber = 0;
+                    while ($rsanswer=mysql_fetch_array($queryanswer)) {
+                        $floornumber++;
+                        echo '<li class="js_comment_floor_1 js_post_comment_item post_comment_item">
+                                <span class="post_comment_owner">
+                                    <!-- 用户头像 -->
+                                    <img class="post_comment_owner_avatar" src="https://wx.qlogo.cn/mmhead/Q3auHgzwzM4RcfSy6x6rIzX3GRgRhJA03hwHfzgsQibUwBXwJ47ybXA/0" alt="孙毅明">
+                                    <!-- 昵称 -->
+                                    <strong class="post_comment_owner_nickname">',$rs["userid"],'</strong>
+                                </span>
+                                <!-- 回复正文 -->
+                                <div class="post_comment_content">
+                                    <p>',htmlspecialchars_decode($rsanswer['contents']),'</p>
+                                </div>
+                                <div class="post_comment_info">
+                                    <!-- 回复时间 -->
+                                    <span class="post_comment_time">',$rsanswer["dates"],'</span>
+                                    <span class="post_comment_opr">
+                                        <a class="js_delete_comment post_opr_meta" data-comment-id="b8e044ba0e81dd7498d7c085c8579897"><i class="icon_post_opr delete"></i>删除</a>
+                                        <a class="js_comment post_opr_meta" style="display:none;"><i class="icon_post_opr discuss"></i>评论</a>
+                                    </span>
+                                    <!-- 回复楼层 -->
+                                    <span class="post_comment_pos">',$floornumber,'楼</span>
+                                </div>
+                            </li>';
+                    }
+                ?>
+                </ul>
+                <!-- 回复编辑区 -->
+                <div id="editorframe" class="post_comment_editor_area post_comment_item with_post_editor" style="">
+                    <span class="post_comment_owner">
+                        <img class="post_comment_owner_avatar" src="https://wx.qlogo.cn/mmhead/Q3auHgzwzM4RcfSy6x6rIzX3GRgRhJA03hwHfzgsQibUwBXwJ47ybXA/0" alt="孙毅明">
+                        <strong class="post_comment_owner_nickname">孙毅明</strong>
+                    </span>
+                    <div class="post_comment_content post_editor_box">
+                        <div id="js_editor" class="post_comment_editor_wrp edui-default"><div id="edui1" class="edui-editor  edui-default" style="z-index: 999;">
+                            <!-- 工具栏 -->
+                            <div id="edui1_toolbarbox" class="edui-editor-toolbarbox show-edui-more edui-default" style="margin-left: 0px;">
+                                <p>还未启用</p>
+
+                            </div>
+
+                            <input type="hidden" class="js_field edui-default" name="type" value="0">
+
+                            <!-- 正文 -->
+                            <div class="editor_area edui-default">
+                                <div class="split_line edui-default"></div>
+                                <!-- 正文报错 -->
+                                <div id="edui1_iframeholder" class="edui-editor-iframeholder edui-default" style="height: 154px;"></div>
+                            </div>
+                            <!-- 底部 -->
+                            <div id="edui1_bottombar" class="edui-editor-bottomContainer tool_bar tr edui-default">
+                                <a id="submitEidt" class="btn btn_primary edui-default" href="javascript:;">回复</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </td>
-      </tr>
-     </tbody>
-    </table>
-  </div>
- </main>
+        </div>
+    </div>
+</div>
+<?php include('footer.php') ?>
 </body>
+
 </html>
 
-<?php include '../public/footer.php';?>
-
-<script type="text/javascript">
-  //初始化编辑框长度和宽度
-    var editor_a = UE.getEditor('myEditor',
-      {
-        toolbars:[['FullScreen',"fontfamily", "fontsize", "bold", "italic", "underline", "forecolor", "backcolor", "insertorderedlist", "insertunorderedlist"]],
-        //focus时自动清空初始化时的内容  
-        autoClearinitialContent:true,
-        //开启字数统计  
-        wordCount:true,
-        //允许的最大字符数
-        maximumWords:800,     
-        //关闭元素路径
-        elementPathEnabled:false,
-        //默认的编辑区域高度  
-        initialFrameWidth:800,
-        initialFrameHeight:160
-        //更多其他参数，请参考ueditor.config.js中的配置项  
-      });
-</script>
-
-<script type="text/javascript">
-var floornum=<?php echo $answernum;?>;
-var tbNum=1;
-//确定按钮
-$("#queding").click(function(){
-    // 游客不能留言
-    <?php 
-      if ($_SESSION['login'])
-      {
-    ?>
-        var dd=getContent();
-        if(dd[0])
-        {
-          $.post("answer.php",
-          {
-              data:dd[0],//回复内容
-              toid:<?php echo $rs['id'];?>//文章id
-          },
-              function(data,status){
-                if(data=="ok")
-                  {
-                    floornum++;
-                    $("#huifu"+tbNum).after("<tr><td style=\"background-color:#BDBDBD\"><h7>"+floornum+"楼</h7></td><td style=\"background-color:#BDBDBD\"><h7>回复时间：<?php echo date('Y-m-d H:i:s',time()); ?></h7></td></tr><tr id=\"huifu"+(tbNum+1)+"\"><td style=\"background-color:#E0EEEE\"><h5>昵称：<?php echo $_SESSION['login'] ?></h5></td><td style=\"background-color:#EEE5DE\">"+getContent()+"</td></tr>");
-                      tbNum++;
-                      //清空内容
-                      setContent();
-                  }
-          });
-        }  
-        else
-        {
-          alert('回复内容不能为空！');          
-        } 
-    <?php
-      }
-      else
-      {
-        echo "alert('游客不能留言，请登录！');";
-      }
-    ?> 
-});
-
-//获取文本框内容
-function getContent() {
-        var arr = []  ;
-        arr.push(UE.getEditor('myEditor').getContent());
-        return arr;
-    }
-
-function setContent(isAppendTo) {
-        UE.getEditor('myEditor').setContent('', isAppendTo);
-    }
-</script>
