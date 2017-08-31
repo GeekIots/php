@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>非模块化方式使用Layui</title>
+  <link rel="stylesheet" href="../frame/layui-v2.1.0/layui/css/layui.css">
+  <script src="../frame/layui-v2.1.0/layui/layui.all.js"></script>
+</head>
+<body>
+ 
+<!-- 你的HTML代码 -->
+<div style="padding-left: 300px;padding-right: 300px; padding-top: 200px">
+	<textarea id="demo" style="display: none;"></textarea>
+</div>
+
+<script>
+//由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
+;!function(){
+  var layer = layui.layer
+  ,form = layui.form,layedit = layui.layedit;
+  layedit.set({
+  uploadImage: {
+    url: '../api/uploadhead.php' //接口url
+    ,type: 'post' //默认post
+  }
+});
+  layedit.build('demo');
+  // layer.msg('Hello World');
+}();
+</script> 
+<!-- HTML结束 -->
+
+</body>
+</html>
+
+
+
+
+
+<!-- <script src="../frame/layui-v2.1.0/layui/layui.all.js"></script>  
+<script>
+;!function(){
+  //无需再执行layui.use()方法加载模块，直接使用即可
+  var form = layui.form
+  ,layer = layui.layer;
+  
+  //…
+}();
+</script>  -->
