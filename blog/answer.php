@@ -5,9 +5,10 @@ error_reporting(E_ALL^E_NOTICE); //取消警告显示
 	include("conn.php");
 	if(!empty($_POST['data']))
 	{ 
-		if($_SESSION['login'])
-		{
-			$userid=$_SESSION['login'];
+		// if($_SESSION['login'])
+		// {
+			// $userid=$_SESSION['login'];
+			$userid='123';
 			$con = $_POST['data'];
 			$toid = $_POST['toid'];
 
@@ -19,8 +20,8 @@ error_reporting(E_ALL^E_NOTICE); //取消警告显示
 			}
 			else
 				echo "error";
-		}
-		exit();
+		// }
+		// exit();
 	}
 	else
 		echo "数据为空";
