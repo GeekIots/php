@@ -1,3 +1,47 @@
+<?php session_start();
+function my_file_exists($file)  
+{  
+    if(preg_match('/^http:\/\//',$file)){  
+        //远程文件  
+        if(ini_get('allow_url_fopen')){  
+            if(@fopen($file,'r')) return true;  
+        }  
+        else{  
+            $parseurl=parse_url($file);  
+            $host=$parseurl['host'];  
+            $path=$parseurl['path'];  
+            $fp=fsockopen($host,80, $errno, $errstr, 10);  
+            if(!$fp)return false;  
+            fputs($fp,"GET {$path} HTTP/1.1 \r\nhost:{$host}\r\n\r\n");  
+            if(preg_match('/HTTP\/1.1 200/',fgets($fp,1024))) return true;  
+        }  
+        return false;  
+    }  
+    return file_exists($file);  
+}       
+function console($value='')
+{
+    echo("<script>console.log('{$value}');</script>");
+}
+  if(isset($_SESSION['login'])) {
+          //用户头像
+          $file = "http://www.smtvoice.com/public/upload-head/userheadimg/".$_SESSION['login'].".jpg";
+          console($file);
+          if(my_file_exists($file)) {
+              //存在
+              $avatar = $file;
+              console('存在');
+          }
+          else{
+              //不存在
+              $avatar = "http://www.smtvoice.com/public/upload-head/default.jpg";
+              console('不存在');
+          }
+  } else {
+      console('未登录');
+      $avatar = "http://www.smtvoice.com/public/upload-head/default.jpg";
+  }
+?>
 <html>
 <head>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -18,6 +62,9 @@
     <h1 class="logo"><a href="/index.php?" title="极客物联网 论坛"></a></h1>
     <div class="header_ctrls js_header_ctrls">
       <div class="header_ctrls_meta">
+        <a href="/index.php">首页</a>
+      </div>
+      <div class="header_ctrls_meta">
         <a href="/blog/index.php">社区</a>
       </div>
       <div class="header_ctrls_meta">
@@ -31,17 +78,17 @@
       </div>
 
       <div class="header_ctrls_meta top_user_box">
-        <a class="top_user_switch" href="/selfcenter?action=get_blog&lang=zh_CN&token=2108255711">
-          <img class="user_avatar" src="https://wx.qlogo.cn/mmhead/Q3auHgzwzM4RcfSy6x6rIzX3GRgRhJA03hwHfzgsQibUwBXwJ47ybXA/0" alt="">
+        <a class="top_user_switch" href="#">
+          <img class="user_avatar" src="<?php echo($avatar); ?>" alt="">
         </a>
         <i class="icon_arrow_right_global"></i>
         <div class="skin_pop">
           <div class="skin_pop_inner">
             <div class="skin_pop_bd">
-              <a href="/selfcenter?action=get_blog&lang=zh_CN&token=2108255711" title="孙毅明" class="user_name">孙毅明</a>
+              <a href="#" class="user_name"><?php echo($_SESSION['login']); ?></a>
             </div>
             <div class="skin_pop_ft">
-              <a class="javascript:;" id="logout" href="/welogout?lang=zh_CN&token=2108255711">退出</a>
+              <a class="javascript:;" id="logout" href="/accut/logout.php">退出</a>
             </div>
           </div>
           <i class="icon_skin_pop_arrow"></i>

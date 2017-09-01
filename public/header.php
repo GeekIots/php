@@ -37,13 +37,13 @@
         <script src="<?php echo $_SERVER ['localhost'];?>/js/jquery.min.js"></script>
         
         <!--  Bootstrap 核心 CSS 文件 -->
-        <link rel="stylesheet" href="<?php echo $_SERVER ['localhost'];?>/bootstrap/css/bootstrap.min.css"  crossorigin="anonymous">
+        <link rel="stylesheet" href="<?php echo $_SERVER ['localhost'];?>/frame/bootstrap/css/bootstrap.min.css"  crossorigin="anonymous">
 
         <!--  主题文件（一般不用引入） -->
-        <link rel="stylesheet" href="<?php echo $_SERVER ['localhost'];?>/bootstrap/css/bootstrap-theme.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="<?php echo $_SERVER ['localhost'];?>/frame/bootstrap/css/bootstrap-theme.min.css" crossorigin="anonymous">
 
         <!-- Bootstrap 核心 JavaScript 文件 -->
-        <script src="<?php echo $_SERVER ['localhost'];?>/bootstrap/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+        <script src="<?php echo $_SERVER ['localhost'];?>/frame/bootstrap/js/bootstrap.min.js"  crossorigin="anonymous"></script>
 
                 <style>
             /* Remove the navbar's default margin-bottom and rounded borders */

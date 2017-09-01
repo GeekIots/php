@@ -54,9 +54,9 @@ textarea{
 }
 </style>
 
-    <script src="../markdown/marked.js"></script>
-    <link rel="stylesheet" href="../markdown/src/styles/github.css">
-	<script src="../markdown/highlight.min.js"></script>
+    <script src="../frame/markdown/marked.js"></script>
+    <link rel="stylesheet" href="../frame/markdown/src/styles/github.css">
+	<script src="../frame/markdown/highlight.min.js"></script>
 	<!-- <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script> -->
 </head>
 <body >
@@ -162,7 +162,6 @@ textarea{
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
 	</div><!-- /.modal -->
-
 </div>
 </body>
 </html>
