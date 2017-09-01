@@ -56,8 +56,48 @@ function console($value='')
   <!-- 分页需要的样式 -->
   <link rel="stylesheet" type="text/css" href="css/upload.css" />
   <script src="../js/jquery.min.js"></script>
+  <link rel="stylesheet" href="../frame/layui-v2.1.0/layui/css/layui.css">
+  <script src="../frame/layui-v2.1.0/layui/layui.js"></script>
 </head>
-<div class="head" id="header">
+<ul class="layui-nav">
+  <li class="layui-nav-item"><a href="">最新活动</a></li>
+  <li class="layui-nav-item layui-this">
+    <a href="javascript:;">产品</a>
+    <dl class="layui-nav-child">
+      <dd><a href="">选项1</a></dd>
+      <dd><a href="">选项2</a></dd>
+      <dd><a href="">选项3</a></dd>
+    </dl>
+  </li>
+  <li class="layui-nav-item"><a href="">社区</a></li>
+  <li class="layui-nav-item">
+    <a href="">控制台<span class="layui-badge">9</span></a>
+  </li>
+  <li class="layui-nav-item">
+    <a href="">个人中心<span class="layui-badge-dot"></span></a>
+  </li>
+  <li class="layui-nav-item">
+    <a href="javascript:;"><img src="http://t.cn/RCzsdCq" class="layui-nav-img">我</a>
+    <dl class="layui-nav-child">
+      <dd><a href="javascript:;">修改信息</a></dd>
+      <dd><a href="javascript:;">安全管理</a></dd>
+      <dd><a href="javascript:;">退了</a></dd>
+    </dl>
+  </li>
+</ul>
+
+<script>
+layui.use('element', function(){
+  var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+  
+  //监听导航点击
+  element.on('nav(demo)', function(elem){
+    //console.log(elem)
+    layer.msg(elem.text());
+  });
+});
+</script>
+<!-- <div class="head" id="header">
   <div class="head_box js_head_box">
     <h1 class="logo"><a href="/index.php?" title="极客物联网 论坛"></a></h1>
     <div class="header_ctrls js_header_ctrls">
@@ -98,5 +138,5 @@ function console($value='')
 
   </div>
 
-</div>
+</div> -->
 </html>

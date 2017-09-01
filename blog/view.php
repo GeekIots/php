@@ -5,9 +5,6 @@
   <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/c/=/wxopenforumres/htmledition/style/widget/colorpicker/colorpicker3793d0.css,/wxopenforumres/htmledition/style/biz_web/widget/dropdown3793d0.css,/wxopenforumres/htmledition/style/widget/upload3793d0.css,/wxopenforumres/htmledition/style/widget/ueditor_new/codemirror/codemirror3793d0.css,/wxopenforumres/htmledition/style/widget/tooltip3793d0.css,/wxopenforumres/htmledition/style/widget/ueditor_new/themes/default/css/ueditor3793d0.css,/wxopenforumres/htmledition/style/widget/ueditor_new/themes/default/ueditor3793d0.css,/wxopenforumres/htmledition/style/widget/pagination3793d0.css" />
   <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/wxopenforumres/htmledition/style/base/lib3793d0.css"/>
   <link rel="stylesheet" href="https://res.wx.qq.com/wxopenforumres/htmledition/style/page/discussion/detail3793d0.css" media="all">
-
-  <link rel="stylesheet" href="../frame/layui-v2.1.0/layui/css/layui.css">
-  <script src="../frame/layui-v2.1.0/layui/layui.all.js"></script>
 </head>
 <body class="zh_CN">
     <?php include('header.php'); ?>
@@ -66,7 +63,7 @@
             <!-- 回复 -->
             <ul id="comment_list" class="post_comment_list">
                 <?php 
-                    // 计算楼层
+                // 计算楼层
                 $floornumber = 0;
                 while ($rsanswer=mysql_fetch_array($queryanswer)) {
                     $floornumber++;
@@ -107,13 +104,11 @@
                        <textarea id="demo" class="layui-textarea" style="display: none;"></textarea>
                         <!-- 回复按钮 -->
                         <div class="edui-editor-bottomContainer tool_bar tr edui-default">
-                            <!-- <a id="submitEidt" class="btn btn_primary edui-default" href="javascript:;">回复</a> -->
                             <button class="layui-btn site-demo-layedit" data-type="content">回复</button>
                         </div>
-
                         <script>
                             //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
-                            ;!function(){
+                            layui.use(['layedit','jquery'],function(){
                             var layedit = layui.layedit,$ = layui.jquery;
                             layedit.set({
                               uploadImage: {
@@ -169,7 +164,7 @@
                                 // alert(); 
                             });
                             layer.msg('极客物联网！',{ shade:0.5,time:1000});
-                          }();
+                          });
                         </script>
                     </div>
                 </div>

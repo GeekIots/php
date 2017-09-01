@@ -138,83 +138,30 @@
        </ul>
        <!-- 分页 -->
        <div class="pagination_wrp js_pagination">
-        <div class="pagination">
-          <span class="page_nav_area"><!-- style="display: none;" -->
-            <!-- 前一页 -->
-            <a href="/blog/index.php?page=<?php echo ($NowPageNuber-1); ?>" class="btn page_prev" ><i class="arrow"></i></a>
-            <?php 
-            if ($PageNumber<=3) {
-             switch ($PageNumber) {
-              case 1:
-              echo '<!-- 当前页 -->
-              <a href="/blog/index.php?page=1" class="btn page_nav current">1</a>';
-              break;
-              case 2:
-              echo '<!-- 当前页 -->
-              <a href="/blog/index.php?page=1" class="btn page_nav '?><?php if($NowPageNuber==1)echo("current");else echo("js_mid");?><?php echo '">1</a>
-              <!-- 第二页 -->
-              <a href="/blog/index.php?page=2" class="btn page_nav '?><?php if($NowPageNuber==2)echo("current");else echo("js_mid");?><?php echo '">2</a>';
-              break;
-              case 3:
-              echo '<!-- 当前页 -->
-              <a href="/blog/index.php?page=1" class="btn page_nav '?><?php if($NowPageNuber==1)echo("current");else echo("js_mid");?><?php echo '">1</a>
-              <!-- 第二页 -->
-              <a href="/blog/index.php?page=2" class="btn page_nav '?><?php if($NowPageNuber==2)echo("current");else echo("js_mid");?><?php echo '">2</a>
-              <!-- 第三页 -->
-              <a href="/blog/index.php?page=3" class="btn page_nav '?><?php if($NowPageNuber==3)echo("current");else echo("js_mid");?><?php echo '">3</a>';
-              break;
-            }
+          <div class="pagination" id="laypage1"></div>
+       </div>
+       <!-- 分页完 -->
+       <script>
+        layui.use('laypage', function(){
+        var laypage = layui.laypage;
+        //执行一个laypage实例
+        laypage.render({
+          elem: 'laypage1' //注意，这里的 laypage1 是 ID，不用加 # 号
+          ,count: <?php echo($noteTotalNumber); ?> //数据总数，从服务端得到
+          ,limit: 8 //每页条数
+          ,curr:<?php echo($NowPageNuber); ?>
+          ,layout: [ 'prev', 'page', 'next', 'skip']
+          ,next:'<i class="layui-icon">&#xe602;</i>'
+          ,prev:'<i class="layui-icon">&#xe603;</i>'
+          ,jump:function (obj,first) {
+            console.log(obj);
+            // 首次不执行
+            if(!first)
+              window.location.href = "/blog/index.php?page="+obj.curr;
           }
-          else
-          {
-            if($NowPageNuber<3){
-              echo '<!-- 当前页 -->
-              <a href="/blog/index.php?page=1" class="btn page_nav '?><?php if($NowPageNuber==1)echo("current");else echo("js_mid");?><?php echo '">1</a>
-              <!-- 第二页 -->
-              <a href="/blog/index.php?page=2" class="btn page_nav '?><?php if($NowPageNuber==2)echo("current");else echo("js_mid");?><?php echo '">2</a>
-              <!-- 第三页 -->
-              <a href="/blog/index.php?page=3" class="btn page_nav '?><?php if($NowPageNuber==3)echo("current");else echo("js_mid");?><?php echo '">3</a>';
-            }
-            else if($NowPageNuber<$PageNumber)
-            {
-              echo '<!-- 当前页 -->
-              <a href="/blog/index.php?page='?><?php echo ($NowPageNuber-1);?><?php echo '" class="btn page_nav js_mid">'?><?php echo ($NowPageNuber-1);?><?php echo '</a>
-              <!-- 第二页 -->
-              <a href="/blog/index.php?page='?><?php echo ($NowPageNuber);?><?php echo '" class="btn page_nav current">'?><?php echo ($NowPageNuber);?><?php echo '</a>
-              <!-- 第三页 -->
-              <a href="/blog/index.php?page='?><?php echo ($NowPageNuber+1);?><?php echo '" class="btn page_nav js_mid">'?><?php echo ($NowPageNuber+1);?><?php echo '</a>';
-            }
-            else if($NowPageNuber==$PageNumber)
-            {
-              echo '<!-- 当前页 -->
-              <a href="/blog/index.php?page='?><?php echo ($NowPageNuber-2);?><?php echo '" class="btn page_nav js_mid">'?><?php echo ($NowPageNuber-2);?><?php echo '</a>
-              <!-- 第二页 -->
-              <a href="/blog/index.php?page='?><?php echo ($NowPageNuber-1);?><?php echo '" class="btn page_nav js_mid">'?><?php echo ($NowPageNuber-1);?><?php echo '</a>
-              <!-- 第三页 -->
-              <a href="/blog/index.php?page='?><?php echo ($NowPageNuber);?><?php echo '" class="btn page_nav current">'?><?php echo ($NowPageNuber);?><?php echo '</a>';
-            }
-          }
-          ?>
-          <!-- ... -->
-          <span class="gap_next">...</span>
-          <!-- 总页数 -->
-          <a href="/blog/index.php?page=<?php echo $PageNumber; ?>" class="btn page_nav"><?php echo $PageNumber; ?></a>
-          <!-- 下一页 -->
-          <a href="/blog/index.php?page=<?php echo ($NowPageNuber+1); ?>" class="btn page_next"><i class="arrow"></i></a>
-        </span>
-        <span class="goto_area">
-          <!-- 页面电梯直达 -->
-          <input type="text"  onchange="gotofloor()" id="floorvalue">
-          <a href="/blog/index.php?page=" class="btn page_go" id="floorNumber">跳转</a>
-          <script>
-            function gotofloor() {
-              $("#floorNumber").attr('href',"/blog/index.php?page="+$("#floorvalue").val());
-            }
-          </script>
-        </span>
-      </div>
-    </div>
-    <!-- 分页完 -->
+         });
+        });
+       </script>
     <div class="pagination_wrp js_pagination"></div>
   </div>
 </div>
