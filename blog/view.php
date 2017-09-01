@@ -115,7 +115,12 @@
                             //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
                             ;!function(){
                             var layedit = layui.layedit,$ = layui.jquery;
-
+                            layedit.set({
+                              uploadImage: {
+                                url: '../api/layui/upload.php?act=images', //接口url
+                                type: 'post' //默认post
+                                }
+                            });
                             var index = layedit.build('demo', {tool: [
                                 'strong' //加粗
                                 ,'italic' //斜体
@@ -130,7 +135,7 @@
                                 ,'link' //超链接
                                 // ,'unlink' //清除链接
                                 ,'face' //表情
-                                // ,'image' //插入图片
+                                ,'image' //插入图片
                                 // ,'help' //帮助
                                 ]
                                 ,height: 180
@@ -163,7 +168,7 @@
                                 }
                                 // alert(); 
                             });
-                            layer.msg('极客物联网！');
+                            layer.msg('极客物联网！',{ shade:0.5,time:1000});
                           }();
                         </script>
                     </div>
