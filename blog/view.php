@@ -2,178 +2,213 @@
 <html>
 <head>
   <title>开发者社区 | 极客物联网 </title>
-  <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/c/=/wxopenforumres/htmledition/style/widget/colorpicker/colorpicker3793d0.css,/wxopenforumres/htmledition/style/biz_web/widget/dropdown3793d0.css,/wxopenforumres/htmledition/style/widget/upload3793d0.css,/wxopenforumres/htmledition/style/widget/ueditor_new/codemirror/codemirror3793d0.css,/wxopenforumres/htmledition/style/widget/tooltip3793d0.css,/wxopenforumres/htmledition/style/widget/ueditor_new/themes/default/css/ueditor3793d0.css,/wxopenforumres/htmledition/style/widget/ueditor_new/themes/default/ueditor3793d0.css,/wxopenforumres/htmledition/style/widget/pagination3793d0.css" />
-  <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/wxopenforumres/htmledition/style/base/lib3793d0.css"/>
-  <link rel="stylesheet" href="https://res.wx.qq.com/wxopenforumres/htmledition/style/page/discussion/detail3793d0.css" media="all">
 </head>
-<body class="zh_CN">
-    <?php include('header.php'); ?>
-    <?php include("conn.php");
-        if(!empty($_GET['id']))
-        { 
-          $sql="select * from blog where id='".$_GET['id']."'";
-          $query=mysql_query($sql);
-          $rs=mysql_fetch_array($query);
+<body> 
+<?php include('header.php') ?>
+<?php
+    //读取本贴内容 
+    include("conn.php");
+    if(!empty($_GET['id']))
+    { 
+      $sql="select * from blog where id='".$_GET['id']."'";
+      $query=mysql_query($sql);
+      $rs=mysql_fetch_array($query);
 
-          //增加点击量
-          $sql="update blog  set hits = hits+1 where id='".$_GET['id']."'";
-          mysql_query($sql);
+      //增加点击量
+      $sql="update blog  set hits = hits+1 where id='".$_GET['id']."'";
+      mysql_query($sql);
 
-          //获取回复
-          $sqlanswer="select count(*) from bloganswer where toid='".$rs['id']."'";
-          $queryanswer=mysql_query($sqlanswer);
-          $answernum=mysql_fetch_array($queryanswer)[0];
+      //获取回复
+      $sqlanswer="select count(*) from bloganswer where toid='".$rs['id']."'";
+      $queryanswer=mysql_query($sqlanswer);
+      $answernum=mysql_fetch_array($queryanswer)[0];
 
-          $sqlanswer="select * from bloganswer where toid='".$rs['id']."'";
-          $queryanswer=mysql_query($sqlanswer);
+      $sqlanswer="select * from bloganswer where toid='".$rs['id']."'";
+      $queryanswer=mysql_query($sqlanswer);
+    }
+?>
+<div class="main layui-clear">
+  <div class="wrap">
+    <div class="content detail">
+      <div class="fly-panel detail-box">
+        <h1><?php echo $rs['title']?></h1>
+        <div class="fly-tip fly-detail-hint" data-id="{{rows.id}}">
+          <span class="fly-tip-stick">置顶帖</span>
+          <span class="fly-tip-jing">精帖</span>
+          
+          <!-- <span>未结贴</span> -->
+          <span class="fly-tip-jie">已采纳</span>
+          
+          <!-- <span class="jie-admin" type="del" style="margin-left: 20px;">删除</span>
+          <span class="jie-admin" type="set" field="stick" rank="1">置顶</span> 
+          <span class="jie-admin" type="set" field="stick" rank="0" style="background-color:#ccc;">取消置顶</span>
+          <span class="jie-admin" type="set" field="status" rank="1">加精</span> 
+          <span class="jie-admin" type="set" field="status" rank="0" style="background-color:#ccc;">取消加精</span> -->
+          
+          <div class="fly-list-hint"> 
+            <i class="iconfont" title="回答">&#xe60c;</i> <?php echo $answernum?>
+            <i class="iconfont" title="人气">&#xe60b;</i> <?php echo $rs['hits']?>
+          </div>
+        </div>
+        <div class="detail-about">
+          <a class="jie-user" href="">
+            <img src="http://tp4.sinaimg.cn/1345566427/180/5730976522/0" alt="">
+            <cite>
+              <?php echo $rs['userid']?>
+              <em><?php echo $rs['dates']?></em>
+            </cite>
+          </a>
+          <div class="detail-hits" data-id="{{rows.id}}">
+            <span style="color:#FF7200">悬赏：20飞吻</span>
+            <span class="layui-btn layui-btn-mini jie-admin" type="edit"><a href="/jie/edit/{{rows.id}}">编辑此贴</a></span>
+            <span class="layui-btn layui-btn-mini jie-admin " type="collect" data-type="add">收藏</span>
+            <!--<span class="layui-btn layui-btn-mini jie-admin  layui-btn-danger" type="collect" data-type="add">取消收藏</span>-->
+          </div>
+        </div>
+        
+        <div class="detail-body photos" style="margin-bottom: 20px;">
+          <p><?php echo htmlspecialchars_decode($rs['contents']);?></p>
+        </div>
+      </div>
+
+    
+      
+      <!-- 回复区 -->
+      <div class="fly-panel detail-box" style="padding-top: 0;">
+        <div style="padding-top: 15px;">
+            <fieldset class="layui-elem-field layui-field-title" style="text-align: center;">
+                <legend>回帖</legend>
+            </fieldset>
+        </div>
+       
+        <a name="comment"></a>
+        <ul class="jieda photos" id="jieda">
+
+        <?php 
+            // 计算楼层
+            $floornumber = 0;
+            while ($rsanswer=mysql_fetch_array($queryanswer)) {
+                $floornumber++;
+        ?>
+                <li data-id="12" class="jieda-daan">
+                <a name="item-121212121212"></a>
+                <div class="detail-about detail-about-reply">
+                  <a class="jie-user" href="">
+                    <img src="../../res/images/avatar/default.png" alt="">
+                    <cite>
+                      <i><?php echo($rsanswer["userid"]); ?></i>
+                      <!-- <em>(楼主)</em>
+                      <em style="color:#5FB878">(管理员)</em>
+                      <em style="color:#FF9E3F">（活雷锋）</em>
+                      <em style="color:#999">（该号已被封）</em> -->
+                    </cite>
+                  </a>
+                  <div class="detail-hits">
+                    <span><?php echo($rsanswer["dates"]); ?></span>
+                  </div>
+                  <i class="iconfont icon-caina" title="最佳答案"></i>
+                </div>
+                <div class="detail-body jieda-body">
+                  <p><?php echo(htmlspecialchars_decode($rsanswer["contents"])); ?></p>
+                </div>
+                <div class="jieda-reply">
+                  <!-- 赞 -->
+                  <span class="jieda-zan zanok" type="zan"><i class="iconfont icon-zan"></i><em>12</em></span>
+                  <span type="reply"><i class="iconfont icon-svgmoban53"></i>回复</span>
+                  <!-- <div class="jieda-admin">
+                    <span type="edit">编辑</span>
+                    <span type="del">删除</span>
+                    <span class="jieda-accept" type="accept">采纳</span>
+                  </div> -->
+                </div>
+              </li>
+        <?php
         }
-    ?>
-  <div id="body" class="body page_simple " style="min-height: 257px;background: white;">
-    <div class="container_box">
-        <div class="post_detail">
-            <div class="post_overview">
-                <!-- 帖子标题 -->
-                <h4 class="post_title">
-                    <?php echo $rs['title']?>
-                </h4>
-                <div class="post_info">
-                    <!-- 发帖人 -->
-                    <strong class="post_owner post_info_meta"><?php echo $rs['userid']?></strong>
-                    <!-- 发帖时间 -->
-                    <em id="create_time" class="post_time post_info_meta"><?php echo $rs['dates']?></em>
-                    <!-- 标签，分类 -->
-                    <span class="post_tags post_info_meta">
-                        <a class="post_tag" href="/blog/index.php">STM32</a>
-                    </span>
-                    <!-- 回复数 -->
-                    <span class="js_comment_num_frame post_discuss_num post_info_meta"><i class="icon_post_opr discuss"></i><span id="comment_num"><?php echo $answernum; ?></span></span>
-                </div>
+        if (floornumber==0) {
+            echo("<li class='fly-none'>没有任何回答</li>");
+        }
+        ?>  
+        </ul>
+        
+        <div class="layui-form layui-form-pane">
+            <div class="layui-form-item layui-form-text">
+              <div class="layui-input-block">
+                <textarea id="demo" name="content"  placeholder="我要回答"  class="layui-textarea fly-editor" style="height: 150px;"></textarea>
+              </div>
             </div>
-            <!-- 正文 -->
-            <div id="content" class="post_content">
-                <p><?php echo htmlspecialchars_decode($rs['contents']);?></p>
-            </div>
-            <!-- 更新时间 -->
-            <div class="post_extra_info">
-                <div class="js_updatetime post_tips" style="">最后一次编辑于&nbsp;&nbsp;<span id="update_time"><?php echo $rs['dates']?></span></div>
-                <div class="post_opr">
-                    <a style="" id="comment_btn" class="post_opr_meta" href="javascript:;"><i class="icon_post_opr discuss"></i>评论</a>
-                </div>
-            </div>
-            <!-- 回复 -->
-            <ul id="comment_list" class="post_comment_list">
-                <?php 
-                // 计算楼层
-                $floornumber = 0;
-                while ($rsanswer=mysql_fetch_array($queryanswer)) {
-                    $floornumber++;
-                    echo '<li class="js_comment_floor_1 js_post_comment_item post_comment_item">
-                    <span class="post_comment_owner">
-                        <!-- 用户头像 -->
-                        <img class="post_comment_owner_avatar" src="https://wx.qlogo.cn/mmhead/Q3auHgzwzM4RcfSy6x6rIzX3GRgRhJA03hwHfzgsQibUwBXwJ47ybXA/0" alt="孙毅明">
-                        <!-- 昵称 -->
-                        <strong class="post_comment_owner_nickname">',$rs["userid"],'</strong>
-                    </span>
-                    <!-- 回复正文 -->
-                    <div class="post_comment_content">
-                        <p>',htmlspecialchars_decode($rsanswer['contents']),'</p>
-                    </div>
-                    <div class="post_comment_info">
-                        <!-- 回复时间 -->
-                        <span class="post_comment_time">',$rsanswer["dates"],'</span>
-                        <span class="post_comment_opr">
-                            <a class="js_delete_comment post_opr_meta" data-comment-id="b8e044ba0e81dd7498d7c085c8579897"><i class="icon_post_opr delete"></i>删除</a>
-                            <a class="js_comment post_opr_meta" style="display:none;"><i class="icon_post_opr discuss"></i>评论</a>
-                        </span>
-                        <!-- 回复楼层 -->
-                        <span class="post_comment_pos">',$floornumber,'楼</span>
-                    </div>
-                </li>';
-            }
-            ?>
-            </ul>
-            <!-- 回复编辑区 -->
-            <div id="editorframe" class="post_comment_editor_area post_comment_item with_post_editor" style="">
-                <span class="post_comment_owner">
-                    <img class="post_comment_owner_avatar" src="https://wx.qlogo.cn/mmhead/Q3auHgzwzM4RcfSy6x6rIzX3GRgRhJA03hwHfzgsQibUwBXwJ47ybXA/0" alt="孙毅明">
-                    <strong class="post_comment_owner_nickname">孙毅明</strong>
-                </span>
-                <div class="post_comment_content post_editor_box">
-                    <!-- 正文 -->
-                    <div class="editor_area edui-default">
-                       <textarea id="demo" class="layui-textarea" style="display: none;"></textarea>
-                        <!-- 回复按钮 -->
-                        <div class="edui-editor-bottomContainer tool_bar tr edui-default">
-                            <button class="layui-btn site-demo-layedit" data-type="content">回复</button>
-                        </div>
-                        <script>
-                            //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
-                            layui.use(['layedit','jquery'],function(){
-                            var layedit = layui.layedit,$ = layui.jquery;
-                            layedit.set({
-                              uploadImage: {
-                                url: '../api/layui/upload.php?act=images', //接口url
-                                type: 'post' //默认post
-                                }
-                            });
-                            var index = layedit.build('demo', {tool: [
-                                'strong' //加粗
-                                ,'italic' //斜体
-                                ,'underline' //下划线
-                                // ,'del' //删除线
-
-                                ,'|' //分割线
-
-                                ,'left' //左对齐
-                                ,'center' //居中对齐
-                                ,'right' //右对齐
-                                ,'link' //超链接
-                                // ,'unlink' //清除链接
-                                ,'face' //表情
-                                ,'image' //插入图片
-                                // ,'help' //帮助
-                                ]
-                                ,height: 180
-                                });
-
-                            //编辑器外部操作
-                            $('.site-demo-layedit').on('click', function(){
-                                //获取编辑器内容
-                                var str = layedit.getContent(index);
-                                if(str.length==0)
-                                {
-                                    layer.msg('回复内容不能为空！');
-                                }
-                                else
-                                {
-                                    $.ajax({
-                                        type:'POST',
-                                        url: "../blog/answer.php",
-                                        data:{'data':str,'userid':'sun','toid':<?php echo($_GET['id']) ?>},
-                                        //数据长度太长，放到data里通过post传送
-                                        success: function (argument) {
-                                            console.log(argument);
-                                            layer.msg('回复成功！');
-                                            window.location.reload();//刷新当前页面.
-                                        },
-                                        error:function (argument) {
-                                            layer.msg('回复失败！');
-                                        }
-                                    });
-                                }
-                                // alert(); 
-                            });
-                            layer.msg('极客物联网！',{ shade:0.5,time:1000});
-                          });
-                        </script>
-                    </div>
-                </div>
+            <div class="layui-form-item">
+              <!-- <input type="hidden" name="jid" value="{{rows.id}}"> -->
+              <button class="layui-btn" >提交回答</button>
             </div>
         </div>
+      </div>
     </div>
   </div>
+  
+  <div class="edge">
+
+  </div>
+</div>
 <?php include('footer.php') ?>
 </body>
+<script src="../frame/layui-v2.1.0/layui/layui.js"></script>
+<script>
+    layui.use(['layedit','jquery'],function(){
+    var layedit = layui.layedit,$ = layui.jquery;
+    layedit.set({
+      uploadImage: {
+        url: '../api/layui/upload.php?act=images', //接口url
+        type: 'post' //默认post
+        }
+    });
+    var index = layedit.build('demo', {tool: [
+        'strong' //加粗
+        ,'italic' //斜体
+        ,'underline' //下划线
+        // ,'del' //删除线
 
+        ,'|' //分割线
+
+        ,'left' //左对齐
+        ,'center' //居中对齐
+        ,'right' //右对齐
+        ,'link' //超链接
+        // ,'unlink' //清除链接
+        ,'face' //表情
+        ,'image' //插入图片
+        // ,'help' //帮助
+        ]
+        ,height: 180
+        });
+
+    //编辑器外部操作
+    $('.layui-btn').on('click', function(){
+        //获取编辑器内容
+        var str = layedit.getContent(index);
+        if(str.length==0)
+        {
+            layer.msg('回复内容不能为空！');
+        }
+        else
+        {
+            $.ajax({
+                type:'POST',
+                url: "../blog/answer.php",
+                data:{'data':str,'userid':'sun','toid':<?php echo($_GET['id']) ?>},
+                //数据长度太长，放到data里通过post传送
+                success: function (argument) {
+                    console.log(argument);
+                    layer.msg('回复成功！');
+                    window.location.reload();//刷新当前页面.
+                },
+                error:function (argument) {
+                    layer.msg('回复失败！');
+                }
+            });
+        }
+        // alert(); 
+    });
+    // layer.msg('极客物联网！',{ shade:0.5,time:1000});
+    });
+</script>
 </html>
-

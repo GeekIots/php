@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>开发者社区</title>
+  <title>开发者社区 | 极客物联网</title>
 </head>
-<body class="zh_CN">
+<body>
 <?php include('header.php'); ?>
 <div class="main layui-clear">
   <!-- 主内容区 -->
@@ -12,10 +12,7 @@
       <div class="fly-tab fly-tab-index">
         <span>
           <a href="jie/index.html">全部</a>
-          <a href="jie/index.html">未结帖</a>
-          <a href="jie/index.html">已采纳</a>
-          <a href="jie/index.html">精帖</a>
-          <a href="user/index.html">我的帖</a>
+          <!--   -->
         </span>
         <form action="http://cn.bing.com/search" class="fly-search">
           <i class="iconfont icon-sousuo"></i>
@@ -71,7 +68,7 @@
           </a>
           <h2 class="fly-tip">
             <!-- 标贴 -->
-            <a href="jie/detail.html"><?php echo $rs['title'];?></a>
+            <a href="view.php?id=<?php echo $rs['id'];?>"><?php echo $rs['title'];?></a>
           </h2>
           <p>
             <!-- 用户昵称 -->
