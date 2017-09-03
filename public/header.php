@@ -103,8 +103,8 @@
 
 
                     <!-- <li><a href="../Weather/Weather.php">Weather</a></li> -->
-                    <li><a href="<?php echo $_SERVER['localhost'] ?>/blog/index.php">论坛</a></li>
-                    <li><a href="<?php echo $_SERVER['localhost'] ?>/about/index.php">关于</a></li>
+                    <li><a href="/bbs/html/index.html">社区</a></li>
+                    <li><a href="/about/index.php">关于</a></li>
                     
                    <!--  <li>
                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">

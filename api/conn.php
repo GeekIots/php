@@ -1,3 +1,3 @@
 <?php
-$con = mysqli_connect("120.27.45.38", "root", "root","web");
+$con = mysqli_connect("127.0.0.1", "root", "root","web");
 ?>

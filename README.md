@@ -15,8 +15,9 @@
 	│  │─info.php  //站点信息（通过markdown+html混合编辑器编辑）
 	│  └─user.php  //用户列表
 	│
-	│─api //
-	│
+	│─api 
+	│  │─bbs  //社区API
+	│  └─bluetooth //小程序蓝牙遥控器API
 	│—blog
 	│
 	│—bootstrap
