@@ -106,7 +106,8 @@
                   <div class="detail-hits">
                     <span><?php echo($rsanswer["dates"]); ?></span>
                   </div>
-                  <i class="iconfont icon-caina" title="最佳答案"></i>
+                  <!-- 已采纳 -->
+                  <!-- <i class="iconfont icon-caina" title="最佳答案"></i> -->
                 </div>
                 <div class="detail-body jieda-body">
                   <p><?php echo(htmlspecialchars_decode($rsanswer["contents"])); ?></p>
@@ -124,8 +125,8 @@
               </li>
         <?php
         }
-        if (floornumber==0) {
-            echo("<li class='fly-none'>没有任何回答</li>");
+        if ($floornumber==0) {
+            echo("<li class='fly-none'>消灭零回复</li>");
         }
         ?>  
         </ul>
@@ -133,19 +134,80 @@
         <div class="layui-form layui-form-pane">
             <div class="layui-form-item layui-form-text">
               <div class="layui-input-block">
-                <textarea id="demo" name="content"  placeholder="我要回答"  class="layui-textarea fly-editor" style="height: 150px;"></textarea>
+                <textarea id="demo" name="content" class="layui-textarea fly-editor" style="height: 150px;">我要回复</textarea>
               </div>
             </div>
             <div class="layui-form-item">
               <!-- <input type="hidden" name="jid" value="{{rows.id}}"> -->
-              <button class="layui-btn" >提交回答</button>
+              <button class="layui-btn" >提交回复</button>
             </div>
         </div>
       </div>
     </div>
   </div>
   
+  <!-- 右边栏 -->
   <div class="edge">
+    <!-- 近一月回答榜 TOP 12-->
+    <div class="fly-panel leifeng-rank"> 
+      <h3 class="fly-panel-title">近一月回答榜 - TOP 12</h3>
+      <dl>
+        <!-- 本月回答问题前12名 -->
+        <?php 
+          $sqlsort = "select userid,count(*) from bloganswer group by userid 
+order by count(*) desc limit 12";
+          $sqlsort=mysql_query($sqlsort);
+          while($top12=mysql_fetch_array($sqlsort))
+          {
+          ?>
+            <dd>
+              <a href="user/home.html">
+                <img src="../res/images/avatar/default.png">
+                 <cite><?php echo($top12['userid']) ?></cite>
+                 <i><?php echo($top12['count(*)']) ?>次回答</i>
+              </a>
+            </dd>
+        <?php
+          }
+        ?>
+      </dl>
+    </div>
+
+    <!-- 最近热帖 -->
+    <dl class="fly-panel fly-list-one"> 
+      <dt class="fly-panel-title">最近热帖</dt>
+      <?php 
+          $sqlhit = "select title,hits,id from blog order by hits desc limit 10";
+          $sqlhit=mysql_query($sqlhit);
+          while($hit=mysql_fetch_array($sqlhit))
+          {
+          ?>
+            <dd>
+              <a href="view.php?id=<?php echo($hit['id']); ?>"><?php echo($hit['title']); ?></a>
+              <span ><i class="iconfont">&#xe60b;</i><?php echo($hit['hits']) ?></span>
+            </dd>
+        <?php
+          }
+        ?>
+    </dl>
+    <!-- 近期热议 -->
+    <!-- 回复最多的帖子，暂未实现 -->
+ <!--    <dl class="fly-panel fly-list-one"> 
+      <dt class="fly-panel-title">近期热议</dt>
+      <dd>
+        <a href="jie/detail.html">使用 layui 秒搭后台大布局之基本结构</a>
+        <span><i class="iconfont">&#xe60c;</i> 96</span>
+      </dd>
+    </dl> -->
+    
+<!--     <div class="fly-panel fly-link"> 
+      <h3 class="fly-panel-title">友情链接</h3>
+      <dl>
+        <dd>
+          <a href="http://www.geek-iot.com/" target="_blank">物联网开发平台</a>
+        </dd>
+      </dl>
+    </div> -->
 
   </div>
 </div>

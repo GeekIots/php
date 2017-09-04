@@ -18,7 +18,7 @@
           <i class="iconfont icon-sousuo"></i>
           <input class="layui-input" autocomplete="off" placeholder="搜索内容，回车跳转" type="text" name="q">
         </form>
-        <a href="jie/add.html" class="layui-btn jie-add">发表新帖</a>
+        <a href="add.php" class="layui-btn jie-add">发表新帖</a>
       </div>
 
       <!-- 普通贴 -->
@@ -56,11 +56,11 @@
         $query=mysql_query($sql);       
         while($rs=mysql_fetch_array($query))
         {
-        //读取回复数量
+          //读取回复数量
           $sqlanswer="select count(*) from bloganswer where toid='".$rs['id']."'";
           $queryanswer=mysql_query($sqlanswer);
           $answernum=mysql_fetch_array($queryanswer);
-        // print_r($answernum);
+          // print_r($answernum);
           ?>
           <li class="fly-list-li">
           <a href="user/home.html" class="fly-list-avatar">
@@ -126,13 +126,13 @@ order by count(*) desc limit 12";
     <dl class="fly-panel fly-list-one"> 
       <dt class="fly-panel-title">最近热帖</dt>
       <?php 
-          $sqlhit = "select title,hits from blog order by hits desc limit 10";
+          $sqlhit = "select title,hits,id from blog order by hits desc limit 10";
           $sqlhit=mysql_query($sqlhit);
           while($hit=mysql_fetch_array($sqlhit))
           {
           ?>
             <dd>
-              <a href="jie/detail.html"><?php echo($hit['title']) ?></a>
+              <a href="view.php?id=<?php echo($hit['id']); ?>"><?php echo($hit['title']) ?></a>
               <span ><i class="iconfont">&#xe60b;</i><?php echo($hit['hits']) ?></span>
             </dd>
         <?php

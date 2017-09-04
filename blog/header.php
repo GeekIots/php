@@ -62,7 +62,7 @@ function console($value='')
       <a class="nav-this" href="jie/index.html">
         <i class="iconfont"></i>首页
       </a>
-      <a href="/blog" target="_blank">
+      <a href="/blog" target="_self">
         <i class="iconfont"></i>社区
       </a>
       <a href="http://www.layui.com/" target="_blank">

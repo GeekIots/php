@@ -20,8 +20,9 @@
 	│  └─bluetooth //小程序蓝牙遥控器API
 	│—blog
 	│
-	│—bootstrap
-	│
+	│—picture
+	│  │─avatar //用户头像
+	│  └─blog   //社区帖子图片
 	│—css
 	│
 	│—demo //示例集合

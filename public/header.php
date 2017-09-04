@@ -103,7 +103,7 @@
 
 
                     <!-- <li><a href="../Weather/Weather.php">Weather</a></li> -->
-                    <li><a href="/bbs/html/index.html">社区</a></li>
+                    <li><a href="/blog/index.php">社区</a></li>
                     <li><a href="/about/index.php">关于</a></li>
                     
                    <!--  <li>
