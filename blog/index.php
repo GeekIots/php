@@ -4,7 +4,7 @@
   <title>开发者社区 | 极客物联网</title>
 </head>
 <body>
-<?php include('header.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
 <div class="main layui-clear">
   <!-- 主内容区 -->
   <div class="wrap">
@@ -24,7 +24,7 @@
       <!-- 普通贴 -->
       <ul class="fly-list fly-list-top">
       <?php
-        include("conn.php");
+        include($_SERVER['DOCUMENT_ROOT']."/common/conn.php");
         //定义每页显示数量
         $InPageNumber = 8;
         //页数初始化为0
@@ -37,8 +37,8 @@
 
         //获取帖子总量
         $sqlselect="select count(*) from blog";
-        $queryselect=mysql_query($sqlselect);
-        $noteTotalNumber=mysql_fetch_array($queryselect)[0];
+        $queryselect=mysqli_query($con,$sqlselect);
+        $noteTotalNumber=mysqli_fetch_array($queryselect)[0];
         //总页数
         $PageNumber = ceil($noteTotalNumber/$InPageNumber);//向上取整，有小数就加1 ceil(),向下取整：floor()
 
@@ -53,13 +53,13 @@
         }
         else
           $sql="select * from blog order by dates desc limit {$InPageNumber}";
-        $query=mysql_query($sql);       
-        while($rs=mysql_fetch_array($query))
+        $query=mysqli_query($con,$sql);       
+        while($rs=mysqli_fetch_array($query))
         {
           //读取回复数量
           $sqlanswer="select count(*) from bloganswer where toid='".$rs['id']."'";
-          $queryanswer=mysql_query($sqlanswer);
-          $answernum=mysql_fetch_array($queryanswer);
+          $queryanswer=mysqli_query($con,$sqlanswer);
+          $answernum=mysqli_fetch_array($queryanswer);
           // print_r($answernum);
           ?>
           <li class="fly-list-li">
@@ -72,7 +72,7 @@
           </h2>
           <p>
             <!-- 用户昵称 -->
-            <span><a href="user/home.html"><?php echo $rs['userid'];?></a></span>
+            <span><a href="user/home.html"><?php echo $rs['nickname'];?></a></span>
             <!-- 发布时间 -->
             <span><?php echo $rs['dates'];?></span>
             <!-- 分类 -->
@@ -103,16 +103,16 @@
       <dl>
         <!-- 本月回答问题前12名 -->
         <?php 
-          $sqlsort = "select userid,count(*) from bloganswer group by userid 
+          $sqlsort = "select nickname,count(*) from bloganswer group by nickname 
 order by count(*) desc limit 12";
-          $sqlsort=mysql_query($sqlsort);
-          while($top12=mysql_fetch_array($sqlsort))
+          $sqlsort=mysqli_query($con,$sqlsort);
+          while($top12=mysqli_fetch_array($sqlsort))
           {
           ?>
             <dd>
               <a href="user/home.html">
                 <img src="../res/images/avatar/default.png">
-                 <cite><?php echo($top12['userid']) ?></cite>
+                 <cite><?php echo($top12['nickname']) ?></cite>
                  <i><?php echo($top12['count(*)']) ?>次回答</i>
               </a>
             </dd>
@@ -127,8 +127,8 @@ order by count(*) desc limit 12";
       <dt class="fly-panel-title">最近热帖</dt>
       <?php 
           $sqlhit = "select title,hits,id from blog order by hits desc limit 10";
-          $sqlhit=mysql_query($sqlhit);
-          while($hit=mysql_fetch_array($sqlhit))
+          $sqlhit=mysqli_query($con,$sqlhit);
+          while($hit=mysqli_fetch_array($sqlhit))
           {
           ?>
             <dd>
@@ -160,9 +160,8 @@ order by count(*) desc limit 12";
 
   </div>
 </div>
-<?php include('footer.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 </body>
-<script src="../frame/layui-v2.1.0/layui/layui.js"></script>
 <script>
   layui.use('laypage', function(){
   var laypage = layui.laypage;

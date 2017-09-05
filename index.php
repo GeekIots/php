@@ -1,17 +1,14 @@
-<?php
-include "./public/header.php";
-//phpinfo();
-?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>极客物联网 一个开源的物联网开发平台！</title>
-    <meta charset="utf-8">  
-    <script src="js/Markdown.Converter.js"></script>
 </head>
+<?php
+    include $_SERVER['DOCUMENT_ROOT']."/common/header.php";
+//phpinfo();
+?>
 <body>
-<img src="http://a4.qpic.cn/psb?/V132Fiv00gblPA/Kcl8uE4ZnmQdJ11QRoDa2vGDeuOG6TEyF3AobuLGLq4!/m/dPcAAAAAAAAA&bo=rgGuAQAAAAARBzA!&rf=photolist" width="200">
     <div style="padding-left: 15%;padding-right: 15%;padding-top: 2%;">
         <p id="md">还未更新！</p>
     </div>
@@ -41,4 +38,4 @@ $.ajax({
 });
 });
 </script>   
-<?php include './public/footer.php';?>
+<?php include $_SERVER['DOCUMENT_ROOT']."/common/footer.php";?>

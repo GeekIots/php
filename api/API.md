@@ -1,11 +1,12 @@
+[toc]
 # 极客物联网API
-## 一、device
+## device
 
 ### 用户开关、传感器等相关设备API
 
 ####  1、获取开关列表
 ```
-https://www.smtvoice.com/api/device.php?device=switch&type=getlist&userid=test
+https://www.smtvoice.com/api/device.php?device=switch&type=getlist&nickname=test
 
 返回结果：
 {
@@ -38,7 +39,7 @@ https://www.smtvoice.com/api/device.php?device=switch&type=getlist&userid=test
 }
 ```
 
-## 二、info
+## info
 ### 设置或获取网站的动态页面信息
 #### 1、获取信息
 https://www.smtvoice.com/api/info.php?type=get&name=geekiot_about
@@ -68,4 +69,66 @@ https://www.smtvoice.com/api/info.php?type=set&id=1&filed=content_md
 }
 ```
 
+## blog
+### 社区
+#### 1、发布新帖
+https://www.smtvoice.com/api/blog/new.php
+#### 需要传递的参数
+|    参数名 |    关键字    |    重要性    |
+| --------  |    :----:    |    :----:    |
+|    标题   |    title     |     必须     |
+|    内容   |    contents  |     必须     |
+|    分类   |    classify  |     必须     |
+|    昵称   |    nickname  |     必须     |
+```
+{
+    "status": "success"
+}
+```
+```
+{
+    "status": "fail",
+    "msg": "错误信息！"
+}
+```
+#### 2、回复
+https://www.smtvoice.com/api/blog/answer.php
+#### 需要传递的参数
+|    参数名 |    关键字    |    重要性    |
+| --------  |    :----:    |    :----:    |
+|    内容   |    contents  |     必须     |
+|   原帖id  |    toid      |     必须     |
+|    昵称   |    nickname  |     必须     |
+```
+{
+    "status": "success"
+}
+```
+```
+{
+    "status": "fail",
+    "msg": "错误信息！"
+}
+```
+## user
+### 用户
+#### 1、注册
+https://www.smtvoice.com/api/user/register.php
+#### 需要传递的参数
+|    参数名 |    关键字    |    重要性    |
+| --------  |    :----:    |    :----:    |
+|    邮箱   |    email     |     必须     |
+|    昵称   |    nickname  |     必须     |
+|    密码   |    password  |     必须     |
+```
+{
+    "status": "success"
+}
+```
+```
+{
+    "status": "fail",
+    "msg": "错误信息！"
+}
+```
 

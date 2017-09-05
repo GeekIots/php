@@ -9,15 +9,24 @@
 	│      │  └─default
 	│      └─layim
 	│          └─skin
-	├─accut //
+	├─user  //用户信息
+	│  │─login.php //
+	│  │─.php  //
+	│  └─.php  //
+	│
 	├─admin //后台管理
 	│  │─index.php //后台管理首页
 	│  │─info.php  //站点信息（通过markdown+html混合编辑器编辑）
 	│  └─user.php  //用户列表
 	│
+	│─common  //公共 
+	│  │─  //
+	│  └─ //
 	│─api 
-	│  │─bbs  //社区API
-	│  └─bluetooth //小程序蓝牙遥控器API
+	│  │─blog  //社区API
+	│  │─bluetooth //小程序蓝牙遥控器API
+	│  │─layui //
+	│  └─user  //
 	│—blog
 	│
 	│—picture

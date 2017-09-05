@@ -4,15 +4,14 @@
   <title>开发者社区 | 极客物联网 </title>
 </head>
 <body> 
-<?php include('header.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php') ?>
 <div class="main layui-clear">
   <div class="fly-panel" pad20>
-    <h2 class="page-title">发表问题</h2>
+    <h2 class="page-title">发表新帖</h2>
     
     <!-- <div class="fly-none">并无权限</div> -->
 
     <div class="layui-form layui-form-pane">
-      <form action=" method="post">
         <div class="layui-form-item">
           <label for="L_title" class="layui-form-label">标题</label>
           <div class="layui-input-block">
@@ -29,45 +28,34 @@
           <div class="layui-inline">
             <label class="layui-form-label">所在类别</label>
             <div class="layui-input-block">
-              <select lay-verify="required" name="class">
+              <select lay-verify="required" id="select_id" name="class">
                 <option></option>
-                <option value="1" >layui框架综合</option> 
-                <option value="2" >layui.mobile模块</option> 
-                <option value="3" >layer弹出层</option> 
+                <option value="1" >Stm32</option> 
+                <option value="2" >Arduino</option> 
+                <option value="3" >Raspberry Pi</option> 
+                <option value="4" >Other</option> 
               </select>
             </div>
           </div>
-          <div class="layui-inline">
-            <label class="layui-form-label">悬赏飞吻</label>
-            <div class="layui-input-block">
-              <select name="experience">
-                <option value="5" selected>5</option>
-                <option value="20">20</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-              </select>
-            </div>
-          </div>
+	        <div class="layui-inline">
+	          <label for="L_vercode" class="layui-form-label">人类验证</label>
+	          <div class="layui-input-inline">
+	            <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input">
+	          </div>
+	          <div class="layui-form-mid">
+	            <span style="color: #c00;">1+1=?</span>
+	          </div>
+	        </div>
         </div>
+       <!--   -->
         <div class="layui-form-item">
-          <label for="L_vercode" class="layui-form-label">人类验证</label>
-          <div class="layui-input-inline">
-            <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input">
-          </div>
-          <div class="layui-form-mid">
-            <span style="color: #c00;">1+1=?</span>
-          </div>
+          <button class="layui-btn">立即发布</button>
         </div>
-        <div class="layui-form-item">
-          <button class="layui-btn" lay-filter="*" lay-submit>立即发布</button>
-        </div>
-      </form>
     </div>
   </div>
 </div>
-<?php include('footer.php') ?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 </body>
-<script src="../frame/layui-v2.1.0/layui/layui.js"></script>
 <script>
     layui.use(['layedit','jquery'],function(){
     var layedit = layui.layedit,$ = layui.jquery;
@@ -99,32 +87,67 @@
 
     //编辑器外部操作
     $('.layui-btn').on('click', function(){
+    	//获取标题内容
+    	var	title = $("#L_title").val();
+        
         //获取编辑器内容
         var str = layedit.getContent(index);
+
+        // 获取类型选择内容
+        var select_str = $("#select_id").find("option:selected").text();  //获取Select选择的Text
+
+        //获取验证结果
+    	var	vercode = $("#L_vercode").val();
+
+    	if (title.length==0) 
+        {
+        	layer.msg('标题不能为空！',{time:1000});
+        }
+        else
         if(str.length==0)
         {
-            layer.msg('回复内容不能为空！');
+            layer.msg('贴子内容不能为空！',{time:1000});
+        }
+        else
+        if(select_str.length==0)
+        {
+            layer.msg('请选择分类！',{time:1000});
+        }
+        else
+        if(vercode.length==0)
+        {
+            layer.msg('请回答验证问题！',{time:1000});
+        }
+        else
+        if(vercode!='2')
+        {
+            layer.msg('验证不正确,小学生？',{time:1200});
         }
         else
         {
             $.ajax({
                 type:'POST',
-                url: "../blog/answer.php",
-                data:{'data':str,'userid':'sun','toid':'2'},
+                url: "../api/blog/new.php",
+                data:{'title':title,'contents':str,'classify':select_str,'nickname':'幽灵'},
                 //数据长度太长，放到data里通过post传送
                 success: function (argument) {
                     console.log(argument);
-                    layer.msg('回复成功！');
-                    window.location.reload();//刷新当前页面.
+                    if (argument.resault=='success') {
+                    	layer.msg('发表成功！',{icon:1,time:800},function(){
+                          window.location.href='/blog/index.php'
+                        });
+                    }
+                    else{
+                    	layer.msg(argument.msg,{time:2000});
+                    }
                 },
                 error:function (argument) {
-                    layer.msg('回复失败！');
+                	console.log(argument);
+                    layer.msg('发表失败！');
                 }
             });
         }
-        // alert(); 
     });
-    // layer.msg('极客物联网！',{ shade:0.5,time:1000});
     });
 </script>
 </html>
