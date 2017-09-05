@@ -218,7 +218,7 @@ order by count(*) desc limit 12";
   var layedit = layui.layedit,$ = layui.jquery;
   layedit.set({
     uploadImage: {
-      url: '../api/layui/upload.php?act=images', //接口url
+      url: '/api/layui/upload.php?act=images', //接口url
       type: 'post' //默认post
       }
   });
@@ -275,7 +275,7 @@ order by count(*) desc limit 12";
       }
       // alert(); 
   });
-  // layer.msg('极客物联网！',{ shade:0.5,time:1000});
+  layer.msg('极客物联网！',{ shade:0.5,time:1000});
   });
 </script>
 </html>
