@@ -223,23 +223,22 @@ order by count(*) desc limit 12";
       }
   });
   var index = layedit.build('demo', {tool: [
-      'strong' //加粗
-      ,'italic' //斜体
-      ,'underline' //下划线
+      'face' //表情
+      ,'image' //插入图片
+      ,'link' //超链接 
+      ,'code'      
+      // 'strong' //加粗
+      // ,'italic' //斜体
+      // ,'underline' //下划线
       // ,'del' //删除线
-
-      ,'|' //分割线
-
+      // ,'|' //分割线
       ,'left' //左对齐
       ,'center' //居中对齐
       ,'right' //右对齐
-      ,'link' //超链接
       // ,'unlink' //清除链接
-      ,'face' //表情
-      ,'image' //插入图片
       // ,'help' //帮助
+       // , 'html'
       ]
-      ,height: 180
       });
 
   //编辑器外部操作
@@ -275,7 +274,7 @@ order by count(*) desc limit 12";
       }
       // alert(); 
   });
-  layer.msg('极客物联网！',{ shade:0.5,time:1000});
+  // layer.msg('极客物联网！',{ shade:0.5,time:1000});
   });
 </script>
 </html>

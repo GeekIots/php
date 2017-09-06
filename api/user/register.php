@@ -42,7 +42,7 @@
                             //注册成功
                             $myArray["resault"] = 'success';
                             $smtp->mail($email, "极客物联网注册认证！", "恭喜您成为极客物联网会员，请点击链接激活账号"."www.smtvoice.com/api/blog/register.check.php?nickname=".$nickname);
-                            $smtp->mail("15339287330@126.com", "新会员注册提示！",'昵称:' $nickname."注册邮箱:".$email);
+                            $smtp->mail("15339287330@126.com", "新会员注册提示！",'昵称:' .$nickname."注册邮箱:".$email);
                         }  
                         else  
                         {  

@@ -34,7 +34,7 @@
               <div class="layui-input-inline">
                 <input type="password" id="L_pass" name="pass" required lay-verify="required" autocomplete="off" class="layui-input">
               </div>
-              <div class="layui-form-mid layui-word-aux">6到16个字符</div>
+              <div class="layui-form-mid layui-word-aux">6-20位字母数字组合</div>
             </div>
             <div class="layui-form-item">
               <label for="L_repass" class="layui-form-label">确认密码</label>
@@ -70,8 +70,6 @@
 <script>
 layui.use(['layedit','layer','jquery',],function(){
   var layedit = layui.layedit,layer = layui.layer,$ = layui.jquery;
-  //监测输入,实时提示用户信息是否可用
-  
   //注册 
   $('.layui-btn').on('click', function(){
       //获取注册信息
@@ -96,38 +94,65 @@ layui.use(['layedit','layer','jquery',],function(){
           {
             layer.msg('密码不能为空！',{time:1000});
           }
-          else
-          if(L_repass!=L_pass)
-          {
-            layer.msg('确认密码不一致！',{time:1000});
-          }
-          else
-          if(L_vercode!='4')
-          {
-            layer.msg('验证信息不正确！',{time:1000});
-          }
-          else
-          {
-            $.ajax({
-              type:'POST',
-              url: "../api/user/register.php",
-              data:{'email':L_email,'nickname':L_nickname,'password':L_pass},
-              //数据长度太长，放到data里通过post传送
-              success: function (argument) {
-                 if (argument.resault=='success') {
-                    layer.msg('注册成功！',{icon:1,time:800},function(){
-                        // window.location.reload();
-                      });
-                  }
-                  else{
-                    layer.msg(argument.msg,{time:2000});
-                  }
-              },
-              error:function (argument) {
-                console.log(argument);
-                  layer.msg('注册失败！');
+          else{
+            // 密码复杂度校验（6-20位数字和字母组合）
+            var reg = new RegExp(/^[A-Za-z0-9]{6,20}$/);
+            if (!reg.test(L_pass)) {
+                layer.msg('密码过于简单！',{time:1000});
+            }
+            else {
+              if(L_repass!=L_pass)
+              {
+                layer.msg('确认密码不一致！',{time:1000});
               }
-            });
+              else
+              if(L_vercode!='4')
+              {
+                layer.msg('验证信息不正确！',{time:1000});
+              }
+              else
+              {
+                $.ajax({
+                  type:'POST',
+                  url: "../api/user/register.php",
+                  data:{'email':L_email,'nickname':L_nickname,'password':L_pass},
+                  //数据长度太长，放到data里通过post传送
+                  success: function (argument) {
+                     if (argument.resault=='success') {
+                        layer.open({
+                          type: 2
+                          ,title: '帮助'
+                          ,area: ['600px', '380px']
+                          ,shadeClose: true
+                          ,shade: 0.1
+                          ,skin: 'layui-layer-msg'
+                          ,content: ['http://www.layui.com/about/layedit/help.html', 'no']
+                        });
+                        layer.msg('恭喜你,注册成功！我们已经将激活邮件发送到'+L_email+',请尽快激活账号！', {
+                        time: 20000, //20s后自动关闭
+                        btn: ['OK']
+                        ,yes: function(){
+                          // 跳转到首页
+                        }
+                        ,btn2: function(){
+                        }
+                      });
+                        // layer.msg('注册成功！',{icon:1,time:800},function(){
+                        //     // window.location.reload();
+                        //   });
+                      }
+                      else{
+                        console.log(argument);
+                        layer.msg(argument.msg,{time:2000});
+                      }
+                  },
+                  error:function (argument) {
+                    console.log(argument);
+                      layer.msg('注册失败！');
+                  }
+                });
+              }
+            }
           }
         }            
       }

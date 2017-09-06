@@ -1,5 +1,6 @@
 <?php
  // session_start();
+date_default_timezone_set("Asia/Shanghai");
 function my_file_exists($file)  
 {  
     if(preg_match('/^http:\/\//',$file)){  

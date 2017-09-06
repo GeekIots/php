@@ -6,6 +6,7 @@
  * time:2017-03-20
  */
 // sleep(1);   //休眠1秒钟
+date_default_timezone_set("Asia/Shanghai");
 $return = array();
 if (isset($_GET['act'])) {
     $action = $_GET['act']; // 获取GET参数
