@@ -129,10 +129,10 @@ function(e) {
                         d(e, i)
                     },
                     error: function(res) {
-						var dd=res.responseText.replace(/<\/?.+?>/g,"");
- 						var text=dd.replace(/ /g,"");//去掉所有空格
-                        o.msg("请求上传接口出现异常"+text),
+						var text=res.responseText.replace(/<\/?.+?>/g,"");
+ 						// var text=dd.replace(/ /g,"");//去掉所有空格
                         console.log(text);
+                        o.msg("请求上传接口出现异常"+text),
                         m(e)
                     }
                 })

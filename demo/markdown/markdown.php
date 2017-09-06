@@ -1,5 +1,5 @@
 <?php
- include "../../public/header.php";
+ include $_SERVER['DOCUMENT_ROOT']."/common/header.php";
 //phpinfo();
 ?>
 <!DOCTYPE html>
@@ -23,81 +23,88 @@
 </body>
 </html>
 <script> 
-//在文本框内鼠标滚动时也没不动
-document.getElementById('txt').onmousewheel = function(event) { 
-        if (!event) event = window.event; 
-        this.scrollTop = this.scrollTop - (event.wheelDelta ? event.wheelDelta : -event.detail * 10); 
-        return false; 
-    } 
-document.getElementById('content').onmousewheel = function(event) { 
-    if (!event) event = window.event; 
-    this.scrollTop = this.scrollTop - (event.wheelDelta ? event.wheelDelta : -event.detail * 10); 
-    return false; 
-} 
-// ----------------------------
-hljs.initHighlightingOnLoad(); 
+layui.use(['layedit','jquery'],function(){
+  var layedit = layui.layedit,$ = layui.jquery;
 
-var rendererMD = new marked.Renderer();
-    marked.setOptions({
-      renderer: rendererMD,
-      gfm: true,
-      tables: true,
-      breaks: true,
-      pedantic: true,
-      sanitize: true,
-      smartLists: true,
-      smartypants: true
-    });
-    marked.setOptions({
-        highlight: function (code) {
-        return hljs.highlightAuto(code).value;
-      }
-    });
+  //在文本框内鼠标滚动时也没不动
+  document.getElementById('txt').onmousewheel = function(event) { 
+          if (!event) event = window.event; 
+          this.scrollTop = this.scrollTop - (event.wheelDelta ? event.wheelDelta : -event.detail * 10); 
+          return false; 
+      } 
+  document.getElementById('content').onmousewheel = function(event) { 
+      if (!event) event = window.event; 
+      this.scrollTop = this.scrollTop - (event.wheelDelta ? event.wheelDelta : -event.detail * 10); 
+      return false; 
+  } 
+  // ----------------------------
+  hljs.initHighlightingOnLoad(); 
 
-    $("#txt").bind("input propertychange", function () {
-        var tokens = marked($(this).val());
-        console.log(tokens);  
-        $("#content").html(tokens); 
-    })
+  var rendererMD = new marked.Renderer();
+      marked.setOptions({
+        renderer: rendererMD,
+        gfm: true,
+        tables: true,
+        breaks: true,
+        pedantic: true,
+        sanitize: true,
+        smartLists: true,
+        smartypants: true
+      });
+      marked.setOptions({
+          highlight: function (code) {
+          return hljs.highlightAuto(code).value;
+        }
+      });
 
-    
-//同步滚动
-    var scroll=true;//避免两个文本框相互控制滚动时冲突
-    function Fun_scroll_md()  
-    {  
-      // if (scroll) {
-      //   scroll = false;
-      //   var obj1 = document.getElementById("txt");  
-      //   var obj2 = document.getElementById("content");
-      //   // console.log('obj1:',obj1.scrollHeight);
-      //   // console.log('obj2:',obj2.scrollHeight);
-      //   // 同比例计算，计算比例时要减去默认高度
-      //   obj2.scrollTop = obj1.scrollTop*((obj2.scrollHeight-$('#content').get(0).offsetHeight)/(obj1.scrollHeight-$('#txt').get(0).offsetHeight));
-      // }
-      // else
-      // {
-      //   scroll=true;
-      // }
-    }  
-    function Fun_scroll_html()  
-    {  
-      if (scroll) {
-        scroll = false;
-        var obj1 = document.getElementById("txt");  
-        var obj2 = document.getElementById("content");
-        // console.log('obj1:',obj1.scrollTop);
-        // console.log('obj2:',obj2.scrollTop);
-        // 同比例计算，计算比例时要减去默认高度
-        obj1.scrollTop = obj2.scrollTop*((obj1.scrollHeight-$('#txt').get(0).offsetHeight)/(obj2.scrollHeight-$('#content').get(0).offsetHeight));
-      }
-      else
-      {
-        scroll=true;
-      }
-    } 
+      $("#txt").bind("input propertychange", function () {
+          var tokens = marked($(this).val());
+          console.log(tokens);  
+          $("#content").html(tokens); 
+      })
+
+      
+  //同步滚动
+      var scroll=true;//避免两个文本框相互控制滚动时冲突
+      function Fun_scroll_md()  
+      {  
+        // if (scroll) {
+        //   scroll = false;
+        //   var obj1 = document.getElementById("txt");  
+        //   var obj2 = document.getElementById("content");
+        //   // console.log('obj1:',obj1.scrollHeight);
+        //   // console.log('obj2:',obj2.scrollHeight);
+        //   // 同比例计算，计算比例时要减去默认高度
+        //   obj2.scrollTop = obj1.scrollTop*((obj2.scrollHeight-$('#content').get(0).offsetHeight)/(obj1.scrollHeight-$('#txt').get(0).offsetHeight));
+        // }
+        // else
+        // {
+        //   scroll=true;
+        // }
+      }  
+      function Fun_scroll_html()  
+      {  
+        if (scroll) {
+          scroll = false;
+          var obj1 = document.getElementById("txt");  
+          var obj2 = document.getElementById("content");
+          // console.log('obj1:',obj1.scrollTop);
+          // console.log('obj2:',obj2.scrollTop);
+          // 同比例计算，计算比例时要减去默认高度
+          obj1.scrollTop = obj2.scrollTop*((obj1.scrollHeight-$('#txt').get(0).offsetHeight)/(obj2.scrollHeight-$('#content').get(0).offsetHeight));
+        }
+        else
+        {
+          scroll=true;
+        }
+      } 
+  
+  });
+
+
 //-----------------------------------------------
 </script>   
 
-<?php include '../../public/footer.php';?>
+<?php include  $_SERVER['DOCUMENT_ROOT']."/common/footer.php";?>
 
 

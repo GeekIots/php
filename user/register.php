@@ -74,9 +74,7 @@ layui.use(['layedit','layer','jquery',],function(){
   $('.layui-btn').on('click', function(){
       //获取注册信息
       var L_email = $('#L_email').val();
-      var L_nickname = $('#L_nickname').val();
       var L_pass = $('#L_pass').val();
-      var L_repass = $('#L_repass').val();
       var L_vercode = $('#L_vercode').val();
       if(L_email.length!=0)
       {
@@ -117,17 +115,8 @@ layui.use(['layedit','layer','jquery',],function(){
                   url: "../api/user/register.php",
                   data:{'email':L_email,'nickname':L_nickname,'password':L_pass},
                   //数据长度太长，放到data里通过post传送
-                  success: function (argument) {
+                   success: function (argument) {
                      if (argument.resault=='success') {
-                        layer.open({
-                          type: 2
-                          ,title: '帮助'
-                          ,area: ['600px', '380px']
-                          ,shadeClose: true
-                          ,shade: 0.1
-                          ,skin: 'layui-layer-msg'
-                          ,content: ['http://www.layui.com/about/layedit/help.html', 'no']
-                        });
                         layer.msg('恭喜你,注册成功！我们已经将激活邮件发送到'+L_email+',请尽快激活账号！', {
                         time: 20000, //20s后自动关闭
                         btn: ['OK']
@@ -159,8 +148,6 @@ layui.use(['layedit','layer','jquery',],function(){
       else {
         layer.msg('邮箱不能为空！');
       }
-           
-      
     });
   });
 </script>

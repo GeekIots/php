@@ -1,4 +1,3 @@
-[toc]
 # 极客物联网API
 ## device
 
@@ -6,7 +5,7 @@
 
 ####  1、获取开关列表
 ```
-https://www.smtvoice.com/api/device.php?device=switch&type=getlist&nickname=test
+https://www.geek-iot.com/api/device.php?device=switch&type=getlist&nickname=test
 
 返回结果：
 {
@@ -42,7 +41,7 @@ https://www.smtvoice.com/api/device.php?device=switch&type=getlist&nickname=test
 ## info
 ### 设置或获取网站的动态页面信息
 #### 1、获取信息
-https://www.smtvoice.com/api/info.php?type=get&name=geekiot_about
+https://www.geek-iot.com/api/info.php?type=get&name=geekiot_about
 
 ```
 {
@@ -61,7 +60,7 @@ https://www.smtvoice.com/api/info.php?type=get&name=geekiot_about
 }
 ```
 #### 2、设置信息
-https://www.smtvoice.com/api/info.php?type=set&id=1&filed=content_md
+https://www.geek-iot.com/api/info.php?type=set&id=1&filed=content_md
 说明：content_md代表的是字段名称，字段内容是通过post方式传送的
 ```
 {
@@ -72,7 +71,7 @@ https://www.smtvoice.com/api/info.php?type=set&id=1&filed=content_md
 ## blog
 ### 社区
 #### 1、发布新帖
-https://www.smtvoice.com/api/blog/new.php
+https://www.geek-iot.com/api/blog/new.php
 #### 需要传递的参数
 |    参数名 |    关键字    |    重要性    |
 | --------  |    :----:    |    :----:    |
@@ -92,7 +91,7 @@ https://www.smtvoice.com/api/blog/new.php
 }
 ```
 #### 2、回复
-https://www.smtvoice.com/api/blog/answer.php
+https://www.geek-iot.com/api/blog/answer.php
 #### 需要传递的参数
 |    参数名 |    关键字    |    重要性    |
 | --------  |    :----:    |    :----:    |
@@ -112,14 +111,36 @@ https://www.smtvoice.com/api/blog/answer.php
 ```
 ## user
 ### 用户
-#### 1、注册
-https://www.smtvoice.com/api/user/register.php
+#### 1、注册 register
+https://www.geek-iot.com/api/user/register.php
 #### 需要传递的参数
 |    参数名 |    关键字    |    重要性    |
 | --------  |    :----:    |    :----:    |
 |    邮箱   |    email     |     必须     |
 |    昵称   |    nickname  |     必须     |
 |    密码   |    password  |     必须     |
+
+```
+{
+    "status": "success"
+}
+```
+```
+{
+    "status": "fail",
+    "msg": "错误信息！"
+}
+```
+
+#### 2、登录 login
+https://www.geek-iot.com/api/user/login.php
+#### 需要传递的参数
+|    参数名 |    关键字    |    重要性    |
+| --------  |    :----:    |    :----:    |
+|    邮箱   |    email     |     必须     |
+|    昵称   |    nickname  |     必须     |
+|    密码   |    password  |     必须     |
+
 ```
 {
     "status": "success"

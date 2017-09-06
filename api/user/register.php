@@ -19,7 +19,7 @@
 
     // 参数判断
     if (!empty($email)) {
-        // 判断昵称是否已经存在
+        // 判断邮箱是否已经存在
         $sql = "select email from user where email = '$email'"; //SQL语句
         $result = mysqli_query($con,$sql);//执行SQL语句
         if (!mysqli_num_rows($result)) {
@@ -41,7 +41,7 @@
                         {
                             //注册成功
                             $myArray["resault"] = 'success';
-                            $smtp->mail($email, "极客物联网注册认证！", "恭喜您成为极客物联网会员，请点击链接激活账号"."www.smtvoice.com/api/blog/register.check.php?nickname=".$nickname);
+                            $smtp->mail($email, "极客物联网注册认证！", "恭喜您成为极客物联网会员，请点击链接激活账号"."www.smtvoice.com/api/blog/user/register.check.php?nickname=".$nickname);
                             $smtp->mail("15339287330@126.com", "新会员注册提示！",'昵称:' .$nickname."注册邮箱:".$email);
                         }  
                         else  
