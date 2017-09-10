@@ -25,7 +25,7 @@
             if ($row['password'] == $psw) {
                 // 密码正确
                 $myArray["resault"] = 'success';
-
+                // 返回用户信息
                 $myArray["nickname"] = $row['nickname'];
 				$myArray["password"] = $password;
 				$myArray["phonenumber"] = $row['phonenumber'];
@@ -33,6 +33,10 @@
 				$myArray["address"] = $row['address'];
 				$myArray["qq"] = $row['qq'];
 				$myArray["avatar"] = 'http://www.geei-iot.com/picture/avatar/nickname.jpg';
+                // 设置session
+                session_start();
+                // 目前是以邮箱登录
+                $_SESSION['login'] = $email;
             }
             else{
                 // 密码错误

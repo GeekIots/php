@@ -1,13 +1,13 @@
-
+<?php
+    include $_SERVER['DOCUMENT_ROOT']."/common/header.php";
+//phpinfo();
+?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>极客物联网 一个开源的物联网开发平台！</title>
 </head>
-<?php
-    include $_SERVER['DOCUMENT_ROOT']."/common/header.php";
-//phpinfo();
-?>
+
 <body>
     <div style="padding-left: 15%;padding-right: 15%;padding-top: 2%;">
         <p id="md">还未更新！</p>

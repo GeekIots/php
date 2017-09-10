@@ -25,7 +25,7 @@
       $myArray["title"] = $rs['title'];
       $myArray["datetime"] = $rs['dates'];
       $myArray["hit"] = $rs['hits'];
-      $myArray["userid"] = $rs['userid'];
+      $myArray["userid"] = $rs['nickname'];
       $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
 
       echo $json;

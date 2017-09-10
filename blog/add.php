@@ -1,10 +1,10 @@
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>开发者社区 | 极客物联网 </title>
 </head>
 <body> 
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php') ?>
 <div class="main layui-clear">
   <div class="fly-panel" pad20>
     <h2 class="page-title">发表新帖</h2>
@@ -61,8 +61,9 @@
     var layedit = layui.layedit,$ = layui.jquery;
     layedit.set({
       uploadImage: {
-        url: '../api/layui/upload.php?act=images', //接口url
-        type: 'post' //默认post
+        url: '../api/layui/upload.php', //接口url
+        type: 'post', //默认post
+        data:{type:'image',url:'blog'}
         }
     });
     var index = layedit.build('demo', {tool: [

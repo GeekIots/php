@@ -1,7 +1,7 @@
 <?php 
 	error_reporting(E_ALL^E_NOTICE); //取消警告显示
 	header('Content-type:application/json');
-	include $_SERVER['DOCUMENT_ROOT']."/public/conn.php";
+	include $_SERVER['DOCUMENT_ROOT']."/common/conn.php";
 
    $default  = array
     (
@@ -26,7 +26,7 @@
 
 	//获取后面的所有参数并解码
 	// $str = urldecode($_SERVER["QUERY_STRING"]);  
-    $userid = $_GET['userid'];
+    $userid = $_GET['nickname'];
 	$type = $_GET['type'];
 	$num = $_GET['num'];
     $str = $_GET['str'];

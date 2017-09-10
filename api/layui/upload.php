@@ -1,16 +1,16 @@
 <?php
 /**
- * layui + php 上传图片
+ * layui + php 上传
  * 
- * 上传文件操作类似。
+ * 上传文件操作。
  * time:2017-03-20
  */
-// sleep(1);   //休眠1秒钟
 date_default_timezone_set("Asia/Shanghai");
 $return = array();
-if (isset($_GET['act'])) {
-    $action = $_GET['act']; // 获取GET参数
-    if ($action == 'images') {
+if (isset($_POST['type'])) {
+    $type = $_POST['type']; // 获取GET参数
+    // 上传图片
+    if ($type == 'image') {
         //上传图片具体操作
         $file_name = $_FILES['file']['name'];
         $file_type = $_FILES["file"]["type"];
@@ -24,26 +24,59 @@ if (isset($_GET['act'])) {
             $return['time'] = 3000;
             exit(json_encode($return));
         }
-        if ($file_size > 1048576) { // 文件太大了
-            $return['code'] = 1;
-            $return['msg'] = "上传文件不能大于1MB";
-            $return['time'] = 3000;
-            exit(json_encode($return));
+        if (isset($_POST['size'])) {
+            if ($file_size > ($_POST['size']*1024)) { 
+                // 文件太大了
+                $return['code'] = 1;
+                $return['msg'] = "上传文件不能大于".$_POST['size']."KB";
+                $return['time'] = 3000;
+                exit(json_encode($return));
+            }
+        }
+        else{
+            if ($file_size > (1024*1024)) { // 文件太大了
+                $return['code'] = 1;
+                $return['msg'] = "上传文件不能大于1MB";
+                $return['time'] = 3000;
+                exit(json_encode($return));
+            }
+        }
+        if (!isset($_POST['url'])) {
+                //没有指定应用类型
+                $return['code'] = 1;
+                $return['msg'] = "缺少url！";
+                $return['time'] = 3000;
+                exit(json_encode($return));
+            }
         }
         $file_name_arr = explode('.', $file_name);
         $new_file_name = date('YmdHis') . '.' . $file_name_arr[1];
-        $file_path = "../../picture/blog/" . $new_file_name;
+        $path_head = "../../image/";
+        $path_dst = "{$_POST['url']}/".date('Ymd');
+        // 如果没有文件夹则创建--image
+        if (!file_exists($path_head)){ 
+            mkdir($path_head);
+        }
+        if (!file_exists($path_head."{$_POST['url']}")){ 
+            mkdir($path_head."{$_POST['url']}");
+        }
+        if (!file_exists($path_head.$path_dst)){ 
+            mkdir($path_head.$path_dst);
+        } 
+
+        $file_path = $path_head.$path_dst."/".$new_file_name;
         if (file_exists($file_path)) {
             $return['code'] = 1;
             $return['msg'] = "此文件已经存在啦";
             $return['time'] = 3000;
             exit(json_encode($return));
         } else {
-            
-            $upload_result = move_uploaded_file($file_tmp, $file_path); // 此函数只支持 HTTP POST 上传的文件
+            // 此函数只支持 HTTP POST 上传的文件
+            $upload_result = move_uploaded_file($file_tmp, $file_path); 
             if ($upload_result) {
                 $return['code'] = 0;
                 $return['msg'] = $file_path;
+                $return['root']= 'image/'.$path_dst."/".$new_file_name;
                 $return['time'] = 1000;
                 $return['data']['src'] = $file_path;
                 $return['data']['title'] = $new_file_name;
@@ -56,9 +89,9 @@ if (isset($_GET['act'])) {
             }
         }
     }
-} else {
+else {
     $return['code'] = 1;
-    $return['msg'] = "参数错误";
+    $return['msg'] = "缺少type";
     $return['time'] = 3000;
     exit(json_encode($return));
 }

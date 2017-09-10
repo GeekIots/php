@@ -1,3 +1,4 @@
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +6,6 @@
   <title>注册</title>
 </head>
 <body>
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php') ?>
 <div class="main layui-clear">
   <div class="fly-panel fly-panel-user" pad20 >
     <div class="layui-tab layui-tab-brief">

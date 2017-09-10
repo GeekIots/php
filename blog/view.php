@@ -1,10 +1,10 @@
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>开发者社区 | 极客物联网 </title>
 </head>
 <body> 
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php') ?>
 <?php
     //读取本贴内容 
     include($_SERVER['DOCUMENT_ROOT'].'/common/conn.php');
@@ -218,8 +218,9 @@ order by count(*) desc limit 12";
   var layedit = layui.layedit,$ = layui.jquery;
   layedit.set({
     uploadImage: {
-      url: '/api/layui/upload.php?act=images', //接口url
-      type: 'post' //默认post
+      url: '/api/layui/upload.php', //接口url
+      type: 'post', //默认post
+      data:{type:'image',url:'repblog'}
       }
   });
   var index = layedit.build('demo', {tool: [

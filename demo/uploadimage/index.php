@@ -17,9 +17,9 @@
 		<div style="width: 100%;height:50px;line-height:50px;font-weight:700;font-size:30px; text-align:center;">
 			Layui上传图片
 		</div>
-		<fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
+		<!-- <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;">
 			<legend>上传图片</legend>
-		</fieldset>
+		</fieldset> -->
            
 		<div class="site-demo-upload">
 			<img id="LAY_demo_upload" src="default.jpg">

@@ -1,10 +1,10 @@
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>开发者社区 | 极客物联网</title>
 </head>
 <body>
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
 <div class="main layui-clear">
   <!-- 主内容区 -->
   <div class="wrap">

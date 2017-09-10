@@ -1,10 +1,10 @@
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
   <title>登入</title>
 </head>
 <body>
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php') ?>
 <div class="main layui-clear">
   <div class="fly-panel fly-panel-user" pad20>
     <div class="layui-tab layui-tab-brief">
@@ -92,6 +92,7 @@ layui.use(['layedit','layer','jquery',],function(){
                         time: 1000 //1s后自动关闭
                       });
                       // 页面跳转
+                      window.location.href('/index.php'); 
                       // window.location.reload();
                       }
                       else{

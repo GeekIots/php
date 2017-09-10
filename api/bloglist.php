@@ -19,7 +19,7 @@
 
         if($_GET['type']=='find')
         {
-          $sql="select * from blog where userid<>'sun'";
+          $sql="select * from blog where nickname<>'sun'";
           $result=mysqli_query($con,$sql);
           $myArray["num"] = $result->num_rows;
           // var_dump($result);
@@ -27,7 +27,7 @@
             $indexArray["id"]=$row['id'];
             $indexArray["pic"]=$row['picture'];
             $indexArray["title"]=$row['title']; 
-            $indexArray["userid"]=$row['userid']; 
+            $indexArray["userid"]=$row['nickname']; 
             $indexArray["dates"]=$row['dates']; 
             $indexArray["hits"]=$row['hits']; 
             $myArray["list"][]=$indexArray;
@@ -36,7 +36,7 @@
         else
         if($_GET['type']=='news')
         {
-          $sql="select * from blog where userid='sun'";
+          $sql="select * from blog where nickname='sun'";
           $result=mysqli_query($con,$sql);
           $myArray["num"] = $result->num_rows;
           // var_dump($result);
