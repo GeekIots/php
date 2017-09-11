@@ -102,8 +102,8 @@ date_default_timezone_set("Asia/Shanghai");
         <i>VIP1</i>
         </a>
         <div class='nav'>
-        <a href='/user/set/'><i class='iconfont icon-shezhi'></i>设置</a>
-        <a href='/user/logout/'><i class='iconfont icon-tuichu' style='top: 0; font-size: 22px;'></i>退了</a>
+        <a href='/user/set.php'><i class='iconfont icon-shezhi'></i>设置</a>
+        <a href='/user/logout.php'><i class='iconfont icon-tuichu' style='top: 0; font-size: 22px;'></i>退了</a>
         </div>";
         mysqli_close($con);
       }

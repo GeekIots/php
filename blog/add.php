@@ -61,9 +61,9 @@
     var layedit = layui.layedit,$ = layui.jquery;
     layedit.set({
       uploadImage: {
-        url: '../api/layui/upload.php', //接口url
-        type: 'post', //默认post
-        data:{type:'image',url:'blog'}
+        url: '../api/layui/upload.php' //接口url
+        ,type: 'POST' //默认post
+        ,data:{'type':'image','url':'blog'}
         }
     });
     var index = layedit.build('demo', {tool: [

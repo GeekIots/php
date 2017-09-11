@@ -11,13 +11,14 @@
     <div class="content">
       <div class="fly-tab fly-tab-index">
         <span>
-          <a href="jie/index.html">全部</a>
+          <a href="/blog/index.php">全部</a>
           <!--   -->
         </span>
         <form action="http://cn.bing.com/search" class="fly-search">
           <i class="iconfont icon-sousuo"></i>
-          <input class="layui-input" autocomplete="off" placeholder="搜索内容，回车跳转" type="text" name="q">
+          <input class="layui-input" autocomplete="off" placeholder="搜索内容，未启用！" type="text" name="q">
         </form>
+        <!-- 判断是否已经登陆 -->
         <a href="add.php" class="layui-btn jie-add">发表新帖</a>
       </div>
 
@@ -61,10 +62,14 @@
           $queryanswer=mysqli_query($con,$sqlanswer);
           $answernum=mysqli_fetch_array($queryanswer);
           // print_r($answernum);
+          // 获取用户信息
+          $sql11="select * from user where nickname='{$rs['nickname']}'";
+          $query11=mysqli_query($con,$sql11);
+          $row11 = mysqli_fetch_array($query11);
           ?>
           <li class="fly-list-li">
           <a href="user/home.html" class="fly-list-avatar">
-            <img src="../res/images/avatar/default.png" alt="">
+            <img src="/<?php echo($row11['avatar']) ?>" alt="">
           </a>
           <h2 class="fly-tip">
             <!-- 标贴 -->
@@ -108,10 +113,14 @@ order by count(*) desc limit 12";
           $sqlsort=mysqli_query($con,$sqlsort);
           while($top12=mysqli_fetch_array($sqlsort))
           {
+             // 获取用户信息,用于显示用户头像
+            $sql11="select * from user where nickname='{$top12['nickname']}'";
+            $query11=mysqli_query($con,$sql11);
+            $row11 = mysqli_fetch_array($query11);
           ?>
             <dd>
               <a href="user/home.html">
-                <img src="../res/images/avatar/default.png">
+                <img src="/<?php echo($row11['avatar']) ?>">
                  <cite><?php echo($top12['nickname']) ?></cite>
                  <i><?php echo($top12['count(*)']) ?>次回答</i>
               </a>

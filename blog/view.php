@@ -89,12 +89,16 @@
             $floornumber = 0;
             while ($rsanswer=mysqli_fetch_array($queryanswer)) {
                 $floornumber++;
+                // 获取用户信息,用于显示用户头像
+                $sql11="select * from user where nickname='{$rsanswer['nickname']}'";
+                $query11=mysqli_query($con,$sql11);
+                $row11 = mysqli_fetch_array($query11);
         ?>
                 <li data-id="12" class="jieda-daan">
                 <a name="item-121212121212"></a>
                 <div class="detail-about detail-about-reply">
                   <a class="jie-user" href="">
-                    <img src="../../res/images/avatar/default.png" alt="">
+                    <img src="/<?php echo($row11['avatar']) ?>" alt="">
                     <cite>
                       <i><?php echo($rsanswer["nickname"]); ?></i>
                       <!-- <em>(楼主)</em>
@@ -156,13 +160,17 @@
         <?php 
           $sqlsort = "select nickname,count(*) from bloganswer group by nickname 
 order by count(*) desc limit 12";
-          $sqlsort=mysql_query($sqlsort);
-          while($top12=mysql_fetch_array($sqlsort))
+          $sqlsort=mysqli_query($con,$sqlsort);
+          while($top12=mysqli_fetch_array($sqlsort))
           {
+             // 获取用户信息,用于显示用户头像
+            $sql11="select * from user where nickname='{$top12['nickname']}'";
+            $query11=mysqli_query($con,$sql11);
+            $row11 = mysqli_fetch_array($query11);
           ?>
             <dd>
               <a href="user/home.html">
-                <img src="../res/images/avatar/default.png">
+                <img src="/<?php echo($row11['avatar']) ?>">
                  <cite><?php echo($top12['nickname']) ?></cite>
                  <i><?php echo($top12['count(*)']) ?>次回答</i>
               </a>
@@ -214,13 +222,13 @@ order by count(*) desc limit 12";
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 </body>
 <script>
-  layui.use(['layedit','jquery'],function(){
-  var layedit = layui.layedit,$ = layui.jquery;
+  layui.use(['layedit','jquery','layer'],function(){
+  var layedit = layui.layedit,$ = layui.jquery,layer=layui.layer;
   layedit.set({
     uploadImage: {
-      url: '/api/layui/upload.php', //接口url
-      type: 'post', //默认post
-      data:{type:'image',url:'repblog'}
+      url: '../api/layui/upload.php' //接口url
+      ,type: 'POST' //默认post
+      ,data:{'type':'image','url':'repblog'}
       }
   });
   var index = layedit.build('demo', {tool: [
@@ -259,11 +267,13 @@ order by count(*) desc limit 12";
               //数据长度太长，放到data里通过post传送
               success: function (argument) {
                  if (argument.resault=='success') {
+                    console.log(argument);
                     layer.msg('回复成功！',{icon:1,time:800},function(){
                         window.location.reload();
                       });
                   }
                   else{
+                    console.log(argument);
                     layer.msg(argument.msg,{time:2000});
                   }
               },
