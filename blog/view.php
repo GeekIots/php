@@ -21,7 +21,8 @@
       //获取回复
       $sqlanswer="select count(*) from bloganswer where toid='".$rs['id']."'";
       $queryanswer=mysqli_query($con,$sqlanswer);
-      $answernum=mysqli_fetch_array($queryanswer)[0];
+      $_answernum=mysqli_fetch_array($queryanswer);
+      $answernum=$_answernum[0];
 
       $sqlanswer="select * from bloganswer where toid='".$rs['id']."'";
       $queryanswer=mysqli_query($con,$sqlanswer);

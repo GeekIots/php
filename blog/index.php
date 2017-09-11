@@ -39,7 +39,8 @@
         //获取帖子总量
         $sqlselect="select count(*) from blog";
         $queryselect=mysqli_query($con,$sqlselect);
-        $noteTotalNumber=mysqli_fetch_array($queryselect)[0];
+        $_tempnumber=mysqli_fetch_array($queryselect);
+        $noteTotalNumber=$_tempnumber[0];
         //总页数
         $PageNumber = ceil($noteTotalNumber/$InPageNumber);//向上取整，有小数就加1 ceil(),向下取整：floor()
 
