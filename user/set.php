@@ -14,19 +14,19 @@
       </a>
     </li>
     <li class="layui-nav-item">
-      <a href="index.html">
+      <a href="index.php">
         <i class="layui-icon">&#xe612;</i>
         用户中心
       </a>
     </li>
     <li class="layui-nav-item layui-this">
-      <a href="set.html">
+      <a href="set.php">
         <i class="layui-icon">&#xe620;</i>
         基本设置
       </a>
     </li>
     <li class="layui-nav-item">
-      <a href="message.html">
+      <a href="message.php">
         <i class="layui-icon">&#xe611;</i>
         我的消息
       </a>

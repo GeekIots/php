@@ -1,49 +1,6 @@
 <?php
 session_start();
 date_default_timezone_set("Asia/Shanghai");
-// function my_file_exists($file)  
-// {  
-//     if(preg_match('/^http:\/\//',$file)){  
-//         //远程文件  
-//         if(ini_get('allow_url_fopen')){  
-//             if(@fopen($file,'r')) return true;  
-//         }  
-//         else{  
-//             $parseurl=parse_url($file);  
-//             $host=$parseurl['host'];  
-//             $path=$parseurl['path'];  
-//             $fp=fsockopen($host,80, $errno, $errstr, 10);  
-//             if(!$fp)return false;  
-//             fputs($fp,"GET {$path} HTTP/1.1 \r\nhost:{$host}\r\n\r\n");  
-//             if(preg_match('/HTTP\/1.1 200/',fgets($fp,1024))) return true;  
-//         }  
-//         return false;  
-//     }  
-//     return file_exists($file);  
-// }       
-// function console($value='')
-// {
-//     echo("<script>console.log('{$value}');</script>");
-// }
-// echo($_SESSION['login']);
-  // if(isset($_SESSION['login'])) {
-  //         //用户头像
-  //         $file = "http://www.smtvoice.com/public/upload-head/userheadimg/".$_SESSION['login'].".jpg";
-  //         console($file);
-  //         if(my_file_exists($file)) {
-  //             //存在
-  //             $avatar = $file;
-  //             console('存在');
-  //         }
-  //         else{
-  //             //不存在
-  //             $avatar = "http://www.smtvoice.com/public/upload-head/default.jpg";
-  //             console('不存在');
-  //         }
-  // } else {
-  //     console('未登录');
-  //     $avatar = "http://www.smtvoice.com/public/upload-head/default.jpg";
-  // }
 ?>
 <html>
 <head>

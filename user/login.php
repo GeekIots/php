@@ -92,7 +92,7 @@ layui.use(['layedit','layer','jquery',],function(){
                         time: 1000 //1s后自动关闭
                       });
                       // 页面跳转
-                      window.location.href('/index.php'); 
+                      window.location.href='home.php'; 
                       // window.location.reload();
                       }
                       else{
