@@ -1,6 +1,6 @@
 <?php 
-	include "../public/header.php";
-	include "../public/conn.php";
+	include "../common/header.php";
+	include "../common/conn.php";
 	if(!$_SESSION['login'])
 	{
 		//跳转到登录界面
@@ -86,8 +86,8 @@
 	    }
 	    else
 	    {
-	        $name = $_SESSION['login'];
-	        $result = mysqli_query($con, "SELECT * FROM switch WHERE userid = '$name' ");
+	        $name = '$_SESSION['login']';
+	        $result = mysqli_query($con, "SELECT * FROM switch WHERE nickname = '$name' ");
 	    }
 	    while ($row = mysqli_fetch_array($result)) {
 	        $opencmd = $row['opencmd'];

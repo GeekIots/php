@@ -38,7 +38,7 @@
         else
         {
          $myArray["resault"] = 'success';
-         $result = mysqli_query($con, "SELECT * FROM switch WHERE userid = '$userid' ");
+         $result = mysqli_query($con, "SELECT * FROM switch WHERE nickname = '$userid' ");
          $myArray["num"] = $result->num_rows;
          $num=0;
          while ($row = mysqli_fetch_array($result)) {

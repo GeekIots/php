@@ -5,7 +5,7 @@ date_default_timezone_set("Asia/Shanghai");
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Geek-Iot | 极客社区</title>
+  <!-- <title>Geek-Iot | 极客社区</title> -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="keywords" content="geek,geekiot,物联网,物联网社区">
   <meta name="description" content="极客社区是极客物联网开发平台的官网社区，致力于为物联网开发提供强劲动力">
@@ -18,16 +18,16 @@ date_default_timezone_set("Asia/Shanghai");
   <div class="main" style="width: 90%;">
     <a class="logo" href="/index.php" title="Geek-Iot">极客物联网</a>
     <div class="nav">
-      <a class="nav-this" href="/index.php">
+      <a href="/index.php">
         <i class="iconfont"></i>首页
       </a>
-      <a href="/blog" target="_self">
+      <a class="nav-this" href="/blog" target="_self">
         <i class="iconfont"></i>社区
       </a>
       <a href="#" target="_blank">
         <i class="iconfont"></i>控制台
       </a>
-      <a href="#" target="_blank">
+      <a href="/about/index.php" target="_blank">
         <i class="iconfont"></i>关于
       </a>
     </div>
@@ -68,3 +68,12 @@ date_default_timezone_set("Asia/Shanghai");
     </div>
   </div>
 </div>
+
+<script>
+//注意：导航 依赖 element 模块，否则无法进行功能性操作
+layui.use('element', function(){
+  var element = layui.element;
+  
+  //…
+});
+</script>
