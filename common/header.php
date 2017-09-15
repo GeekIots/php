@@ -24,10 +24,10 @@ date_default_timezone_set("Asia/Shanghai");
       <a class="nav-this" href="/blog" target="_self">
         <i class="iconfont"></i>社区
       </a>
-      <a href="#" target="_blank">
+      <a href="#" target="">
         <i class="iconfont"></i>控制台
       </a>
-      <a href="/about/index.php" target="_blank">
+      <a href="/about/index.php" target="">
         <i class="iconfont"></i>关于
       </a>
     </div>
