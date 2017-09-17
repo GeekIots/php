@@ -1,7 +1,3 @@
-<?php
-session_start();
-date_default_timezone_set("Asia/Shanghai");
-?>
 <html>
 <head>
   <meta charset="utf-8">
@@ -21,7 +17,7 @@ date_default_timezone_set("Asia/Shanghai");
       <a href="/index.php">
         <i class="iconfont"></i>首页
       </a>
-      <a class="nav-this" href="/blog" target="_self">
+      <a  href="/blog/index.php" target="_self">
         <i class="iconfont"></i>社区
       </a>
       <a href="#" target="">
@@ -33,47 +29,68 @@ date_default_timezone_set("Asia/Shanghai");
     </div>
     
     <div class="nav-user">
-      <?php 
-      // 未登入状态
-      if (!isset($_SESSION['login'])) {
-        echo
-          '<a class="unlogin" href="/user/login.php"><i class="iconfont icon-touxiang"></i></a>
-      <span><a href="/user/login.php">登入</a><a href="/user/register.php">注册</a></span>
-      <p class="out-login">
-        <a href=""  class="iconfont icon-qq" title="QQ登入"></a>
-        <a href=""  class="iconfont icon-weibo" title="微博登入"></a>
-      </p>   ';
-      }
-      //登入后的状态
-      else 
-      {
-        // 获取用户信息
-        include($_SERVER['DOCUMENT_ROOT']."/common/conn.php");
-        $sql="select * from user where email='{$_SESSION['login']}'";
-        $query=mysqli_query($con,$sql);
-        $row = mysqli_fetch_array($query);
-
-        echo "<a class='avatar' href='user/index.html'>
-        <img id='image-avatar' src='/{$row['avatar']}'>
-        <cite id='nickname'>{$row['nickname']}</cite>
-        <i>VIP1</i>
-        </a>
-        <div class='nav'>
-        <a href='/user/set.php'><i class='iconfont icon-shezhi'></i>设置</a>
-        <a href='/user/logout.php'><i class='iconfont icon-tuichu' style='top: 0; font-size: 22px;'></i>退了</a>
-        </div>";
-        mysqli_close($con);
-      }
-      ?>     
+      <!-- 建立视图。用于呈现模板渲染结果。 -->
+      <div id="view"></div>   
     </div>
   </div>
 </div>
 
 <script>
-//注意：导航 依赖 element 模块，否则无法进行功能性操作
-layui.use('element', function(){
-  var element = layui.element;
-  
-  //…
+  // 定义用户数据变量
+  var user_d;
+  // 加载需要的模块
+  layui.use(['laytpl','element','jquery','layer'], function(){
+  var element = layui.element,$ = layui.jquery,layer=layui.layer,laytpl = layui.laytpl;
+  // 头部分当前标签高亮显示
+  $(document).ready(function(){  
+    $(".nav a").each(function(){  
+        $this = $(this);
+        if($this[0].href==String(window.location)){  
+            $this.addClass("nav-this");  
+        }
+    });  
+  });  
+  //获取用户登陆信息
+  $.ajax({
+    url: "../api/user/user.php",
+    success: function (res) {
+        console.log('success:',res);
+        user_d = res;
+        //渲染数据
+        var getTpl = demo.innerHTML;
+        var view = document.getElementById('view');
+        laytpl(getTpl).render(user_d, function(html){
+          view.innerHTML = html;
+        });
+    },
+    error:function (res) {
+        console.log('fail:',res);
+    }
+  });
 });
+</script>
+
+<!-- 模板 -->
+<script id="demo" type="text/html">
+  <!-- 已登录 -->
+  {{#  if(user_d.login === "true"){ }}
+    <a class='avatar' href='user/index.html'>
+    <img id='image-avatar' src='/{{ user_d.avatar }}'>
+    <cite id='nickname'>{{ user_d.nickname }}</cite>
+    <i>VIP1</i>
+    </a>
+    <div class='nav'>
+    <a href='/user/set.php'><i class='iconfont icon-shezhi'></i>设置</a>
+    <a href='/user/logout.php'><i class='iconfont icon-tuichu' style='top: 0; font-size: 22px;'></i>退了</a>
+    </div>  
+  {{# }else { }} 
+  <!-- 未登录 -->
+    <a class="unlogin" href="/user/login.php"><i class="iconfont icon-touxiang"></i></a>
+    <span><a href="/user/login.php">登入</a><a href="/user/register.php">注册</a></span>
+    <p class="out-login">
+      <a href=""  class="iconfont icon-qq" title="QQ登入"></a>
+      <a href=""  class="iconfont icon-weibo" title="微博登入"></a>
+    </p>
+  {{#  } }} 
+  </ul>
 </script>
