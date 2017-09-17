@@ -6,9 +6,12 @@
 </head>
 <body style="margin-top: 65px;">
 <div class="fly-home" style="background-image: url();">
-  <img src="http://tp4.sinaimg.cn/1345566427/180/5730976522/0" alt="{{info.username}}">
+
+<!-- 用户信息模板 -->
+<script id="home_moduel" type="text/html">
+<img src="/{{user_d.avatar}}" alt="{{user_d.nickname}}">
   <h1>
-    贤心
+    {{user_d.nickname}}
     <i class="iconfont icon-nan"></i> 
     <!-- <i class="iconfont icon-nv"></i> -->
     
@@ -31,37 +34,37 @@
       <ul class="jie-row">
         <li>
           <span class="fly-jing">精</span>
-          <a href="/jie/{{item.id}}.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
+          <a href="/jie/1.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
           <i>1天前</i>
           <em>1136阅/27答</em>
         </li>
         <li>
-          <a href="/jie/{{item.id}}.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
+          <a href="/jie/1.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
           <i>1天前</i>
           <em>1136阅/27答</em>
         </li>
         <li>
-          <a href="/jie/{{item.id}}.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
+          <a href="/jie/1.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
           <i>1天前</i>
           <em>1136阅/27答</em>
         </li>
         <li>
-          <a href="/jie/{{item.id}}.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
+          <a href="/jie/1.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
           <i>1天前</i>
           <em>1136阅/27答</em>
         </li>
         <li>
-          <a href="/jie/{{item.id}}.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
+          <a href="/jie/1.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
           <i>1天前</i>
           <em>1136阅/27答</em>
         </li>
         <li>
-          <a href="/jie/{{item.id}}.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
+          <a href="/jie/1.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
           <i>1天前</i>
           <em>1136阅/27答</em>
         </li>
         <li>
-          <a href="/jie/{{item.id}}.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
+          <a href="/jie/1.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
           <i>1天前</i>
           <em>1136阅/27答</em>
         </li>
@@ -100,15 +103,34 @@ full: true
       <!-- <div class="fly-none" style="min-height: 50px; padding:30px 0; height:auto;"><span>没有回答任何问题</span></div> -->
     </div>
   </div>
-
+</script>
+<!-- 建立视图。用于呈现模板渲染结果。 -->
+<div id="home_view"></div>   
 </div>
 
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 <script>
-layui.use(['layedit','layer','jquery',],function(){
-  var layedit = layui.layedit,layer = layui.layer,$ = layui.jquery;
+var user_d;
+layui.use(['laytpl','layedit','layer','jquery',],function(){
+  var layedit = layui.layedit,layer = layui.layer,$ = layui.jquery,laytpl = layui.laytpl;
+    //获取用户登陆信息
+    $.ajax({
+      url: "../api/user/user.php",
+      success: function (res) {
+          console.log('success:',res);
+          user_d = res;
+          //渲染数据
+          var getTpl = home_moduel.innerHTML;
+          var view = document.getElementById('home_view');
+          laytpl(getTpl).render(user_d, function(html){
+            view.innerHTML = html;
+          });
+      },
+      error:function (res) {
+          console.log('fail:',res);
+      }
+    });
   });
 </script>
-
 </body>
 </html>
