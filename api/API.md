@@ -1,4 +1,18 @@
 # 极客物联网API
+
+blog/answer.php
+发布回复到服务器
+
+blog/new.php
+发布新帖到服务器
+
+blog/list.php
+获取帖子列表
+
+
+
+
+
 ## device
 
 ### 用户开关、传感器等相关设备API

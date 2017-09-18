@@ -1,9 +1,29 @@
 <?php session_start();
-error_reporting(E_ALL^E_NOTICE); //取消警告显示
-header('Content-type:application/json;');
-include $_SERVER['DOCUMENT_ROOT']."/api/conn.php";
-?>
-<?php
+    error_reporting(E_ALL^E_NOTICE); //取消警告显示
+    header('Content-type:application/json;');
+    include $_SERVER['DOCUMENT_ROOT']."/api/conn.php";
+
+    /*
+        发布回复到服务器
+        #### 需要传递的参数
+        |    参数名 |    关键字    |    重要性    |
+        | --------  |    :----:    |    :----:    |
+        |    内容   |    contents  |     必须     |
+        |   原帖id  |    toid      |     必须     |
+        |    昵称   |    nickname  |     必须     |
+        ```
+        {
+            "status": "success"
+        }
+        ```
+        ```
+        {
+            "status": "fail",
+            "msg": "错误信息！"
+        }
+        ```
+    */
+
     //获取编辑器内容
     $contents = $_POST['contents'];
 
