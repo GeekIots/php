@@ -54,13 +54,16 @@
             $result = mysqli_query($con,$sql);//执行SQL语句
             $row=mysqli_fetch_array($result);
             // 返回用户信息
-            $myArray["nickname"] = $row['nickname'];
+            $myArray["nickname"] = $row['nickname'];//昵称
             // $myArray["avatar"] = 'http://www.geei-iot.com'.$row['avatar'];
-            $myArray["avatar"] = $row['avatar'];
-            $myArray["phonenumber"] = $row['phonenumber'];
-            $myArray["email"] = $row['email'];
-            $myArray["address"] = $row['address'];
-            $myArray["qq"] = $row['qq'];
+            $myArray["avatar"] = $row['avatar'];//头像路径
+            $myArray["phonenumber"] = $row['phonenumber'];//手机号码
+            $myArray["email"] = $row['email'];//绑定邮箱
+            $myArray["city"] = $row['city'];//城市
+            $myArray["qq"] = $row['qq'];//qq号码
+            $myArray["describe"] = $row['describe'];//个性签名
+            $myArray["value"] = $row['value'];//用户积分
+            $myArray["level"] = $row['level'];//用户等级
         }
     }
 

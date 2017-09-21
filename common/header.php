@@ -74,7 +74,7 @@
 <script id="demo" type="text/html">
   <!-- 已登录 -->
   {{#  if(user_d.login === "true"){ }}
-    <a class='avatar' href='user/index.html'>
+    <a class='avatar' href='/user/index.php'>
     <img id='image-avatar' src='/{{ user_d.avatar }}'>
     <cite id='nickname'>{{ user_d.nickname }}</cite>
     <i>VIP1</i>

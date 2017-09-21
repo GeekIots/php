@@ -1,0 +1,70 @@
+<?php 
+	/*
+	获取榜单列表
+	参数：
+		type：类型 必须字段
+		   └─answer 回贴月榜 用户回复次数排名
+		   └─talk   近期热议 被回复次数排名
+		   └─browse 最近热帖 浏览次数排名
+		num：列表数量  默认值：12
+	*/
+	date_default_timezone_set("Asia/Shanghai");
+	error_reporting(E_ALL^E_NOTICE); //取消警告显示
+	header('Content-type:application/json');
+	include $_SERVER['DOCUMENT_ROOT']."/api/conn.php";
+
+	// 类型,
+	if(isset($_POST['type']))
+	{
+		$type = $_POST['type'];
+	}
+	else
+	{
+		// 返回错误信息
+		$myArray["resault"] = 'fail'; 
+		$myArray["msg"] = '缺少type字段！';  
+		$json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
+		echo $json;
+		exit();
+	}
+
+	// 列表数量  默认值：12
+	if(isset($_POST['num']))
+	{
+		//定义每页显示数量
+		$num = $_POST['num'];
+	}
+	else
+		$num = 12;
+
+	// 回贴月榜 用户回复次数排名
+	if ($type=='answer') {
+		$sqlsort = "select nickname,count(*) from bloganswer group by nickname 
+		order by count(*) desc limit 12";
+		$sqlsort=mysqli_query($con,$sqlsort);
+		while($top12=mysqli_fetch_array($sqlsort))
+		{
+		 	// 获取用户信息,用于显示用户头像
+			$sql11="select * from user where nickname='{$top12['nickname']}'";
+			$query11=mysqli_query($con,$sql11);
+			$row11 = mysqli_fetch_array($query11);
+			<dd>
+			  <a href="/user/home.php">
+			    <img src="/<?php echo($row11['avatar']) ?>">
+			     <cite><?php echo($top12['nickname']) ?></cite>
+			     <i><?php echo($top12['count(*)']) ?>次回答</i>
+			  </a>
+			</dd>
+		}
+	}
+	else
+	// 近期热议 被回复次数排名
+	if ($type=='talk') {
+		
+	}
+	else
+	// 最近热帖 浏览次数排名
+	if ($type=='browse') {
+		
+	}
+ ?>
