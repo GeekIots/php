@@ -57,8 +57,9 @@
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 </body>
 <script>
-    layui.use(['layedit','jquery'],function(){
-    var layedit = layui.layedit,$ = layui.jquery;
+     layui.use(['laypage','layedit','laytpl','element','jquery','layer'], function(){
+  var layedit = layui.layedit;
+  var element = layui.element,$ = layui.jquery,layer=layui.layer,laytpl = layui.laytpl;
     layedit.set({
       uploadImage: {
         url: '../api/layui/upload.php' //接口url

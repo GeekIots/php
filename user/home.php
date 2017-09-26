@@ -21,53 +21,25 @@
   </h1>
   <p class="fly-home-info">
     <i class="iconfont icon-zuichun" title="飞吻"></i><span style="color: #FF7200;">67206飞吻</span>
-    <i class="iconfont icon-shijian"></i><span>2015-06-17 加入</span>
-    <i class="iconfont icon-chengshi"></i><span>来自杭州</span>
+    <i class="iconfont icon-shijian"></i><span>{{user_d.datetime}} 加入</span>
+    <i class="iconfont icon-chengshi"></i><span>来自{{user_d.city}}</span>
   </p>
-  <p class="fly-home-sign">（人生仿若一场修行）</p>
+  <p class="fly-home-sign">（{{user_d.describe}}）</p>
 </div>
 
 <div class="main fly-home-main">
   <div class="layui-inline fly-home-jie">
     <div class="fly-panel">
-      <h3 class="fly-panel-title">{{user_d.nickname}} 最近的提问</h3>
+      <h3 class="fly-panel-title">{{user_d.nickname}} 最近的帖子</h3>
       <ul class="jie-row">
+
         <li>
-          <span class="fly-jing">精</span>
+          <!-- <span class="fly-jing">精</span> -->
           <a href="/jie/1.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
           <i>1天前</i>
           <em>1136阅/27答</em>
         </li>
-        <li>
-          <a href="/jie/1.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
-          <i>1天前</i>
-          <em>1136阅/27答</em>
-        </li>
-        <li>
-          <a href="/jie/1.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
-          <i>1天前</i>
-          <em>1136阅/27答</em>
-        </li>
-        <li>
-          <a href="/jie/1.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
-          <i>1天前</i>
-          <em>1136阅/27答</em>
-        </li>
-        <li>
-          <a href="/jie/1.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
-          <i>1天前</i>
-          <em>1136阅/27答</em>
-        </li>
-        <li>
-          <a href="/jie/1.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
-          <i>1天前</i>
-          <em>1136阅/27答</em>
-        </li>
-        <li>
-          <a href="/jie/1.html" class="jie-title">使用 layui 秒搭后台大布局（基本结构）</a>
-          <i>1天前</i>
-          <em>1136阅/27答</em>
-        </li>
+
       </ul>
       <!-- <div class="fly-none" style="min-height: 50px; padding:30px 0; height:auto;"><i style="font-size:14px;">没有发表任何求解</i></div> -->
     </div>
@@ -75,21 +47,8 @@
   
   <div class="layui-inline fly-home-da">
     <div class="fly-panel">
-      <h3 class="fly-panel-title">{{user_d.nickname}} 最近的回答</h3>
+      <h3 class="fly-panel-title">{{user_d.nickname}} 最近的回复</h3>
       <ul class="home-jieda">
-        <li>
-          <p>
-          <span>1分钟前</span>
-          在<a href="" target="_blank">tips能同时渲染多个吗?</a>中回答：
-          </p>
-          <div class="home-dacontent">
-            尝试给layer.photos加上这个属性试试：
-<pre>
-full: true         
-</pre>
-            文档没有提及
-          </div>
-        </li>
         <li>
           <p>
           <span>5分钟前</span>
@@ -113,22 +72,35 @@ full: true
 var user_d;
 layui.use(['laytpl','layedit','layer','jquery',],function(){
   var layedit = layui.layedit,layer = layui.layer,$ = layui.jquery,laytpl = layui.laytpl;
-    //获取用户登陆信息
+    //获取发帖列表
     $.ajax({
       url: "../api/user/user.php",
       success: function (res) {
           console.log('success:',res);
           user_d = res;
-          //渲染数据
-          var getTpl = home_moduel.innerHTML;
-          var view = document.getElementById('home_view');
-          laytpl(getTpl).render(user_d, function(html){
-            view.innerHTML = html;
-          });
+         
       },
       error:function (res) {
           console.log('fail:',res);
       }
+    });
+    //获取回复列表
+    $.ajax({
+      url: "../api/user/user.php",
+      success: function (res) {
+          console.log('success:',res);
+          user_d = res;
+         
+      },
+      error:function (res) {
+          console.log('fail:',res);
+      }
+    });
+    //渲染数据
+    var getTpl = home_moduel.innerHTML;
+    var view = document.getElementById('home_view');
+    laytpl(getTpl).render(user_d, function(html){
+      view.innerHTML = html;
     });
   });
 </script>

@@ -1,7 +1,8 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <html>
 <head>
   <meta charset="utf-8">
-  <!-- <title>Geek-Iot | 极客社区</title> -->
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="keywords" content="geek,geekiot,物联网,物联网社区">
   <meta name="description" content="极客社区是极客物联网开发平台的官网社区，致力于为物联网开发提供强劲动力">
@@ -30,7 +31,7 @@
     
     <div class="nav-user">
       <!-- 建立视图。用于呈现模板渲染结果。 -->
-      <div id="view"></div>   
+      <div id="view_header"></div>   
     </div>
   </div>
 </div>
@@ -45,6 +46,7 @@
   $(document).ready(function(){  
     $(".nav a").each(function(){  
         $this = $(this);
+        console.log($this);
         if($this[0].href==String(window.location)){  
             $this.addClass("nav-this");  
         }
@@ -57,10 +59,10 @@
         console.log('success:',res);
         user_d = res;
         //渲染数据
-        var getTpl = demo.innerHTML;
-        var view = document.getElementById('view');
+        var getTpl = tpl_header.innerHTML;
+        var view_header = document.getElementById('view_header');
         laytpl(getTpl).render(user_d, function(html){
-          view.innerHTML = html;
+          view_header.innerHTML = html;
         });
     },
     error:function (res) {
@@ -71,7 +73,7 @@
 </script>
 
 <!-- 模板 -->
-<script id="demo" type="text/html">
+<script id="tpl_header" type="text/html">
   <!-- 已登录 -->
   {{#  if(user_d.login === "true"){ }}
     <a class='avatar' href='/user/index.php'>
