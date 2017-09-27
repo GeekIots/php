@@ -9,7 +9,7 @@
   </ul>
 </div> -->
 <div class="footer">
-  <p><a href="http://geek-iot.com/">极客社区</a> 2017 &copy; <a href="http://www.geek-iot.com/">geek-iot.com</a></p>
+  <p><a href="/index.php">极客社区</a> 2017 &copy; <a href="http://www.geek-iot.com/">geek-iot.com</a></p>
   <p>
   	<a href="mailto:sunyiming537@126.com" target="_blank">联系邮箱</a>
     <!-- <a href="http://fly.layui.com/auth/get" target="_blank">产品授权</a> -->

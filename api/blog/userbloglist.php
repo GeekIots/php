@@ -22,7 +22,7 @@
 		echo $json;
 		exit();
 	}
-	$sql="select * from blog where nickname=$nickname order by dates";
+	$sql="select * from blog where nickname='$nickname' order by dates desc";
 	$query=mysqli_query($con,$sql); 
 	while($rs=mysqli_fetch_array($query))
 	{

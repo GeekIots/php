@@ -23,7 +23,7 @@
 		exit();
 	}
 	//获取当前用户所有回复的帖子
-	$sql="select * from bloganswer where nickname = $nickname order by dates";
+	$sql="select * from bloganswer where nickname = '{$nickname}' order by dates desc";
 	$query=mysqli_query($con,$sql); 
 	while($rs=mysqli_fetch_array($query))
 	{

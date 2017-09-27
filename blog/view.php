@@ -37,7 +37,7 @@
             </a>
             <div class="detail-hits">
               <span style="color:#FF7200">悬赏：20飞吻</span>
-              <span class="layui-btn layui-btn-mini jie-admin" type="edit"><a href="/jie/edit/{{d.id}}">编辑此贴</a></span>
+              <span class="layui-btn layui-btn-mini jie-admin" type="edit"><a href="edit.php?id={{d.id}}">编辑此贴</a></span>
               <span class="layui-btn layui-btn-mini jie-admin " type="collect" data-type="add">收藏</span>
               <!--<span class="layui-btn layui-btn-mini jie-admin  layui-btn-danger" type="collect" data-type="add">取消收藏</span>-->
             </div>
@@ -98,7 +98,7 @@
           <div class="layui-form layui-form-pane">
               <div class="layui-form-item layui-form-text">
                 <div class="layui-input-block">
-                  <textarea id="textEdit" name="content" class="layui-textarea fly-editor" style="height: 150px;">我要回复</textarea>
+                  <textarea id="textEdit" name="content" class="layui-textarea fly-editor"></textarea>
                 </div>
               </div>
               <div class="layui-form-item">
@@ -220,7 +220,7 @@
         // ,'unlink' //清除链接
         // ,'help' //帮助
          // , 'html'
-        ]
+        ],height: 180
       });
       //监听提交按键
       //提交按钮
