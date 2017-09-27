@@ -1,3 +1,14 @@
+2017.9.27
+layui->lya->modules->util.js
+行号：61
+更新函数：timeAgo
+
+问题：
+	1.Safari中不支持'-'格式的日期字符串,将其替换成'/' 变成2017/01/01 12:00:00即可正常使用
+	2.2017/01/01T11:00:00形式的日期字符串在Safari中也是不得到支持的,需要将字符串中的'T'替换成空格变成2017/01/01 11:00:00格式
+
+增加： var e = new Date(Date.parse(e.replace(/-/g, '/').replace(/T/g, ' ')));
+
 2017.9.11
 layui->lya->modules->layedit.js
 行号：392

@@ -24,6 +24,7 @@
 	}
 	$sql="select * from blog where nickname='$nickname' order by dates desc";
 	$query=mysqli_query($con,$sql); 
+	$num=0;
 	while($rs=mysqli_fetch_array($query))
 	{
 		//读取回复数量
@@ -39,7 +40,9 @@
 		$indexArray["browser"] = $rs['hits'];//浏览量
 
 		$myArray["list"][] = $indexArray;
+		$num++;
 	}
+	$myArray["length"] = $num; //list列表元素个数 
 	$myArray["resault"] = 'success';  
 	mysqli_close($con);
 	// print_r($myArray); 

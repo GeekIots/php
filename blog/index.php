@@ -5,117 +5,117 @@
   <title>开发者社区 | 极客物联网</title>
 </head>
 <body>
-<div class="main layui-clear">
-  <!-- 主内容区 -->
-  <div class="wrap">
-    <div class="content">
-      <div class="fly-tab fly-tab-index">
-        <span>
-          <a href="/blog/index.php">全部</a>
-          <!--   -->
-        </span>
-        <form action="http://cn.bing.com/search" class="fly-search">
-          <i class="iconfont icon-sousuo"></i>
-          <input class="layui-input" autocomplete="off" placeholder="搜索内容，未启用！" type="text" name="q">
-        </form>
-        <!-- 判断是否已经登陆 -->
-        <a class="layui-btn jie-add" id="add_blog">发表新帖</a>
-      </div>
+  <div class="main layui-clear">
+    <!-- 主内容区 -->
+    <div class="wrap">
+      <div class="content">
+        <div class="fly-tab fly-tab-index">
+          <span>
+            <a href="/blog/index.php">全部</a>
+            <!--   -->
+          </span>
+          <form action="http://cn.bing.com/search" class="fly-search">
+            <i class="iconfont icon-sousuo"></i>
+            <input class="layui-input" autocomplete="off" placeholder="搜索内容，未启用！" type="text" name="q">
+          </form>
+          <!-- 判断是否已经登陆 -->
+          <a class="layui-btn jie-add" id="add_blog">发表新帖</a>
+        </div>
 
-      <!-- 普通贴 -->
-      <script id="Tpl_1" type="text/html">
-      <ul class="fly-list fly-list-top">
-        {{#  layui.each(d.list, function(index, item){ }}
-          <li class="fly-list-li">
-            <a href="/user/home.html" class="fly-list-avatar">
-              <img src="/{{item.avatar}}" alt="">
-            </a>
-            <h2 class="fly-tip">
-              <!-- 标题 -->
-              <a href="view.php?id={{item.id}}">{{item.title}}</a>
-              <span class="layui-btn layui-btn-mini jie-admin " type="collect" data-type="add">{{item.classify}}</span>
-            </h2>
-            <p>
-              <!-- 用户昵称 -->
-              <span><a href="user/home.html">{{item.nickname}}</a></span>
-              <!-- 发布时间 -->
-              <span>{{util.timeAgo(item.dates)}}</span>
-              <!-- 分类 -->
-              <span></span>
-              <span class="fly-list-hint"> 
-                <i class="iconfont" title="回答">&#xe60c;</i>{{item.answer}}
-                <i class="iconfont" title="人气">&#xe60b;</i>{{item.browser}}
-              </span>
-            </p>
-          </li>
-        {{#  }); }}
-      </ul>
-      </script>
-      <!-- 建立视图。用于呈现模板渲染结果。 -->
-      <div id="view_1"></div>  
-      <!-- 分页 -->
-      <div style="text-align: right;margin-right: 2%;">
+        <!-- 普通贴 -->
+        <script id="Tpl_1" type="text/html">
+          <ul class="fly-list fly-list-top">
+            {{# layui.each(d.list, function(index, item){ }}
+            <li class="fly-list-li">
+              <a href="/user/home.html" class="fly-list-avatar">
+                <img src="/{{item.avatar}}" alt="">
+              </a>
+              <h2 class="fly-tip">
+                <!-- 标题 -->
+                <a href="view.php?id={{item.id}}">{{item.title}}</a>
+                <span class="layui-btn layui-btn-mini jie-admin " type="collect" data-type="add">{{item.classify}}</span>
+              </h2>
+              <p>
+                <!-- 用户昵称 -->
+                <span><a href="user/home.html">{{item.nickname}}</a></span>
+                <!-- 发布时间 -->
+                <span>{{util.timeAgo(item.dates)}}</span>
+                <!-- 分类 -->
+                <span></span>
+                <span class="fly-list-hint"> 
+                  <i class="iconfont" title="回答">&#xe60c;</i>{{item.answer}}
+                  <i class="iconfont" title="人气">&#xe60b;</i>{{item.browser}}
+                </span>
+              </p>
+            </li>
+            {{#  }); }}
+          </ul>
+        </script>
+        <!-- 建立视图。用于呈现模板渲染结果。 -->
+        <div id="view_1"></div>  
+        <!-- 分页 -->
+        <div style="text-align: right;margin-right: 2%;">
           <div class="pagination" id="laypage1"></div>
-      </div><!-- 分页完 -->
+        </div><!-- 分页完 -->
+      </div>
     </div>
-  </div>
 
-  <!-- 右边栏 -->
-  <div class="edge">
-    <!-- 近一月回答榜 TOP 12-->
-    <script id="Tpl_2" type="text/html">
-      <div class="fly-panel leifeng-rank"> 
-        <h3 class="fly-panel-title">近一月回答榜 - TOP 12</h3>
-        <dl>
-          {{#  layui.each(d.list, function(index, item){ }}
+    <!-- 右边栏 -->
+    <div class="edge">
+      <!-- 近一月回答榜 TOP 12-->
+      <script id="Tpl_2" type="text/html">
+        <div class="fly-panel leifeng-rank"> 
+          <h3 class="fly-panel-title">近一月回答榜 - TOP 12</h3>
+          <dl>
+            {{#  layui.each(d.list, function(index, item){ }}
             <dd>
               <a href="/user/home.php">
                 <img src="/{{item.avatar}}">
-                 <cite>{{item.nickname}}</cite>
-                 <i>{{item.count}}次回答</i>
+                <cite>{{item.nickname}}</cite>
+                <i>{{item.count}}次回答</i>
               </a>
             </dd>
-          {{#  }); }}
-        </dl>
-      </div>
-    </script>
-    <!-- 建立视图。用于呈现模板渲染结果。 -->
-    <div id="view_2"></div>  
-    
+            {{#  }); }}
+          </dl>
+        </div>
+      </script>
+      <!-- 建立视图。用于呈现模板渲染结果。 -->
+      <div id="view_2"></div>  
 
-    <!-- 最近热帖 -->
-    <script id="Tpl_3" type="text/html">
-      <dl class="fly-panel fly-list-one"> 
-        <dt class="fly-panel-title">最近热帖</dt>
+
+      <!-- 最近热帖 -->
+      <script id="Tpl_3" type="text/html">
+        <dl class="fly-panel fly-list-one"> 
+          <dt class="fly-panel-title">最近热帖</dt>
           {{#  layui.each(d.list, function(index, item){ }}
-            <dd>
-              <a href="view.php?id={{item.id}}">{{item.title}}</a>
-              <span ><i class="iconfont">&#xe60b;</i>{{item.count}}</span>
-            </dd>          
+          <dd>
+            <a href="view.php?id={{item.id}}">{{item.title}}</a>
+            <span ><i class="iconfont">&#xe60b;</i>{{item.count}}</span>
+          </dd>          
           {{#  }); }}
-      </dl>      
-    </script>
-    <!-- 建立视图。用于呈现模板渲染结果。 -->
-    <div id="view_3"></div> 
-    
-    <!-- 近期热议 -->
-    <!-- 回复最多的帖子，暂未实现 -->
-    <script id="Tpl_4" type="text/html">
-      <dl class="fly-panel fly-list-one"> 
-        <dt class="fly-panel-title">近期热议</dt>
-        {{#  layui.each(d.list, function(index, item){ }}
+        </dl>      
+      </script>
+      <!-- 建立视图。用于呈现模板渲染结果。 -->
+      <div id="view_3"></div> 
+
+      <!-- 近期热议 -->
+      <!-- 回复最多的帖子，暂未实现 -->
+      <script id="Tpl_4" type="text/html">
+        <dl class="fly-panel fly-list-one"> 
+          <dt class="fly-panel-title">近期热议</dt>
+          {{#  layui.each(d.list, function(index, item){ }}
           <dd>
             <a href="view.php?id={{item.id}}">{{item.title}}</a>
             <span><i class="iconfont">&#xe60c;</i>{{item.count}}</span>
           </dd>  
-        {{#  }); }}
-      </dl>
-    </script>
-    <!-- 建立视图。用于呈现模板渲染结果。 -->
-    <div id="view_4"></div> 
+          {{#  }); }}
+        </dl>
+      </script>
+      <!-- 建立视图。用于呈现模板渲染结果。 -->
+      <div id="view_4"></div> 
+    </div>
   </div>
-</div>
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
+  <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 </body>
 <script>
   // 每页包含8条数据
@@ -127,7 +127,7 @@
       var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
       var r = window.location.search.substr(1).match(reg);  //匹配目标参数
       if (r != null) return unescape(r[2]); return null; //返回参数值
-  }
+    }
 
   //获取当前页码
   var _curr = getUrlParam('page');
@@ -135,8 +135,8 @@
   if (_curr==null) {_curr=1};
 
   layui.use(['laypage','laytpl','element','jquery','layer','util'], function(){
-  var laypage = layui.laypage,element = layui.element,$ = layui.jquery,layer=layui.layer,laytpl = layui.laytpl;
-  util = layui.util;
+    var laypage = layui.laypage,element = layui.element,$ = layui.jquery,layer=layui.layer,laytpl = layui.laytpl;
+    util = layui.util;
   //发表新帖
   $('#add_blog').on('click', function(){
     // 判断是否已经登陆
@@ -180,10 +180,10 @@
           if(!first)
             window.location.href = "/blog/index.php?page="+obj.curr;
         }
-       });
+      });
     },
     error:function (res) {
-        console.log('fail:',res);
+      console.log('fail:',res);
     }
   });
   // 获取回贴月榜
@@ -201,7 +201,7 @@
       });
     },
     error:function (res) {
-        console.log('fail:',res);
+      console.log('fail:',res);
     }
   });
   // 获取最近热帖
@@ -219,7 +219,7 @@
       });
     },
     error:function (res) {
-        console.log('fail:',res);
+      console.log('fail:',res);
     }
   });
   // 获取近期热议
@@ -237,7 +237,7 @@
       });
     },
     error:function (res) {
-        console.log('fail:',res);
+      console.log('fail:',res);
     }
   });
 });
