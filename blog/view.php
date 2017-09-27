@@ -12,10 +12,10 @@
         <div class="fly-panel detail-box">
           <h1>{{d.title}}</h1>
           <div class="fly-tip fly-detail-hint">
-            <span class="fly-tip-stick">置顶帖</span>
+            <!-- <span class="fly-tip-stick">置顶帖</span> -->
             <span class="fly-tip-jing">精帖</span>
             <!-- <span>未结贴</span> -->
-            <span class="fly-tip-jie">已采纳</span>
+            <span class="fly-tip-jie">{{d.classify}}</span>
             
             <!-- <span class="jie-admin" type="del" style="margin-left: 20px;">删除</span>
             <span class="jie-admin" type="set" field="stick" rank="1">置顶</span> 
@@ -32,13 +32,15 @@
               <img src="/{{d.avatar}}" alt="">
               <cite>
                 {{d.nickname}}
-                <em>{{d.dates}}</em>
+                <!-- 更新时间 -->
+                <em>{{ util.timeAgo(d.dates) }}</em>
               </cite>
             </a>
             <div class="detail-hits">
               <span style="color:#FF7200">悬赏：20飞吻</span>
               <span class="layui-btn layui-btn-mini jie-admin" type="edit"><a href="edit.php?id={{d.id}}">编辑此贴</a></span>
               <span class="layui-btn layui-btn-mini jie-admin " type="collect" data-type="add">收藏</span>
+              <!-- <span class="layui-btn layui-btn-mini jie-admin " type="collect" data-type="add">{{d.classify}}</span> -->
               <!--<span class="layui-btn layui-btn-mini jie-admin  layui-btn-danger" type="collect" data-type="add">取消收藏</span>-->
             </div>
           </div>
@@ -54,7 +56,7 @@
                   <legend>回帖</legend>
               </fieldset>
           </div>
-          <a name="comment"></a>
+          <!-- <a name="comment"></a> -->
           <ul class="jieda photos" id="jieda">
             {{#  layui.each(d.list, function(index, item){ }}
             <li data-id="12" class="jieda-daan">
@@ -71,7 +73,8 @@
                   </cite>
                 </a>
                 <div class="detail-hits">
-                  <span>{{item.dates}}</span>
+                  <!-- 更新时间 -->
+                  <span>{{ util.timeAgo(item.dates) }}</span>
                 </div>
                 <!-- 已采纳 -->
                 <!-- <i class="iconfont icon-caina" title="最佳答案"></i> -->
@@ -92,7 +95,7 @@
             </li>
             {{#  }); }}
             {{#  if(d.answernum==0){ }}
-              <li class='fly-none'>消灭零回复</li>
+              <li class='fly-none'>还没有回复！</li>
             {{#  } }}  
           </ul>
           <div class="layui-form layui-form-pane">
@@ -170,6 +173,7 @@
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 </body>
 <script>
+  var util,laytpl,layedit,$,layer;
   //获取url中的参数
   function getUrlParam(name) {
       var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
@@ -179,15 +183,19 @@
   //获取请求帖子id
   var _id = getUrlParam('id');
 
-  layui.use(['layedit','jquery','layer'],function(){
-  var  laytpl = layui.laytpl,layedit = layui.layedit,$ = layui.jquery,layer=layui.layer;
-  layedit.set({
-    uploadImage: {
-      url: '../api/layui/upload.php' //接口url
-      ,type: 'POST' //默认post
-      ,data:{'type':'image','url':'repblog'}
-      }
-  });
+  layui.use(['layedit','jquery','layer','util'],function(){
+      util = layui.util;
+      laytpl = layui.laytpl;
+      layedit = layui.layedit;
+      $ = layui.jquery;
+      layer=layui.layer;
+      layedit.set({
+        uploadImage: {
+          url: '../api/layui/upload.php' //接口url
+          ,type: 'POST' //默认post
+          ,data:{'type':'image','url':'repblog'}
+          }
+      });
 
   // 获取帖子主体
   $.ajax({
@@ -203,6 +211,11 @@
         view.innerHTML = html;
       });
       //主体渲染完
+      
+      //帖子发布时间
+      // $('#updateTime').html(util.timeAgo(res.dates));
+      //回复时间
+
       //渲染编辑器
       var index = layedit.build('textEdit', {tool: [
         'face' //表情

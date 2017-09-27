@@ -68,6 +68,7 @@
 		$indexArray["dates"]=$rs['dates'];//发布时间
 		$indexArray["answer"] = $answernum[0];//回复数
 		$indexArray["browser"] = $rs['hits'];//浏览量
+		$indexArray["classify"] = $rs['classify'];//分类
 
 		$myArray["list"][] = $indexArray;
 	}

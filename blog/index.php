@@ -33,12 +33,13 @@
             <h2 class="fly-tip">
               <!-- 标题 -->
               <a href="view.php?id={{item.id}}">{{item.title}}</a>
+              <span class="layui-btn layui-btn-mini jie-admin " type="collect" data-type="add">{{item.classify}}</span>
             </h2>
             <p>
               <!-- 用户昵称 -->
               <span><a href="user/home.html">{{item.nickname}}</a></span>
               <!-- 发布时间 -->
-              <span>{{item.dates}}</span>
+              <span>{{util.timeAgo(item.dates)}}</span>
               <!-- 分类 -->
               <span></span>
               <span class="fly-list-hint"> 
@@ -120,6 +121,7 @@
   // 每页包含8条数据
   var inpagenumber = 14; 
   var bloglist;
+  var util;
   //获取url中的参数
   function getUrlParam(name) {
       var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
@@ -132,8 +134,9 @@
   // 不存在页码默认为1
   if (_curr==null) {_curr=1};
 
-  layui.use(['laypage','laytpl','element','jquery','layer'], function(){
+  layui.use(['laypage','laytpl','element','jquery','layer','util'], function(){
   var laypage = layui.laypage,element = layui.element,$ = layui.jquery,layer=layui.layer,laytpl = layui.laytpl;
+  util = layui.util;
   //发表新帖
   $('#add_blog').on('click', function(){
     // 判断是否已经登陆

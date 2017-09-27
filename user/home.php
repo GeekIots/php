@@ -19,7 +19,7 @@
       </h1>
       <p class="fly-home-info">
         <i class="iconfont icon-zuichun" title="飞吻"></i><span style="color: #FF7200;">67206飞吻</span>
-        <i class="iconfont icon-shijian"></i><span>{{user_d.datetime}} 加入</span>
+        <i class="iconfont icon-shijian"></i><span>{{ util.timeAgo(user_d.datetime)}} 加入</span>
         <i class="iconfont icon-chengshi"></i><span>来自{{user_d.city}}</span>
       </p>
       <p class="fly-home-sign">（{{user_d.describe}}）</p>
@@ -35,7 +35,7 @@
               <li>
                 <!-- <span class="fly-jing">精</span> -->
                 <a href="/blog/view.php?id={{item.id}}" target="_blank" class="jie-title">{{item.title}}</a>
-                <i>{{item.dates}}</i>
+                <i>{{util.timeAgo(item.dates)}}</i>
                 <em>{{item.browser}}阅/{{item.answer}}答</em>
               </li>
             {{#  }); }}
@@ -50,7 +50,7 @@
           <ul class="home-jieda">
             {{#  layui.each(user_answer.list, function(index, item){ }}
               <li>
-                <span>{{item.dates}}</span>
+                <span>{{ util.timeAgo(item.dates)}}</span>
                 在<a href="/blog/view.php?id={{item.id}}" target="_blank">{{item.title}}</a>中回答：
                 <div class="home-dacontent">
                   {{item.contents}}
@@ -72,8 +72,11 @@
   var user_d;
   var user_blog;
   var user_answer;
-  layui.use(['laytpl','layedit','layer','jquery',],function(){
+
+  var util;
+  layui.use(['laytpl','layedit','layer','jquery','util'],function(){
   var layedit = layui.layedit,layer = layui.layer,$ = layui.jquery,laytpl = layui.laytpl;
+  util = layui.util;
   //获取用户信息
   $.ajax({
     url: "../api/user/user.php",

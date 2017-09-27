@@ -26,7 +26,7 @@
 	$myArray["nickname"] = $rs['nickname'];//发帖人昵称
 	$myArray["dates"] = $rs['dates'];//发帖时间
 	$myArray["count"] = $rs['hits'];//浏览次数
-	$myArray["class"] = $rs['classify'];//分类
+	$myArray["classify"] = $rs['classify'];//分类
 
 	//增加点击量
 	$sql="update blog  set hits = hits+1 where id='$id'";
