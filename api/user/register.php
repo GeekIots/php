@@ -36,7 +36,9 @@
                     else{
                         // 验证通过,开始注册
                         $psw = md5($password);
-                        $sql_insert = "insert into user (nickname,password,email) values('$nickname','$psw','$email')";  
+                        // 随机生成唯一id作为用户的身份id
+                        $userid = md5(time().mt_rand());
+                        $sql_insert = "insert into user (nickname,password,email,userid) values('$nickname','$psw','$email','$userid')";  
                         if(mysqli_query($con,$sql_insert))
                         {
                             //注册成功

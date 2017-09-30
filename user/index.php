@@ -123,6 +123,7 @@
                 },
                 error:function (res) {
                     console.log('fail:',res);
+                    layer.msg("拉取收藏数据失败！");
                 }
             });
           },

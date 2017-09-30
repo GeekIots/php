@@ -34,6 +34,7 @@
 		// print_r($answernum);
 
 		$indexArray["title"]=$answer['title'];//原帖标题
+		$indexArray["id"]=$rs['toid'];//原帖id
 		$indexArray["dates"]=$rs['dates'];//回复时间
 		$indexArray["contents"] = htmlspecialchars_decode($rs["contents"]);//回复内容
 
