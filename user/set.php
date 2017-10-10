@@ -5,6 +5,7 @@
   <title>帐号设置</title>
 </head>
 <body>
+<script id="moduel" type="text/html">
 <div class="main fly-user-main layui-clear">
   <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
     <li class="layui-nav-item">
@@ -53,14 +54,14 @@
             <div class="layui-form-item">
               <label for="L_email" class="layui-form-label">邮箱</label>
               <div class="layui-input-inline">
-                <input type="text" id="L_email" name="email" required lay-verify="email" autocomplete="off" value="" class="layui-input">
+                <input type="text" id="L_email" name="email" required lay-verify="email" autocomplete="off" value="{{d.email}}" class="layui-input">
               </div>
               <div class="layui-form-mid layui-word-aux">如果您在邮箱已激活的情况下，变更了邮箱，需<a href="activate.html" style="font-size: 12px; color: #4f99cf;">重新验证邮箱</a>。</div>
             </div>
             <div class="layui-form-item">
               <label for="L_username" class="layui-form-label">昵称</label>
               <div class="layui-input-inline">
-                <input type="text" id="L_username" name="username" required lay-verify="required" autocomplete="off" value="" class="layui-input">
+                <input type="text" id="L_username" name="username" required lay-verify="required" autocomplete="off" value="{{d.nickname}}" class="layui-input">
               </div>
               <div class="layui-inline">
                 <div class="layui-input-inline">
@@ -72,13 +73,13 @@
             <div class="layui-form-item">
               <label for="L_city" class="layui-form-label">城市</label>
               <div class="layui-input-inline">
-                <input type="text" id="L_city" name="city" autocomplete="off" value="" class="layui-input">
+                <input type="text" id="L_city" name="city" autocomplete="off" value="{{d.city}}" class="layui-input">
               </div>
             </div>
             <div class="layui-form-item layui-form-text">
               <label for="L_sign" class="layui-form-label">签名</label>
               <div class="layui-input-block">
-                <textarea placeholder="随便写些什么刷下存在感" id="L_sign"  name="sign" autocomplete="off" class="layui-textarea" style="height: 80px;"></textarea>
+                <textarea placeholder="随便写些什么刷下存在感" id="L_sign"  name="sign" autocomplete="off" class="layui-textarea" style="height: 80px;">{{d.describe}}</textarea>
               </div>
             </div>
             <div class="layui-form-item">
@@ -91,11 +92,10 @@
               <div class="avatar-add">
                 <p>建议尺寸168*168，支持jpg、png、gif，最大不能超过30KB</p>
                 <div class="upload-img">
-                 <!--  <input type="file"  name="file" id="LAY-file" lay-title="上传头像"> -->
                   <button type="button" class="layui-btn" id="img_upload">
                   <i class="layui-icon">&#xe67c;</i>上传图片
                 </div>
-                <img id="upload-avatar" src="http://tp4.sinaimg.cn/1345566427/180/5730976522/0">
+                <img id="upload-avatar" src="{{d.avatar}}">
                 <span class="loading"></span>
               </div>
             </div>
@@ -152,25 +152,44 @@
     </div>
   </div>
 </div>
+</script> 
+<!-- 建立视图。用于呈现模板渲染结果。 -->
+<div id="view"></div> 
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 <script>
-layui.use(['layedit','layer','jquery','element','upload'],function(){
+var user_d;
+layui.use(['laytpl','layedit','layer','jquery','element','upload'],function(){
   var layedit = layui.layedit
       ,layer = layui.layer
       ,$ = layui.jquery
       ,element = layui.element
-      ,upload = layui.upload;
+      ,upload = layui.upload,
+      laytpl = layui.laytpl;
 
-  // 更新头像
-  var uploadInst = upload.render({
-      elem: '#img_upload' //绑定元素
-      ,method:'post'
-      ,data:{type:'image',url:'avatar',size:'30'}
-      ,url: '../../api/layui/upload.php', //上传接口
-      before : function(){
-        //执行上传前的回调  可以判断文件后缀等等
-        layer.msg('上传中，请稍后......', {icon:16, shade:0.5, time:0});
-      }
+  //获取用户信息
+  $.ajax({
+    url: "../api/user/user.php",
+    success: function (res) {
+      console.log('success:',res);
+      user_d = res;
+      //渲染数据
+      var getTpl = moduel.innerHTML;
+      var view = document.getElementById('view');
+      laytpl(getTpl).render(res, function(html){
+        view.innerHTML = html;
+      });
+
+
+      // 更新头像
+      upload.render({
+        elem: '#img_upload' //绑定元素
+        ,method:'post'
+        ,data:{type:'image',url:'avatar',size:'30'}
+        ,url: '../../api/layui/upload.php', //上传接口
+        before : function(){
+          //执行上传前的回调  可以判断文件后缀等等
+          layer.msg('上传中，请稍后......', {icon:16, shade:0.5, time:0});
+        }
         ,done: function(res){
           //上传完毕回调
           console.log(res);
@@ -200,17 +219,22 @@ layui.use(['layedit','layer','jquery','element','upload'],function(){
                 },
                 error:function (argument) {
                   console.log(argument);
-                    // layer.msg('失败！');
+                  // layer.msg('失败！');
                 }
             });
+          }
         }
-      }
         ,error: function(res){
           //请求异常回调
           console.log(res);
         }
       });
-  });
+    },
+    error:function (res) {
+        console.log('fail:',res);
+    }
+  });  
+});
 </script>
 
 

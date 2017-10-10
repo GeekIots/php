@@ -56,7 +56,7 @@
             // 返回用户信息
             $myArray["nickname"] = $row['nickname'];//昵称
             // $myArray["avatar"] = 'http://www.geei-iot.com'.$row['avatar'];
-            $myArray["avatar"] = $row['avatar'];//头像路径
+            $myArray["avatar"] = '/'.$row['avatar'];//头像路径
             $myArray["phonenumber"] = $row['phonenumber'];//手机号码
             $myArray["email"] = $row['email'];//绑定邮箱
             $myArray["city"] = $row['city'];//城市

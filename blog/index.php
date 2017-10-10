@@ -28,7 +28,7 @@
             {{# layui.each(d.list, function(index, item){ }}
             <li class="fly-list-li">
               <a href="/user/home.html" class="fly-list-avatar">
-                <img src="/{{item.avatar}}" alt="">
+                <img src="{{item.avatar}}" alt="">
               </a>
               <h2 class="fly-tip">
                 <!-- 标题 -->

@@ -9,10 +9,6 @@ blog/new.php
 blog/list.php
 获取帖子列表
 
-
-
-
-
 ## device
 
 ### 用户开关、传感器等相关设备API
@@ -98,6 +94,7 @@ https://www.geek-iot.com/api/blog/new.php
     "status": "success"
 }
 ```
+
 ```
 {
     "status": "fail",

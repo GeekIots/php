@@ -35,7 +35,9 @@
     </div>
   </div>
 </div>
-
+<!-- 隐藏的input，让浏览器填充，解决输入框被填充问题 -->
+<input style="display:none" type="text" name="fakeusernameremembered"/>
+<input style="display:none" type="password" name="fakepasswordremembered"/>
 <script>
   // 定义用户数据变量
   var user_d;
@@ -77,7 +79,7 @@
   <!-- 已登录 -->
   {{#  if(user_d.login === "true"){ }}
     <a class='avatar' href='/user/index.php'>
-    <img id='image-avatar' src='/{{ user_d.avatar }}'>
+    <img id='image-avatar' src='{{ user_d.avatar }}'>
     <cite id='nickname'>{{ user_d.nickname }}</cite>
     <i>VIP1</i>
     </a>
