@@ -1,4 +1,6 @@
 <?php
+    // 设置session
+    session_start();
     error_reporting(E_ALL^E_NOTICE); //取消警告显示
     header('Content-type:application/json');
     include $_SERVER['DOCUMENT_ROOT']."/api/conn.php";
@@ -36,8 +38,7 @@
 				$myArray["qq"] = $row['qq'];
                 $myArray["regtime"] = $row['regtime'];
 				$myArray["avatar"] = 'http://www.geei-iot.com/picture/avatar/nickname.jpg';
-                // 设置session
-                session_start();
+
                 // 目前是以邮箱登录,userid是唯一标志
                 $_SESSION['login'] = $row['userid'];
             }

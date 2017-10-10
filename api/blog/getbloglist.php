@@ -56,7 +56,7 @@
 		$answernum=mysqli_fetch_array($queryanswer);
 		// print_r($answernum);
 		// 获取用户信息
-		$sql11="select * from user where nickname='{$rs['nickname']}'";
+		$sql11="select * from user where userid='{$rs['userid']}'";
 		$query11=mysqli_query($con,$sql11);
 		$row11 = mysqli_fetch_array($query11);
 
@@ -64,7 +64,8 @@
 		$indexArray["id"]=$rs['id'];//帖子id
 		$indexArray["avatar"]='/'.$row11['avatar'];//用户头像
 		$indexArray["title"]=$rs['title'];//帖子标题
-		$indexArray["nickname"]=$rs['nickname'];//发帖人昵称
+		$indexArray["nickname"]=$row11['nickname'];//发帖人昵称
+		$indexArray["userid"]=$row11['userid'];//发帖人昵称
 		$indexArray["dates"]=$rs['dates'];//发布时间
 		$indexArray["answer"] = $answernum[0];//回复数
 		$indexArray["browser"] = $rs['hits'];//浏览量

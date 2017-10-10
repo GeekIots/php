@@ -102,7 +102,7 @@
       $.ajax({
           url: "../api/blog/userbloglist.php",
           type:'POST',
-          data:{'nickname':user_d.nickname},
+          data:{'userid':user_d.userid},
             success: function (res) {
             console.log('success:',res);
             user_blog = res;
@@ -110,7 +110,7 @@
             $.ajax({
                 url: "../api/blog/collect.php",
                 type:'POST',
-                data:{'type':'get','nickname':user_d.nickname},
+                data:{'type':'get','userid':user_d.userid},
                 success: function (res) {
                   console.log('success:',res);
                   user_collect = res;

@@ -27,7 +27,7 @@
           <ul class="fly-list fly-list-top">
             {{# layui.each(d.list, function(index, item){ }}
             <li class="fly-list-li">
-              <a href="/user/home.html" class="fly-list-avatar">
+              <a href="/user/home.php?userid={{item.userid}}" class="fly-list-avatar">
                 <img src="{{item.avatar}}" alt="">
               </a>
               <h2 class="fly-tip">
@@ -69,8 +69,8 @@
           <dl>
             {{#  layui.each(d.list, function(index, item){ }}
             <dd>
-              <a href="/user/home.php">
-                <img src="/{{item.avatar}}">
+              <a href="/user/home.php?userid={{item.userid}}">
+                <img src="{{item.avatar}}">
                 <cite>{{item.nickname}}</cite>
                 <i>{{item.count}}次回答</i>
               </a>

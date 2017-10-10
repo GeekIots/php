@@ -84,12 +84,29 @@
   var user_answer;
 
   var util;
+
+  //获取url中的参数
+  function getUrlParam(name) {
+      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+      var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+      if (r != null) return unescape(r[2]); return null; //返回参数值
+  }
+  //获取请求的userid
+  var _userid = getUrlParam('userid');
+
   layui.use(['laytpl','layedit','layer','jquery','util'],function(){
   var layedit = layui.layedit,layer = layui.layer,$ = layui.jquery,laytpl = layui.laytpl;
   util = layui.util;
+
+  if (!_userid) {
+    _userid = user_d.userid;
+  }
+  
   //获取用户信息
   $.ajax({
     url: "../api/user/user.php",
+    type:'POST',
+    data:{'userid':_userid},
     success: function (res) {
       console.log('success:',res);
       user_d = res;

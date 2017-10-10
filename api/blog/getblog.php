@@ -26,6 +26,7 @@
 	$myArray["dates"] = $rs['dates'];//发帖时间
 	$myArray["count"] = $rs['hits'];//浏览次数
 	$myArray["classify"] = $rs['classify'];//分类
+	$myArray["userid"] = $rs['userid'];//发帖人id
 
 	// 获取发帖人信息
     $sql22="select * from user where userid='{$rs['userid']}'";

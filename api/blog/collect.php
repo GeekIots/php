@@ -4,14 +4,14 @@
 	
 	获取：
 	  type：get
-	  nickname：用户昵称
+	  userid：用户id
 	设置收藏：
 	  type：set
-	  nickname：用户昵称
+	  userid：用户id
 	  blogid：收藏的帖子id
 	取消收藏：
 	  type：cancel
-	  nickname：用户昵称
+	  userid：用户id
 	  blogid：取消收藏的帖子id	
 	*/
 	date_default_timezone_set("Asia/Shanghai");
@@ -33,14 +33,14 @@
 		exit();
 	}
 
-	if(isset($_POST['nickname']))
+	if(isset($_POST['userid']))
 	{
-		$nickname = $_POST['nickname'];
+		$userid = $_POST['userid'];
 	}
 	else
 	{
 		$myArray["resault"] = 'fail';  
-		$myArray["msg"] = '缺少nickname字段！';
+		$myArray["msg"] = '缺少userid字段！';
 		$json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
 		echo $json;
 		exit();
@@ -62,7 +62,7 @@
 	}
 	// 获取收藏
 	if ($type=='get') {
-		$sql="select * from blog_collect where nickname = '{$nickname}' order by dates desc";
+		$sql="select * from blog_collect where userid = '{$userid}' order by dates desc";
 		$query=mysqli_query($con,$sql); 
 		$num = 0;
 		while($rs=mysqli_fetch_array($query))

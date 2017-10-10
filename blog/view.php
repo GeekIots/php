@@ -38,7 +38,9 @@
             </a>
             <div class="detail-hits">
               <span style="color:#FF7200">悬赏：20飞吻</span>
+              {{#if(d.userid==user_d.userid){}}
               <span class="layui-btn layui-btn-mini jie-admin" type="edit"><a href="edit.php?id={{d.id}}">编辑此贴</a></span>
+              {{#}}}
               <span class="layui-btn layui-btn-mini jie-admin " type="collect" data-type="add">收藏</span>
               <!-- <span class="layui-btn layui-btn-mini jie-admin " type="collect" data-type="add">{{d.classify}}</span> -->
               <!--<span class="layui-btn layui-btn-mini jie-admin  layui-btn-danger" type="collect" data-type="add">取消收藏</span>-->
@@ -124,7 +126,7 @@
         <dl>
           {{#  layui.each(d.list, function(index, item){ }}
             <dd>
-              <a href="/user/home.php">
+              <a href="/user/home.php?userid={{item.userid}}">
                 <img src="{{item.avatar}}">
                  <cite>{{item.nickname}}</cite>
                  <i>{{item.count}}次回答</i>
