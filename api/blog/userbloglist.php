@@ -2,27 +2,26 @@
 	/*
 	某个用户的发帖列表
 	参数：
-		nickname：昵称  必须字段
+		userid：用户id  必须字段
 	*/
 	date_default_timezone_set("Asia/Shanghai");
 	error_reporting(E_ALL^E_NOTICE); //取消警告显示
 	header('Content-type:application/json');
 	include $_SERVER['DOCUMENT_ROOT']."/api/conn.php";
 
-	if(isset($_POST['nickname']))
+	if(isset($_POST['userid']))
 	{
-		//定义每页显示数量
-		$nickname = $_POST['nickname'];
+		$userid = $_POST['userid'];
 	}
 	else
 	{
 		$myArray["resault"] = 'fail';  
-		$myArray["msg"] = '缺少nickname字段！';
+		$myArray["msg"] = '缺少userid字段！';
 		$json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
 		echo $json;
 		exit();
 	}
-	$sql="select * from blog where nickname='$nickname' order by dates desc";
+	$sql="select * from blog where userid='$userid' order by dates desc";
 	$query=mysqli_query($con,$sql); 
 	$num=0;
 	while($rs=mysqli_fetch_array($query))

@@ -8,29 +8,38 @@
   <!-- 用户信息模板 -->
   <script id="home_moduel" type="text/html">
     <div class="fly-home" style="background-image: url();">
-      <img src="/{{user_d.avatar}}" alt="{{user_d.nickname}}">
+      <img src="{{user_d.avatar}}" alt="{{user_d.nickname}}">
       <h1>
         {{user_d.nickname}}
-        <i class="iconfont icon-nan"></i> 
+        <!-- 0：男 ，1：女 -->
+        <i class="iconfont 
+        {{# if(user_d.sex == 0){ }}
+          icon-nan
+        {{# } else if(user_d.sex == 1){ }}
+          icon-nv
+        {{# } }}
+        "></i> 
         <!-- <i class="iconfont icon-nv"></i> -->
         <!-- <span style="color:#c00;">（超级码农）</span>
         <span style="color:#5FB878;">（活雷锋）</span>
         <span>（该号已被封）</span> -->
       </h1>
       <p class="fly-home-info">
-        <i class="iconfont icon-zuichun" title="飞吻"></i><span style="color: #FF7200;">67206飞吻</span>
+        <!-- <i class="iconfont icon-zuichun" title="飞吻"></i><span style="color: #FF7200;">67206飞吻</span> -->
         <i class="iconfont icon-shijian"></i><span>{{ util.timeAgo(user_d.datetime)}} 加入</span>
         <i class="iconfont icon-chengshi"></i><span>来自{{user_d.city}}</span>
       </p>
+      <p class="fly-home-info"><i class="iconfont"></i><span>用户ID:{{user_d.userid}}</span></p>
       <p class="fly-home-sign">（{{user_d.describe}}）</p>
     </div>
     
-    <!-- 发帖列表模板 -->
+    <!-- 发帖列表 -->
     <div class="main fly-home-main">
       <div class="layui-inline fly-home-jie">
         <div class="fly-panel">
           <h3 class="fly-panel-title">{{user_d.nickname}} 最近的帖子</h3>
           <ul class="jie-row">
+            {{user_blog.length == 0 ? '还没有发帖！' : ''}}
             {{#  layui.each(user_blog.list, function(index, item){ }}
               <li>
                 <!-- <span class="fly-jing">精</span> -->
@@ -43,11 +52,12 @@
           <!-- <div class="fly-none" style="min-height: 50px; padding:30px 0; height:auto;"><i style="font-size:14px;">没有发表任何求解</i></div> -->
         </div>
       </div> 
-      <!-- 回帖列表模板 -->
+      <!-- 回帖列表 -->
       <div class="layui-inline fly-home-da">
         <div class="fly-panel">
           <h3 class="fly-panel-title">{{user_d.nickname}} 最近的回复</h3>
           <ul class="home-jieda">
+            {{user_answer.length == 0 ? '没有回复过！' : ''}}
             {{#  layui.each(user_answer.list, function(index, item){ }}
               <li>
                 <span>{{ util.timeAgo(item.dates)}}</span>
@@ -87,7 +97,7 @@
       $.ajax({
           url: "../api/blog/userbloglist.php",
           type:'POST',
-          data:{'nickname':user_d.nickname},
+          data:{'userid':user_d.userid},
             success: function (res) {
             console.log('success:',res);
             user_blog = res;
@@ -95,7 +105,7 @@
             $.ajax({
                 url: "../api/blog/useranswer.php",
                 type:'POST',
-                data:{'nickname':user_d.nickname},
+                data:{'userid':user_d.userid},
                 success: function (res) {
                   console.log('success:',res);
                   user_answer = res;

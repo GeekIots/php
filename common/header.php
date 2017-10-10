@@ -30,6 +30,30 @@
     </div>
     
     <div class="nav-user">
+      <!-- 模板 -->
+      <script id="tpl_header" type="text/html">
+        <!-- 已登录 -->
+        {{#  if(user_d.login === "true"){ }}
+          <a class='avatar' href='/user/index.php'>
+          <img id='image-avatar' src='{{ user_d.avatar }}'>
+          <cite id='nickname'>{{ user_d.nickname }}</cite>
+          <i>VIP1</i>
+          </a>
+          <div class='nav'>
+          <a href='/user/set.php'><i class='iconfont icon-shezhi'></i>设置</a>
+          <a href='/user/logout.php'><i class='iconfont icon-tuichu' style='top: 0; font-size: 22px;'></i>退了</a>
+          </div>  
+        {{# }else { }} 
+        <!-- 未登录 -->
+          <a class="unlogin" href="/user/login.php"><i class="iconfont icon-touxiang"></i></a>
+          <span><a href="/user/login.php">登入</a><a href="/user/register.php">注册</a></span>
+          <p class="out-login">
+            <a href=""  class="iconfont icon-qq" title="QQ登入"></a>
+            <a href=""  class="iconfont icon-weibo" title="微博登入"></a>
+          </p>
+        {{#  } }} 
+        </ul>
+      </script>
       <!-- 建立视图。用于呈现模板渲染结果。 -->
       <div id="view_header"></div>   
     </div>
@@ -72,29 +96,4 @@
     }
   });
 });
-</script>
-
-<!-- 模板 -->
-<script id="tpl_header" type="text/html">
-  <!-- 已登录 -->
-  {{#  if(user_d.login === "true"){ }}
-    <a class='avatar' href='/user/index.php'>
-    <img id='image-avatar' src='{{ user_d.avatar }}'>
-    <cite id='nickname'>{{ user_d.nickname }}</cite>
-    <i>VIP1</i>
-    </a>
-    <div class='nav'>
-    <a href='/user/set.php'><i class='iconfont icon-shezhi'></i>设置</a>
-    <a href='/user/logout.php'><i class='iconfont icon-tuichu' style='top: 0; font-size: 22px;'></i>退了</a>
-    </div>  
-  {{# }else { }} 
-  <!-- 未登录 -->
-    <a class="unlogin" href="/user/login.php"><i class="iconfont icon-touxiang"></i></a>
-    <span><a href="/user/login.php">登入</a><a href="/user/register.php">注册</a></span>
-    <p class="out-login">
-      <a href=""  class="iconfont icon-qq" title="QQ登入"></a>
-      <a href=""  class="iconfont icon-weibo" title="微博登入"></a>
-    </p>
-  {{#  } }} 
-  </ul>
 </script>

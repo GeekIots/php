@@ -65,8 +65,8 @@
               </div>
               <div class="layui-inline">
                 <div class="layui-input-inline">
-                  <input type="radio" name="sex" value="0" checked title="男">
-                  <input type="radio" name="sex" value="1" title="女">
+                  <input type="radio" name="sex" value="0" {{d.sex == '0' ? 'checked' : ''}} title="男">
+                  <input type="radio" name="sex" value="1" {{d.sex == '1' ? 'checked' : ''}} title="女">
                 </div>
               </div>
             </div>
@@ -157,21 +157,19 @@
 <div id="view"></div> 
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 <script>
-var user_d;
-layui.use(['laytpl','layedit','layer','jquery','element','upload'],function(){
+layui.use(['laytpl','layedit','layer','jquery','element','upload','form'],function(){
   var layedit = layui.layedit
       ,layer = layui.layer
       ,$ = layui.jquery
       ,element = layui.element
-      ,upload = layui.upload,
-      laytpl = layui.laytpl;
-
+      ,upload = layui.upload
+      ,form = layui.form
+      ,laytpl = layui.laytpl;
   //获取用户信息
   $.ajax({
     url: "../api/user/user.php",
     success: function (res) {
       console.log('success:',res);
-      user_d = res;
       //渲染数据
       var getTpl = moduel.innerHTML;
       var view = document.getElementById('view');
@@ -179,6 +177,8 @@ layui.use(['laytpl','layedit','layer','jquery','element','upload'],function(){
         view.innerHTML = html;
       });
 
+      // 有些表单元素可能是动态插入的。这时 Form模块 的自动化渲染是会对其失效的,需要重新渲染
+      form.render('radio'); //更新radio
 
       // 更新头像
       upload.render({

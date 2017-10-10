@@ -41,17 +41,17 @@
 	if ($type=='answer') {
 		$myArray["type"] = 'answer'; 
 
-		$sqlsort = "select nickname,count(*) from bloganswer group by nickname 
+		$sqlsort = "select userid,count(*) from bloganswer group by userid 
 		order by count(*) desc limit {$num}";
 		$sqlsort=mysqli_query($con,$sqlsort);
 		while($top=mysqli_fetch_array($sqlsort))
 		{
 		 	// 获取用户信息,用于显示用户头像
-			$sql="select * from user where nickname='{$top['nickname']}'";
+			$sql="select * from user where userid='{$top['userid']}'";
 			$query=mysqli_query($con,$sql);
 			$row = mysqli_fetch_array($query);
-			$indexArray["avatar"] = $row['avatar'];//用户头像
-			$indexArray["nickname"] = $top['nickname'];//用户昵称
+			$indexArray["avatar"] = '/'.$row['avatar'];//用户头像
+			$indexArray["nickname"] = $row['nickname'];//用户昵称
 			$indexArray["count"] = $top['count(*)'];//回答次数
 
 			$myArray["list"][] = $indexArray;
@@ -68,12 +68,12 @@
 		while($ans=mysqli_fetch_array($sqltalk))
 		{
 			//获取热议文章信息
-			$sql="select nickname,title from blog where id='{$ans['toid']}'";
+			$sql="select userid,title from blog where id='{$ans['toid']}'";
 			$query=mysqli_query($con,$sql);
 			$row = mysqli_fetch_array($query);
 
 			$indexArray["id"] = $ans['toid'];//贴子id
-			$indexArray["nickname"] = $row['nickname'];//用户昵称
+			$indexArray["userid"] = $ans['userid'];//发帖人id
 			$indexArray["title"] = $row['title'];//帖子标题
 			$indexArray["count"] = $ans['count(*)'];//讨论次数
 

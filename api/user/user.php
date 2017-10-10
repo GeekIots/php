@@ -50,11 +50,13 @@
             $myArray["resault"] = 'success';
             $myArray["login"] = 'true';
 
-            $sql = "select * from user where email = '{$_SESSION['login']}'"; //SQL语句
+            $sql = "select * from user where userid = '{$_SESSION['login']}'"; //SQL语句
             $result = mysqli_query($con,$sql);//执行SQL语句
             $row=mysqli_fetch_array($result);
             // 返回用户信息
             $myArray["nickname"] = $row['nickname'];//昵称
+            $myArray["userid"] = $row['userid'];//用户id
+            $myArray["sex"] = $row['sex'];//昵称
             // $myArray["avatar"] = 'http://www.geei-iot.com'.$row['avatar'];
             $myArray["avatar"] = '/'.$row['avatar'];//头像路径
             $myArray["phonenumber"] = $row['phonenumber'];//手机号码

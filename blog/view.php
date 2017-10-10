@@ -29,7 +29,7 @@
           </div>
           <div class="detail-about">
             <a class="jie-user" href="">
-              <img src="/{{d.avatar}}" alt="">
+              <img src="{{d.avatar}}" alt="">
               <cite>
                 {{d.nickname}}
                 <!-- 更新时间 -->
@@ -63,7 +63,7 @@
               <a name="item-121212121212"></a>
               <div class="detail-about detail-about-reply">
                 <a class="jie-user" href="">
-                  <img src="/{{item.avatar}}" alt="">
+                  <img src="{{item.avatar}}" alt="">
                   <cite>
                     <i>{{item.nickname}}</i>
                     <!-- <em>(楼主)</em>
@@ -125,7 +125,7 @@
           {{#  layui.each(d.list, function(index, item){ }}
             <dd>
               <a href="/user/home.php">
-                <img src="/{{item.avatar}}">
+                <img src="{{item.avatar}}">
                  <cite>{{item.nickname}}</cite>
                  <i>{{item.count}}次回答</i>
               </a>
@@ -252,7 +252,7 @@
             $.ajax({
               type:'POST',
               url: "../api/blog/answer.php",
-              data:{'contents':str,'nickname':user_d.nickname,'toid':<?php echo($_GET['id']) ?>},
+              data:{'contents':str,'userid':user_d.userid,'toid':<?php echo($_GET['id']) ?>},
               //数据长度太长，放到data里通过post传送
               success: function (argument) {
                  if (argument.resault=='success') {

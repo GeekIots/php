@@ -23,10 +23,16 @@
 	$myArray["id"] = $rs['id'];//帖子id
 	$myArray["title"] = $rs['title'];//帖子标题
 	$myArray["contents"] = htmlspecialchars_decode($rs['contents']);//帖子内容
-	$myArray["nickname"] = $rs['nickname'];//发帖人昵称
 	$myArray["dates"] = $rs['dates'];//发帖时间
 	$myArray["count"] = $rs['hits'];//浏览次数
 	$myArray["classify"] = $rs['classify'];//分类
+
+	// 获取发帖人信息
+    $sql22="select * from user where userid='{$rs['userid']}'";
+    $query22=mysqli_query($con,$sql22);
+    $row22 = mysqli_fetch_array($query22);
+    $myArray["avatar"] = '/'.$row22['avatar'];//头像
+	$myArray["nickname"] = $row22['nickname'];//发帖人昵称
 
 	//增加点击量
 	$sql="update blog  set hits = hits+1 where id='$id'";
@@ -39,11 +45,11 @@
 	while ($rsanswer=mysqli_fetch_array($queryanswer)) {
 	    $floornumber++;
 	    // 获取用户信息,用于显示用户头像
-	    $sql11="select * from user where nickname='{$rsanswer['nickname']}'";
+	    $sql11="select * from user where userid='{$rsanswer['userid']}'";
 	    $query11=mysqli_query($con,$sql11);
 	    $row11 = mysqli_fetch_array($query11);
 		
-		$indexArray["avatar"] = $row11['avatar'];//用户头像
+		$indexArray["avatar"] = '/'.$row11['avatar'];//用户头像
 		$indexArray["nickname"] = $row11['nickname'];//用户昵称
 	    $indexArray["dates"] = $rsanswer["dates"];//回复时间
 	    $indexArray["floor"] = $floornumber;//楼层

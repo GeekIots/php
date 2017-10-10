@@ -29,14 +29,17 @@
                 $myArray["nickname"] = $row['nickname'];
 				$myArray["password"] = $password;
 				$myArray["phonenumber"] = $row['phonenumber'];
+                $myArray["userid"] = $row['userid'];
+                $myArray["sex"] = $row['sex'];
 				$myArray["email"] = $row['email'];
-				$myArray["address"] = $row['address'];
+				$myArray["city"] = $row['city'];
 				$myArray["qq"] = $row['qq'];
+                $myArray["regtime"] = $row['regtime'];
 				$myArray["avatar"] = 'http://www.geei-iot.com/picture/avatar/nickname.jpg';
                 // 设置session
                 session_start();
-                // 目前是以邮箱登录
-                $_SESSION['login'] = $email;
+                // 目前是以邮箱登录,userid是唯一标志
+                $_SESSION['login'] = $row['userid'];
             }
             else{
                 // 密码错误
