@@ -34,7 +34,7 @@
       <script id="tpl_header" type="text/html">
         <!-- 已登录 -->
         {{#  if(user_d.login === "true"){ }}
-          <a class='avatar' href='/user/index.php'>
+          <a class='avatar' href='/user/home.php?userid={{user_d.userid}}'>
           <img id='image-avatar' src='{{ user_d.avatar }}'>
           <cite id='nickname'>{{ user_d.nickname }}</cite>
           <i>VIP1</i>
@@ -72,7 +72,7 @@
   $(document).ready(function(){  
     $(".nav a").each(function(){  
         $this = $(this);
-        console.log($this);
+        // console.log('header高亮显示:',$this);
         if($this[0].href==String(window.location)){  
             $this.addClass("nav-this");  
         }
