@@ -1,1 +1,24 @@
-<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" charset="utf-8" data-callback="ture"></script>
+<!-- <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" charset="utf-8" data-callback="ture"></script> -->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>回调页面</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+
+</body>
+</html>
+<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" charset="utf-8" data-callback="true" ></script>
+ 
+<script type="text/javascript">  
+if(QC.Login.check()){//如果已登录  
+    QC.Login.getMe(function(openId, accessToken){  
+        alert(["当前用户的", "openId为："+openId, "accessToken为："+accessToken].join("\n"));  
+        console.log("openId为："+openId );
+        console.log("accessToken为："+accessToken );
+    });  
+    //OpenID是每个QQ唯一的，可用于绑定会员，请在本页配置数据库，写入用户表！ 
+    //同时先加入用户表查询判断，如果用户表里面存在OpenID,则无需重新授权也无需入库，登录后直接跳转后台，
+}  
+</script>
