@@ -16,10 +16,12 @@ https://graph.qq.com/user/get_simple_userinfo?access_token=CB54CC8F37F6ACC7AF990
 	<img src="qq.png" onclick="qqLogin()">
 	<script type="text/javascript">
 		function qqLogin() {
-		   QC.Login.showPopup({
-		   appId:"101435544",
-		   redirectURI:"http://www.geek-iot.com/user/qq/qc_back.html"
-		});
+		   QC.Login.showPopup(
+		   {
+			   appId:"101435544",
+			   redirectURI:"http://www.geek-iot.com/user/qq/qc_back.html"
+		   }
+		);
 	 }
 	</script>
 </body>
