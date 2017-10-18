@@ -21,7 +21,7 @@
       <a  href="/blog/index.php" target="_self">
         <i class="iconfont"></i>社区
       </a>
-      <a href="#" target="">
+      <a href="/device/userdevice.php" target="">
         <i class="iconfont"></i>控制台
       </a>
       <a href="/about/index.php" target="">
