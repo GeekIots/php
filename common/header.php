@@ -10,6 +10,9 @@
   <link rel="stylesheet" href="/frame/layui-v2.1.0/layui/css/layui.css">
   <link rel="stylesheet" href="/common/res/css/global.css">
   <script src="<?php $_SERVER['DOCUMENT_ROOT'] ?>/frame/layui-v2.1.0/layui/layui.js"></script>
+  <!-- QQ登录插件 -->
+  <script type="text/javascript"
+  src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" charset="utf-8"></script>
 </head>
 <div class="header">
   <div class="main" style="width: 90%;">
@@ -48,8 +51,8 @@
           <a class="unlogin" href="/user/login.php"><i class="iconfont icon-touxiang"></i></a>
           <span><a href="/user/login.php">登入</a><a href="/user/register.php">注册</a></span>
           <p class="out-login">
-            <a href=""  class="iconfont icon-qq" title="QQ登入"></a>
-            <a href=""  class="iconfont icon-weibo" title="微博登入"></a>
+            <a class="iconfont icon-qq" title="QQ登入" onclick="qqLogin()"></a>
+            <a class="iconfont icon-weibo" title="微博登入"></a>
           </p>
         {{#  } }} 
         </ul>
@@ -90,10 +93,20 @@
         laytpl(getTpl).render(user_d, function(html){
           view_header.innerHTML = html;
         });
+
+
     },
     error:function (res) {
         console.log('fail:',res);
     }
   });
 });
+
+//QQ登录
+function qqLogin(){
+  QC.Login.showPopup({
+    appId:"101435544",
+    redirectURI:"http://www.geek-iot.com/user/qq/qc_back.php"
+  });
+}
 </script>
