@@ -8,9 +8,9 @@
     date_default_timezone_set("Asia/Shanghai");
     $return = array();
     // 获取type
-    if (isset($_GET['type']))
+    if (isset($_POST['type']))
     {
-        $type = $_GET['type'];
+        $type = $_POST['type'];
     }
     else
     {
@@ -20,9 +20,9 @@
         exit(json_encode($return));
     }
     // 获取url
-    if (isset($_GET['url']))
+    if (isset($_POST['url']))
     {
-        $url = $_GET['url'];
+        $url = $_POST['url'];
     }
     else
     {
@@ -32,9 +32,9 @@
         exit(json_encode($return));
     }
     // 获取size
-    if (isset($_GET['size']))
+    if (isset($_POST['size']))
     {
-        $size = $_GET['size'];
+        $size = $_POST['size'];
     }
 
     // 上传图片
@@ -52,7 +52,7 @@
         $return['time'] = 3000;
         exit(json_encode($return));
     }
-    if (isset($_GET['size'])) {
+    if (isset($_POST['size'])) {
         if ($file_size > ($size*1024)) { 
             // 文件太大了
             $return['code'] = 1;

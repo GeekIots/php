@@ -202,9 +202,9 @@
   
   layedit.set({
     uploadImage: {
-    url: '../api/layui/upload.php?type=image&url=repblog' //接口url
-    // ,type: 'POST' //默认post
-    // ,data:{'type':'image','url':'repblog'}
+    url: '../api/layui/upload.php' //接口url
+    ,type: 'POST' //默认post
+    ,data:{'type':'image','url':'repblog'}
     }
   });
   //渲染编辑器

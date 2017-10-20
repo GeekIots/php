@@ -390,7 +390,7 @@ layui.define(['layer', 'form'], function(exports){
           console.log(set);
           upload.render({
             url: uploadImage.url
-            // ,data:uploadImage.data
+            ,data:uploadImage.data
             ,method: uploadImage.type
             ,elem: $(that).find('input')[0]
             ,done: function(res){
