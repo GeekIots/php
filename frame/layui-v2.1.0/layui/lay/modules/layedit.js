@@ -200,7 +200,7 @@ layui.define(['layer', 'form'], function(exports){
         
         if(parentNode.tagName.toLowerCase() === 'pre'){
           if(e.shiftKey) return
-          layer.msg('请暂时用shift+enter');
+          layer.msg('请用shift+enter');
           return false;
         }
         iframeDOM.execCommand('formatBlock', false, '<p>');
@@ -387,9 +387,10 @@ layui.define(['layer', 'form'], function(exports){
         var that = this;
         layui.use('upload', function(upload){
           var uploadImage = set.uploadImage || {};
+          console.log(set);
           upload.render({
             url: uploadImage.url
-            ,data:uploadImage.data
+            // ,data:uploadImage.data
             ,method: uploadImage.type
             ,elem: $(that).find('input')[0]
             ,done: function(res){

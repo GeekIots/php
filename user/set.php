@@ -157,84 +157,65 @@
 <div id="view"></div> 
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 <script>
-layui.use(['laytpl','layedit','layer','jquery','element','upload','form'],function(){
-  var layedit = layui.layedit
-      ,layer = layui.layer
-      ,$ = layui.jquery
-      ,element = layui.element
-      ,upload = layui.upload
-      ,form = layui.form
-      ,laytpl = layui.laytpl;
-  //获取用户信息
-  $.ajax({
-    url: "../api/user/user.php",
-    success: function (res) {
-      console.log('success:',res);
-      //渲染数据
-      var getTpl = moduel.innerHTML;
-      var view = document.getElementById('view');
-      laytpl(getTpl).render(res, function(html){
-        view.innerHTML = html;
-      });
+  //渲染数据
+  var getTpl = moduel.innerHTML;
+  var view = document.getElementById('view');
+  laytpl(getTpl).render(user_d, function(html){
+    view.innerHTML = html;
+  });
 
-      // 有些表单元素可能是动态插入的。这时 Form模块 的自动化渲染是会对其失效的,需要重新渲染
-      form.render('radio'); //更新radio
+  // 有些表单元素可能是动态插入的。这时 Form模块 的自动化渲染是会对其失效的,需要重新渲染
+  form.render('radio'); //更新radio
 
-      // 更新头像
-      upload.render({
-        elem: '#img_upload' //绑定元素
-        ,method:'post'
-        ,data:{type:'image',url:'avatar',size:'30'}
-        ,url: '../../api/layui/upload.php', //上传接口
-        before : function(){
-          //执行上传前的回调  可以判断文件后缀等等
-          layer.msg('上传中，请稍后......', {icon:16, shade:0.5, time:0});
-        }
-        ,done: function(res){
-          //上传完毕回调
-          console.log(res);
-          if(res.code != 0){
-          layer.msg(res.msg, {icon:2, shade:0.5, time:res.time});
-        }
-        else{
-          layer.msg("更新头像成功！", {icon:1, shade:0.5, time:res.time});
-          layui.jquery('#upload-avatar').attr("src", res.msg);
-          layui.jquery('#image-avatar').attr("src", res.msg);
-          // 保存头像到数据库
-          $.ajax({
-                type:'POST',
-                url: "../../api/user/avatar.php",
-                data:{'nickname':layui.jquery('#nickname').text(),'avatar':res.root},
-                //数据长度太长，放到data里通过post传送
-                success: function (argument) {
-                    console.log(argument);
-                    if (argument.resault=='success') {
-                      // layer.msg('成功！',{icon:1,time:800},function(){
-                          // window.location.href='/blog/index.php'
-                        // });
-                    }
-                    else{
-                      layer.msg(argument.msg,{time:2000});
-                    }
-                },
-                error:function (argument) {
-                  console.log(argument);
-                  // layer.msg('失败！');
-                }
-            });
-          }
-        }
-        ,error: function(res){
-          //请求异常回调
-          console.log(res);
-        }
-      });
-    },
-    error:function (res) {
-        console.log('fail:',res);
+  // 更新头像
+  upload.render({
+    elem: '#img_upload' //绑定元素
+    // ,method:'post'
+    // ,data:{type:'image',url:'avatar',size:'30'}
+    ,url: '../../api/layui/upload.php?type=image&url=avatar&size=30', //上传接口
+    before : function(){
+      //执行上传前的回调  可以判断文件后缀等等
+      layer.msg('上传中，请稍后......', {icon:16, shade:0.5, time:0});
     }
-  });  
-});
+    ,done: function(res){
+      //上传完毕回调
+      console.log(res);
+      if(res.code != 0){
+      layer.msg(res.msg, {icon:2, shade:0.5, time:res.time});
+    }
+    else{
+      layer.msg("更新头像成功！", {icon:1, shade:0.5, time:res.time});
+      layui.jquery('#upload-avatar').attr("src", res.msg);
+      layui.jquery('#image-avatar').attr("src", res.msg);
+      // 保存头像到数据库
+      $.ajax({
+            type:'POST',
+            url: "../../api/user/avatar.php",
+            data:{'nickname':layui.jquery('#nickname').text(),'avatar':res.root},
+            //数据长度太长，放到data里通过post传送
+            success: function (argument) {
+                console.log(argument);
+                if (argument.resault=='success') {
+                  // layer.msg('成功！',{icon:1,time:800},function(){
+                      // window.location.href='/blog/index.php'
+                    // });
+                }
+                else{
+                  layer.msg(argument.msg,{time:2000});
+                }
+            },
+            error:function (argument) {
+              console.log(argument);
+              // layer.msg('失败！');
+            }
+        });
+      }
+    }
+    ,error: function(res){
+      //请求异常回调
+      console.log(res);
+    }
+  });
 </script>
 
 

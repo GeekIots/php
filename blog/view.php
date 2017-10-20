@@ -175,34 +175,13 @@
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 </body>
 <script>
-  var util,laytpl,layedit,$,layer;
-  //获取url中的参数
-  function getUrlParam(name) {
-      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-      var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-      if (r != null) return unescape(r[2]); return null; //返回参数值
-  }
   //获取请求帖子id
   var _id = getUrlParam('id');
-
-  layui.use(['layedit','jquery','layer','util'],function(){
-      util = layui.util;
-      laytpl = layui.laytpl;
-      layedit = layui.layedit;
-      $ = layui.jquery;
-      layer=layui.layer;
-      layedit.set({
-        uploadImage: {
-          url: '../api/layui/upload.php' //接口url
-          ,type: 'POST' //默认post
-          ,data:{'type':'image','url':'repblog'}
-          }
-      });
-
   // 获取帖子主体
   $.ajax({
     type:'POST',
     url: "../api/blog/getblog.php",
+    async: false,
     data:{"id":_id},
     success: function (res) {
       console.log('success:',res);
@@ -212,79 +191,85 @@
       laytpl(getTpl).render(res, function(html){
         view.innerHTML = html;
       });
-      //主体渲染完
-      
-      //帖子发布时间
-      // $('#updateTime').html(util.timeAgo(res.dates));
-      //回复时间
-
-      //渲染编辑器
-      var index = layedit.build('textEdit', {tool: [
-        'face' //表情
-        ,'image' //插入图片
-        ,'link' //超链接 
-        ,'code'      
-        // 'strong' //加粗
-        // ,'italic' //斜体
-        // ,'underline' //下划线
-        // ,'del' //删除线
-        // ,'|' //分割线
-        ,'left' //左对齐
-        ,'center' //居中对齐
-        ,'right' //右对齐
-        // ,'unlink' //清除链接
-        // ,'help' //帮助
-         // , 'html'
-        ],height: 180
-      });
-      //监听提交按键
-      //提交按钮
-      $('#btn_answer').on('click', function(){
-        //获取编辑器内容
-        var str = layedit.getContent(index);
-        if(str.length==0)
-        {
-            layer.msg('回复内容不能为空！');
-        }
-        else
-        {
-          // 判断是否已经登陆
-          if(user_d.login === "true")
-          {
-            $.ajax({
-              type:'POST',
-              url: "../api/blog/answer.php",
-              data:{'contents':str,'userid':user_d.userid,'toid':<?php echo($_GET['id']) ?>},
-              //数据长度太长，放到data里通过post传送
-              success: function (argument) {
-                 if (argument.resault=='success') {
-                    console.log(argument);
-                    layer.msg('回复成功！',{icon:1,time:800},function(){
-                        window.location.reload();
-                      });
-                  }
-                  else{
-                    console.log(argument);
-                    layer.msg(argument.msg,{time:2000});
-                  }
-              },
-              error:function (argument) {
-                console.log(argument);
-                  layer.msg('回复失败！');
-              }
-            });
-          }
-          else
-          {
-            layer.msg('登陆后回复！');
-          } 
-        }
-      });
     },
     error:function (res) {
         console.log('fail:',res);
     }
   });
+
+  // 有些表单元素可能是动态插入的。这时 Form模块 的自动化渲染是会对其失效的,需要重新渲染
+  form.render(); //更新
+  
+  layedit.set({
+    uploadImage: {
+    url: '../api/layui/upload.php?type=image&url=repblog' //接口url
+    // ,type: 'POST' //默认post
+    // ,data:{'type':'image','url':'repblog'}
+    }
+  });
+  //渲染编辑器
+  var index = layedit.build('textEdit', {tool: [
+    'face' //表情
+    ,'image' //插入图片
+    ,'link' //超链接 
+    ,'code'      
+    // 'strong' //加粗
+    // ,'italic' //斜体
+    // ,'underline' //下划线
+    // ,'del' //删除线
+    // ,'|' //分割线
+    ,'left' //左对齐
+    ,'center' //居中对齐
+    ,'right' //右对齐
+    // ,'unlink' //清除链接
+    // ,'help' //帮助
+     // , 'html'
+    ],height: 180
+  });
+
+  //监听提交按钮
+  $('#btn_answer').on('click', function(){
+    //获取编辑器内容
+    var str = layedit.getContent(index);
+    if(str.length==0)
+    {
+        layer.msg('回复内容不能为空！');
+    }
+    else
+    {
+      // 判断是否已经登陆
+      if(user_d.login === "true")
+      {
+        $.ajax({
+          type:'POST',
+          url: "../api/blog/answer.php",
+          data:{'contents':str,'userid':user_d.userid,'toid':<?php echo($_GET['id']) ?>},
+          //数据长度太长，放到data里通过post传送
+          success: function (argument) {
+             if (argument.resault=='success') {
+                console.log(argument);
+                layer.msg('回复成功！',{icon:1,time:800},function(){
+                    window.location.reload();
+                  });
+              }
+              else{
+                console.log(argument);
+                layer.msg(argument.msg,{time:2000});
+              }
+          },
+          error:function (argument) {
+            console.log(argument);
+              layer.msg('回复失败！');
+          }
+        });
+      }
+      else
+      {
+        layer.msg('登陆后回复！');
+      } 
+    }
+  });
+
   // 获取回贴月榜
   $.ajax({
     type:'POST',
@@ -339,6 +324,5 @@
         console.log('fail:',res);
     }
   });
-});
 </script>
 </html>

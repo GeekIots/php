@@ -1,4 +1,4 @@
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
+<?php require($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -121,22 +121,11 @@
   // 每页包含8条数据
   var inpagenumber = 14; 
   var bloglist;
-  var util;
-  //获取url中的参数
-  function getUrlParam(name) {
-      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-      var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-      if (r != null) return unescape(r[2]); return null; //返回参数值
-    }
 
   //获取当前页码
   var _curr = getUrlParam('page');
   // 不存在页码默认为1
   if (_curr==null) {_curr=1};
-
-  layui.use(['laypage','laytpl','element','jquery','layer','util'], function(){
-    var laypage = layui.laypage,element = layui.element,$ = layui.jquery,layer=layui.layer,laytpl = layui.laytpl;
-    util = layui.util;
   //发表新帖
   $('#add_blog').on('click', function(){
     // 判断是否已经登陆
@@ -240,7 +229,6 @@
       console.log('fail:',res);
     }
   });
-});
 </script>
 </html>
 

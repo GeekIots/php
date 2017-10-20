@@ -55,8 +55,6 @@
 </div>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 <script>
-layui.use(['layedit','layer','jquery',],function(){
-  var layedit = layui.layedit,layer = layui.layer,$ = layui.jquery;
   //注册 
   $('.layui-btn').on('click', function(){
       //获取登录信息
@@ -114,7 +112,6 @@ layui.use(['layedit','layer','jquery',],function(){
         layer.msg('邮箱不能为空！');
       }
     });
-  });
 </script>
 </body>
 </html>

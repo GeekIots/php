@@ -10,7 +10,7 @@
         |    标题   |    title     |     必须     |
         |    内容   |    contents  |     必须     |
         |    分类   |    classify  |     必须     |
-        |    昵称   |    nickname  |     必须     |
+        |    ID     |    userid    |     必须     |
         ```
         {
             "status": "success"
@@ -33,13 +33,13 @@
     $classify = $_POST['classify']; 
 
     // 获取昵称
-    $nickname = $_POST['nickname'];
+    $userid = $_POST['userid'];
 	
 	$myArray["resault"] = 'fail';
 	// 参数判断
-    if (!empty($nickname)) {
-    	// 判断昵称是否存在
-        $sql = "select nickname from user where nickname = '$nickname'"; //SQL语句
+    if (!empty($userid)) {
+    	// 判断id是否存在
+        $sql = "select userid from user where userid = '$userid'"; //SQL语句
         $result = mysqli_query($con,$sql);//执行SQL语句
     	if (mysqli_num_rows($result)) {
 		    if (empty($title)) {
@@ -55,7 +55,7 @@
 		    }
 		    else{
 		    	// 验证通过，存储新帖
-				$sql_insert="insert into blog (id,dates,contents,nickname,title,classify) values (null,now(),'$contents','$nickname','$title','$classify')";
+				$sql_insert="insert into blog (id,dates,contents,userid,title,classify) values (null,now(),'$contents','$userid','$title','$classify')";
 				if (!mysqli_query($con, $sql_insert))
                 {
                     // die('Error: ' . mysqli_error($con));
@@ -69,12 +69,12 @@
 		    } 		
     	}
     	else{
-    		// 昵称不存在
-    		$myArray["msg"] = '昵称不存在，请确认后再试！';
+    		// ID不存在
+    		$myArray["msg"] = '用户不存在，请确认后再试！';
     	}
     }
     else{
-    	$myArray["msg"] = '缺少昵称:nickname！';
+    	$myArray["msg"] = '缺少:userid！';
     }
  	mysqli_close($con);
     // print_r($myArray); 

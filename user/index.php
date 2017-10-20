@@ -83,62 +83,43 @@
 <!-- 建立视图。用于呈现模板渲染结果。 -->
 <div id="view"></div> 
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
+</body>
 <script>
-  var user_d;//用户信息
   var user_blog;//发的帖子
   var user_collect;//用户收藏的帖子
-
-  var util;
-  layui.use(['laytpl','layedit','layer','jquery','util'],function(){
-  var layedit = layui.layedit,layer = layui.layer,$ = layui.jquery,laytpl = layui.laytpl;
-  util = layui.util;
-  //获取用户信息
+  //获取发帖列表
   $.ajax({
-    url: "../api/user/user.php",
-    success: function (res) {
+    url: "../api/blog/userbloglist.php",
+    type:'POST',
+    data:{'userid':user_d.userid},
+      success: function (res) {
       console.log('success:',res);
-      user_d = res;
-      //获取发帖列表
-      $.ajax({
-          url: "../api/blog/userbloglist.php",
-          type:'POST',
-          data:{'userid':user_d.userid},
-            success: function (res) {
-            console.log('success:',res);
-            user_blog = res;
-            //获取收藏列表
-            $.ajax({
-                url: "../api/blog/collect.php",
-                type:'POST',
-                data:{'type':'get','userid':user_d.userid},
-                success: function (res) {
-                  console.log('success:',res);
-                  user_collect = res;
-                  //渲染数据
-                  var getTpl = moduel.innerHTML;
-                  var view = document.getElementById('view');
-                  laytpl(getTpl).render(res, function(html){
-                    view.innerHTML = html;
-                  });
-                },
-                error:function (res) {
-                    console.log('fail:',res);
-                    layer.msg("拉取收藏数据失败！");
-                }
-            });
-          },
-          error:function (res) {
-              console.log('fail:',res);
-          }
-      });
+      user_blog = res;
     },
     error:function (res) {
         console.log('fail:',res);
     }
   });
-  
-});
-</script>
 
-</body>
+  //获取收藏列表
+  $.ajax({
+    url: "../api/blog/collect.php",
+    type:'POST',
+    data:{'type':'get','userid':user_d.userid},
+    success: function (res) {
+      console.log('success:',res);
+      user_collect = res;
+      //渲染数据
+      var getTpl = moduel.innerHTML;
+      var view = document.getElementById('view');
+      laytpl(getTpl).render(res, function(html){
+        view.innerHTML = html;
+      });
+    },
+    error:function (res) {
+        console.log('fail:',res);
+        layer.msg("拉取收藏数据失败！");
+    }
+  });
+</script>
 </html>

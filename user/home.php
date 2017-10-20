@@ -79,23 +79,8 @@
 </body>
 </html> 
 <script>
-  var user_d;
   var user_blog;
   var user_answer;
-
-  var util;
-
-  //获取url中的参数
-  function getUrlParam(name) {
-      var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
-      var r = window.location.search.substr(1).match(reg);  //匹配目标参数
-      if (r != null) return unescape(r[2]); return null; //返回参数值
-  }
-
-
-  layui.use(['laytpl','layedit','layer','jquery','util'],function(){
-  var layedit = layui.layedit,layer = layui.layer,$ = layui.jquery,laytpl = layui.laytpl;
-  util = layui.util;
 
   //获取请求的userid
   var _userid = getUrlParam('userid');  
@@ -113,43 +98,42 @@
       success: function (res) {
         console.log('success:',res);
         user_d = res;      
-        //获取发帖列表
-        $.ajax({
-            url: "../api/blog/userbloglist.php",
-            type:'POST',
-            data:{'userid':user_d.userid},
-              success: function (res) {
-              console.log('success:',res);
-              user_blog = res;
-              //获取回复列表
-              $.ajax({
-                  url: "../api/blog/useranswer.php",
-                  type:'POST',
-                  data:{'userid':user_d.userid},
-                  success: function (res) {
-                    console.log('success:',res);
-                    user_answer = res;
-                    //渲染数据
-                    var getTpl = home_moduel.innerHTML;
-                    var view = document.getElementById('home_view');
-                    laytpl(getTpl).render(res, function(html){
-                      view.innerHTML = html;
-                    });
-                  },
-                  error:function (res) {
-                      console.log('fail:',res);
-                  }
-              });
-            },
-            error:function (res) {
-                console.log('fail:',res);
-            }
-        });
       },
       error:function (res) {
           console.log('fail:',res);
       }
     }); 
+    //获取发帖列表
+    $.ajax({
+      url: "../api/blog/userbloglist.php",
+      type:'POST',
+      data:{'userid':user_d.userid},
+        success: function (res) {
+        console.log('success:',res);
+        user_blog = res;
+      },
+      error:function (res) {
+          console.log('fail:',res);
+      }
+    });
+    //获取回复列表
+    $.ajax({
+      url: "../api/blog/useranswer.php",
+      type:'POST',
+      data:{'userid':user_d.userid},
+      success: function (res) {
+        console.log('success:',res);
+        user_answer = res;
+        //渲染数据
+        var getTpl = home_moduel.innerHTML;
+        var view = document.getElementById('home_view');
+        laytpl(getTpl).render(res, function(html){
+          view.innerHTML = html;
+        });
+      },
+      error:function (res) {
+          console.log('fail:',res);
+      }
+    });
   }
-});
 </script>

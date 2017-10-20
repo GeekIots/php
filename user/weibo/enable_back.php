@@ -14,7 +14,7 @@
   <script type="text/javascript"
   src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" charset="utf-8"></script>
   <!-- weibo登录插件 -->
-  <script src="//tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1269211443" type="text/javascript" charset="utf-8"></script>
+  <!-- <script src="//tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1269211443" type="text/javascript" charset="utf-8"></script> -->
 
 </head>
 <div class="header">
@@ -65,8 +65,8 @@
     </div>
   </div>
 </div>
-<html xmlns:wb="http://open.weibo.com/wb">
-<wb:login-button type="3,1" onlogin="login" onlogout="logout">登录按钮</wb:login-button>
+<!-- <html xmlns:wb="http://open.weibo.com/wb"> -->
+<!-- <wb:login-button type="3,1" onlogin="login" onlogout="logout">登录按钮</wb:login-button> -->
 <!-- 隐藏的input，让浏览器填充，解决输入框被填充问题 -->
 <input style="display:none" type="text" name="fakeusernameremembered"/>
 <input style="display:none" type="password" name="fakepasswordremembered"/>
@@ -114,16 +114,16 @@ function qqLogin(){
     redirectURI:"http://www.geek-iot.com/user/qq/qc_back.php"
   });
 }
-WB2.anyWhere(function(W){
-    W.widget.connectButton({
-        id: "wb_connect_btn", 
-        type:"3,1",
-        callback : {
-            login:function(o){  //登录后的回调函数
-              console.log(o);
-            },  
-            logout:function(){  //退出后的回调函数
-            }
-        }
-    });
+// WB2.anyWhere(function(W){
+//     W.widget.connectButton({
+//         id: "wb_connect_btn", 
+//         type:"3,1",
+//         callback : {
+//             login:function(o){  //登录后的回调函数
+//               console.log(o);
+//             },  
+//             logout:function(){  //退出后的回调函数
+//             }
+//         }
+//     });
 </script>

@@ -64,9 +64,7 @@
 </div>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 <script>
-layui.use(['layedit','layer','jquery',],function(){
-  var layedit = layui.layedit,layer = layui.layer,$ = layui.jquery;
-  });
+
 </script>
 
 </body>

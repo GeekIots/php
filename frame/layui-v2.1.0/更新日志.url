@@ -10,7 +10,7 @@ layui->lya->modules->util.js
 增加： var e = new Date(Date.parse(e.replace(/-/g, '/').replace(/T/g, ' ')));
 
 2017.9.11
-layui->lya->modules->layedit.js
+layui->lay->modules->layedit.js
 行号：392
 改动：增加 data:uploadImage.data
 
