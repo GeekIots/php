@@ -8226,6 +8226,8 @@ function(e) {
             u
         },
         timeAgo: function(e, o) {
+            // safari浏览器不支持 - 和 T 格式表示的时间，将其替换为／和空格即可兼容
+            var e = new Date(Date.parse(e.replace(/-/g, '/').replace(/T/g, ' ')));
             var t = (new Date).getTime() - new Date(e).getTime();
             return t > 2592e6 ? (t = new Date(e).toLocaleString(), o && (t = t.replace(/\s[\S]+$/g, "")), t) : t >= 864e5 ? (t / 1e3 / 60 / 60 / 24 | 0) + "天前": t >= 36e5 ? (t / 1e3 / 60 / 60 | 0) + "小时前": t >= 18e4 ? (t / 1e3 / 60 | 0) + "分钟前": t < 0 ? "未来": "刚刚"
         }
