@@ -52,7 +52,7 @@
           <a class="unlogin" href="/user/login.php"><i class="iconfont icon-touxiang"></i></a>
           <span><a href="/user/login.php">登入</a><a href="/user/register.php">注册</a></span>
           <p class="out-login">
-            <a class="iconfont icon-qq" title="QQ登入" onclick="qqLogin()"></a>
+            <a class="iconfont icon-qq" title="QQ登入" onclick="qqLogin()" target=""></a>
             <a class="iconfont icon-weibo" title="微博登入"></a>
           </p>
         {{#  } }} 
@@ -105,6 +105,9 @@
       redirectURI:"http://www.geek-iot.com/user/qq/qc_back.php"
     });
   }
+
+  var prevLink = document.referrer; 
+  console.log('referrer:',prevLink);
   // WB2.anyWhere(function(W){
   //     W.widget.connectButton({
   //         id: "wb_connect_btn", 

@@ -34,6 +34,13 @@ QC.api("get_user_info", paras).success(function(s){//指定接口访问成功的
 	}).complete(function(c){//指定接口完成请求后的接收函数，c为完成请求返回Response对象
 		//完成请求回调
 		alert("获取用户信息完成！");
-		window.location.href="/index.php"; 
+
+		//返回之前页面
+		var prevLink = document.referrer;  
+		if(prevLink==''){  
+		    location.href = '/index.php';  
+		} 
+		else
+		    location.href = prevLink;  
 	});
 </script>
