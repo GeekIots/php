@@ -102,12 +102,13 @@
   function qqLogin(){
     QC.Login.showPopup({
       appId:"101435544",
-      redirectURI:"http://www.geek-iot.com/user/qq/qc_back.php"
+      redirectURI:"http://www.geek-iot.com/user/qq/qc_back.php?backurl="+window.location.href
     });
+    window.close();
   }
 
-  var prevLink = document.referrer; 
-  console.log('referrer:',prevLink);
+  // var prevLink = document.referrer; 
+  // console.log('referrer:',prevLink);
   // WB2.anyWhere(function(W){
   //     W.widget.connectButton({
   //         id: "wb_connect_btn", 

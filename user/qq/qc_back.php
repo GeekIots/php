@@ -4,13 +4,15 @@
 <head>
 	<title>回调页面</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!-- 预加载的layui模块 -->
+	<script src="<?php $_SERVER['DOCUMENT_ROOT'] ?>/common/layerload.js"></script>
+	<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101435544" charset="utf-8"></script>
+	  <!-- data-callback="true" -->
 </head>
 <body>
 
 </body>
 </html>
-<script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101435544" charset="utf-8"></script>
-  <!-- data-callback="true" -->
 <script type="text/javascript">  
 if(QC.Login.check()){//如果已登录  
     QC.Login.getMe(function(openId, accessToken){  
@@ -24,23 +26,21 @@ if(QC.Login.check()){//如果已登录
 }  
 var paras = {};
 //用JS SDK调用OpenAPI
-QC.api("get_user_info", paras).success(function(s){//指定接口访问成功的接收函数，s为成功返回Response对象
+QC.api("get_user_info", paras).success(function(s){
 		//成功回调，通过s.data获取OpenAPI的返回数据
-		alert("获取用户信息成功！当前用户昵称为："+s.data.nickname);
-		console.log(s);
-	}).error(function(f){//指定接口访问失败的接收函数，f为失败返回Response对象
+		console.log('用户信息',s);
+	}).error(function(f){
 		//失败回调
-		alert("获取用户信息失败！");
-	}).complete(function(c){//指定接口完成请求后的接收函数，c为完成请求返回Response对象
-		//完成请求回调
-		alert("获取用户信息完成！");
+		console.log('获取用户信息失败！',f);
+	}).complete(function(c){
+		//完成请求回调，返回之前页面
 
-		//返回之前页面
-		var prevLink = document.referrer;  
-		if(prevLink==''){  
+		// 执行登陆流程
+		var backurl = getUrlParam('backurl');
+		if(backurl==''){  
 		    location.href = '/index.php';  
 		} 
 		else
-		    location.href = prevLink;  
+		    location.href = backurl;  
 	});
 </script>
