@@ -53,7 +53,7 @@
           <span><a href="/user/login.php">登入</a><a href="/user/register.php">注册</a></span>
           <p class="out-login">
             <a class="iconfont icon-qq" title="QQ登入" onclick="qqLogin()" target=""></a>
-            <a class="iconfont icon-weibo" title="微博登入"></a>
+            <!-- <a class="iconfont icon-weibo" title="微博登入"></a> -->
           </p>
         {{#  } }} 
         </ul>
@@ -83,7 +83,7 @@
   }); 
   //获取用户登陆信息
   $.ajax({
-    url: "../api/user/user.php",
+    url: "/api/user/user.php",
     success: function (res) {
         console.log('success:',res);
         user_d = res;

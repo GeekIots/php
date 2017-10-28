@@ -149,7 +149,7 @@
 	              </div>
 	            </div>
 	            <div class="layui-form-item">
-	              <button class="layui-btn" lay-filter="*" lay-submit id="register-btn">立即注册</button>
+	              <button class="layui-btn">立即注册</button>
 	            </div>
 	          </div>
 	        </div>
@@ -180,7 +180,7 @@
 	              </div>
 	            </div>
 	            <div class="layui-form-item">
-	              <button class="layui-btn" lay-filter="*" lay-submit id="login-btn">立即登录</button>
+	              <button class="layui-btn" lay-filter="*" lay-submit>立即登录</button>
 	              <span style="padding-left:20px;">
 	                <a href="forget.html">忘记密码？</a>
 	              </span>
@@ -194,143 +194,82 @@
 </div>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 <script>
-  var qq_openid;//qq openid
-  var qq_info;//qq信息，包含昵称，头像等
   //注册 
   $('.layui-btn').on('click', function(){
-      if ($(this).attr("id")=='register-btn') {
-        alert('注册');
-        //获取登录信息
-        var L_email = $('#L_email').val();
-        var L_pass = $('#L_pass').val();
-        var L_vercode = $('#L_vercode').val();
-        if(L_email.length!=0)
-        {
-          var Regex = /^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/;            
-  　　    if (!Regex.test(L_email)){
-            layer.msg('邮箱格式不正确！',{time:1000});
-          }
-          else{
-              if(L_pass.length==0)
-              {
-                layer.msg('密码不能为空！',{time:1000});
-              }
-              else{
-                if(L_vercode!='2')
-                {
-                  layer.msg('验证信息不正确！',{time:1000});
-                }
-                else
-                {
-                  $.ajax({
-                    type:'POST',
-                    url: "../../api/user/login.php",
-                    data:{'email':L_email,'password':L_pass},
-                    //数据长度太长，放到data里通过post传送
-                    success: function (argument) {
-                       if (argument.resault=='success') {
-                          layer.msg('登录成功！', {
-                          time: 1000 //1s后自动关闭
-                        });
-                        // 页面跳转
-                        window.location.href='/blog/index.php'; 
-                        // window.location.reload();
-                        }
-                        else{
-                          // 登录失败，提示错误信息
-                          console.log(argument);
-                          layer.msg(argument.msg,{time:2000});
-                        }
-                    },
-                    error:function (argument) {
-                      console.log(argument);
-                      layer.msg('登录失败,请稍后再试！');
-                    }
-                  });
-                }
+      //获取登录信息
+      var L_email = $('#L_email').val();
+      var L_pass = $('#L_pass').val();
+      var L_vercode = $('#L_vercode').val();
+      if(L_email.length!=0)
+      {
+        var Regex = /^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/;            
+　　    if (!Regex.test(L_email)){
+          layer.msg('邮箱格式不正确！',{time:1000});
+        }
+        else{
+            if(L_pass.length==0)
+            {
+              layer.msg('密码不能为空！',{time:1000});
             }
-          }            
-        }
-        else {
-          layer.msg('邮箱不能为空！');
-        }
+            else{
+              if(L_vercode!='2')
+              {
+                layer.msg('验证信息不正确！',{time:1000});
+              }
+              else
+              {
+                $.ajax({
+                  type:'POST',
+                  url: "../../api/user/login.php",
+                  data:{'email':L_email,'password':L_pass},
+                  //数据长度太长，放到data里通过post传送
+                  success: function (argument) {
+                     if (argument.resault=='success') {
+                        layer.msg('登录成功！', {
+                        time: 1000 //1s后自动关闭
+                      });
+                      // 页面跳转
+                      window.location.href='/blog/index.php'; 
+                      // window.location.reload();
+                      }
+                      else{
+                        // 登录失败，提示错误信息
+                        console.log(argument);
+                        layer.msg(argument.msg,{time:2000});
+                      }
+                  },
+                  error:function (argument) {
+                    console.log(argument);
+                    layer.msg('登录失败,请稍后再试！');
+                  }
+                });
+              }
+          }
+        }            
       }
-      else if ($(this).attr("id")=='login-btn') {
-        alert('登录');
-        //获取登录信息
-        var L_email = $('#L_email').val();
-        var L_pass = $('#L_pass').val();
-        var L_vercode = $('#L_vercode').val();
-        if(L_email.length!=0)
-        {
-          var Regex = /^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/;            
-  　　    if (!Regex.test(L_email)){
-            layer.msg('邮箱格式不正确！',{time:1000});
-          }
-          else{
-              if(L_pass.length==0)
-              {
-                layer.msg('密码不能为空！',{time:1000});
-              }
-              else{
-                if(L_vercode!='2')
-                {
-                  layer.msg('验证信息不正确！',{time:1000});
-                }
-                else
-                {
-                  $.ajax({
-                    type:'POST',
-                    url: "../api/user/login.php",
-                    data:{'email':L_email,'password':L_pass},
-                    //数据长度太长，放到data里通过post传送
-                    success: function (argument) {
-                       if (argument.resault=='success') {
-                          layer.msg('登录成功！', {
-                          time: 1000 //1s后自动关闭
-                        });
-                        // 页面跳转
-                        window.location.href='/blog/index.php'; 
-                        // window.location.reload();
-                        }
-                        else{
-                          // 登录失败，提示错误信息
-                          console.log(argument);
-                          layer.msg(argument.msg,{time:2000});
-                        }
-                    },
-                    error:function (argument) {
-                      console.log(argument);
-                      layer.msg('登录失败,请稍后再试！');
-                    }
-                  });
-                }
-            }
-          }            
-        }
-        else {
-          layer.msg('邮箱不能为空！');
-        }
+      else {
+        layer.msg('邮箱不能为空！');
       }
     });
 
   	//如果已登录  
 	if(QC.Login.check()){
 		QC.Login.getMe(function(openId, accessToken){  
-		    // alert(["当前用户的", "openId为："+openId, "accessToken为："+accessToken].join("\n"));
-        qq_openid = openId;  
+		    alert(["当前用户的", "openId为："+openId, "accessToken为："+accessToken].join("\n"));  
 		    console.log("openId为："+openId );
 		    console.log("accessToken为："+accessToken );
 		});  
 		//OpenID是每个QQ唯一的，可用于绑定会员，请在本页配置数据库，写入用户表！ 
+		//同时先加入用户表查询判断，如果用户表里面存在OpenID,则无需重新授权也无需入库，登录后直接跳转后台，
+		//从页面收集OpenAPI必要的参数。get_user_info不需要输入参数，因此paras中没有参数
 	}  
 
-
+	var paras = {};
 	//用JS SDK调用OpenAPI
-	QC.api("get_user_info", {}).success(function(s){
+	QC.api("get_user_info", paras).success(function(s){
 			//成功回调，通过s.data获取OpenAPI的返回数据
-			// alert(s.data.nickname);
-      qq_info = s.data;
+			alert(s.data.nickname);
+			console.log('用户信息',s.data.nickname);
 			console.log('用户信息',s.data);
 		}).error(function(f){
 			//失败回调
@@ -339,12 +278,12 @@
 		//完成请求回调，返回之前页面
 
 		// 执行登陆流程
-		// var backurl = getUrlParam('backurl');
-		// if(backurl==''){  
-		//     location.href = '/index.php';  
-		// } 
-		// else
-		//     location.href = backurl;  
+		var backurl = getUrlParam('backurl');
+		if(backurl==''){  
+		    location.href = '/index.php';  
+		} 
+		else
+		    location.href = backurl;  
 	}); 
 </script>
 </body>

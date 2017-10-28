@@ -44,8 +44,8 @@
             </div>
             <div class="layui-form-item fly-form-app">
               <span>或者使用社交账号登入</span>
-              <a href="http://fly.layui.com:8098/app/qq" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})" class="iconfont icon-qq" title="QQ登入"></a>
-              <a href="http://fly.layui.com:8098/app/weibo/" onclick="layer.msg('正在通过微博登入', {icon:16, shade: 0.1, time:0})" class="iconfont icon-weibo" title="微博登入"></a>
+              <a class="iconfont icon-qq" onclick="qqLogin()" title="QQ登入"></a>
+              <!-- <a href="http://fly.layui.com:8098/app/weibo/" onclick="layer.msg('正在通过微博登入', {icon:16, shade: 0.1, time:0})" class="iconfont icon-weibo" title="微博登入"></a> -->
             </div>
           </div>
         </div>
@@ -55,7 +55,7 @@
 </div>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 <script>
-  //注册 
+  //登录 
   $('.layui-btn').on('click', function(){
       //获取登录信息
       var L_email = $('#L_email').val();
