@@ -73,7 +73,9 @@
     //获取注册信息
     var L_email = $('#L_email').val();
     var L_pass = $('#L_pass').val();
+    var L_repass = $('#L_repass').val();
     var L_vercode = $('#L_vercode').val();
+    var L_nickname = $('#L_nickname').val();
     if(L_email.length!=0)
     {
       var Regex = /^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/;            

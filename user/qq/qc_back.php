@@ -1,11 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-
-
-
-
-<!DOCTYPE html>
-<html>
 <head>
   <title>QQ快速登录</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -109,40 +103,39 @@
 	  </ul>
 	  <div class="layui-tab-content">
 	  	<!-- 快速注册新号 -->
-
 	    <div class="layui-tab-item layui-show">
 	    	<div class="layui-tab-item layui-show">
 	          <div class="layui-form layui-form-pane">
 	            <div class="layui-form-item">
-	              <label for="L_email" class="layui-form-label" >邮箱</label>
+	              <label for="Reg_email" class="layui-form-label" >邮箱</label>
 	              <div class="layui-input-inline">
-	                <input type="text" id="L_email" name="email" required lay-verify="email" autocomplete="off" class="layui-input">
+	                <input type="text" id="Reg_email" name="email" required lay-verify="email" autocomplete="off" class="layui-input">
 	              </div>
 	              <div class="layui-form-mid layui-word-aux">将会成为您唯一的登入名</div>
 	            </div>
 	            <div class="layui-form-item">
 	              <label for="L_nickname" class="layui-form-label">昵称</label>
 	              <div class="layui-input-inline">
-	                <input type="text" id="L_nickname" name="username" required lay-verify="required" autocomplete="off" class="layui-input">
+	                <input type="text" id="Reg_nickname" name="username" required lay-verify="required" autocomplete="off" class="layui-input">
 	              </div>
 	            </div>
 	            <div class="layui-form-item">
 	              <label for="L_pass" class="layui-form-label">密码</label>
 	              <div class="layui-input-inline">
-	                <input type="password" id="L_pass" name="pass" required lay-verify="required" autocomplete="off" class="layui-input">
+	                <input type="password" id="Reg_pass" name="pass" required lay-verify="required" autocomplete="off" class="layui-input">
 	              </div>
 	              <div class="layui-form-mid layui-word-aux">6-20位字母数字组合</div>
 	            </div>
 	            <div class="layui-form-item">
 	              <label for="L_repass" class="layui-form-label">确认密码</label>
 	              <div class="layui-input-inline">
-	                <input type="password" id="L_repass" name="repass" required lay-verify="required" autocomplete="off" class="layui-input">
+	                <input type="password" id="Reg_repass" name="repass" required lay-verify="required" autocomplete="off" class="layui-input">
 	              </div>
 	            </div>
 	            <div class="layui-form-item">
 	              <label for="L_vercode" class="layui-form-label">人类验证</label>
 	              <div class="layui-input-inline">
-	                <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input">
+	                <input type="text" id="Reg_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input">
 	              </div>
 	              <div class="layui-form-mid">
 	                <span style="color: #c00;">2+2=?</span>
@@ -161,26 +154,26 @@
 	            <div class="layui-form-item">
 	              <label for="L_email" class="layui-form-label">邮箱</label>
 	              <div class="layui-input-inline">
-	                <input type="text" id="L_email" name="email" required lay-verify="required" autocomplete="off" class="layui-input">
+	                <input type="text" id="Login_email" name="email" required lay-verify="email" autocomplete="off" class="layui-input">
 	              </div>
 	            </div>
 	            <div class="layui-form-item">
 	              <label for="L_pass" class="layui-form-label">密码</label>
 	              <div class="layui-input-inline">
-	                <input type="password" id="L_pass" name="pass" required lay-verify="required" autocomplete="off" class="layui-input">
+	                <input type="password" id="Login_pass" name="pass" required lay-verify="required" autocomplete="off" class="layui-input">
 	              </div>
 	            </div>
 	            <div class="layui-form-item">
 	              <label for="L_vercode" class="layui-form-label">人类验证</label>
 	              <div class="layui-input-inline">
-	                <input type="text" id="L_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input">
+	                <input type="text" id="Login_vercode" name="vercode" required lay-verify="required" placeholder="请回答后面的问题" autocomplete="off" class="layui-input">
 	              </div>
 	              <div class="layui-form-mid">
 	                <span style="color: #c00;">1+1=?</span>
 	              </div>
 	            </div>
 	            <div class="layui-form-item">
-	              <button class="layui-btn" lay-filter="*" lay-submit id="login-btn">立即登录</button>
+	              <button class="layui-btn" lay-filter="*" lay-submitid="login-btn">立即登录</button>
 	              <span style="padding-left:20px;">
 	                <a href="forget.html">忘记密码？</a>
 	              </span>
@@ -195,121 +188,97 @@
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 <script>
   var qq_openid;//qq openid
-  var qq_info;//qq信息，包含昵称，头像等
-  //注册 
+  var qq_info;//qq信息，包含昵称，头像等 
   $('.layui-btn').on('click', function(){
+      //注册登录
       if ($(this).attr("id")=='register-btn') {
-        alert('注册');
         //获取登录信息
-        var L_email = $('#L_email').val();
-        var L_pass = $('#L_pass').val();
-        var L_vercode = $('#L_vercode').val();
-        if(L_email.length!=0)
+        var L_email = $('#Reg_email').val();
+        var L_pass = $('#Reg_pass').val();
+        var L_repass = $('#Reg_repass').val();
+        var L_vercode = $('#Reg_vercode').val();
+        var L_nickname = $('#Reg_nickname').val();
+        if(L_repass!=L_pass)
         {
-          var Regex = /^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/;            
-  　　    if (!Regex.test(L_email)){
-            layer.msg('邮箱格式不正确！',{time:1000});
-          }
-          else{
-              if(L_pass.length==0)
-              {
-                layer.msg('密码不能为空！',{time:1000});
-              }
-              else{
-                if(L_vercode!='2')
-                {
-                  layer.msg('验证信息不正确！',{time:1000});
-                }
-                else
-                {
-                  $.ajax({
-                    type:'POST',
-                    url: "../../api/user/login.php",
-                    data:{'email':L_email,'password':L_pass},
-                    //数据长度太长，放到data里通过post传送
-                    success: function (argument) {
-                       if (argument.resault=='success') {
-                          layer.msg('登录成功！', {
-                          time: 1000 //1s后自动关闭
-                        });
-                        // 页面跳转
-                        window.location.href='/blog/index.php'; 
-                        // window.location.reload();
-                        }
-                        else{
-                          // 登录失败，提示错误信息
-                          console.log(argument);
-                          layer.msg(argument.msg,{time:2000});
-                        }
-                    },
-                    error:function (argument) {
-                      console.log(argument);
-                      layer.msg('登录失败,请稍后再试！');
-                    }
-                  });
-                }
-            }
-          }            
+          layer.msg('确认密码不一致！',{time:1000});
         }
-        else {
-          layer.msg('邮箱不能为空！');
+        else
+        if(L_vercode!='4')
+        {
+          layer.msg('验证信息不正确！',{time:1000});
+        }
+        else
+        {
+          $.ajax({
+            type:'POST',
+            url: "../api/user/register.php",
+            data:{'email':L_email,'nickname':L_nickname,'password':L_pass,'qq_openid':qq_openid,'avatar':qq_info.data.figureurl_qq_2},
+            //数据长度太长，放到data里通过post传送
+             success: function (argument) {
+               if (argument.resault=='success') {
+                  layer.msg('恭喜你,注册成功！我们已经将激活邮件发送到'+L_email+',请尽快激活账号！', {
+                  time: 20000, //20s后自动关闭
+                  btn: ['OK']
+                  ,yes: function(){
+                    // 跳转到首页
+                  }
+                  ,btn2: function(){
+                  }
+                });
+                  // layer.msg('注册成功！',{icon:1,time:800},function(){
+                  //     // window.location.reload();
+                  //   });
+                }
+                else{
+                  console.log(argument);
+                  layer.msg(argument.msg,{time:2000});
+                }
+            },
+            error:function (argument) {
+              console.log(argument);
+                layer.msg('注册失败！');
+            }
+          });
         }
       }
-      else if ($(this).attr("id")=='login-btn') {
-        alert('登录');
+      //绑定登录
+      else 
+      if ($(this).attr("id")=='login-btn') {
         //获取登录信息
-        var L_email = $('#L_email').val();
-        var L_pass = $('#L_pass').val();
-        var L_vercode = $('#L_vercode').val();
-        if(L_email.length!=0)
+        var L_email = $('#Login_email').val();
+        var L_pass = $('#Login_pass').val();
+        var L_vercode = $('#Login_vercode').val();
+        if(L_vercode!='2')
         {
-          var Regex = /^(?:\w+\.?)*\w+@(?:\w+\.)*\w+$/;            
-  　　    if (!Regex.test(L_email)){
-            layer.msg('邮箱格式不正确！',{time:1000});
-          }
-          else{
-              if(L_pass.length==0)
-              {
-                layer.msg('密码不能为空！',{time:1000});
-              }
-              else{
-                if(L_vercode!='2')
-                {
-                  layer.msg('验证信息不正确！',{time:1000});
-                }
-                else
-                {
-                  $.ajax({
-                    type:'POST',
-                    url: "../api/user/login.php",
-                    data:{'email':L_email,'password':L_pass},
-                    //数据长度太长，放到data里通过post传送
-                    success: function (argument) {
-                       if (argument.resault=='success') {
-                          layer.msg('登录成功！', {
-                          time: 1000 //1s后自动关闭
-                        });
-                        // 页面跳转
-                        window.location.href='/blog/index.php'; 
-                        // window.location.reload();
-                        }
-                        else{
-                          // 登录失败，提示错误信息
-                          console.log(argument);
-                          layer.msg(argument.msg,{time:2000});
-                        }
-                    },
-                    error:function (argument) {
-                      console.log(argument);
-                      layer.msg('登录失败,请稍后再试！');
-                    }
-                  });
-                }
-            }
-          }            
+          layer.msg('验证信息不正确！',{time:1000});
         }
-        else {
-          layer.msg('邮箱不能为空！');
+        else
+        {
+          $.ajax({
+            type:'POST',
+            url: "../api/user/login.php",
+            data:{'email':L_email,'password':L_pass,'qq_openid':qq_openid,'avatar':qq_info.data.figureurl_qq_2,'nickname':qq_info.data.nickname},
+            //数据长度太长，放到data里通过post传送
+            success: function (argument) {
+               if (argument.resault=='success') {
+                  layer.msg('登录成功！', {
+                  time: 1000 //1s后自动关闭
+                });
+                // 页面跳转
+                window.location.href='/blog/index.php'; 
+                // window.location.reload();
+                }
+                else{
+                  // 登录失败，提示错误信息
+                  console.log(argument);
+                  layer.msg(argument.msg,{time:2000});
+                }
+            },
+            error:function (argument) {
+              console.log(argument);
+              layer.msg('登录失败,请稍后再试！');
+            }
+          });
         }
       }
     });
@@ -332,6 +301,9 @@
 			// alert(s.data.nickname);
       qq_info = s.data;
 			console.log('用户信息',s.data);
+
+      // 更新用户昵称
+      $('#Reg_nickname').val(s.data.nickname);
 		}).error(function(f){
 			//失败回调
 			console.log('获取用户信息失败！',f);
