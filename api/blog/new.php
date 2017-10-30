@@ -1,6 +1,7 @@
 <?php session_start();
     error_reporting(E_ALL^E_NOTICE); //取消警告显示
     header('Content-type:application/json;');
+    date_default_timezone_set("Asia/Shanghai");
     include $_SERVER['DOCUMENT_ROOT']."/api/conn.php";
     /*
         发布新帖到服务器

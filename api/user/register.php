@@ -1,9 +1,11 @@
 <?php
+    // 设置session
+    session_start();
     error_reporting(E_ALL^E_NOTICE); //取消警告显示
     header('Content-type:application/json');
     include $_SERVER['DOCUMENT_ROOT']."/api/conn.php";
     require_once('../email.class.php'); 
-
+    date_default_timezone_set("Asia/Shanghai");
     //初始化发送邮件类
     $smtp = new smtp('','','',true,'');
     //$smtp->mail("15339287330@126.com", "群发", "测试");
@@ -14,6 +16,19 @@
     $nickname = $_POST['nickname'];
     //获取密码
     $password = $_POST['password'];
+
+    // 随机生成唯一id作为用户的身份id
+    $userid = md5(time().mt_rand());
+
+    // qq登录传递的参数
+    $qq_openid = '';
+    if (isset($_POST['qq_openid'])) {
+        $qq_openid = $_POST['qq_openid'];
+    }
+    $avatar = '';
+    if (isset($_POST['avatar'])) {
+        $avatar = $_POST['avatar'];
+    }
 
     $myArray["resault"] = 'fail';
 
@@ -36,15 +51,15 @@
                     else{
                         // 验证通过,开始注册
                         $psw = md5($password);
-                        // 随机生成唯一id作为用户的身份id
-                        $userid = md5(time().mt_rand());
-                        $sql_insert = "insert into user (nickname,password,email,userid) values('$nickname','$psw','$email','$userid')";  
+                        $sql_insert = "insert into user (nickname,password,email,userid,qq_openid,avatar,regtime) values('$nickname','$psw','$email','$userid','$qq_openid','$avatar',now())";  
                         if(mysqli_query($con,$sql_insert))
                         {
                             //注册成功
                             $myArray["resault"] = 'success';
-                            $smtp->mail($email, "极客物联网注册认证！", "恭喜您成为极客物联网会员，请点击链接激活账号"."www.smtvoice.com/api/blog/user/register.check.php?nickname=".$nickname);
-                            $smtp->mail("15339287330@126.com", "新会员注册提示！",'昵称:' .$nickname."注册邮箱:".$email);
+                            $smtp->mail($email, "极客物联网注册认证！", "恭喜您成为极客物联网会员，请点击链接激活账号"."www.geek-iot.com/api/blog/user/register.check.php?userid=".$userid);
+                            $smtp->mail("15339287330@126.com", "新会员注册提示！","昵称:".$nickname.",用户ID:".$userid.",注册邮箱:".$email);
+                            // 目前是以邮箱登录,userid是唯一标志
+                            $_SESSION['login'] = $userid;
                         }  
                         else  
                         {  

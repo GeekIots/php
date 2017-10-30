@@ -173,7 +173,7 @@
 	              </div>
 	            </div>
 	            <div class="layui-form-item">
-	              <button class="layui-btn" lay-filter="*" lay-submitid="login-btn">立即登录</button>
+	              <button class="layui-btn" lay-filter="*" lay-submit id="login-btn">立即登录</button>
 	              <span style="padding-left:20px;">
 	                <a href="forget.html">忘记密码？</a>
 	              </span>
@@ -211,23 +211,27 @@
         {
           $.ajax({
             type:'POST',
-            url: "../api/user/register.php",
-            data:{'email':L_email,'nickname':L_nickname,'password':L_pass,'qq_openid':qq_openid,'avatar':qq_info.data.figureurl_qq_2},
+            url: "/api/user/register.php",
+            data:{'email':L_email,'nickname':L_nickname,'password':L_pass,'qq_openid':qq_openid,'avatar':qq_info.figureurl_qq_2},
             //数据长度太长，放到data里通过post传送
              success: function (argument) {
                if (argument.resault=='success') {
                   layer.msg('恭喜你,注册成功！我们已经将激活邮件发送到'+L_email+',请尽快激活账号！', {
-                  time: 20000, //20s后自动关闭
-                  btn: ['OK']
-                  ,yes: function(){
-                    // 跳转到首页
-                  }
-                  ,btn2: function(){
-                  }
-                });
-                  // layer.msg('注册成功！',{icon:1,time:800},function(){
-                  //     // window.location.reload();
-                  //   });
+                      time: 20000, //20s后自动关闭
+                      btn: ['OK']
+                      ,yes: function(){
+                        console.log('yes');
+                      }
+                      ,btn2: function(){
+                        console.log('btn2');
+                      }
+                    });
+                    var backurl = getUrlParam('backurl');
+                    if(backurl==''){  
+                        location.href = '/index.php';  
+                  } 
+                  else
+                      location.href = backurl;  
                 }
                 else{
                   console.log(argument);
@@ -256,17 +260,22 @@
         {
           $.ajax({
             type:'POST',
-            url: "../api/user/login.php",
-            data:{'email':L_email,'password':L_pass,'qq_openid':qq_openid,'avatar':qq_info.data.figureurl_qq_2,'nickname':qq_info.data.nickname},
+            url: "/api/user/login.php",
+            data:{'email':L_email,'password':L_pass,'qq_openid':qq_openid,'avatar':qq_info.figureurl_qq_2,'nickname':qq_info.nickname},
             //数据长度太长，放到data里通过post传送
             success: function (argument) {
                if (argument.resault=='success') {
                   layer.msg('登录成功！', {
-                  time: 1000 //1s后自动关闭
-                });
-                // 页面跳转
-                window.location.href='/blog/index.php'; 
-                // window.location.reload();
+                    time: 1000 //1s后自动关闭
+                  });
+                  console.log('登录结果:',argument);
+                  // 页面跳转
+                  var backurl = getUrlParam('backurl');
+                  if(backurl==''){  
+                      location.href = '/index.php'; 
+                  } 
+                  else
+                      location.href = backurl;   
                 }
                 else{
                   // 登录失败，提示错误信息
@@ -300,24 +309,41 @@
 			//成功回调，通过s.data获取OpenAPI的返回数据
 			// alert(s.data.nickname);
       qq_info = s.data;
-			console.log('用户信息',s.data);
+			console.log('用户信息:',qq_info);
 
       // 更新用户昵称
       $('#Reg_nickname').val(s.data.nickname);
+
+      // 尝试以qq_openid登录，如果登录失败，用户自主登录
+      //获取用户登陆信息
+      $.ajax({
+        type:'POST',
+        url: "/api/user/login_qq_openid.php",
+        data:{'qq_openid':qq_openid},
+        success: function (res) {
+            console.log('success:',res);
+            if (res.resault=='success') {
+              // 执行登陆流程
+              var backurl = getUrlParam('backurl');
+              if(backurl==''){  
+                  location.href = '/index.php';  
+              } 
+              else
+                  location.href = backurl;  
+            }
+        },
+        error:function (res) {
+            console.log('fail:',res);
+        }
+      });
+
 		}).error(function(f){
 			//失败回调
 			console.log('获取用户信息失败！',f);
 		}).complete(function(c){
-		//完成请求回调，返回之前页面
-
-		// 执行登陆流程
-		// var backurl = getUrlParam('backurl');
-		// if(backurl==''){  
-		//     location.href = '/index.php';  
-		// } 
-		// else
-		//     location.href = backurl;  
+		//完成请求回调
 	}); 
+
 </script>
 </body>
 </html>

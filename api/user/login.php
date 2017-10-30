@@ -11,6 +11,20 @@
     //获取密码
     $password = $_POST['password'];
 
+    // qq登录传递的参数
+    $qq_openid = '';
+    if (isset($_POST['qq_openid'])) {
+        $qq_openid = $_POST['qq_openid'];
+    }
+    $avatar = '';
+    if (isset($_POST['avatar'])) {
+        $avatar = $_POST['avatar'];
+    }
+    $nickname = '';
+    if (isset($_POST['nickname'])) {
+        $nickname = $_POST['nickname'];
+    }
+
     $myArray["resault"] = 'fail';
 
     // 参数判断
@@ -37,10 +51,15 @@
 				$myArray["city"] = $row['city'];
 				$myArray["qq"] = $row['qq'];
                 $myArray["regtime"] = $row['regtime'];
-				$myArray["avatar"] = 'http://www.geei-iot.com/picture/avatar/nickname.jpg';
+                $myArray["qq_openid"] = $row['qq_openid'];
+				$myArray["avatar"] = $row['avatar'];
 
                 // 目前是以邮箱登录,userid是唯一标志
                 $_SESSION['login'] = $row['userid'];
+
+                // 将qq_openid更新到用户信息
+                $sql_update="UPDATE user set nickname='$nickname',qq_openid='$qq_openid',avatar='$avatar' where email='$email'";
+                mysqli_query($con,$sql_update);
             }
             else{
                 // 密码错误
