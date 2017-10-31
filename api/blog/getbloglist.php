@@ -62,7 +62,7 @@
 
 
 		$indexArray["id"]=$rs['id'];//帖子id
-		$indexArray["avatar"]='/'.$row11['avatar'];//用户头像
+		$indexArray["avatar"]=$row11['avatar'];//用户头像
 		$indexArray["title"]=$rs['title'];//帖子标题
 		$indexArray["nickname"]=$row11['nickname'];//发帖人昵称
 		$indexArray["userid"]=$row11['userid'];//发帖人昵称

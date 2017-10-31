@@ -32,7 +32,7 @@
     $sql22="select * from user where userid='{$rs['userid']}'";
     $query22=mysqli_query($con,$sql22);
     $row22 = mysqli_fetch_array($query22);
-    $myArray["avatar"] = '/'.$row22['avatar'];//头像
+    $myArray["avatar"] = $row22['avatar'];//头像
 	$myArray["nickname"] = $row22['nickname'];//发帖人昵称
 
 	//增加点击量
@@ -50,7 +50,7 @@
 	    $query11=mysqli_query($con,$sql11);
 	    $row11 = mysqli_fetch_array($query11);
 		
-		$indexArray["avatar"] = '/'.$row11['avatar'];//用户头像
+		$indexArray["avatar"] = $row11['avatar'];//用户头像
 		$indexArray["nickname"] = $row11['nickname'];//用户昵称
 	    $indexArray["dates"] = $rsanswer["dates"];//回复时间
 	    $indexArray["floor"] = $floornumber;//楼层

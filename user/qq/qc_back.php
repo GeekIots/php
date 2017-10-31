@@ -221,17 +221,18 @@
                       btn: ['OK']
                       ,yes: function(){
                         console.log('yes');
-                      }
-                      ,btn2: function(){
-                        console.log('btn2');
-                      }
+                        var backurl = getUrlParam('backurl');
+	                    if(backurl==''){  
+	                        location.href = '/index.php';  
+		                  } 
+		                  else
+		                    location.href = backurl;
+						}
+							,btn2: function(){
+							console.log('btn2');
+						}
                     });
-                    var backurl = getUrlParam('backurl');
-                    if(backurl==''){  
-                        location.href = '/index.php';  
-                  } 
-                  else
-                      location.href = backurl;  
+                      
                 }
                 else{
                   console.log(argument);

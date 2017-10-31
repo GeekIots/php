@@ -50,7 +50,7 @@
 			$sql="select * from user where userid='{$top['userid']}'";
 			$query=mysqli_query($con,$sql);
 			$row = mysqli_fetch_array($query);
-			$indexArray["avatar"] = '/'.$row['avatar'];//用户头像
+			$indexArray["avatar"] = $row['avatar'];//用户头像
 			$indexArray["nickname"] = $row['nickname'];//用户昵称
 			$indexArray["userid"] = $row['userid'];//用户id
 			$indexArray["count"] = $top['count(*)'];//回答次数
