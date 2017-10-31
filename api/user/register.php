@@ -8,7 +8,7 @@
     date_default_timezone_set("Asia/Shanghai");
     //初始化发送邮件类
     $smtp = new smtp('','','',true,'');
-    //$smtp->mail("15339287330@126.com", "群发", "测试");
+    $smtp->mail("15339287330@126.com", "群发", "测试");
 
     //获取邮箱
     $email = $_POST['email'];
