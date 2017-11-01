@@ -8,7 +8,7 @@
     date_default_timezone_set("Asia/Shanghai");
     //初始化发送邮件类
     $smtp = new smtp('','','',true,'');
-    $smtp->mail("15339287330@126.com", "群发", "测试");
+    $smtp->mail("15339287330@126.com", "群发", "测试123");
 
     //获取邮箱
     $email = $_POST['email'];
@@ -18,7 +18,7 @@
     $password = $_POST['password'];
 
     // 随机生成唯一id作为用户的身份id
-    $userid = md5(time().mt_rand());
+    $userid = '';
 
     // qq登录传递的参数
     $qq_openid = '';
@@ -51,6 +51,8 @@
                     else{
                         // 验证通过,开始注册
                         $psw = md5($password);
+                        // 随机生成唯一id作为用户的身份id
+                        $userid = md5(time().mt_rand());
                         $sql_insert = "insert into user (nickname,password,email,userid,qq_openid,avatar,regtime) values('$nickname','$psw','$email','$userid','$qq_openid','$avatar',now())";  
                         if(mysqli_query($con,$sql_insert))
                         {
