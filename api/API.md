@@ -15,7 +15,7 @@ blog/list.php
 
 ####  1、获取开关列表
 ```
-https://www.geek-iot.com/api/device.php?device=switch&type=getlist&nickname=test
+https://www.geek-iot.com/api/device.php?device=switch&type=getlist&userid=0000000000000000000000
 
 返回结果：
 {

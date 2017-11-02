@@ -17,6 +17,7 @@
   <!-- <script src="//tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=1269211443" type="text/javascript" charset="utf-8"></script> -->
 </head>
 <div class="header">
+
   <div class="main" style="width: 90%;">
     <a class="logo" href="/index.php" title="Geek-Iot">极客物联网</a>
     <div class="nav">
@@ -26,13 +27,19 @@
       <a  href="/blog/index.php" target="_self">
         <i class="iconfont"></i>社区
       </a>
-      <a href="/device/userdevice.php" target="">
-        <i class="iconfont"></i>控制台
+      <a href="/device/device.php" target="">
+        <i class="iconfont"></i>控制
+      </a>
+      <a href="/device/management.php" target="">
+        <i class="iconfont"></i>管理
       </a>
       <a href="/about/index.php" target="">
         <i class="iconfont"></i>关于
       </a>
     </div>
+
+
+
     <div class="nav-user">
       <!-- 模板 -->
       <script id="tpl_header" type="text/html">
@@ -106,20 +113,4 @@
     });
     window.close();
   }
-
-  // var prevLink = document.referrer; 
-  // console.log('referrer:',prevLink);
-  // WB2.anyWhere(function(W){
-  //     W.widget.connectButton({
-  //         id: "wb_connect_btn", 
-  //         type:"3,1",
-  //         callback : {
-  //             login:function(o){  //登录后的回调函数
-  //               console.log(o);
-  //             },  
-  //             logout:function(){  //退出后的回调函数
-  //             }
-  //         }
-  //     });
-  //   });
 </script>

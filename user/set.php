@@ -170,10 +170,10 @@
   // 更新头像
   upload.render({
     elem: '#img_upload' //绑定元素
-    // ,method:'post'
-    // ,data:{type:'image',url:'avatar',size:'30'}
-    ,url: '../../api/layui/upload.php?type=image&url=avatar&size=30', //上传接口
-    before : function(){
+    ,method:'POST'
+    ,data:{type:'image',url:'avatar',size:'100'}
+    ,url: '/api/layui/upload.php' //上传接口
+    ,before : function(){
       //执行上传前的回调  可以判断文件后缀等等
       layer.msg('上传中，请稍后......', {icon:16, shade:0.5, time:0});
     }

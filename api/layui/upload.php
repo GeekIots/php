@@ -105,7 +105,7 @@
         if ($upload_result) {
             $return['code'] = 0;
             $return['msg'] = $file_path;
-            $return['root']= 'image/'.$path_dst."/".$new_file_name;
+            $return['root']= 'http://www.geek-iot.com/'.'image/'.$path_dst."/".$new_file_name;
             $return['time'] = 1000;
             $return['data']['src'] = $file_path;
             $return['data']['title'] = $new_file_name;
