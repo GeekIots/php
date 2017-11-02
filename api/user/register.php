@@ -8,7 +8,7 @@
     date_default_timezone_set("Asia/Shanghai");
     //初始化发送邮件类
     $smtp = new smtp('','','',true,'');
-    $smtp->mail("15339287330@126.com", "群发", "测试123");
+    // $smtp->mail("15339287330@126.com", "群发", "测试123");
 
     //获取邮箱
     $email = $_POST['email'];
@@ -58,8 +58,8 @@
                         {
                             //注册成功
                             $myArray["resault"] = 'success';
-                            $smtp->mail($email, "极客物联网注册认证！", "恭喜您成为极客物联网会员，请点击链接激活账号"."www.geek-iot.com/api/blog/user/register.check.php?userid=".$userid);
-                            $smtp->mail("15339287330@126.com", "新会员注册提示！","昵称:".$nickname.",用户ID:".$userid.",注册邮箱:".$email);
+                            // $smtp->mail($email, "极客物联网注册认证！", "恭喜您成为极客物联网会员，请点击链接激活账号"."www.geek-iot.com/api/blog/user/register.check.php?userid=".$userid);
+                            // $smtp->mail("15339287330@126.com", "新会员注册提示！","昵称:".$nickname.",用户ID:".$userid.",注册邮箱:".$email);
                             // 目前是以邮箱登录,userid是唯一标志
                             $_SESSION['login'] = $userid;
                         }  

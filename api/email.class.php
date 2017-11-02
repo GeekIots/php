@@ -149,7 +149,7 @@ class smtp
     function smtp_sockopen_relay()  
     {  
         $this->log_write("Trying to " . $this->relay_host . ":" . $this->smtp_port . "\n");  
-        $this->sock = @fsockopen($this->relay_host, $this->smtp_port, $errno, $errstr, $this->time_out);  
+        $this->sock = @fsockopen($this->relay_host, $this->smtp_port, $errno, $errstr, $this->time_out); 
         if (!($this->sock && $this->smtp_ok())) {  
             $this->log_write("Error: Cannot connenct to relay host " . $this->relay_host . "\n");  
             $this->log_write("Error: " . $errstr . " (" . $errno . ")\n");  
@@ -321,9 +321,9 @@ class smtp
         return $filedata;  
     }
 
-    function mail($mailto,$title,$text,$debug=false,$sendmesage=false)
+    function mail($mailto,$title,$text,$debug=true,$sendmesage=false)
 	{
-	    $smtpserver = "smtp.126.com";              //SMTP服务器
+	    $smtpserver = "SMTP.126.com";              //SMTP服务器
 	    $smtpserverport =25;                      //SMTP服务器端口
 	    $smtpusermail = "15339287330@126.com";      //SMTP服务器的用户邮箱
 	    $smtpemailto = $mailto;       //发送给谁
@@ -331,7 +331,7 @@ class smtp
 	    $smtppass = "sun574287254";                 //SMTP服务器的用户密码
 	    $mailsubject = $title;        //邮件主题
 	    $mailbody = $text;      //邮件内容
-	    $mailtype = "TXT";                      //邮件格式（HTML/TXT）,TXT为文本邮件
+	    $mailtype = "HTML";                      //邮件格式（HTML/TXT）,TXT为文本邮件
 	    $smtp = new smtp($smtpserver,$smtpserverport,true,$smtpuser,$smtppass);
 	    $smtp->debug = $debug;  //是否显示发送的调试信息
 	    $smtp->sendmesage = $sendmesage;  //是否显示发送的消息内容
