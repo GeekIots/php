@@ -71,7 +71,7 @@
   <script id="moduel" type="text/html">
 
     {{#  layui.each(switchlist.list, function(index, item){ }}
-      <div class="container" style="margin-left: 12%;padding-top: 10px;padding-bottom: 10px;">
+      <div class="container" style="margin-left: 8%;padding-top: 10px;padding-bottom: 10px;">
          <div class="row">
             <div class="col-md-2 first_dev_title">
                <div class="row dev_title_color">
@@ -192,11 +192,12 @@
     var stop=false;
     get_code_time = function (o) { 
       if (!stop) {
-        o.text('响应:'+wait/100+'s');
+        // o.text('响应:'+wait/100+'s');
+        o.text(wait/100+'s');
             wait++;  
             setTimeout(function() {  
                 get_code_time(o)  
-            }, 1000)  
+            }, 10)  
       }
     }  
     //打印引起事件的标签信息
@@ -211,7 +212,7 @@
     get_code_time($("#msg"+id));
       // 发送指令并等待响应
       $.ajax({
-
+      async: true,
       url: "/api/device.php?device=switch&type=set&userid="+user_d.userid+"&id="+id+"&cmd="+cmd,
       success: function (res) {
         console.log('success:',res);
@@ -225,7 +226,6 @@
         console.log('fail:',res);
         $("#msg"+id).text(res.return);
         stop=true;
-
       }
     });
   }); 

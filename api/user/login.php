@@ -58,8 +58,11 @@
                 $_SESSION['login'] = $row['userid'];
 
                 // 将qq_openid更新到用户信息
-                $sql_update="UPDATE user set nickname='$nickname',qq_openid='$qq_openid',avatar='$avatar' where email='$email'";
-                mysqli_query($con,$sql_update);
+                if ($qq_openid) {
+                    $sql_update="UPDATE user set nickname='$nickname',qq_openid='$qq_openid',avatar='$avatar' where email='$email'";
+                    mysqli_query($con,$sql_update);
+                }
+               
             }
             else{
                 // 密码错误

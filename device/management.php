@@ -1,7 +1,4 @@
-<?php 
-	include "../common/header.php";
-	include "../api/conn.php";
-?>
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,25 +7,14 @@
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>  
 <body>
-	<main class="contain">
-	<?php
-        if (!$con)
-        {
-            die('数据库连接失败: '.mysqli_error());
-        }
-        else
-        {
-            $name = $_SESSION['login'];
-            $result = mysqli_query($con, "SELECT * FROM switch WHERE userid = '$name' ");
-        }
- 	?>
-        
+	<script id="moduel" type="text/html">
+		<main class="contain">
         <!--显示到列表-->
 		  <h2>设备管理</h2>
 		  <div>
 		  	<a class="btn btn-default" href="addDevice.php">添加开关</a>
 		  	<a class="btn btn-default" href="addSensor.php">添加传感器</a>
-			<a class="btn btn-default" href="userdevice.php">返回</a>
+			<a class="btn btn-default" href="	device.php">返回</a>
 		  </div>
 		  <br \>&nbsp;
 		  <!--<p>查看和管理您的设备！</p>-->           
@@ -46,32 +32,22 @@
 		        <th style="width: 30px">更改</th>
 		        <th style="width: 30px">删除</th>
 		      </tr>
-		    	<?php
-		    		// $num = 0;
-		    		while($row = mysqli_fetch_array($result))
-		    		{
-		    			// $num++;
-				    	echo "<tr>
-				    		<td>".$row['id']."</td>
-				    		<td>".$row['name']."</td>
-				    		<td>".$row['state']."</td>
-				    		<td><img src='".$row['pic']."' style='width: 50px;width: 50px;border-radius:5px; '></td>
-				    		<td>".$row['opencmd']."</td>
-				    		<td>".$row['closecmd']."</td>
-				    		<td>".$row['heat']."</td>
-				    		<td><a href='updataDevice.php?id=".$row['id']."'>更改</a></td>
-				    		<td><a href='deleteDevice.php?id=".$row['id']."'>删除</a></td>
-				    		</tr>";
-		     	}
-		     	
-		     	//mysqli_close($con);
-		     ?>
+		      {{#  layui.each(switchlist.list, function(index, item){ }}
+				<tr>
+	    		<td>{{item.id}}</td>
+	    		<td>{{item.name}}</td>
+	    		<td>{{item.state}}</td>
+	    		<td><img src='{{item.pic}}' style='width: 50px;width: 50px;border-radius:5px; '></td>
+	    		<td>{{item.opencmd}}</td>
+	    		<td>{{item.closecmd}}</td>
+	    		<td>{{item.heat}}</td>
+	    		<td><a href='updataDevice.php?id={{item.id}}'>更改</a></td>
+	    		<td><a href='deleteDevice.php?id={{item.id}}'>删除</a></td>
+	    		</tr>
+		     {{#  }); }}
 		  </table>
-		  </div>	  
-		  
-		  
+		  </div>
 		  <br>
-		  <hr />
 		  <h4>传感器类设备</h4>		  
 		  <table class="table table-striped  table-hover">
 		    <thead>
@@ -86,29 +62,62 @@
 		      </tr>
 		    </thead>
 		    <tbody>
-		    	<?php
-		    		// $num = 0;
-					$result = mysqli_query($con, "SELECT * FROM sensor WHERE userid = '$name' ");
-
-		    		while($row = mysqli_fetch_array($result))
-		    		{
-		    			// $num++;
-			    		echo '<tr>';
-			    		echo '<td>'.$row['id'].'</td>';
-			    		echo '<td>'.$row['name'].'</td>';
-			    		echo '<td>'.$row['type'].'</td>';
-			    		echo '<td>'.$row['pic'].'</td>';
-			    		echo '<td>'.$row['data'].'</td>';
-						echo '<td><a href="updataSensor.php?id='.$row['id'].'">更改</a></td>';
-						echo '<td><a href="deleteSensor.php?id='.$row['id'].'">删除</a></td>';
-						echo '</tr>';
-					}
-				
-		     	mysqli_close($con);
-				?>
+		      {{#  layui.each(sensorlist.list, function(index, item){ }}
+	    		<tr>
+	    		<td>{{item.id}}</td>
+	    		<td>{{item.name}}</td>
+	    		<td>{{item.type}}</td>
+	    		<td>{{item.pic}}</td>
+	    		<td>{{item.data}}</td>
+				<td><a href="updataSensor.php?id={{item.id}}">更改</a></td>
+				<td><a href="deleteSensor.php?id={{item.id}}">删除</a></td>
+				</tr>
+			  {{#  }); }}
 		    </tbody>
 		  </table>
     </main>
+	</script>
+	<!-- 建立视图。用于呈现模板渲染结果。 -->
+	<div id="view"></div>
 </body>
 </html>
 <?php include $_SERVER ['DOCUMENT_ROOT']."/common/footer.php";?>
+
+<script>
+  // 开关列表
+  var switchlist;
+  var sensorlist;
+  // 获取列表
+  $.ajax({
+    type:'GET',
+    url: "/api/device/device.php",
+    data:{"device":'switch',"type":'getlist',"userid":user_d.userid},
+    success: function (res) {
+      switchlist  = res;
+      console.log('switchlist:',res);
+    },
+    error:function (res) {
+      console.log('fail:',res);
+    }
+  });
+
+  $.ajax({
+    type:'GET',
+    url: "/api/device/device.php",
+    data:{"device":'sensor',"type":'getlist',"userid":user_d.userid},
+    success: function (res) {
+      sensorlist  = res;
+      console.log('sensorlist:',res);
+    },
+    error:function (res) {
+      console.log('fail:',res);
+    }
+  });
+
+  //渲染数据
+  var getTpl = moduel.innerHTML;
+  var view = document.getElementById('view');
+  laytpl(getTpl).render(switchlist, function(html){
+    view.innerHTML = html;
+  });
+</script>

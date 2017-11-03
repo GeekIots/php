@@ -133,7 +133,7 @@
         if ($type=='getlist') 
         {
            $myArray["resault"] = 'success';
-           $result = mysqli_query($con, "SELECT * FROM sensor WHERE type='$sensor' and userid = '$userid'");
+           $result = mysqli_query($con, "SELECT * FROM sensor WHERE userid = '$userid'");
            // print_r($result);
            $myArray["num"] = $result->num_rows;
            $num=0;
