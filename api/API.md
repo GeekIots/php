@@ -15,7 +15,7 @@ blog/list.php
 
 ####  1、获取开关列表
 ```
-https://www.geek-iot.com/api/device.php?device=switch&type=getlist&userid=0000000000000000000000
+https://www.geek-iot.com/api/device/device.php?device=switch&type=getlist&userid=1509639203636
 
 返回结果：
 {
@@ -46,6 +46,32 @@ https://www.geek-iot.com/api/device.php?device=switch&type=getlist&userid=000000
         }
     ]
 }
+```
+
+####  2、添加开关
+```
+https://www.geek-iot.com/api/device/addswitch.php?name=&type=getlist&userid=1509639203636
+userid:用户ID
+name:开关名称
+opencmd:开启指令
+closecmd:关闭指令
+pic:设备图片
+
+返回结果：
+success
+{
+    "resault": "success"
+}
+fail
+{
+    "resault": "fail",
+    "msg":"error"
+}
+```
+
+####  3、添加传感器
+```
+
 ```
 
 ## info

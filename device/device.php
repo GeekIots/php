@@ -213,7 +213,7 @@
       // 发送指令并等待响应
       $.ajax({
       async: true,
-      url: "/api/device.php?device=switch&type=set&userid="+user_d.userid+"&id="+id+"&cmd="+cmd,
+      url: "/api/device/device.php?device=switch&type=set&userid="+user_d.userid+"&id="+id+"&cmd="+cmd,
       success: function (res) {
         console.log('success:',res);
         stop=true;

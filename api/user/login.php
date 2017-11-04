@@ -52,7 +52,16 @@
 				$myArray["qq"] = $row['qq'];
                 $myArray["regtime"] = $row['regtime'];
                 $myArray["qq_openid"] = $row['qq_openid'];
-				$myArray["avatar"] = $row['avatar'];
+
+
+                // 检测图像是否存在
+                if(!@fopen( $row['avatar'], 'r' )){
+                  $myArray["avatar"] = "http://www.geek-iot.com/image/default/avatar.jpg";
+                }
+                else
+                {
+                    $myArray["avatar"] = $row['avatar'];//头像路径
+                }
 
                 // 目前是以邮箱登录,userid是唯一标志
                 $_SESSION['login'] = $row['userid'];
