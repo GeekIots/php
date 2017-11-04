@@ -63,7 +63,7 @@
   $result = mysqli_query($con,$sql);//执行SQL语句
   if (mysqli_num_rows($result)) {
     // 用户存在，存储开关信息
-    $sql_insert = "insert into switch (userid,name,state,pic,opencmd,closecmd,heat,online,latest,created) values('$userid','$name','$closecmd','$pic','$opencmd','$closecmd','0','离线',  ,now())";
+    $sql_insert = "insert into switch (userid,name,state,pic,opencmd,closecmd,heat,online,latest,created) values('$userid','$name','$closecmd','$pic','$opencmd','$closecmd','0','离线',now(),now())";
     $res_insert = mysqli_query($con,$sql_insert);
     if ($res_insert){
       $myArray["resault"] = 'success';

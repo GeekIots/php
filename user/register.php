@@ -118,17 +118,18 @@
                  success: function (argument) {
                    if (argument.resault=='success') {
                       layer.msg('恭喜你,注册成功！我们已经将激活邮件发送到'+L_email+',请尽快激活账号！', {
-                      time: 20000, //20s后自动关闭
-                      btn: ['OK']
-                      ,yes: function(){
-                        // 跳转到首页
-                      }
-                      ,btn2: function(){
-                      }
-                    });
-                      // layer.msg('注册成功！',{icon:1,time:800},function(){
-                      //     // window.location.reload();
-                      //   });
+                        time: 10000, //10s后自动关闭
+                        btn: ['走起']
+                        ,yes: function(){
+                            // 跳转回原来页面
+                            var backurl = getUrlParam('backurl');
+                            if(backurl==''){  
+                                location.href = '/index.php';  
+                            } 
+                            else
+                                location.href = backurl; 
+                          }
+                      });
                     }
                     else{
                       console.log(argument);
