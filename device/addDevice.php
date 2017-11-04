@@ -72,7 +72,7 @@
               btn: ['好的']
               ,yes: function(){
                 // 跳转回原来页面
-                location.href = '/device/device.php';  
+                location.href = '/device/management.php';  
               }
             });
         }

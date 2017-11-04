@@ -1,65 +1,32 @@
-<?php include "../public/header.php";?>
-<?php include "../public/conn.php";?>
-<?php
-function create_id($prefix = ""){    //可以指定前缀
-    $str = md5(uniqid(mt_rand(), true));   
-    $uuid  = substr($str,0,4);  
-    return $prefix . $uuid;
-}
-?>
-
-
-<?php
-if (isset($_POST["Submit"]) && $_POST["Submit"] == "添加") {
-    $name = $_POST["sensorname"];
-    $type = $_POST["type"];
-    $pic = $_POST["pic"];
-
-    $userid = $_SESSION['login'];
-    $sql_insert = "insert into sensor (userid,name,type,pic,data,heat) values('$userid','$name','$type','$pic','','')";
-    $res_insert = mysqli_query($con,$sql_insert);
-    if ($res_insert) 
-    {
-    	echo '<script>window.location = "deviceManagement.php";</script>'; 
-    } 
-    else
-	{
-		echo "<script>alert('添加失败！');history.go(-1);</script>";
-	}
-    exit;
-}
-?>
-
+<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php') ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>添加传感器</title>
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  <title>添加传感器 | 极客物联网</title>
+  <!-- 引入 Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
-
 <body>
-
-<div style="padding: 10% 15% 5%;">
-    <form class="form-horizontal" role="form" action="addSensor.php" method="post">
+  <div style="padding: 10% 15% 5%;">
+    <form class="form-horizontal">
         <div class="form-group">
             <label class="col-sm-2 control-label">名称:</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="sensorname" placeholder="狄村的温度" value="狄村的温度">
+                <input type="text" class="form-control" id="name" placeholder="白鹿原温度" value="白鹿原温度">
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-sm-2 control-label">图片:</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="pic" placeholder="" value="">
+                <input type="text" class="form-control" id="pic" placeholder="" value="">
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-sm-2 control-label">类型:</label>
             <div class="col-sm-6">
-                <select class="form-control" name="type">
+                <select class="form-control" id="type">
                     <option value ="temperature">温度 ℃</option>
                     <option value ="humidity">湿度 RH</option>
                     <option value="pm2.5">PM2.5</option>
@@ -70,13 +37,72 @@ if (isset($_POST["Submit"]) && $_POST["Submit"] == "添加") {
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit"  name="Submit" class="btn btn-default" value="添加">添加</button>
-				<a class="btn btn-default" href="deviceManagement.php">取消</a>
+                <div class="btn btn-default" id="btn-add" >添加</div>
+                <a class="btn btn-default" href="/device/Management.php">取消</a>
             </div>
         </div>
     </form>
-
-    <!--    </form>-->
-</body>
-
+  <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
+  </body>
 </html>
+
+<script type="text/javascript">
+  //所有的button引起的变化
+  $("#btn-add").bind("click",function(){
+    var name = $("#name").val();
+    var type = $("#type").val();
+    var pic = $("#pic").val();
+
+    //打印引起事件的标签信息
+    console.log('click:', this);
+    // 发送指令并等待响应
+    $.ajax({
+      url: "/api/device/addsensor.php",
+      async: true,
+      type:"GET",
+      data:{"userid":user_d.userid,"name":name,"type":type,"pic":pic},
+      success: function (res) {
+        console.log('success:',res);
+        // 显示成功，用户确认后跳转
+        if (res.resault=='success') {
+              layer.msg('添加成功！', {
+              time: 5000, //5s后自动关闭
+              btn: ['好的']
+              ,yes: function(){
+                // 跳转回原来页面
+                location.href = '/device/management.php';  
+              }
+            });
+        }
+        else{
+            // 显示错误信息
+            layer.msg('Sorroy,创建失败!'+res.msg, {
+                  time: 20000, //20s后自动关闭
+                  btn: ['知道了']
+                  ,yes: function(){
+                    layer.closeAll();
+                  }
+                });
+          }
+      },
+      error:function (res) {
+        console.log('fail:',res);
+      }
+    });
+  }); 
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

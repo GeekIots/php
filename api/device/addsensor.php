@@ -39,22 +39,11 @@
     exit();
   }
 
-  if (isset($_GET['opencmd'])) {
-    $opencmd = $_GET['opencmd'];
+  if (isset($_GET['type'])) {
+    $type = $_GET['type'];
   }
   else{
-    $myArray["msg"] = '缺少字段:opencmd！';
-    $myArray["resault"] = 'fail';
-    $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
-    echo $json;
-    exit();
-  }
-
-  if (isset($_GET['closecmd'])) {
-    $closecmd = $_GET['closecmd'];
-  }
-  else{
-    $myArray["msg"] = '缺少字段:closecmd！';
+    $myArray["msg"] = '缺少字段:type！';
     $myArray["resault"] = 'fail';
     $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
     echo $json;
@@ -71,9 +60,10 @@
   }
 
   // 存储开关信息
-  $sql_insert = "insert into switch (userid,name,state,pic,opencmd,closecmd,heat,online,latest,created) values('$userid','$name','$closecmd','$pic','$opencmd','$closecmd','0','离线',now(),now())";
+  $sql_insert = "insert into sensor (userid,name,type,pic,data,heat,created,latest) values('$userid','$name','$type','$pic','','0',now(),now())";
   $res_insert = mysqli_query($con,$sql_insert);
-  if ($res_insert){
+  if ($res_insert) 
+  {
     $myArray["resault"] = 'success';
   } 
   else{

@@ -67,7 +67,7 @@
 	    		<td>{{item.id}}</td>
 	    		<td>{{item.name}}</td>
 	    		<td>{{item.type}}</td>
-	    		<td>{{item.pic}}</td>
+	    		<td><img src='{{item.pic}}' style='width: 50px;width: 50px;border-radius:5px; '></td>
 	    		<td>{{item.data}}</td>
 				<td><a href="updataSensor.php?id={{item.id}}">更改</a></td>
 				<td><a href="deleteSensor.php?id={{item.id}}">删除</a></td>
