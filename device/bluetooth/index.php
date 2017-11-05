@@ -21,7 +21,7 @@
 	      <!-- 配置1 -->
 	      <div class="tab-pane fade in active" id="config1">
 			<p style="font-size: 25px;"> </p>
-			<table  align="center">
+			<table>
 			  <tr>
 			    <th style="width: 10%">编号</th>
 			    <th style="width: 10%">名称</th>
