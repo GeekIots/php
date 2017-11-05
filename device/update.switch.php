@@ -10,34 +10,39 @@
   <div style="padding: 10% 15% 5%;">
     <form class="form-horizontal">
         <script id="moduel" type="text/html">
+
+        <div class="form-group" align="center">
+            <img src="{{d.pic}}" style="width: 150px;height: 150px;border-radius: 10px;">
+        </div>
+
         <div class="form-group">
-            <label class="col-sm-2 control-label">名称:</label>
+            <label class="col-sm-3 control-label">名称:</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" id="name" value="{{d.name}}">
             </div>
         </div>
 
          <div class="form-group">
-            <label class="col-sm-2 control-label">图片:</label>
+            <label class="col-sm-3 control-label">图片:</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" id="pic" value="{{d.pic}}">
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-sm-2 control-label">开指令:</label>
+            <label class="col-sm-3 control-label">开指令:</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" id="opencmd" value="{{d.opencmd}}">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">关指令:</label>
+            <label class="col-sm-3 control-label">关指令:</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" id="closecmd" value="{{d.closecmd}}">
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-offset-3 col-sm-10">
                 <div class="btn btn-default" id="btn-update">更新</div>
                 <a class="btn btn-default" href="/device/management.php">取消</a>
             </div>

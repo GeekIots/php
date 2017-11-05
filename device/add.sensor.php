@@ -10,21 +10,21 @@
   <div style="padding: 10% 15% 5%;">
     <form class="form-horizontal">
         <div class="form-group">
-            <label class="col-sm-2 control-label">名称:</label>
+            <label class="col-sm-3 control-label">名称:</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" id="name" placeholder="白鹿原温度" value="白鹿原温度">
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-sm-2 control-label">图片:</label>
+            <label class="col-sm-3 control-label">图片:</label>
             <div class="col-sm-6">
                 <input type="text" class="form-control" id="pic" placeholder="" value="">
             </div>
         </div>
 
         <div class="form-group">
-            <label class="col-sm-2 control-label">类型:</label>
+            <label class="col-sm-3 control-label">类型:</label>
             <div class="col-sm-6">
                 <select class="form-control" id="type">
                     <option value ="temperature">温度 ℃</option>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-offset-3 col-sm-10">
                 <div class="btn btn-default" id="btn-add" >添加</div>
                 <a class="btn btn-default" href="/device/Management.php">取消</a>
             </div>
