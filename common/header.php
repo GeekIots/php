@@ -30,8 +30,9 @@
       <li class="layui-nav-item">
         <a href="javascript:;" class="iconfont">控制台</a>
         <dl class="layui-nav-child">
-          <dd><a href="/device/device.php" class="iconfont">设备控制</a></dd>
-          <dd><a href="/device/management.php" class="iconfont">设备管理</a></dd>
+          <a href="/device/bluetooth/index.php" class="iconfont">配置蓝牙</a>
+          <a href="/device/device.php" class="iconfont">设备控制</a>
+          <a href="/device/management.php" class="iconfont">设备管理</a>
         </dl>
       </li>
       <li class="layui-nav-item"><a href="/about/index.php" class="iconfont">关于</a></li>
