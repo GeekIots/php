@@ -12,9 +12,9 @@
         <!--显示到列表-->
 		  <h2>设备管理</h2>
 		  <div>
-		  	<a class="btn btn-default" href="addDevice.php">添加开关</a>
-		  	<a class="btn btn-default" href="addSensor.php">添加传感器</a>
-			<a class="btn btn-default" href="	device.php">返回</a>
+		  	<a class="btn btn-default" href="add.switch.php">添加开关</a>
+		  	<a class="btn btn-default" href="add.sensor.php">添加传感器</a>
+			<a class="btn btn-default" href="device.php">返回</a>
 		  </div>
 		  <br \>&nbsp;
 		  <!--<p>查看和管理您的设备！</p>-->           
@@ -41,8 +41,8 @@
 	    		<td>{{item.opencmd}}</td>
 	    		<td>{{item.closecmd}}</td>
 	    		<td>{{item.heat}}</td>
-	    		<td><a href='updataDevice.php?id={{item.id}}'>更改</a></td>
-	    		<td><a href='deleteDevice.php?id={{item.id}}'>删除</a></td>
+	    		<td><a href='update.switch.php?id={{item.id}}'>更改</a></td>
+	    		<td><a href='delete.switch.php?id={{item.id}}'>删除</a></td>
 	    		</tr>
 		     {{#  }); }}
 		  </table>
@@ -69,8 +69,8 @@
 	    		<td>{{item.type}}</td>
 	    		<td><img src='{{item.pic}}' style='width: 50px;width: 50px;border-radius:5px; '></td>
 	    		<td>{{item.data}}</td>
-				<td><a href="updataSensor.php?id={{item.id}}">更改</a></td>
-				<td><a href="deleteSensor.php?id={{item.id}}">删除</a></td>
+				<td><a href="update.sensor.php?id={{item.id}}">更改</a></td>
+				<td><a href="delete.sensor.php?id={{item.id}}">删除</a></td>
 				</tr>
 			  {{#  }); }}
 		    </tbody>

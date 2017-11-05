@@ -49,8 +49,8 @@ https://www.geek-iot.com/api/device/device.php?device=switch&type=getlist&userid
 ```
 
 ####  2、添加开关
+https://www.geek-iot.com/api/device/add.switch.php
 ```
-https://www.geek-iot.com/api/device/addswitch.php
 userid:用户ID
 name:开关名称
 opencmd:开启指令
@@ -70,8 +70,8 @@ fail
 ```
 
 ####  3、添加传感器
+https://www.geek-iot.com/api/device/add.sensor.php
 ```
-https://www.geek-iot.com/api/device/addsensor.php
 userid:用户ID
 name:传感器名称
 type:传感器分类
