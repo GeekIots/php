@@ -7,9 +7,16 @@
 
 	//获取邮箱
     $email = $_POST['email'];
+    if (empty($email)) {
+        $email = $_GET['email'];
+    }
 
     //获取密码
     $password = $_POST['password'];
+    if (empty($password)) {
+        $password = $_GET['password'];
+    }
+    
 
     // qq登录传递的参数
     $qq_openid = '';

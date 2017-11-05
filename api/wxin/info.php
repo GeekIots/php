@@ -1,7 +1,7 @@
 <?php 
   error_reporting(E_ALL^E_NOTICE); //取消警告显示
   header('Content-type:application/json');
-  include "conn.php";//http
+  include $_SERVER ['DOCUMENT_ROOT']."/api/conn.php";//http
   date_default_timezone_set("Asia/Shanghai");
 ?>
 <?php

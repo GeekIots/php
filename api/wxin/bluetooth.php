@@ -1,8 +1,8 @@
 <?php 
 	error_reporting(E_ALL^E_NOTICE); //取消警告显示
 	header('Content-type:application/json');
-	include $_SERVER['DOCUMENT_ROOT']."/common/conn.php";
-
+    include $_SERVER ['DOCUMENT_ROOT']."/api/conn.php";//http
+  
    $default  = array
     (
     array("wid"=>"1","name"=>"左上","up"=>"TZ","down"=>"ZS","show"=>"true","icon"=>"http://cdn-img.easyicon.net/png/12053/1205394.gif"),
@@ -26,7 +26,7 @@
 
 	//获取后面的所有参数并解码
 	// $str = urldecode($_SERVER["QUERY_STRING"]);  
-    $userid = $_GET['nickname'];
+    $userid = $_GET['userid'];
 	$type = $_GET['type'];
 	$num = $_GET['num'];
     $str = $_GET['str'];

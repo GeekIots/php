@@ -9,11 +9,23 @@
 <ul class="layui-timeline">
   <li class="layui-timeline-item">
     <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+      <div class="layui-timeline-content layui-text">
+        <h3 class="layui-timeline-title">2017年11月5日</h3>
+        <p>
+          社区框架2.0完工，具备基本讨论功能
+          <br>开关及部分传感器设备具备增删改查基本操作功能
+          <br>www.geek-iot.com 签发SSL安全证书
+        </p>
+      </div>
+    </i>
+  </li>
+  <li class="layui-timeline-item">
+    <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
     <div class="layui-timeline-content layui-text">
-      <h3 class="layui-timeline-title">9月13日</h3>
+      <h3 class="layui-timeline-title">2017年9月13日</h3>
       <p>
         重新建设社区
-        <br>无论它能走多远，抑或如何支撑？至少我曾倾注全心，无怨无悔 <i class="layui-icon"></i>
+        <br>只要有目标，就一定要实现，坚持就是捷径！<i class="layui-icon"></i>
       </p>
     </div>
   </li>
@@ -27,14 +39,5 @@
   </li>
 </ul>
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
-<script>
-layui.use(['layedit','layer','jquery','element','upload'],function(){
-  var layedit = layui.layedit
-      ,layer = layui.layer
-      ,$ = layui.jquery
-      ,element = layui.element
-      ,upload = layui.upload;
-  });
-</script>
 </body>
 </html>

@@ -20,10 +20,21 @@
 
     //获取邮箱
     $email = $_POST['email'];
+    if (empty($email)) {
+        $email = $_GET['email'];
+    }
+
     //获取昵称
     $nickname = $_POST['nickname'];
+    if (empty($nickname)) {
+        $nickname = $_GET['nickname'];
+    }
+
     //获取密码
     $password = $_POST['password'];
+    if (empty($password)) {
+        $password = $_GET['password'];
+    }
 
     // 随机生成唯一id作为用户的身份id
     $userid = '';

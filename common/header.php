@@ -90,6 +90,7 @@
   //获取用户登陆信息
   $.ajax({
     url: "/api/user/user.php",
+    async: false, //同步
     success: function (res) {
         console.log('success:',res);
         user_d = res;
