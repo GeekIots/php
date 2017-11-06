@@ -54,18 +54,18 @@
             <div class="layui-form-item">
               <label for="L_email" class="layui-form-label">邮箱</label>
               <div class="layui-input-inline">
-                <input type="text" id="L_email" name="email" required lay-verify="email" autocomplete="off" value="{{d.email}}" class="layui-input">
+                <input type="text" id="L_email" readonly="true" name="email" required lay-verify="email" autocomplete="off" value="{{d.email}}" class="layui-input">
               </div>
-              <div class="layui-form-mid layui-word-aux">如果您在邮箱已激活的情况下，变更了邮箱，需<a href="activate.html" style="font-size: 12px; color: #4f99cf;">重新验证邮箱</a>。</div>
+              <!-- <div class="layui-form-mid layui-word-aux">如果您在邮箱已激活的情况下，变更了邮箱，需<a href="activate.html" style="font-size: 12px; color: #4f99cf;">重新验证邮箱</a>。</div> -->
             </div>
             <div class="layui-form-item">
-              <label for="L_username" class="layui-form-label">昵称</label>
+              <label for="L_nickname" class="layui-form-label">昵称</label>
               <div class="layui-input-inline">
-                <input type="text" id="L_username" name="username" required lay-verify="required" autocomplete="off" value="{{d.nickname}}" class="layui-input">
+                <input type="text" id="L_nickname" name="nickname" required lay-verify="required" autocomplete="off" value="{{d.nickname}}" class="layui-input">
               </div>
               <div class="layui-inline">
                 <div class="layui-input-inline">
-                  <input type="radio" name="sex" value="0" {{d.sex == '0' ? 'checked' : ''}} title="男">
+                  <input type="radio" name="sex" id="L_sex" value="0" {{d.sex == '0' ? 'checked' : ''}} title="男">
                   <input type="radio" name="sex" value="1" {{d.sex == '1' ? 'checked' : ''}} title="女">
                 </div>
               </div>
@@ -77,13 +77,13 @@
               </div>
             </div>
             <div class="layui-form-item layui-form-text">
-              <label for="L_sign" class="layui-form-label">签名</label>
+              <label for="L_signature" class="layui-form-label">签名</label>
               <div class="layui-input-block">
-                <textarea placeholder="随便写些什么刷下存在感" id="L_sign"  name="sign" autocomplete="off" class="layui-textarea" style="height: 80px;">{{d.describe}}</textarea>
+                <textarea placeholder="随便写些什么刷下存在感" id="L_signature"  name="signature" autocomplete="off" class="layui-textarea" style="height: 80px;">{{d.signature}}</textarea>
               </div>
             </div>
             <div class="layui-form-item">
-              <button class="layui-btn" key="set-mine" lay-filter="*" lay-submit>确认修改</button>
+              <div class="layui-btn" lay-filter="*" lay-submit id="btn-update-info">确认修改</div>
             </div>
           </div>
           <!-- 头像 -->
@@ -132,20 +132,20 @@
             <ul class="app-bind">
               <li class="fly-msg app-havebind">
                 <i class="iconfont icon-qq"></i>
-                <span>已成功绑定，您可以使用QQ帐号直接登录Fly社区，当然，您也可以</span>
+                <span>已成功绑定，您可以使用QQ帐号直接登录，当然，您也可以</span>
                 <a href="javascript:;" class="acc-unbind" type="qq_id">解除绑定</a>
                 
                 <!-- <a href="" onclick="layer.msg('正在绑定微博QQ', {icon:16, shade: 0.1, time:0})" class="acc-bind" type="qq_id">立即绑定</a>
                 <span>，即可使用QQ帐号登录Fly社区</span> -->
               </li>
-              <li class="fly-msg">
+  <!--             <li class="fly-msg">
                 <i class="iconfont icon-weibo"></i>
-                <!-- <span>已成功绑定，您可以使用微博直接登录Fly社区，当然，您也可以</span>
-                <a href="javascript:;" class="acc-unbind" type="weibo_id">解除绑定</a> -->
+                <span>已成功绑定，您可以使用微博直接登录Fly社区，当然，您也可以</span>
+                <a href="javascript:;" class="acc-unbind" type="weibo_id">解除绑定</a>
                 
                 <a href="" class="acc-weibo" type="weibo_id"  onclick="layer.msg('正在绑定微博', {icon:16, shade: 0.1, time:0})" >立即绑定</a>
                 <span>，即可使用微博帐号登录Fly社区</span>
-              </li>
+              </li> -->
             </ul>
           </div>
       </div>
@@ -215,6 +215,40 @@
       //请求异常回调
       console.log(res);
     }
+  });
+
+  // 修改资料
+  $('#btn-update-info').on('click', function(){
+    //获取信息
+    // var L_email = $('#L_email').val();
+    var L_nickname = $('#L_nickname').val();
+    var L_sex = $('#L_sex').val();
+    var L_city = $('#L_city').val();
+    var L_signature = $('#L_signature').val();//签名
+
+    //更新信息
+    $.ajax({
+      type:'POST',
+      url: "../api/user/update.info.php",
+      data:{'userid':user_d.userid,'nickname':L_nickname,'sex':L_sex,'city':L_city,'signature':L_signature},
+      //数据长度太长，放到data里通过post传送
+      success: function (argument) {
+         if (argument.resault=='success') {
+            layer.msg('修改成功！', {
+            time: 1000 //1s后自动关闭
+          });
+          }
+          else{
+            // 登录失败，提示错误信息
+            console.log(argument);
+            layer.msg('修改失败：'+argument.msg,{time:2000});
+          }
+      },
+      error:function (argument) {
+        console.log(argument);
+        layer.msg('修改失败,请稍后再试！');
+      }
+    });
   });
 </script>
 

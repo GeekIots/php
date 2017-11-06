@@ -74,7 +74,7 @@
             $myArray["email"] = $row['email'];//绑定邮箱
             $myArray["city"] = $row['city'];//城市
             $myArray["qq"] = $row['qq'];//qq号码
-            $myArray["describe"] = $row['describe'];//个性签名
+            $myArray["signature"] = $row['signature'];//个性签名
             $myArray["value"] = $row['value'];//用户积分
             $myArray["level"] = $row['level'];//用户等级
             $myArray["datetime"] = $row['regtime'];//注册时间
@@ -123,7 +123,7 @@
                 $myArray["email"] = $row['email'];//绑定邮箱
                 $myArray["city"] = $row['city'];//城市
                 $myArray["qq"] = $row['qq'];//qq号码
-                $myArray["describe"] = $row['describe'];//个性签名
+                $myArray["signature"] = $row['signature'];//个性签名
                 $myArray["value"] = $row['value'];//用户积分
                 $myArray["level"] = $row['level'];//用户等级
                 $myArray["datetime"] = $row['regtime'];//注册时间

@@ -190,6 +190,7 @@
   var qq_openid;//qq openid
   var qq_info;//qq信息，包含昵称，头像等 
   $('.layui-btn').on('click', function(){
+      console.log("检测按键初始化");
       //注册登录
       if ($(this).attr("id")=='register-btn') {
         //获取登录信息
@@ -295,6 +296,7 @@
 
   	//如果已登录  
 	if(QC.Login.check()){
+    console.log("已经登陆");
 		QC.Login.getMe(function(openId, accessToken){  
 		    // alert(["当前用户的", "openId为："+openId, "accessToken为："+accessToken].join("\n"));
         qq_openid = openId;  
@@ -316,13 +318,14 @@
       $('#Reg_nickname').val(s.data.nickname);
 
       // 尝试以qq_openid登录，如果登录失败，用户自主登录
-      //获取用户登陆信息
+      console.log("以openid登陆");
       $.ajax({
         type:'POST',
         url: "/api/user/login_qq_openid.php",
         data:{'qq_openid':qq_openid},
         success: function (res) {
-            console.log('success:',res);
+            console.log('登陆成功:',res);
+            console.log('openid:',qq_openid);
             if (res.resault=='success') {
               // 执行登陆流程
               var backurl = getUrlParam('backurl');

@@ -30,7 +30,7 @@
         <i class="iconfont icon-chengshi"></i><span>来自{{user_d.city}}</span>
       </p>
       <p class="fly-home-info"><i class="iconfont"></i><span>用户ID:{{user_d.userid}}</span></p>
-      <p class="fly-home-sign">（{{user_d.describe}}）</p>
+      <p class="fly-home-sign">（{{user_d.signature}}）</p>
     </div>
     
     <!-- 发帖列表 -->

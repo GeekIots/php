@@ -24,7 +24,7 @@
 
   <div class="main" style="width: 90%;">
     <ul class="layui-nav" >
-      <img id='image-avatar' src='/common/res/images/logo.png'>
+      <img src='/common/res/images/logo.png'>
       <li class="layui-nav-item"><a href="/index.php" class="iconfont">首页</a></li>
       <li class="layui-nav-item"><a href="/blog/index.php" class="iconfont">社区</a></li>
       <li class="layui-nav-item">

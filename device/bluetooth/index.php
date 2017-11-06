@@ -176,7 +176,7 @@
 	$(":input").bind("change",function(){
 		//打印引起事件的标签信息
   		console.log('change:', this);
-  		var arr = $(this).attr('id').split('-');
+  		var arr = $(this).attr('id').toString().split('-');
 		console.log('configID:', arr[0]);
 		console.log('列:', arr[1]);
 		console.log('行号:', arr[2]);
@@ -211,7 +211,7 @@
 	//上传到服务器
 	$('[id^="upload"]').click(function(){
 		console.log('开始上传');
-		var id = $(this).attr('id').replace('upload','');
+		var id = $(this).attr('id').toString().replace('upload','');
 		var item;	 
 		if (id==1) {
 			item = item1;

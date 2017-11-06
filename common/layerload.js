@@ -51,3 +51,4 @@ function getUrlParam(name) {
 $.ajaxSetup({
   async: false //同步
 });
+
