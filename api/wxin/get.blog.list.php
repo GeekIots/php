@@ -18,7 +18,7 @@
         // 所有内容
         if($_GET['type']=='find')
         {
-          $sql="select * from blog";
+          $sql="select * from blog order by dates desc";
           $result=mysqli_query($con,$sql);
           $myArray["num"] = $result->num_rows;
           // var_dump($result);
@@ -36,7 +36,7 @@
         if($_GET['type']=='news')
         {
           // 置顶的内容
-          $sql="select * from blog limit 5";
+          $sql="select * from blog limit 5 order by dates desc";
           $result=mysqli_query($con,$sql);
           $myArray["num"] = $result->num_rows;
           // var_dump($result);
