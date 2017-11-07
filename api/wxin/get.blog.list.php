@@ -36,7 +36,7 @@
         if($_GET['type']=='news')
         {
           // 置顶的内容
-          $sql="select * from blog limit 5 order by dates desc";
+          $sql="select * from blog order by dates desc limit 5 ";
           $result=mysqli_query($con,$sql);
           $myArray["num"] = $result->num_rows;
           // var_dump($result);
