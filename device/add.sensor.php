@@ -9,6 +9,11 @@
 <body>
   <div style="padding: 10% 15% 5%;">
     <form class="form-horizontal">
+
+        <div class="form-group" align="center">
+            <img src="/image/default/switch.jpg" id="pic-show" style="width: 150px;height: 150px;border-radius: 10px;">
+        </div>
+
         <div class="form-group">
             <label class="col-sm-3 control-label">名称:</label>
             <div class="col-sm-6">
@@ -21,6 +26,7 @@
             <div class="col-sm-6">
                 <input type="text" class="form-control" id="pic" placeholder="" value="">
             </div>
+            <label class="control-label" style="color: red" id="pic-msg"></label>
         </div>
 
         <div class="form-group">
@@ -47,6 +53,23 @@
 </html>
 
 <script type="text/javascript">
+
+  // 监控图片输入框数据变化
+  $('#pic').bind('input propertychange', function() { 
+    // 定义一个Image对象
+    var img = new Image();
+    img.src=$('#pic').val();
+    // 加载成功
+    img.onload = function() {
+        $('#pic-show').attr('src',$('#pic').val()); 
+        $("#pic-msg").text("");
+    };
+    // 加载失败
+    img.onerror = function() {
+        $("#pic-msg").text("图片地址无效！");
+    }
+  }); 
+
   //所有的button引起的变化
   $("#btn-add").bind("click",function(){
     var name = $("#name").val();

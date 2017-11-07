@@ -65,7 +65,7 @@
               </div>
               <div class="layui-inline">
                 <div class="layui-input-inline">
-                  <input type="radio" name="sex" id="L_sex" value="0" {{d.sex == '0' ? 'checked' : ''}} title="男">
+                  <input type="radio" name="sex" value="0" {{d.sex == '0' ? 'checked' : ''}} title="男">
                   <input type="radio" name="sex" value="1" {{d.sex == '1' ? 'checked' : ''}} title="女">
                 </div>
               </div>
@@ -222,10 +222,11 @@
     //获取信息
     // var L_email = $('#L_email').val();
     var L_nickname = $('#L_nickname').val();
-    var L_sex = $('#L_sex').val();
+    var L_sex = $('input:radio:checked').val();//获取选中radio值
     var L_city = $('#L_city').val();
     var L_signature = $('#L_signature').val();//签名
 
+    
     //更新信息
     $.ajax({
       type:'POST',
