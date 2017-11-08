@@ -12,7 +12,7 @@
         <script id="moduel" type="text/html">
 
         <div class="form-group" align="center">
-            <img src="{{d.pic}}" style="width: 150px;height: 150px;border-radius: 10px;">
+            <img src="{{d.pic}}" style="width: 150px;height: 150px;border-radius: 10px;"  onerror="javascript:this.src='/image/default/error.jpg';">
         </div>
 
         <div class="form-group">

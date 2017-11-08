@@ -37,7 +37,7 @@
 	    		<td>{{item.id}}</td>
 	    		<td>{{item.name}}</td>
 	    		<td>{{item.state}}</td>
-	    		<td><img src='{{item.pic}}' style='width: 50px;width: 50px;border-radius:5px; '></td>
+	    		<td><img src='{{item.pic}}' onerror="javascript:this.src='/image/default/error.jpg';" style='width: 50px;width: 50px;border-radius:5px; '></td>
 	    		<td>{{item.opencmd}}</td>
 	    		<td>{{item.closecmd}}</td>
 	    		<td>{{item.heat}}</td>
@@ -67,7 +67,7 @@
 	    		<td>{{item.id}}</td>
 	    		<td>{{item.name}}</td>
 	    		<td>{{item.type}}</td>
-	    		<td><img src='{{item.pic}}' style='width: 50px;width: 50px;border-radius:5px; '></td>
+	    		<td><img src='{{item.pic}}' onerror="javascript:this.src='/image/default/error.jpg';" style='width: 50px;width: 50px;border-radius:5px; '></td>
 	    		<td>{{item.data}}</td>
 				<td><a href="update.sensor.php?id={{item.id}}">更改</a></td>
 				<td><a href="delete.sensor.php?id={{item.id}}">删除</a></td>

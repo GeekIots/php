@@ -29,7 +29,7 @@
           </div>
           <div class="detail-about">
             <a class="jie-user" href="">
-              <img src="{{d.avatar}}" alt="">
+              <img src="{{d.avatar}}" onerror="javascript:this.src='/image/default/error.jpg';" alt="">
               <cite>
                 {{d.nickname}}
                 <!-- 更新时间 -->
@@ -65,7 +65,7 @@
               <a name="item-121212121212"></a>
               <div class="detail-about detail-about-reply">
                 <a class="jie-user" href="">
-                  <img src="{{item.avatar}}" alt="">
+                  <img src="{{item.avatar}}" onerror="javascript:this.src='/image/default/error.jpg';" alt="">
                   <cite>
                     <i>{{item.nickname}}</i>
                     <!-- <em>(楼主)</em>
@@ -127,7 +127,7 @@
           {{#  layui.each(d.list, function(index, item){ }}
             <dd>
               <a href="/user/home.php?userid={{item.userid}}">
-                <img src="{{item.avatar}}">
+                <img src="{{item.avatar}}" onerror="javascript:this.src='/image/default/error.jpg';">
                  <cite>{{item.nickname}}</cite>
                  <i>{{item.count}}次回答</i>
               </a>

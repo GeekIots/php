@@ -78,7 +78,7 @@
                 <h4>{{item.name}}</h4>
                </div>
                <div class="row dev_border_Top" style="text-align: center;">
-            <img src="{{item.pic}}" class="dev_icon">
+            <img src="{{item.pic}}" class="dev_icon" onerror="javascript:this.src='/image/default/error.jpg';">
                </div>
             </div>
 
