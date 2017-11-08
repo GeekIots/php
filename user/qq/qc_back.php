@@ -330,10 +330,12 @@
               // 执行登陆流程
               var backurl = getUrlParam('backurl');
               if(backurl==''){  
-                  location.href = '/index.php';  
+                  // location.href = '/index.php'; 
+                  window.open('/index.php');
               } 
               else
-                  location.href = backurl;  
+                window.open(backurl);
+                  // location.href = backurl;  
             }
         },
         error:function (res) {

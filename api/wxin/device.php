@@ -113,7 +113,7 @@
             $myArray["updatesever"] = "fail";
           }
         }
-              //否则，不保存
+        //否则，不保存      
         else
         {
           $myArray["resault"] = 'fail';
