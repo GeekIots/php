@@ -112,6 +112,12 @@
         layer.msg('邮箱不能为空！');
       }
     });
+  //判断是否敲击了Enter键 
+  $(document).keyup(function(event){ 
+      if(event.keyCode ==13){ 
+        $(".layui-btn").trigger("click"); 
+      } 
+  });
 </script>
 </body>
 </html>

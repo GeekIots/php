@@ -7,9 +7,16 @@
   <meta name="description" content="极客社区是极客物联网开发平台的官网社区，致力于为物联网开发提供强劲动力！">
   <link rel="stylesheet" href="/frame/layui-v2.1.0/layui/css/layui.css">
   <link rel="stylesheet" href="/common/res/css/global.css">
+
+ 
   <script src="/frame/layui-v2.1.0/layui/layui.all.js"></script>
   <!-- 预加载的layui模块 -->
   <script src="/common/layerload.js"></script>
+
+   <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
+
   <!-- QQ登录插件 -->
   <script type="text/javascript"
   src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" charset="utf-8"></script>
@@ -88,6 +95,25 @@
   //     }
   //   });  
   // }); 
+
+  // 查看cookie，如果有qq_openid说明是qq登录跳转，直接登录
+  // var qq_openid = $.cookie('qq_openid');
+  // if (qq_openid) {
+  //   $.ajax({
+  //     type:'POST',
+  //     url: "/api/user/login_qq_openid.php",
+  //     data:{'qq_openid':qq_openid},
+  //     success: function (res) {
+  //         console.log('登陆成功:',res);
+  //         // 清除cookie
+  //         $.cookie('qq_openid', null); 
+  //     },
+  //     error:function (res) {
+  //         console.log('fail:',res);
+  //     }
+  //   });
+  // }
+  
   //获取用户登陆信息
   $.ajax({
     url: "/api/user/user.php",
@@ -112,6 +138,5 @@
       appId:"101435544",
       redirectURI:"http://geek-iot.com/user/qq/qc_back.php?backurl="+window.location.href
     });
-    window.close();
   }
 </script>

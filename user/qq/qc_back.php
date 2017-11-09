@@ -7,9 +7,12 @@
   <meta name="description" content="极客社区是极客物联网开发平台的官网社区，致力于为物联网开发提供强劲动力！">
   <link rel="stylesheet" href="/frame/layui-v2.1.0/layui/css/layui.css">
   <link rel="stylesheet" href="/common/res/css/global.css">
+
   <script src="<?php $_SERVER['DOCUMENT_ROOT'] ?>/frame/layui-v2.1.0/layui/layui.all.js"></script>
   <!-- 预加载的layui模块 -->
   <script src="<?php $_SERVER['DOCUMENT_ROOT'] ?>/common/layerload.js"></script>
+  <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101435544" charset="utf-8"></script>
 	  <!-- data-callback="true" -->
@@ -189,6 +192,24 @@
 <script>
   var qq_openid;//qq openid
   var qq_info;//qq信息，包含昵称，头像等 
+
+  //获取用户登陆信息
+  $.ajax({
+    url: "/api/user/user.php",
+    async: false, //同步
+    success: function (res) {
+        console.log('success:',res);
+        if(res.login=='true')
+        {
+
+        }
+    },
+    error:function (res) {
+        console.log('fail:',res);
+    }
+  });
+
+
   $('.layui-btn').on('click', function(){
       console.log("检测按键初始化");
       //注册登录
@@ -319,6 +340,8 @@
 
       // 尝试以qq_openid登录，如果登录失败，用户自主登录
       console.log("以openid登陆");
+      var backurl = getUrlParam('backurl');
+      // location.href = backurl+"&qq_openid="+qq_openid; 
       $.ajax({
         type:'POST',
         url: "/api/user/login_qq_openid.php",
@@ -329,13 +352,17 @@
             if (res.resault=='success') {
               // 执行登陆流程
               var backurl = getUrlParam('backurl');
+
+              // 配置cookie
+              // $.cookie('qq_openid', qq_openid,{ path: '/' }); 
+
               if(backurl==''){  
-                  // location.href = '/index.php'; 
-                  window.open('/index.php');
+                  location.href = '/index.php'; 
+                  // window.open('/index.php', "_blank");
               } 
               else
-                window.open(backurl);
-                  // location.href = backurl;  
+                // window.open(backurl, "_blank");
+                  location.href = backurl; 
             }
         },
         error:function (res) {
