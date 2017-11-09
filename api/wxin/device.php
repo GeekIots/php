@@ -12,12 +12,6 @@
   $data = $_GET['data'];
   $id = $_GET['id'];
 
-  $myArray["return"] = '$device';
-  $myArray["resault"] = 'success';
-  $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
-  echo $json;
-  exit();
-
   if (!$con)
   {
     $myArray["resault"]='fail';
