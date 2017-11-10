@@ -110,7 +110,7 @@
   function qqLogin(){
     QC.Login.showPopup({
       appId:"101435544",
-      redirectURI:"http://www.geek-iot.com/user/qq/qc_back.php?backurl="+window.location.href
+      redirectURI:"http://geek-iot.com/user/qq/qc_back.php?backurl="+window.location.href
     });
     window.close();
   }
