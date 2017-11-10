@@ -112,9 +112,9 @@
               <div class="layui-form-item">
                 <label for="L_pass" class="layui-form-label">新密码</label>
                 <div class="layui-input-inline">
-                  <input type="password" id="L_pass" name="pass" required lay-verify="required" autocomplete="off" class="layui-input">
+                  <input type="password" id="L_pass" name="pass" required lay-verify="password" autocomplete="off" class="layui-input">
                 </div>
-                <div class="layui-form-mid layui-word-aux">6到16个字符</div>
+                <div class="layui-form-mid layui-word-aux">6到20个数字和字符组合</div>
               </div>
               <div class="layui-form-item">
                 <label for="L_repass" class="layui-form-label">确认密码</label>
@@ -123,7 +123,7 @@
                 </div>
               </div>
               <div class="layui-form-item">
-                <button class="layui-btn" key="set-mine" lay-filter="*" lay-submit>确认修改</button>
+                <button class="layui-btn" key="set-mine" lay-filter="*" lay-submit id="btn-update-password">确认修改</button>
               </div>
             <!-- </form> -->
           </div>
@@ -132,20 +132,16 @@
             <ul class="app-bind">
               <li class="fly-msg app-havebind">
                 <i class="iconfont icon-qq"></i>
-                <span>已成功绑定，您可以使用QQ帐号直接登录，当然，您也可以</span>
-                <a href="javascript:;" class="acc-unbind" type="qq_id">解除绑定</a>
                 
-                <!-- <a href="" onclick="layer.msg('正在绑定微博QQ', {icon:16, shade: 0.1, time:0})" class="acc-bind" type="qq_id">立即绑定</a>
-                <span>，即可使用QQ帐号登录Fly社区</span> -->
+                <span>
+                  {{# if(user_d.qq_openid){ }}
+                     已成功绑定，您可以使用QQ帐号直接登录，当然，您也可以</span>
+                    <a onclick="qqlogin_remove()" class="acc-unbind" type="qq_id">解除绑定</a>
+                  {{# }else{ }}
+                    您还未绑定，绑定后您可以使用QQ帐号直接登录</span>
+                    <a onclick="qqLogin()" class="acc-unbind" type="qq_id">立即绑定</a>
+                  {{#  } }}
               </li>
-  <!--             <li class="fly-msg">
-                <i class="iconfont icon-weibo"></i>
-                <span>已成功绑定，您可以使用微博直接登录Fly社区，当然，您也可以</span>
-                <a href="javascript:;" class="acc-unbind" type="weibo_id">解除绑定</a>
-                
-                <a href="" class="acc-weibo" type="weibo_id"  onclick="layer.msg('正在绑定微博', {icon:16, shade: 0.1, time:0})" >立即绑定</a>
-                <span>，即可使用微博帐号登录Fly社区</span>
-              </li> -->
             </ul>
           </div>
       </div>
@@ -251,6 +247,77 @@
       }
     });
   });
+
+  // 修改密码
+  $('#btn-update-password').on('click', function(){
+    //获取信息
+    var L_password = $('#L_nowpass').val();
+    var L_newpassword = $('#L_pass').val();
+    var L_repassword = $('#L_repass').val();
+    if (L_newpassword!=L_repassword) {
+      layer.confirm('您输入的新密码不一致,请重新输入！', {btn: ['朕知道了']});
+    }
+    else
+    {
+      //更改密码
+      $.ajax({
+        type:'POST',
+        async: true, //异步
+        url: "../api/user/update.password.php",
+        data:{'userid':user_d.userid,'password':L_password,'new_password':L_newpassword},
+        //数据长度太长，放到data里通过post传送
+        success: function (argument) {
+           if (argument.resault=='success') {
+                layer.confirm("修改成功，通知邮件已经发送到您的邮箱："+user_d.email, {btn: ['知道了']});
+            }
+            else{
+              // 提示错误信息
+              console.log(argument.msg);
+              layer.confirm('修改失败：'+argument.msg, {btn: ['我再试一次']});
+            }
+        },
+        error:function (argument) {
+          console.log(argument);
+          layer.msg('修改失败,请稍后再试！');
+        }
+      });      
+    }
+  });
+
+  function qqlogin_remove()
+  {
+    layer.confirm('确定解绑当前QQ？', {
+      btn: ['很确定','再想想'] 
+    }, function(index, layero){
+      // layer.msg('确定');
+      //更改密码
+      $.ajax({
+        type:'POST',
+        async: true, //异步
+        url: "../api/user/qq.openid.remove.php",
+        data:{'userid':user_d.userid},
+        success: function (argument) {
+           if (argument.resault=='success') {
+                layer.confirm("解绑成功", {btn: ['知道了']});
+                window.reload();
+            }
+            else{
+              // 提示错误信息
+              console.log(argument.msg);
+              layer.confirm('解绑失败：'+argument.msg, {btn: ['我再试一次']});
+            }
+        },
+        error:function (argument) {
+          console.log(argument);
+          layer.msg('修改失败,请稍后再试！');
+        }
+      }); 
+    }, function(index){
+      // layer.msg('取消');
+
+    });
+  }
+
 </script>
 
 

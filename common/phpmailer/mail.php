@@ -5,6 +5,7 @@
 header("content-type:text/html;charset=utf-8");
 ini_set("magic_quotes_runtime",0);
 require 'class.phpmailer.php';
+date_default_timezone_set("Asia/Shanghai");
 // $sendto:发送到
 // $subject:标题
 // $body:内容
@@ -23,7 +24,7 @@ function sendmail($sendto='15339287330@126.com',$subject='测试标题',$body='<
 		//$mail->IsSendmail(); //如果没有sendmail组件就注释掉，否则出现“Could  not execute: /var/qmail/bin/sendmail ”的错误提示
 		$mail->AddReplyTo("15339287330@126.com","geek-iot");//回复地址
 		$mail->From       = "15339287330@126.com";
-		$mail->FromName   = "极客物联网";
+		$mail->FromName   = "www.geek-iot.com";
 
 		$to = $sendto;
 		$mail->AddAddress($to);

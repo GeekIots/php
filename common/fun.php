@@ -1,7 +1,6 @@
 <?php 
     error_reporting(E_ALL^E_NOTICE); //取消警告显示
     header('Content-type:application/json');
-    $conn_root=$_SERVER['DOCUMENT_ROOT']."/api/conn.php";
     /** 
         * 配置文件操作(查询了与修改) 
         * 默认没有第三个参数时，按照字符串读取 
@@ -66,24 +65,47 @@
         return $val;
     }
 
-    // 判断字段是否存在,存在true，不存在false
-    // 表名：table
-    // 字段名：field
+    // 判断字段是否存在,存在返回用户信息，不存在返回错误信息并退出
     // 搜索内容：describ
-    function find($table='',$field='',$describ='')
+    function find($describ='',$con)
     {
-        include_once($conn_root);
-        $_field = mysqli_query($con,"{$describ} {$table} {$field}");  
-        // $_field = mysqli_fetch_array($_field);  
-        // if($_field[0]){ 
-        //     print_r($_field) ;
-        //   return true;
-        // }else{  
-        //   return false;
-        // }  
+        $sql_select = "select * from user where userid = '{$describ}'"; //SQL语句
+        $result = mysqli_query($con,$sql_select);//执行SQL语句
+        $row = mysqli_fetch_array($result);
+        // mysqli_close($con);
+        if ($row) {
+            return $row;
+        }
+        else
+        {
+            // 字段内容不存在
+            $myArray["msg"] = "{$field}:'{$describ}'不存在!:";
+            $myArray["resault"] = 'fail';
+            $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
+            echo $json;
+            exit();
+        }
     }
 
-
-
-        
+    // 判断密码是否正确
+    function psd_verify($userid='',$psd='',$con)
+    {
+        $psw = md5($psd);
+        $sql_select = "select password from user where userid = '{$userid}'"; //SQL语句
+        $result = mysqli_query($con,$sql_select);//执行SQL语句
+        $row=mysqli_fetch_array($result);
+        // print_r($row);
+        if ($row['password'] == $psw) {
+            return true;
+        }
+        else
+        {
+            // 字段内容不存在
+            $myArray["msg"] = "密码不正确!";
+            $myArray["resault"] = 'fail';
+            $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
+            echo $json;
+            exit(); 
+        }
+    }  
  ?>

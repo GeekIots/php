@@ -78,7 +78,7 @@
             $myArray["value"] = $row['value'];//用户积分
             $myArray["level"] = $row['level'];//用户等级
             $myArray["datetime"] = $row['regtime'];//注册时间
-            $myArray["qq_openid"] = $row['qq_openid'];//注册时间
+            $myArray["qq_openid"] = $row['qq_openid'];//绑定qq登录
         }
     }
     else
@@ -127,6 +127,7 @@
                 $myArray["value"] = $row['value'];//用户积分
                 $myArray["level"] = $row['level'];//用户等级
                 $myArray["datetime"] = $row['regtime'];//注册时间
+                $myArray["qq_openid"] = $row['qq_openid'];//绑定qq登录
             }
         }
     } 
