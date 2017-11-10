@@ -1,7 +1,5 @@
 <?php
-    error_reporting(E_ALL^E_NOTICE); //取消警告显示
-    header('Content-type:application/json');
-    include $_SERVER['DOCUMENT_ROOT']."/api/conn.php";
+    include $_SERVER['DOCUMENT_ROOT']."/api/common/fun.php";
 
     // 更改密码API，支持get，post
     
@@ -9,27 +7,6 @@
     // 用户id:userid
     // 原始密码:password
     // 新密码:new_password
-
-    // 参数获取函数，如果must默认是false，如果设置为ture，则必须传递参数
-    function get_post_para($value='',$must=false)
-    {
-        $val='';
-        if (isset($_GET[$value])) {
-            $val = $_GET[$value];
-        } 
-        else if (isset($_POST[$value])){
-            $val = $_POST[$value];
-        }
-        else if ($must==true) {
-            // 参数不存在
-            $myArray["msg"] = "缺少字段:{$value}!";
-            $myArray["resault"] = 'fail';
-            $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
-            echo $json;
-            exit();
-        }
-        return $val;
-    }
 
 	//获取userid
     $userid = get_post_para('userid',true);
@@ -44,8 +21,13 @@
     $myArray["password"] = $password;
     $myArray["new_password"] = $new_password;
 
-    print_r($myArray);
+    find("user","userid","1509639203636");
+    $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
+    echo $json;
+
+
     // 参数判断
+
     // if (!empty($email)) {
     //     // 判断邮箱是否存在
     //     $sql = "select email from user where email = '$email'"; //SQL语句
