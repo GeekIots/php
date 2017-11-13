@@ -1,10 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>极客物联网 | 调试界面</title>
-    <meta charset="utf-8">
+<meta charset="utf-8">
+<title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+<script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
 </head>
 <body>
-<h1>hello word！</h1> 
+<div id="app">
+    <p>{{ message }}</p>
+    <button v-on:click="reverseMessage">反转字符串</button>
+</div>
+	
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    message: 'Runoob!'
+  },
+  methods: {
+    reverseMessage: function () {
+      this.message = this.message.split('').reverse().join('')
+    }
+  }
+})
+</script>
 </body>
 </html>
