@@ -46,7 +46,7 @@
 
           <img id='image-avatar' src='{{ user_d.avatar }}'>
           <cite id='nickname'>{{ user_d.nickname }}</cite>
-          <i>VIP1</i>
+          <i>VIP</i>
           </a>
           <div class='nav'>
           <a href='/user/set.php'><i class='iconfont icon-shezhi'></i>设置</a>

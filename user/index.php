@@ -32,6 +32,15 @@
           我的消息
         </a>
       </li>
+      <!-- 顶级管理员可进入后台管理界面 -->
+      {{# if(user_d.level=='admin-1'){ }}
+        <li class="layui-nav-item">
+          <a href="/admin/index.php">
+            <i class="layui-icon">&#xe613;</i>
+            后台管理
+          </a>
+        </li>
+      {{# } }}
     </ul>
     
     <div class="site-tree-mobile layui-hide">

@@ -13,7 +13,7 @@
   <div id="app">
     <div class="layui-layout layui-layout-admin">
       <div class="layui-header">
-        <div class="layui-logo">极客物联网</div>
+       <a href="/index.php"><img class="layui-logo" style="padding: 5px; height: 80%; " src='/common/res/images/logo.png'></a> 
         <ul class="layui-nav layui-layout-right">
           <template v-if="user.login=='true'">
             <li class="layui-nav-item">
@@ -44,8 +44,8 @@
             <li class="layui-nav-item">
               <a href="javascript:;">信息管理</a>
               <dl class="layui-nav-child">
-                <dd><a href="javascript:;">小程序信息</a></dd>
-                <dd><a href="javascript:;">网站信息</a></dd>
+                <dd><a href="/admin/info.wxin.php">小程序信息</a></dd>
+                <dd><a href="/admin/info.web.php">网站信息</a></dd>
               </dl>
             </li>
             <li class="layui-nav-item">
@@ -119,6 +119,7 @@ table.render({
   ,cols: [[ //标题栏
   {checkbox: true, LAY_CHECKED: true} //默认全选
   ,{field: 'userid', title: '用户ID', width: 140, sort: true}
+  ,{title: '头像', width: 60  , align: 'center',templet: '<div><img src="{{d.avatar}}" width="26px" height="26px"style="border-radius: 13px;" onerror="javascript:this.src=\'/image/default/error.jpg\';"/></div>'}
   ,{field: 'nickname', title: '昵称', width: 120, sort: true}
   ,{field: 'sex', title: '性别', width: 80, sort: true}
   ,{field: 'signature', title: '个性签名', width: 120, sort: true}
