@@ -13,7 +13,7 @@
   <div id="app">
     <div class="layui-layout layui-layout-admin">
       <div class="layui-header">
-        <div class="layui-logo">极客物联网</div>
+       <a href="/index.php"><img class="layui-logo" style="padding: 5px; height: 80%; " src='/common/res/images/logo.png'></a> 
         <ul class="layui-nav layui-layout-right">
           <template v-if="user.login=='true'">
             <li class="layui-nav-item">
