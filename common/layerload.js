@@ -29,15 +29,15 @@ var layer,laydate,laypage,laytpl,layim,layedit,form,upload,tree,table,element,ut
   layedit = layui.layedit;
   form = layui.form;
   upload = layui.upload;
-  // tree = layui.tree;
+  tree = layui.tree;
   table = layui.table;
   element = layui.element;
   util = layui.util;
-  // flow = layui.flow;
-  // carousel = layui.carousel;
-  // code = layui.code;
+  flow = layui.flow;
+  carousel = layui.carousel;
+  code = layui.code;
   $  = layui.jquery;
-  // mobile = layui.mobile;
+  mobile = layui.mobile;
 }();
 
 //获取url中的参数
