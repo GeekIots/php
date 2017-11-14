@@ -26,7 +26,7 @@
     {
         $indexArray["nickname"] = $row['nickname'];//昵称
         $indexArray["userid"] = $row['userid'];//用户id
-        $indexArray["sex"] = $row['sex'];//昵称
+        $indexArray["sex"] = ($row['sex']==0) ? '男' : '女' ;//性别
         $indexArray["avatar"] = $row['avatar'];//头像路径
         $indexArray["phonenumber"] = $row['phonenumber'];//手机号码
         $indexArray["email"] = $row['email'];//绑定邮箱
