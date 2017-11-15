@@ -2,54 +2,55 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="style.css">
-<!-- 引入 Bootstrap -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
 </head>  
-<body>
-	<script id="moduel" type="text/html">
-		<main class="contain">
-        <!--显示到列表-->
-		  <h2>设备管理</h2>
-		  <div>
-		  	<a class="btn btn-default" href="add.switch.php">添加开关</a>
-		  	<a class="btn btn-default" href="add.sensor.php">添加传感器</a>
-			<a class="btn btn-default" href="device.php">返回</a>
-		  </div>
-		  <br \>&nbsp;
-		  <!--<p>查看和管理您的设备！</p>-->           
-		  <h4>我的开关</h4>	
-		  <div>
-		  	<table class="table table-striped  table-hover">
-		      <tr>
-		        <th style="width: 30px">ID1</th>
-		        <th style="width: 30px">名称</th>
-		        <th style="width: 30px">状态</th>
-		        <th style="width: 30px">图片</th>
-		        <th style="width: 30px">开指令</th>
-		        <th style="width: 30px">关指令</th>
-		        <th style="width: 30px">热度</th>
-		        <th style="width: 30px">更改</th>
-		        <th style="width: 30px">删除</th>
-		      </tr>
-		      {{#  layui.each(switchlist.list, function(index, item){ }}
-				<tr>
-	    		<td>{{item.id}}</td>
-	    		<td>{{item.name}}</td>
-	    		<td>{{item.state}}</td>
-	    		<td><img src='{{item.pic}}' onerror="javascript:this.src='/image/default/error.jpg';" style='width: 50px;width: 50px;border-radius:5px; '></td>
-	    		<td>{{item.opencmd}}</td>
-	    		<td>{{item.closecmd}}</td>
-	    		<td>{{item.heat}}</td>
-	    		<td><a href='update.switch.php?id={{item.id}}'>更改</a></td>
-	    		<td><a href='delete.switch.php?id={{item.id}}'>删除</a></td>
-	    		</tr>
-		     {{#  }); }}
+<body style="background: white;">
+  <div id="app">
+	<main v-if="user.login=='true'" style="padding-left: 30px;padding-right: 30px;" >
+        
+		    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+			  <legend>设备管理 - 开关</legend>
+			</fieldset>
+		  	<table class="layui-table lay-skin='line' lay-size='lg' ">
+		  	  <thead>
+			      <tr>
+			        <th style="width: 30px">ID</th>
+			        <th style="width: 30px">名称</th>
+			        <th style="width: 30px">状态</th>
+			        <th style="width: 30px">图片</th>
+			        <th style="width: 30px">开指令</th>
+			        <th style="width: 30px">关指令</th>
+			        <th style="width: 30px">热度</th>
+			        <th style="width: 30px">更改</th>
+			        <th style="width: 30px">删除</th>
+			      </tr>
+		      </thead>
+		      <tbody>
+		      	<template v-for="item in switchlist.list">
+		    	  <tr>
+		    		<td>{{item.id}}</td>
+		    		<td>{{item.name}}</td>
+		    		<td>{{item.state}}</td>
+		    		<td><img :src='item.pic' onerror="javascript:this.src='/image/default/error.jpg';" style='width: 50px;width: 50px;border-radius:5px; '></td>
+		    		<td>{{item.opencmd}}</td>
+		    		<td>{{item.closecmd}}</td>
+		    		<td>{{item.heat}}</td>
+		    		<td><a class="layui-btn layui-btn-warm" :href="'update.switch.php?id='+item.id">更改</a></td>
+		    		<td><a class="layui-btn layui-btn-danger" :href="'delete.switch.php?id='+item.id">删除</a></td>
+	    		  </tr>
+		      	</template>
+		      </tbody>
 		  </table>
+		  
+		  <div style="text-align: right;padding-top: 30px;">
+		  	<a class="layui-btn" href="add.switch.php"> 添加开关 </a>
+			<a class="layui-btn layui-btn-normal" href="device.php">返回</a>
 		  </div>
-		  <br>
-		  <h4>传感器类设备</h4>		  
-		  <table class="table table-striped  table-hover">
+
+		    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+			  <legend>设备管理 - 传感器</legend>
+			</fieldset>	  
+		  <table class="layui-table">
 		    <thead>
 		      <tr>
 		        <th>ID</th>
@@ -62,23 +63,26 @@
 		      </tr>
 		    </thead>
 		    <tbody>
-		      {{#  layui.each(sensorlist.list, function(index, item){ }}
-	    		<tr>
-	    		<td>{{item.id}}</td>
-	    		<td>{{item.name}}</td>
-	    		<td>{{item.type}}</td>
-	    		<td><img src='{{item.pic}}' onerror="javascript:this.src='/image/default/error.jpg';" style='width: 50px;width: 50px;border-radius:5px; '></td>
-	    		<td>{{item.data}}</td>
-				<td><a href="update.sensor.php?id={{item.id}}">更改</a></td>
-				<td><a href="delete.sensor.php?id={{item.id}}">删除</a></td>
-				</tr>
-			  {{#  }); }}
+		    	<template v-for="item in sensorlist.list">
+		    	  <tr>
+					<td>{{item.id}}</td>
+		    		<td>{{item.name}}</td>
+		    		<td>{{item.type}}</td>
+		    		<td><img :src='item.pic' onerror="javascript:this.src='/image/default/error.jpg';" style='width: 50px;width: 50px;border-radius:5px; '></td>
+		    		<td>{{item.data}}</td>
+		    		<td><a class="layui-btn layui-btn-warm" :href="'update.sensor.php?id='+item.id">更改</a></td>
+		    		<td><a class="layui-btn layui-btn-danger" :href="'delete.sensor.php?id='+item.id">删除</a></td>
+	    		  </tr>
+		      	</template>
 		    </tbody>
-		  </table>
-    </main>
-	</script>
-	<!-- 建立视图。用于呈现模板渲染结果。 -->
-	<div id="view"></div>
+		</table>
+		 <div style="text-align: right;padding-top: 30px;">
+		  	<a class="layui-btn" href="add.sensor.php">添加传感器</a>
+			<a class="layui-btn layui-btn-normal" href="device.php">返回</a>
+		  </div>
+		<br>
+	</main>
+  </div>
 </body>
 </html>
 <?php include $_SERVER ['DOCUMENT_ROOT']."/common/footer.php";?>
@@ -114,10 +118,38 @@
     }
   });
 
-  //渲染数据
-  var getTpl = moduel.innerHTML;
-  var view = document.getElementById('view');
-  laytpl(getTpl).render(switchlist, function(html){
-    view.innerHTML = html;
-  });
+  new Vue({
+	el: '#app',
+	  data: {
+	  	user:user_d,
+	    switchlist: switchlist,
+	    sensorlist:sensorlist
+	  }
+	})
+
+  if (user_d.login=='false') {
+  	 //公告层
+      layer.open({
+        type: 1
+        ,title: false //不显示标题栏
+        ,closeBtn: false
+        ,area: '300px;'
+        ,shade: 0.8
+        ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+        ,btn: ['前去登陆', '看看再说']
+        ,btnAlign: 'c'
+        ,moveType: 1 //拖拽模式，0或者1
+        ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 400;">亲,进入设备管理需要登陆哦！</div>'
+        ,success: function(layero){
+          var btn = layero.find('.layui-layer-btn');
+          btn.find('.layui-layer-btn0').attr({
+            href: '/user/login.php'
+            ,target: '_blank'
+          });
+          btn.find('.layui-layer-btn1').attr({
+            href: '/index.php'
+          });
+        }
+      });
+  }
 </script>

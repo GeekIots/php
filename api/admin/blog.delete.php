@@ -8,8 +8,13 @@
 	//获取id
     $id = get_post_para('id',true);
 
+    // 删除帖子
     $sql_delete = "delete from blog where id=$id";  
     $res_delete = mysqli_query($con,$sql_delete); 
+
+    // 删除回帖
+    $sql_delete = "delete from bloganswer where toid=$id";  
+    $res_delete = mysqli_query($con,$sql_delete);
     if($res_delete) 
     {
         $myArray["resault"] = 'success';
