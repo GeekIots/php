@@ -229,9 +229,6 @@
       console.log('fail:',res);
     }
   });
-  // 毫米级时间戳
-  var timestamp = (new Date()).valueOf(); 
-  layer.msg(timestamp);
 </script>
 </html>
 

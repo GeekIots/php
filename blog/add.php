@@ -125,16 +125,18 @@
       }
       else
       {
+        // 毫米级时间戳
+        var timestamp = (new Date()).valueOf(); 
         $.ajax({
             type:'POST',
             url: "../api/blog/new.php",
-            data:{'title':title,'contents':str,'classify':select_str,'userid':user_d.userid},
+            data:{'id':timestamp,'title':title,'contents':str,'classify':select_str,'userid':user_d.userid},
             //数据长度太长，放到data里通过post传送
             success: function (argument) {
                 console.log(argument);
                 if (argument.resault=='success') {
                 	layer.msg('发表成功！',{icon:1,time:800},function(){
-                      window.location.href='/blog/index.php'
+                      window.location.href='/blog/view.php?id='+timestamp
                     });
                 }
                 else{

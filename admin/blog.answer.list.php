@@ -85,10 +85,6 @@
 </body>
 <script>
 var user;
-//JavaScript代码区域
-// layui.use('element', function(){
-//   var element = layui.element;
-// });
 
 //获取用户登陆信息
 $.ajax({
@@ -110,8 +106,6 @@ new Vue({
   }
 })
 
-
-
 table.render({
   elem: '#laytable'
   ,loading: true
@@ -119,8 +113,8 @@ table.render({
   ,height: 500
   ,cols: [[ //标题栏
   {checkbox: true, LAY_CHECKED: true} //默认全选
-  ,{field: 'id', title: '回帖ID', width: 80, sort: true}
-  ,{field: 'toid', title: '帖子ID', width: 80, sort: true}
+  ,{field: 'id', title: '回帖ID', width: 140, sort: true}
+  ,{field: 'toid', title: '帖子ID', width: 140, sort: true}
   ,{title: '头像', width: 60  , align: 'center',templet: '<div><img src="{{d.avatar}}" width="26px" height="26px"style="border-radius: 13px;" onerror="javascript:this.src=\'/image/default/error.jpg\';"/></div>'}
   ,{field: 'nickname', title: '昵称', width: 80, sort: true}
   ,{field: 'title', title: '帖子标题', width: 140, sort: true}

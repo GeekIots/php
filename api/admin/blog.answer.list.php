@@ -33,7 +33,7 @@
         $query12=mysqli_query($con,$sql12);
         $row12 = mysqli_fetch_array($query12);
 
-        $indexArray["id"]=$rs['toid'];//回帖ID
+        $indexArray["id"]=$rs['id'];//回帖ID
         $indexArray["toid"]=$rs['toid'];//帖子ID
         $indexArray["avatar"]=$row11['avatar'];//回帖头像
         $indexArray["nickname"]=$row11['nickname'];//回帖昵称
