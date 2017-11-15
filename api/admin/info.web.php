@@ -18,9 +18,8 @@
     $myArray["count"] = $count;
 
     $StartNum=$limit*($page-1);
-    $EndNum=$limit*$page;
 
-    $sql="select * from info where class='web' limit $StartNum,$EndNum";
+    $sql="select * from info where class='web' limit $StartNum,$limit";
     $query=mysqli_query($con,$sql); 
     while($row=mysqli_fetch_array($query))
     {

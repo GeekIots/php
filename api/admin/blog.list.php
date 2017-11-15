@@ -18,9 +18,8 @@
     $myArray["count"] = $count;
 
     $StartNum=$limit*($page-1);
-    $EndNum=$limit*$page;
 
-    $sql="select * from blog order by dates desc limit $StartNum,$EndNum ";
+    $sql="select * from blog order by dates desc limit $StartNum,$limit ";
     $query=mysqli_query($con,$sql); 
     while($rs=mysqli_fetch_array($query))
     {
