@@ -4,10 +4,9 @@
 <head>
 	<!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
 </head>  
-<body style="background: white;">
+<body style="background: white;padding-top: 10px">
   <div id="app">
-	<main v-if="user.login=='true'" style="padding-left: 30px;padding-right: 30px;" >
-        
+	<main v-if="user.login=='true'" style="padding-left: 60px;padding-right: 60px;" >
 		    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
 			  <legend>设备管理 - 开关</legend>
 			</fieldset>

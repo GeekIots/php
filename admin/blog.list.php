@@ -58,8 +58,8 @@
             <li class="layui-nav-item">
               <a href="javascript:;">设备管理</a>
               <dl class="layui-nav-child">
-                <dd><a href="javascript:;">开关</a></dd>
-                <dd><a href="javascript:;">传感器</a></dd>
+                <dd><a href="/admin/device.switch.list.php">开关</a></dd>
+                <dd><a href="/admin/device.sensor.list.php">传感器</a></dd>
               </dl>
             </li>
           </ul>
