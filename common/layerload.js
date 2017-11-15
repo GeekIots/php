@@ -47,8 +47,4 @@ function getUrlParam(name) {
     if (r != null) return unescape(r[2]); return null; //返回参数值
 }
 
-//全局ajax设置为同步方式
-// $.ajaxSetup({
-//   async: false //同步
-// });
 

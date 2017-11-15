@@ -5,12 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="keywords" content="geek,geekiot,物联网,物联网社区">
   <meta name="description" content="极客社区是极客物联网开发平台的官网社区，致力于为物联网开发提供强劲动力！">
-  <script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>  <!-- 预加载的layui模块 -->
   <link rel="stylesheet" href="/frame/layui-v2.1.0/layui/css/layui.css">
   <link rel="stylesheet" href="/common/res/css/global.css">
   <script src="/frame/layui-v2.1.0/layui/layui.all.js"></script>
-  <!-- 预加载的layui模块 -->
-  <script src="/common/layerload.js"></script>
   <!-- QQ登录插件 -->
   <script type="text/javascript"
   src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" charset="utf-8"></script>
@@ -19,6 +16,8 @@
       font-size: 18px;
     }
   </style>
+  <!-- 预加载的layui模块 -->
+  <script src="/common/layerload.js"></script>
 </head>
 
 <div class="header">
@@ -74,6 +73,10 @@
 <input style="display:none" type="text" name="fakeusernameremembered"/>
 <input style="display:none" type="password" name="fakepasswordremembered"/>
 <script>
+  //全局ajax设置为同步（阻塞）方式
+  $.ajaxSetup({
+    async: false //同步
+  });
   // 如果HTML是动态生成的，自动渲染就会失效
   element.init();
 

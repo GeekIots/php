@@ -173,6 +173,7 @@
     success: function (res) {
       switchlist  = res;
       console.log('switchlist:',res);
+
     },
     error:function (res) {
       console.log('fail:',res);

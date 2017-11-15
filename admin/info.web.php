@@ -51,8 +51,8 @@
             <li class="layui-nav-item">
               <a href="javascript:;">论坛管理</a>
               <dl class="layui-nav-child">
-                <dd><a href="/admin/blog.list.php">文章列表</a></dd>
-              </dl>
+                <dd><a href="/admin/blog.list.php">帖子列表</a></dd>
+                <dd><a href="/admin/blog.answer.list.php">回帖列表</a></dd>
             </li>
             <li class="layui-nav-item">
               <a href="javascript:;">设备管理</a>

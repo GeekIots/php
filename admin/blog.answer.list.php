@@ -41,18 +41,18 @@
                 <dd><a href="/admin/user.list.php">用户列表</a></dd>
               </dl>
             </li>
-            <li class="layui-nav-item layui-nav-itemed">
+            <li class="layui-nav-item">
               <a href="javascript:;">信息管理</a>
               <dl class="layui-nav-child">
-                <dd class="layui-bg-green"><a href="javascript:;">小程序信息</a></dd>
+                <dd><a href="/admin/info.wxin.php">小程序信息</a></dd>
                 <dd><a href="/admin/info.web.php">网站信息</a></dd>
               </dl>
             </li>
-            <li class="layui-nav-item">
+            <li class="layui-nav-item layui-nav-itemed">
               <a href="javascript:;">论坛管理</a>
               <dl class="layui-nav-child">
                 <dd><a href="/admin/blog.list.php">帖子列表</a></dd>
-                <dd><a href="/admin/blog.answer.list.php">回帖列表</a></dd>
+                <dd class="layui-bg-green"><a href="/admin/blog.answer.list.php">回帖列表</a></dd>
               </dl>
             </li>
             <li class="layui-nav-item">
@@ -115,15 +115,17 @@ new Vue({
 table.render({
   elem: '#laytable'
   ,loading: true
-  ,url:'/api/admin/info.wxin.php'
+  ,url:'/api/admin/blog.answer.list.php'
   ,height: 500
   ,cols: [[ //标题栏
   {checkbox: true, LAY_CHECKED: true} //默认全选
-  ,{field: 'id', title: 'ID', width: 50, sort: true}
-  ,{field: 'name', title: '名称', width: 80, sort: true}
-  ,{field: 'des', title: '简介', width: 120, sort: true}
-  ,{field: 'content', title: '内容', width: 200, sort: true}
-  ,{field: 'dates', title: '更新时间', width: 80, sort: true}
+  ,{field: 'id', title: '回帖ID', width: 80, sort: true}
+  ,{field: 'toid', title: '帖子ID', width: 80, sort: true}
+  ,{title: '头像', width: 60  , align: 'center',templet: '<div><img src="{{d.avatar}}" width="26px" height="26px"style="border-radius: 13px;" onerror="javascript:this.src=\'/image/default/error.jpg\';"/></div>'}
+  ,{field: 'nickname', title: '昵称', width: 80, sort: true}
+  ,{field: 'title', title: '帖子标题', width: 140, sort: true}
+  ,{field: 'contents', title: '回帖内容', width: 140, sort: true}
+  ,{field: 'dates', title: '回帖时间', width: 180, sort: true}
   ,{field:'right', title: '操作', width:177,toolbar:"#barDemo"}
   ]] 
   ,skin: 'row' //表格风格
@@ -145,18 +147,18 @@ table.on('tool(tabetool)', function(obj){ //注：tool是工具条事件名，te
  
   if(layEvent === 'detail'){ //查看
       console.log(data);
-      // window.location.href="/blog/view.php?id="+data.id; 
+      window.location.href="/blog/view.php?id="+data.toid; 
   } else if(layEvent === 'del'){ //删除
-    layer.confirm('暂时不支持删除！', function(index){
-      // obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+    layer.confirm('真的删除行么', function(index){
+      obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
       layer.close(index);
       //向服务端发送删除指令
-      // $.ajax({
-      //   url: "/api/admin/blog.delete.php?id="+data.id,
-      //   async: true, //同步
-      //   success: function (res) {console.log('success:',res);layer.msg('删除成功！');},
-      //   error:function (res) {console.log('fail:',res);layer.msg('删除失败！');}
-      // });
+      $.ajax({
+        url: "/api/admin/blog.answer.delete.php?id="+data.id,
+        async: true, //同步
+        success: function (res) {console.log('success:',res);layer.msg('删除成功！');},
+        error:function (res) {console.log('fail:',res);layer.msg('删除失败！');}
+      });
     });
   } else if(layEvent === 'edit'){ //编辑
     layer.alert('编辑行：<br>'+ JSON.stringify(data));

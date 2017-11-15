@@ -51,7 +51,8 @@
             <li class="layui-nav-item layui-nav-itemed">
               <a href="javascript:;">论坛管理</a>
               <dl class="layui-nav-child">
-                <dd class="layui-bg-green"><a href="javascript:;">文章列表</a></dd>
+                <dd class="layui-bg-green"><a href="/admin/blog.list.php">帖子列表</a></dd>
+                <dd><a href="/admin/blog.answer.list.php">回帖列表</a></dd>
               </dl>
             </li>
             <li class="layui-nav-item">
