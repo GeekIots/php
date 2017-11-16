@@ -23,6 +23,9 @@
         ```
     */
     //获取编辑器内容
+    $title = $_POST['title'];
+
+    //获取编辑器内容
     $contents = $_POST['contents'];
 
     // 获取类型选择内容
@@ -43,7 +46,7 @@
 	    }
 	    else{
 	    	// 验证通过，更新
-			$sql_update="UPDATE blog set contents='$contents',classify='$classify',dates=now() where id='$id'";
+			$sql_update="UPDATE blog set title='$title', contents='$contents',classify='$classify',dates=now() where id='$id'";
 			if (!mysqli_query($con, $sql_update))
             {
                 // die('Error: ' . mysqli_error($con));

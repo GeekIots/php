@@ -2,9 +2,9 @@
     // 设置session
     session_start();
     error_reporting(E_ALL^E_NOTICE); //取消警告显示
-    header('Content-type:application/json');
     include $_SERVER['DOCUMENT_ROOT']."/api/conn.php";
     require_once($_SERVER['DOCUMENT_ROOT'].'/common/phpmailer/mail.php'); 
+    header('Content-type:application/json');
     date_default_timezone_set("Asia/Shanghai");
 
     // 毫秒级时间戳
@@ -72,10 +72,10 @@
                         {
                             //注册成功
                             $myArray["resault"] = 'success';
-                            sendmail($email,'极客物联网注册认证！',"恭喜您成为极客物联网会员，请点击链接激活账号 www.geek-iot.com/api/blog/user/register.check.php?userid={$userid}");
+                            sendmail($email,'极客物联网注册认证！',"恭喜您成为极客物联网会员，<a href='http://www.geek-iot.com/api/user/register.check.php?userid={$userid}'>立刻激活</a>");
                             sendmail("15339287330@126.com", "新会员注册通知！","昵称:".$nickname.",用户ID:".$userid.",注册邮箱:".$email);
                             // 目前是以邮箱登录,userid是唯一标志
-                            // $_SESSION['login'] = $userid;
+                            $_SESSION['login'] = $userid;
                         }  
                         else  
                         {  

@@ -29,7 +29,7 @@
 		        <label class="layui-form-label">所在类别</label>
 		        <div class="layui-input-block">
 		          <select lay-verify="required" id="select_id" name="class">
-		            <option>Arduino</option>
+		            <option>{{d.classify}}</option>
 		            <option value="1" >Stm32</option> 
 		            <option value="2" >Arduino</option> 
 		            <option value="3" >Raspberry Pi</option> 
@@ -152,7 +152,7 @@
             $.ajax({
                 type:'POST',
                 url: "../api/blog/edit.php",
-                data:{'contents':str,'classify':select_str,'id':_id},
+                data:{'title':title,'contents':str,'classify':select_str,'id':_id},
                 //数据长度太长，放到data里通过post传送
                 success: function (argument) {
                     console.log(argument);
