@@ -112,11 +112,11 @@
 
   //获取收藏列表
   $.ajax({
-    url: "../api/blog/collect.php",
+    url: "/api/blog/blog.collect.php",
     type:'POST',
     data:{'type':'get','userid':user_d.userid},
     success: function (res) {
-      console.log('success:',res);
+      console.log('/api/blog/blog.collect.php,success:',res);
       user_collect = res;
       //渲染数据
       var getTpl = moduel.innerHTML;

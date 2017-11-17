@@ -48,6 +48,7 @@
     function get_post_para($value='',$must=false)
     {
         $val='';
+
         if (isset($_GET[$value])) {
             $val = $_GET[$value];
         } 
@@ -65,28 +66,26 @@
         return $val;
     }
 
-    // 判断字段是否存在,存在返回用户信息，不存在返回错误信息并退出
-    // 搜索内容：describ
-    function find($describ='',$con)
+    // 判断用户ID是否存在,存在返回用户信息，不存在返回错误信息并退出
+    // 搜索内容：userid
+    function check_userid($userid='',$con)
     {
-        $sql_select = "select * from user where userid = '{$describ}'"; //SQL语句
+        $sql_select = "select * from user where userid = '{$userid}'"; //SQL语句
         $result = mysqli_query($con,$sql_select);//执行SQL语句
         $row = mysqli_fetch_array($result);
-        // mysqli_close($con);
         if ($row) {
             return $row;
         }
         else
         {
             // 字段内容不存在
-            $myArray["msg"] = "{$field}:'{$describ}'不存在!:";
+            $myArray["msg"] = "用户ID不存在，请确认后再试！";
             $myArray["resault"] = 'fail';
             $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
             echo $json;
             exit();
         }
     }
-
     // 判断密码是否正确
     function psd_verify($userid='',$psd='',$con)
     {

@@ -12,7 +12,7 @@
     $userid = get_post_para('userid',true);
 
     //判断userid是否存在
-    $user = find($userid,$con);
+    $user = check_userid($userid,$con);
 
     // 解除绑定
     $sql_update = "UPDATE user set qq_openid=NULL where userid='$userid'";

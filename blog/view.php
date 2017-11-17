@@ -13,7 +13,7 @@
           <h1>{{d.title}}</h1>
           <div class="fly-tip fly-detail-hint">
             <!-- <span class="fly-tip-stick">置顶帖</span> -->
-            <span class="fly-tip-jing">精帖</span>
+            <!-- <span class="fly-tip-jing">精帖</span> -->
             <!-- <span>未结贴</span> -->
             <span class="fly-tip-jie">{{d.classify}}</span>
             
@@ -41,7 +41,13 @@
               {{#if(d.userid==user_d.userid){}}
               <span class="layui-btn layui-btn-mini jie-admin" type="edit"><a href="edit.php?id={{d.id}}">编辑此贴</a></span>
               {{#}}}
-              <span class="layui-btn layui-btn-mini jie-admin " type="collect" data-type="add">收藏</span>
+              <button class="layui-btn layui-btn-mini jie-admin " id="collect-btn">
+                {{#  if(collect=="true"){ }}
+                  取消收藏
+                {{#  } else { }}
+                  收藏
+                {{#  } }} 
+              </button>
               <!-- <span class="layui-btn layui-btn-mini jie-admin " type="collect" data-type="add">{{d.classify}}</span> -->
               <!--<span class="layui-btn layui-btn-mini jie-admin  layui-btn-danger" type="collect" data-type="add">取消收藏</span>-->
             </div>
@@ -177,10 +183,29 @@
 <script>
   //获取请求帖子id
   var _id = getUrlParam('id');
+
+  var collect;
+  // 获取是否是否已经收藏该帖
+  if (user_d.login=='true') {
+    $.ajax({
+      type:'POST',
+      url: "/api/blog/blog.collect.php",
+      async: false,
+      data:{"type":'check',"userid":user_d.userid,"blogid":_id},
+      success: function (res) {
+        collect = res.collect;
+        console.log('api/blog/blog.collect.php:',res);
+      },
+      error:function (res) {
+          console.log('fail:',res);
+      }
+    });    
+  }
+
   // 获取帖子主体
   $.ajax({
     type:'POST',
-    url: "../api/blog/getblog.php",
+    url: "/api/blog/getblog.php",
     async: false,
     data:{"id":_id},
     success: function (res) {
@@ -207,17 +232,19 @@
     ,data:{'type':'image','url':'repblog'}
     }
   });
+
   //渲染编辑器
   var index = layedit.build('textEdit', {tool: [
-    'face' //表情
+    'strong' //加粗
+    ,'face' //表情
     ,'image' //插入图片
     ,'link' //超链接 
     ,'code'      
-    // 'strong' //加粗
+
     // ,'italic' //斜体
     // ,'underline' //下划线
     // ,'del' //删除线
-    // ,'|' //分割线
+    ,'|' //分割线
     ,'left' //左对齐
     ,'center' //居中对齐
     ,'right' //右对齐
@@ -227,7 +254,53 @@
     ],height: 180
   });
 
-  //监听提交按钮
+  //监听收藏按钮
+  $('#collect-btn').on('click', function(){
+    if (user_d.login=='false') {
+      layer.alert("登录后才可以收藏！",{title:'提示'});
+    }
+    else
+    if (collect=='false') {
+      // 收藏帖子
+      $.ajax({
+        type:'POST',
+        async:true,//异步
+        url: "/api/blog/blog.collect.php",
+        data:{"type":'set',"userid":user_d.userid,"blogid":_id},
+        success: function (res) {
+          console.log('blog.collect.php',res);
+          layer.alert(res.msg,{title:'提示'});
+          // 更改收藏按钮
+          $('#collect-btn').text('取消收藏');
+          collect='true';
+        },
+        error:function (res) {
+            console.log('fail:',res);
+        }
+      });
+    }
+    else{
+      // 取消收藏
+      $.ajax({
+        type:'POST',
+        async:true,//异步
+        url: "/api/blog/blog.collect.php",
+        data:{"type":'cancel',"userid":user_d.userid,"blogid":_id},
+        success: function (res) {
+          console.log('blog.collect.php',res);
+          layer.alert(res.msg,{title:'提示'});
+          // 更改收藏按钮
+          $('#collect-btn').text('收藏');
+          collect='false';
+        },
+        error:function (res) {
+            console.log('fail:',res);
+        }
+      });
+    }
+  });
+
+  //监听回复按钮
   $('#btn_answer').on('click', function(){
     //获取编辑器内容
     var str = layedit.getContent(index);
@@ -244,7 +317,7 @@
         var timestamp = (new Date()).valueOf(); 
         $.ajax({
           type:'POST',
-          url: "../api/blog/answer.php",
+          url: "/api/blog/answer.php",
           data:{'id':timestamp,'contents':str,'userid':user_d.userid,'toid':<?php echo($_GET['id']) ?>},
           //数据长度太长，放到data里通过post传送
           success: function (argument) {
@@ -275,7 +348,7 @@
   // 获取回贴月榜
   $.ajax({
     type:'POST',
-    url: "../api/blog/getsortlist.php",
+    url: "/api/blog/getsortlist.php",
     data:{"num":'12',"type":'answer'},
     success: function (res) {
       console.log('success:',res);
@@ -290,10 +363,11 @@
         console.log('fail:',res);
     }
   });
+
   // 获取最近热帖
   $.ajax({
     type:'POST',
-    url: "../api/blog/getsortlist.php",
+    url: "/api/blog/getsortlist.php",
     data:{"num":'12',"type":'browse'},
     success: function (res) {
       console.log('success:',res);
@@ -308,10 +382,11 @@
         console.log('fail:',res);
     }
   });
+
   // 获取近期热议
   $.ajax({
     type:'POST',
-    url: "../api/blog/getsortlist.php",
+    url: "/api/blog/getsortlist.php",
     data:{"num":'12',"type":'talk'},
     success: function (res) {
       console.log('success:',res);
@@ -326,5 +401,6 @@
         console.log('fail:',res);
     }
   });
+
 </script>
 </html>

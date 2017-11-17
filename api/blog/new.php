@@ -21,7 +21,7 @@
     $userid = get_post_para('userid',true);
 
     // 判断用户是否存在
-    $row = find($userid,$con);
+    $row = check_userid($userid,$con);
 	
 	// 验证通过，存储新帖
     $sql_insert="insert into blog (id,dates,contents,userid,title,classify) values ($id,now(),'$contents','$userid','$title','$classify')";

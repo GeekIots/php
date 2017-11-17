@@ -15,7 +15,7 @@
     $userid = get_post_para('userid',true);
 
     //判断userid是否存在
-    $user = find($userid,$con);
+    $user = check_userid($userid,$con);
    
     //获取原来的密码
     $password = get_post_para('password',true);

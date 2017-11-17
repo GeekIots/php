@@ -50,7 +50,7 @@
           <i>VIP</i>
           </a>
           <div class='nav'>
-          <a href='/user/set.php'><i class='iconfont icon-shezhi'></i>设置</a>
+          <a href='/user/set.php' target = "_blank" ><i class='iconfont icon-shezhi'></i>设置</a>
           <a href='/user/logout.php'><i class='iconfont icon-tuichu' style='top: 0; font-size: 22px;'></i>退了</a>
           </div>  
         {{# }else { }} 
