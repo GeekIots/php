@@ -104,7 +104,7 @@
     else{
         $myArray["msg"] = '缺少邮箱字段:email！';
     }
-    mysqli_close($con);
+    // mysqli_close($con);
     // print_r($myArray); 
     $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
     echo $json;

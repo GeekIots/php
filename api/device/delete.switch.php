@@ -17,7 +17,7 @@
     	$myArray["resault"] = 'fail';
     	$json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
     	echo $json;
-    	mysqli_close($con);
+    	// mysqli_close($con);
     	exit();
     }
 }
@@ -50,7 +50,7 @@ else{
 	$myArray["resault"] = 'fail';
 }
 
-mysqli_close($con);
+// mysqli_close($con);
  // print_r($myArray); 
 $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
 echo $json;

@@ -70,7 +70,7 @@
             <li data-id="12" class="jieda-daan">
               <a name="item-121212121212"></a>
               <div class="detail-about detail-about-reply">
-                <a class="jie-user" href="">
+                <a class="jie-user" href="/user/home.php?userid={{item.userid}}">
                   <img src="{{item.avatar}}" onerror="javascript:this.src='/image/default/error.jpg';" alt="">
                   <cite>
                     <i>{{item.nickname}}</i>

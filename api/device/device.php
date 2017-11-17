@@ -64,7 +64,7 @@
 
           $myArray["list"][]=$indexArray;
         }
-        mysqli_close($con);
+        // mysqli_close($con);
                    // print_r($myArray); 
         $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
         echo $json;
@@ -100,7 +100,7 @@
 	         $sql="UPDATE switch set heat = heat+1 where id='$id'";
 	         mysqli_query($con,$sql);
 
-            mysqli_close($con);
+            // mysqli_close($con);
             
             if ($insertResault) 
             {
@@ -157,7 +157,7 @@
            $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
            echo $json;
 
-           mysqli_close($con);
+           // mysqli_close($con);
         }
        else
         if ($type=='updata') {

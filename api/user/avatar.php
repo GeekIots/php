@@ -44,7 +44,7 @@
     else{
         $myArray["msg"] = '缺少昵称字段:nickname！';
     }
-    mysqli_close($con);
+    // mysqli_close($con);
     // print_r($myArray); 
     $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
     echo $json;

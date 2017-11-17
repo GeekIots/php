@@ -50,6 +50,7 @@
 	    $query11=mysqli_query($con,$sql11);
 	    $row11 = mysqli_fetch_array($query11);
 		
+		$indexArray["userid"] = $row11['userid'];//用户ID
 		$indexArray["avatar"] = $row11['avatar'];//用户头像
 		$indexArray["nickname"] = $row11['nickname'];//用户昵称
 	    $indexArray["dates"] = $rsanswer["dates"];//回复时间
@@ -59,7 +60,7 @@
 	}
 	$myArray["answernum"] =$floornumber;//回复数量
 	$myArray["resault"] = 'success';  
-	mysqli_close($con);
+	// mysqli_close($con);
 	// print_r($myArray); 
 	$json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
 	echo $json;

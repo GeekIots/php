@@ -27,7 +27,7 @@
         $myArray["resault"] = 'fail';
     }     
 
-    mysqli_close($con);
+    // mysqli_close($con);
     $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
     echo $json;
 ?>

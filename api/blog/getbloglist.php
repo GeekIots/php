@@ -74,7 +74,7 @@
 		$myArray["list"][] = $indexArray;
 	}
 	$myArray["resault"] = 'success';  
-	mysqli_close($con);
+	// mysqli_close($con);
 	// print_r($myArray); 
 	$json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
 	echo $json;

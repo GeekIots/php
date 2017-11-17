@@ -45,7 +45,7 @@
     else{
         $myArray["msg"] = '缺少字段:qq_openid！';
     }
-    mysqli_close($con);
+    // mysqli_close($con);
     // print_r($myArray); 
     $json = json_encode($myArray,JSON_UNESCAPED_UNICODE);
     echo $json;
