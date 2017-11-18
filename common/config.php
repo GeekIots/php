@@ -9,4 +9,5 @@
 	$admin_name = 'admin';//管理员名称
 	$admin_password = '8008208820';//管理员密码
 
+    date_default_timezone_set("Asia/Shanghai");
 ?>
