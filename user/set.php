@@ -197,7 +197,7 @@
       $.ajax({
             type:'POST',
             url: "/api/user/avatar.php",
-            data:{'nickname':layui.jquery('#nickname').text(),'avatar':res.root},
+            data:{'userid':user_d.userid,'avatar':res.root},
             //数据长度太长，放到data里通过post传送
             success: function (argument) {
                 console.log(argument);

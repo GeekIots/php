@@ -89,7 +89,7 @@
     if ($type=='avatar') {
         $file_path = '../../image/avatar';
         $new_file_name = "$userid.{$file_name_arr[1]}";
-        $myArray['root']= "http://www.geek-iot.com/image/{$new_file_name}";
+        $myArray['root']= "http://www.geek-iot.com/image/avatar/{$new_file_name}";
     }
     else
     //上传帖子图片
