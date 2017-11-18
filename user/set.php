@@ -176,8 +176,9 @@
   upload.render({
     elem: '#img_upload' //绑定元素
     ,method:'POST'
-    ,data:{type:'image',url:'avatar',size:'100'}
-    ,url: '/api/layui/upload.php' //上传接口
+    ,async:true
+    ,data:{type:'avatar',userid:user_d.userid,'size':200}
+    ,url: '/api/upload/upload.img.php' //上传接口
     ,before : function(){
       //执行上传前的回调  可以判断文件后缀等等
       layer.msg('上传中，请稍后......', {icon:16, shade:0.5, time:0});
@@ -195,7 +196,7 @@
       // 保存头像到数据库
       $.ajax({
             type:'POST',
-            url: "../../api/user/avatar.php",
+            url: "/api/user/avatar.php",
             data:{'nickname':layui.jquery('#nickname').text(),'avatar':res.root},
             //数据长度太长，放到data里通过post传送
             success: function (argument) {
@@ -293,6 +294,7 @@
     }
   });
 
+  // 解除QQ绑定
   function qqlogin_remove()
   {
     layer.confirm('确定解绑当前QQ？', {

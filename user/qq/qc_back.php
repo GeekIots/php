@@ -213,23 +213,22 @@
     // layer.msg(JSON.stringify(data.field));
     console.log(data.field);
     //判断确认密码
-    //判断验证码
     if(data.field.pass!=data.field.repass)
     {
       msg('确认密码与密码不一致！');
     }
     else
+    //判断验证码
     if(data.field.vercode!='4')
     {
       msg('验证信息不正确！');
     }
     else
     {
-      var index = layer.load(0, {time:20000,shade: true}); //0代表加载的风格，支持0-2
       $.ajax({
         type:'POST',
         url: "/api/user/register.php",
-        data:{'email':L_email,'nickname':L_nickname,'password':L_pass,'qq_openid':qq_openid,'avatar':qq_info.figureurl_qq_2},
+        data:{'email':data.field.email,'nickname':data.field.nickname,'password':data.field.pass,'qq_openid':qq_openid,'avatar':qq_info.figureurl_qq_2},
          success: function (argument) {
           var obj = argument;
           var backurl = getUrlParam('backurl');
@@ -267,61 +266,60 @@
     }    
     return false;
   });
+
   //绑定登录
   form.on('submit(login-btn)', function(data){
-    layer.msg(JSON.stringify(data.field));
+     // layer.msg(JSON.stringify(data.field));
     console.log(data.field);
+    //判断验证码
+    if(data.field.vercode!='2')
+    {
+      msg('验证信息不正确！');
+    }
+    else
+    {
+      $.ajax({
+        type:'POST',
+        url: "/api/user/login.php",
+        data:{'email':data.field.email,'password':data.field.pass,'nickname':qq_info.nickname,'qq_openid':qq_openid,'avatar':qq_info.figureurl_qq_2},
+         success: function (argument) {
+          var obj = argument;
+          var backurl = getUrlParam('backurl');
+          if(backurl=='')backurl = '/index.php';
+          if (argument.resault=='success') {
+            layer.open({
+              type: 1
+              ,title: false //不显示标题栏
+              ,closeBtn: false
+              ,area: '300px;'
+              ,shade: 0.8
+              ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+              ,resize: false
+              ,btn: ['前往首页', '原路返回']
+              ,btnAlign: 'c'
+              ,moveType: 1 //拖拽模式，0或者1
+              ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">恭喜你,绑定成功！以后您可以用该QQ号直接登录本站！</div>'
+              ,success: function(layero){
+                var btn = layero.find('.layui-layer-btn');
+                btn.find('.layui-layer-btn0').attr({href: '/index.php'});
+                btn.find('.layui-layer-btn1').attr({href: backurl});
+              }
+            });
+          }
+          else{
+            console.log("错误：",argument);
+            layer.msg(obj.msg,{time:1000});
+          }
+        },
+        error:function (argument) {
+          console.log(argument);
+          layer.msg('注册失败！');
+        }
+      });
+    }    
     return false;
   });
-  // $('.layui-btn').on('click', function(){
-  //     console.log("检测按键初始化");
-    
-  //     if ($(this).attr("id")=='login-btn') {
-  //       //获取登录信息
-  //       var L_email = $('#Login_email').val();
-  //       var L_pass = $('#Login_pass').val();
-  //       var L_vercode = $('#Login_vercode').val();
-  //       if(L_vercode!='2')
-  //       {
-  //         layer.msg('验证信息不正确！',{time:1000});
-  //       }
-  //       else
-  //       {
-  //         var index = layer.load(0, {time:20000,shade: true}); //0代表加载的风格，支持0-2
-  //         $.ajax({
-  //           type:'POST',
-  //           url: "/api/user/login.php",
-  //           data:{'email':L_email,'password':L_pass,'qq_openid':qq_openid,'avatar':qq_info.figureurl_qq_2,'nickname':qq_info.nickname},
-  //           //数据长度太长，放到data里通过post传送
-  //           success: function (argument) {
-  //               layer.close(index);
-  //              if (argument.resault=='success') {
-  //                 layer.msg('登录成功！', {
-  //                   time: 1000 //1s后自动关闭
-  //                 });
-  //                 console.log('登录结果:',argument);
-  //                 // 页面跳转
-  //                 var backurl = getUrlParam('backurl');
-  //                 if(backurl==''){  
-  //                     location.href = '/index.php'; 
-  //                 } 
-  //                 else
-  //                     location.href = backurl;   
-  //               }
-  //               else{
-  //                 // 登录失败，提示错误信息
-  //                 console.log(argument);
-  //                 layer.msg(argument.msg,{time:2000});
-  //               }
-  //           },
-  //           error:function (argument) {
-  //             console.log(argument);
-  //             layer.msg('登录失败,请稍后再试！');
-  //           }
-  //         });
-  //       }
-  //     }
-  //   });
+
 
     //如果已登录  
   if(QC.Login.check()){

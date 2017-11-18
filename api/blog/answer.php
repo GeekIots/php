@@ -21,7 +21,7 @@
     $row = check_userid($userid,$con);
 
 	// 验证通过，存储新帖
-    $sql_insert="insert into bloganswer (id,dates,contents,userid,toid) values ($id,now(),$contents,$userid,$toid)";
+    $sql_insert="insert into bloganswer (id,dates,contents,userid,toid) values ($id,now(),'$contents',$userid,$toid)";
     if (!mysqli_query($con, $sql_insert))
     {
         // die('Error: ' . mysqli_error($con));

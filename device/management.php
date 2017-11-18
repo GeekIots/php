@@ -42,8 +42,9 @@
 		  </table>
 		  
 		  <div style="text-align: right;padding-top: 30px;">
+		  	<a class="layui-btn" href="device.php"> 控制开关 </a>
 		  	<a class="layui-btn" href="add.switch.php"> 添加开关 </a>
-			<a class="layui-btn layui-btn-normal" href="device.php">返回</a>
+			<a class="layui-btn layui-btn-normal" href="/index.php">首页</a>
 		  </div>
 
 		    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
@@ -77,7 +78,7 @@
 		</table>
 		 <div style="text-align: right;padding-top: 30px;">
 		  	<a class="layui-btn" href="add.sensor.php">添加传感器</a>
-			<a class="layui-btn layui-btn-normal" href="device.php">返回</a>
+			<a class="layui-btn layui-btn-normal" href="/index.php">首页</a>
 		  </div>
 		<br>
 	</main>
@@ -90,6 +91,32 @@
   // 开关列表
   var switchlist;
   var sensorlist;
+
+  if (user_d.login=='false') {
+  	 //公告层
+      layer.open({
+        type: 1
+        ,title: false //不显示标题栏
+        ,closeBtn: false
+        ,area: '300px;'
+        ,shade: 0.8
+        ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+        ,btn: ['前去登陆', '看看再说']
+        ,btnAlign: 'c'
+        ,moveType: 1 //拖拽模式，0或者1
+        ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 400;">亲,进入设备管理需要登陆哦！</div>'
+        ,success: function(layero){
+          var btn = layero.find('.layui-layer-btn');
+          btn.find('.layui-layer-btn0').attr({
+            href: '/user/login.php'
+            ,target: '_blank'
+          });
+          btn.find('.layui-layer-btn1').attr({
+            href: '/index.php'
+          });
+        }
+      });
+  }
   // 获取列表
   $.ajax({
     type:'GET',
@@ -117,38 +144,12 @@
     }
   });
 
-  new Vue({
+ 	new Vue({
 	el: '#app',
 	  data: {
 	  	user:user_d,
 	    switchlist: switchlist,
 	    sensorlist:sensorlist
 	  }
-	})
-
-  if (user_d.login=='false') {
-  	 //公告层
-      layer.open({
-        type: 1
-        ,title: false //不显示标题栏
-        ,closeBtn: false
-        ,area: '300px;'
-        ,shade: 0.8
-        ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
-        ,btn: ['前去登陆', '看看再说']
-        ,btnAlign: 'c'
-        ,moveType: 1 //拖拽模式，0或者1
-        ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 400;">亲,进入设备管理需要登陆哦！</div>'
-        ,success: function(layero){
-          var btn = layero.find('.layui-layer-btn');
-          btn.find('.layui-layer-btn0').attr({
-            href: '/user/login.php'
-            ,target: '_blank'
-          });
-          btn.find('.layui-layer-btn1').attr({
-            href: '/index.php'
-          });
-        }
-      });
-  }
+	}) 
 </script>

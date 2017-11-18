@@ -119,7 +119,7 @@ table.render({
   ,height: 500
   ,cols: [[ //标题栏
   {checkbox: true, LAY_CHECKED: true} //默认全选
-  ,{field: 'id', title: 'ID', width: 50, sort: true}
+  ,{field: 'id', title: 'ID', width: 140, sort: true}
   ,{title: '头像', width: 60  , align: 'center',templet: '<div><img src="{{d.avatar}}" width="26px" height="26px"style="border-radius: 13px;" onerror="javascript:this.src=\'/image/default/error.jpg\';"/></div>'}
   ,{field: 'title', title: '标题', width: 140, sort: true}
   ,{field: 'nickname', title: '昵称', width: 80, sort: true}

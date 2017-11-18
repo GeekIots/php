@@ -84,9 +84,10 @@
 
 	layedit.set({
       uploadImage: {
-        url: '../api/layui/upload.php' //接口url
+        url: '/api/upload/upload.img.php' //接口url
         ,type: 'POST' //默认post
-        ,data:{'type':'image','url':'blog'}
+        ,async:true //异步上传
+        ,data:{'type':'blog','userid':user_d.userid,'blogid':_id,'size':500}
         }
     });
     

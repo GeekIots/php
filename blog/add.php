@@ -59,12 +59,14 @@
 <script>
   // 有些表单元素可能是动态插入的。这时 Form模块 的自动化渲染是会对其失效的,需要重新渲染
   form.render(); //更新
-
+  // 毫米级时间戳
+  var timestamp = (new Date()).valueOf(); 
   layedit.set({
     uploadImage: {
-      url: '../api/layui/upload.php' //接口url
+      url: '/api/upload/upload.img.php' //接口url
       ,type: 'POST' //默认post
-      ,data:{'type':'image','url':'blog'}
+      ,async:true //异步上传
+      ,data:{'type':'blog','userid':user_d.userid,'blogid':timestamp,'size':500}
       }
   });
   var index = layedit.build('demo', {tool: [
@@ -125,8 +127,6 @@
       }
       else
       {
-        // 毫米级时间戳
-        var timestamp = (new Date()).valueOf(); 
         $.ajax({
             type:'POST',
             url: "../api/blog/new.php",

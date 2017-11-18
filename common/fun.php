@@ -112,5 +112,25 @@
     function uuid() {
         list($t1, $t2) = explode(' ', microtime());
         return (float)sprintf('%.0f',(floatval($t1)+floatval($t2))*1000);
-    }  
+    } 
+
+    //循环删除目录和文件函数  
+    function delDirAndFile( $dirName )  
+    {  
+        if ( $handle = opendir( "$dirName" ) ) {  
+           while ( false !== ( $item = readdir( $handle ) ) ) {  
+               if ( $item != "." && $item != ".." ) {  
+                   if ( is_dir( "$dirName/$item" ) ) {  
+                   delDirAndFile( "$dirName/$item" );  
+                   } else {  
+                    unlink( "$dirName/$item" );
+                   // if( unlink( "$dirName/$item" ) )echo "成功删除文件： $dirName/$item<br />\n";  
+                   }  
+               }  
+           }  
+           closedir( $handle );  
+           rmdir( $dirName);
+           // if( rmdir( $dirName ) )echo "成功删除目录： $dirName<br />\n";  
+        }  
+    }   
  ?>

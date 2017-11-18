@@ -163,71 +163,99 @@
 </body>
 </html> 
 <script>
-  // 开关列表
-  var switchlist;
-  // 获取列表
-  $.ajax({
-    type:'GET',
-    url: "/api/device/device.php",
-    data:{"device":'switch',"type":'getlist',"userid":user_d.userid},
-    success: function (res) {
-      switchlist  = res;
-      console.log('switchlist:',res);
-
-    },
-    error:function (res) {
-      console.log('fail:',res);
-    }
-  });
-
-  //渲染数据
-  var getTpl = moduel.innerHTML;
-  var view = document.getElementById('view');
-  laytpl(getTpl).render(switchlist, function(html){
-    view.innerHTML = html;
-  });
-
-  //所有的button引起的变化
-  $(":button").bind("click",function(){
-    var wait;
-    var stop=false;
-    get_code_time = function (o) { 
-      if (!stop) {
-        // o.text('响应:'+wait/100+'s');
-        o.text(wait/100+'s');
-            wait++;  
-            setTimeout(function() {  
-                get_code_time(o)  
-            }, 10)  
-      }
-    }  
-    //打印引起事件的标签信息
-    console.log('click:', this);
-    var id = $(this).attr('id');
-    var cmd = $(this).attr('name');
-    console.log('id:', id);
-    console.log('cmd:', cmd);
-    // $("#msg"+id).text("等待响应...");
-    wait = 0;
-    stop=false;
-    get_code_time($("#msg"+id));
-      // 发送指令并等待响应
-      $.ajax({
-      async: true,
-      url: "/api/device/device.php?device=switch&type=set&userid="+user_d.userid+"&id="+id+"&cmd="+cmd,
+  if (user_d.login=='false') {
+     //公告层
+      layer.open({
+        type: 1
+        ,title: false //不显示标题栏
+        ,closeBtn: false
+        ,area: '300px;'
+        ,shade: 0.8
+        ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+        ,btn: ['前去登陆', '看看再说']
+        ,btnAlign: 'c'
+        ,moveType: 1 //拖拽模式，0或者1
+        ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 400;">亲,进入设备控制需要登陆哦！</div>'
+        ,success: function(layero){
+          var btn = layero.find('.layui-layer-btn');
+          btn.find('.layui-layer-btn0').attr({
+            href: '/user/login.php'
+            ,target: '_blank'
+          });
+          btn.find('.layui-layer-btn1').attr({
+            href: '/index.php'
+          });
+        }
+      });
+  }
+  else
+  {
+    // 开关列表
+    var switchlist;
+    // 获取列表
+    $.ajax({
+      type:'GET',
+      url: "/api/device/device.php",
+      data:{"device":'switch',"type":'getlist',"userid":user_d.userid},
       success: function (res) {
-        console.log('success:',res);
-        stop=true;
-        $("#msg"+id).text(res.return+' '+$("#msg"+id).text());
-        $("#heat"+id).text(parseInt($("#heat"+id).text())+1);
-        $("#latest"+id).text(res.latest);
-        $("#state"+id).text(cmd);
+        switchlist  = res;
+        console.log('switchlist:',res);
+
       },
       error:function (res) {
         console.log('fail:',res);
-        $("#msg"+id).text(res.return);
-        stop=true;
       }
     });
-  }); 
+
+    //渲染数据
+    var getTpl = moduel.innerHTML;
+    var view = document.getElementById('view');
+    laytpl(getTpl).render(switchlist, function(html){
+      view.innerHTML = html;
+    });
+
+    //所有的button引起的变化
+    $(":button").bind("click",function(){
+      var wait;
+      var stop=false;
+      get_code_time = function (o) { 
+        if (!stop) {
+          // o.text('响应:'+wait/100+'s');
+          o.text(wait/100+'s');
+              wait++;  
+              setTimeout(function() {  
+                  get_code_time(o)  
+              }, 10)  
+        }
+      }  
+      //打印引起事件的标签信息
+      console.log('click:', this);
+      var id = $(this).attr('id');
+      var cmd = $(this).attr('name');
+      console.log('id:', id);
+      console.log('cmd:', cmd);
+      // $("#msg"+id).text("等待响应...");
+      wait = 0;
+      stop=false;
+      get_code_time($("#msg"+id));
+        // 发送指令并等待响应
+        $.ajax({
+        async: true,
+        url: "/api/device/device.php?device=switch&type=set&userid="+user_d.userid+"&id="+id+"&cmd="+cmd,
+        success: function (res) {
+          console.log('success:',res);
+          stop=true;
+          $("#msg"+id).text(res.return+' '+$("#msg"+id).text());
+          $("#heat"+id).text(parseInt($("#heat"+id).text())+1);
+          $("#latest"+id).text(res.latest);
+          $("#state"+id).text(cmd);
+        },
+        error:function (res) {
+          console.log('fail:',res);
+          $("#msg"+id).text(res.return);
+          stop=true;
+        }
+      });
+    }); 
+  } 
 </script>

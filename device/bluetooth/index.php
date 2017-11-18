@@ -121,6 +121,33 @@
 </html>
 <script type="text/javascript">
 	// console.log(JSON.stringify(item));
+	if (user_d.login=='false') {
+  	 //公告层
+      layer.open({
+        type: 1
+        ,title: false //不显示标题栏
+        ,closeBtn: false
+        ,area: '300px;'
+        ,shade: 0.8
+        ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+        ,btn: ['前去登陆', '看看再说']
+        ,btnAlign: 'c'
+        ,moveType: 1 //拖拽模式，0或者1
+        ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 400;">亲,进入蓝牙配置需要登陆哦！</div>'
+        ,success: function(layero){
+          var btn = layero.find('.layui-layer-btn');
+          btn.find('.layui-layer-btn0').attr({
+            href: '/user/login.php'
+            ,target: '_blank'
+          });
+          btn.find('.layui-layer-btn1').attr({
+            href: '/index.php'
+          });
+        }
+      });
+  }
+  else
+  {
     var item1,item2,item3;
 	    //获取遥控器界面参数
 	$.ajax({
@@ -252,4 +279,5 @@
 			}
 		});
 	});
+  }
 </script>

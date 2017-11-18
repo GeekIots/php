@@ -315,11 +315,12 @@
       if(user_d.login === "true")
       {
         // 毫米级时间戳
-        var timestamp = (new Date()).valueOf(); 
+        var timestamp = (new Date()).valueOf();
+        console.log('回复：','id:'+timestamp+'contents:'+str+'userid:'+user_d.userid+'toid:'+_id); 
         $.ajax({
           type:'POST',
           url: "/api/blog/answer.php",
-          data:{'id':timestamp,'contents':str,'userid':user_d.userid,'toid':<?php echo($_GET['id']) ?>},
+          data:{'id':timestamp,'contents':str,'userid':user_d.userid,'toid':_id},
           //数据长度太长，放到data里通过post传送
           success: function (argument) {
              if (argument.resault=='success') {

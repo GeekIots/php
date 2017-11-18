@@ -3,7 +3,7 @@
     include $_SERVER['DOCUMENT_ROOT']."/api/conn.php";
     header('Content-type:application/json');
 
-    //删除某个用户API，支持get，post
+    //删除某个帖子API，支持get，post
 
 	//获取id
     $id = get_post_para('id',true);
@@ -15,6 +15,10 @@
     // 删除回帖
     $sql_delete = "delete from bloganswer where toid=$id";  
     $res_delete = mysqli_query($con,$sql_delete);
+
+    // 删除帖子对应的图片文件夹
+    delDirAndFile($_SERVER['DOCUMENT_ROOT']."/image/blog/{$id}");
+
     if($res_delete) 
     {
         $myArray["resault"] = 'success';
