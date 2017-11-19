@@ -181,13 +181,6 @@
   // 定义用户数据变量
   var user_d;
 
-  function msg(str) {
-    layer.alert(str, {
-      skin: 'layui-layer-molv'
-      ,closeBtn: 0
-      ,anim: 4 //动画类型
-    });
-  }
   //获取用户登陆信息
   $.ajax({
     url: "/api/user/user.php",
@@ -215,13 +208,13 @@
     //判断确认密码
     if(data.field.pass!=data.field.repass)
     {
-      msg('确认密码与密码不一致！');
+      layer_msg('确认密码与密码不一致！');
     }
     else
     //判断验证码
     if(data.field.vercode!='4')
     {
-      msg('验证信息不正确！');
+      layer_msg('验证信息不正确！');
     }
     else
     {
@@ -274,7 +267,7 @@
     //判断验证码
     if(data.field.vercode!='2')
     {
-      msg('验证信息不正确！');
+      layer_msg('验证信息不正确！');
     }
     else
     {

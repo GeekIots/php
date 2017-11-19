@@ -121,7 +121,6 @@
   // 每页包含8条数据
   var inpagenumber = 14; 
   var bloglist;
-
   //获取当前页码
   var _curr = getUrlParam('page');
   // 不存在页码默认为1

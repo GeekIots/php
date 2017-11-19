@@ -7,7 +7,7 @@
   <meta name="description" content="极客社区是极客物联网开发平台的官网社区，致力于为物联网开发提供强劲动力！">
   <script src="https://cdn.bootcss.com/vue/2.5.3/vue.js"></script>
   <link rel="stylesheet" href="/frame/layui-v2.1.0/layui/css/layui.css">
-  <link rel="stylesheet" href="/common/res/css/global.css">
+  <link rel="stylesheet" href="/frame/layui-v2.1.0/layui/css/gloabal/global.css">
   <script src="/frame/layui-v2.1.0/layui/layui.all.js"></script>
   <!-- QQ登录插件 -->
   <script type="text/javascript"
@@ -18,14 +18,14 @@
     }
   </style>
   <!-- 预加载的layui模块 -->
-  <script src="/common/layerload.js"></script>
+  <script src="/common/fun.js"></script>
 </head>
 
 <div class="header">
 
   <div class="main" style="width: 90%;">
     <ul class="layui-nav" >
-      <img src='/common/res/images/logo.png'>
+      <img src='/image/default/header_logo.png'>
       <li class="layui-nav-item"><a href="/index.php" class="iconfont">首页</a></li>
       <li class="layui-nav-item"><a href="/blog/index.php" class="iconfont">社区</a></li>
       <li class="layui-nav-item">

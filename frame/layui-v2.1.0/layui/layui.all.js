@@ -1,6 +1,5 @@
 /** layui-v2.1.0 MIT License By http://www.layui.com */
-; !
-function(e) {
+;!function(e) {
     "use strict";
     var t = document,
     o = {
