@@ -7194,9 +7194,15 @@ function(e) {
             if (s.removeClass(u), layui.each(c,
             function(e, i) {
                 var c = "function" == typeof a[i];
-                if (a[i] && (c ? o = a[i](d, l) : !a[i][0].test(d))) return t.msg(o || a[i][1], {
-                    icon: 5,
-                    shift: 6
+                // if (a[i] && (c ? o = a[i](d, l) : !a[i][0].test(d))) return t.msg(o || a[i][1], {
+                //     icon: 5,
+                //     shift: 6
+                // }),
+                if (a[i] && (c ? o = a[i](d, l) : !a[i][0].test(d))) return t.alert(o || a[i][1], {
+                    skin: 'layui-layer-molv'
+                    ,closeBtn: 0
+                    ,anim: 6 //动画类型
+                    ,title:'提示'
                 }),
                 n.android || n.ios || l.focus(),
                 s.addClass(u),

@@ -48,11 +48,13 @@ function getUrlParam(name) {
 }
 
 //错误提示弹出层
-function layer_msg(content,title='提示') {
+function layer_msg(content) {
+   var anim = arguments[1] ? arguments[1] : 6;//动画
+   var title = arguments[2] ? arguments[2] : '提示';//标题
   layer.alert(content, {
     skin: 'layui-layer-molv'
     ,closeBtn: 0
-    ,anim: 6 //动画类型
+    ,anim: anim //动画类型
     ,title:title
   });
 }

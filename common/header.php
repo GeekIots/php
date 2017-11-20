@@ -56,7 +56,11 @@
         {{# }else { }} 
         <!-- 未登录 -->
           <a class="unlogin" href="/user/login.php"><i class="iconfont icon-touxiang"></i></a>
-          <span><a href="/user/login.php">登入</a><a href="/user/register.php">注册</a></span>
+          <span>
+       <!--      <a href="/user/login.php?backurl='javascript:location.href'">登入</a><a href="/user/register.php">注册</a> -->
+            <a href="javascript:location.href='/user/login.php?backurl='+location.href">登入</a>
+            <a href="javascript:location.href='/user/register.php?backurl='+location.href">注册</a>
+          </span>
           <p class="out-login">
             <a class="iconfont icon-qq" title="QQ登入" onclick="qqLogin()" target=""></a>
             <!-- <a class="iconfont icon-weibo" title="微博登入"></a> -->
@@ -83,16 +87,7 @@
 
   // 定义用户数据变量
   var user_d;
-  // 头部分当前标签高亮显示
-  // $(document).ready(function(){  
-  //   $(".layui-nav-item a").each(function(){  
-  //     $this = $(this);
-  //     // console.log('header高亮显示:',$this);
-  //     if($this[0].href==String(window.location)){  
-  //       $this.addClass("layui-this");  
-  //     }
-  //   });  
-  // }); 
+
   //获取用户登陆信息
   $.ajax({
     url: "/api/user/user.php",

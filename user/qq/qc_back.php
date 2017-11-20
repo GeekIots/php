@@ -223,9 +223,8 @@
         url: "/api/user/register.php",
         data:{'email':data.field.email,'nickname':data.field.nickname,'password':data.field.pass,'qq_openid':qq_openid,'avatar':qq_info.figureurl_qq_2},
          success: function (argument) {
-          var obj = argument;
           var backurl = getUrlParam('backurl');
-          if(backurl=='')backurl = '/index.php';
+          if(!backurl)backurl = '/index.php';
           if (argument.resault=='success') {
             layer.open({
               type: 1
@@ -248,7 +247,7 @@
           }
           else{
             console.log("错误：",argument);
-            layer.msg(obj.msg,{time:1000});
+            layer.msg(argument.msg,{time:1000});
           }
         },
         error:function (argument) {
@@ -276,9 +275,8 @@
         url: "/api/user/login.php",
         data:{'email':data.field.email,'password':data.field.pass,'nickname':qq_info.nickname,'qq_openid':qq_openid,'avatar':qq_info.figureurl_qq_2},
          success: function (argument) {
-          var obj = argument;
           var backurl = getUrlParam('backurl');
-          if(backurl=='')backurl = '/index.php';
+          if(!backurl)backurl = '/index.php';
           if (argument.resault=='success') {
             layer.open({
               type: 1
@@ -301,12 +299,12 @@
           }
           else{
             console.log("错误：",argument);
-            layer.msg(obj.msg,{time:1000});
+            layer.msg(argument.msg,{time:1000});
           }
         },
         error:function (argument) {
           console.log(argument);
-          layer.msg('注册失败！');
+          layer.msg('登陆失败！');
         }
       });
     }    
@@ -368,13 +366,12 @@
             console.log('fail:',res);
         }
       });
-
     }).error(function(f){
       //失败回调
       console.log('获取用户信息失败！',f);
     }).complete(function(c){
     //完成请求回调
-  }); 
+    }); 
 
 </script>
 </body>
