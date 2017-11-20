@@ -20,7 +20,7 @@
     // 判断用户是否存在
     $row = check_userid($userid,$con);
 
-	// 验证通过，存储新帖
+	// 验证通过，存储回复
     $sql_insert="insert into bloganswer (id,dates,contents,userid,toid) values ($id,now(),'$contents',$userid,$toid)";
     if (!mysqli_query($con, $sql_insert))
     {

@@ -41,13 +41,14 @@
               {{#if(d.userid==user_d.userid){}}
               <span class="layui-btn layui-btn-mini jie-admin" type="edit"><a href="edit.php?id={{d.id}}">编辑此贴</a></span>
               {{#}}}
-              <button class="layui-btn layui-btn-mini jie-admin " id="collect-btn">
+              
                 {{#  if(collect=="true"){ }}
-                  取消收藏
+                  <button class="layui-btn layui-btn-mini jie-admin  layui-btn-danger" id="collect-btn">取消收藏</button>
                 {{#  } else { }}
-                  收藏
+                  <button class="layui-btn layui-btn-mini jie-admin" id="collect-btn">收藏</button>
                 {{#  } }} 
-              </button>
+                
+             
               <!-- <span class="layui-btn layui-btn-mini jie-admin " type="collect" data-type="add">{{d.classify}}</span> -->
               <!--<span class="layui-btn layui-btn-mini jie-admin  layui-btn-danger" type="collect" data-type="add">取消收藏</span>-->
             </div>
@@ -92,8 +93,8 @@
               </div>
               <div class="jieda-reply">
                 <!-- 赞 -->
-                <!-- <span class="jieda-zan zanok" type="zan"><i class="iconfont icon-zan"></i><em>12</em></span>
-                <span type="reply"><i class="iconfont icon-svgmoban53"></i>回复</span> -->
+                <!-- <span class="jieda-zan zan" type="zan"><i class="iconfont icon-zan"></i><em>{{item.zan}}</em></span> -->
+                <!-- <span type="reply"><i class="iconfont icon-svgmoban53"></i>回复</span> -->
                 <!-- <div class="jieda-admin">
                   <span type="edit">编辑</span>
                   <span type="del">删除</span>
@@ -183,7 +184,7 @@
 <script>
   //获取请求帖子id
   var _id = getUrlParam('id');
-
+  var index;
   var collect;
   // 获取是否是否已经收藏该帖
   if (user_d.login=='true') {
@@ -216,43 +217,41 @@
       laytpl(getTpl).render(res, function(html){
         view.innerHTML = html;
       });
+      layedit.set({
+        uploadImage: {
+        url: '/api/upload/upload.img.php' //接口url
+        ,type: 'POST' //默认post
+        ,async:true //异步上传
+        ,data:{'type':'answer','userid':user_d.userid,'blogid':_id,'size':200}//回帖图像最大200kb
+        }
+      });
+
+      //渲染编辑器
+      index = layedit.build('textEdit', {tool: [
+        'strong' //加粗
+        ,'face' //表情
+        ,'image' //插入图片
+        ,'link' //超链接 
+        ,'code'      
+
+        // ,'italic' //斜体
+        // ,'underline' //下划线
+        // ,'del' //删除线
+        ,'|' //分割线
+        ,'left' //左对齐
+        ,'center' //居中对齐
+        ,'right' //右对齐
+        // ,'unlink' //清除链接
+        // ,'help' //帮助
+         // , 'html'
+        ],height: 180
+      });
+      // 有些表单元素可能是动态插入的。这时 Form模块 的自动化渲染是会对其失效的,需要重新渲染
+      form.render(); //更新
     },
     error:function (res) {
         console.log('fail:',res);
     }
-  });
-
-  // 有些表单元素可能是动态插入的。这时 Form模块 的自动化渲染是会对其失效的,需要重新渲染
-  form.render(); //更新
-  
-  layedit.set({
-    uploadImage: {
-    url: '/api/upload/upload.img.php' //接口url
-    ,type: 'POST' //默认post
-    ,async:true //异步上传
-    ,data:{'type':'answer','userid':user_d.userid,'blogid':_id,'size':200}//回帖图像最大200kb
-    }
-  });
-
-  //渲染编辑器
-  var index = layedit.build('textEdit', {tool: [
-    'strong' //加粗
-    ,'face' //表情
-    ,'image' //插入图片
-    ,'link' //超链接 
-    ,'code'      
-
-    // ,'italic' //斜体
-    // ,'underline' //下划线
-    // ,'del' //删除线
-    ,'|' //分割线
-    ,'left' //左对齐
-    ,'center' //居中对齐
-    ,'right' //右对齐
-    // ,'unlink' //清除链接
-    // ,'help' //帮助
-     // , 'html'
-    ],height: 180
   });
 
   //监听收藏按钮
@@ -303,16 +302,16 @@
 
   //监听回复按钮
   $('#btn_answer').on('click', function(){
-    //获取编辑器内容
-    var str = layedit.getContent(index);
-    if(str.length==0)
+    // 判断是否已经登陆
+    if(user_d.login === "true")
     {
-        layer.msg('回复内容不能为空！');
-    }
-    else
-    {
-      // 判断是否已经登陆
-      if(user_d.login === "true")
+      //获取编辑器内容
+      var str = layedit.getContent(index);
+      if(str.length==0)
+      {
+        layer_msg('回复内容不能为空！');
+      }
+      else
       {
         // 毫米级时间戳
         var timestamp = (new Date()).valueOf();
@@ -323,33 +322,34 @@
           data:{'id':timestamp,'contents':str,'userid':user_d.userid,'toid':_id},
           //数据长度太长，放到data里通过post传送
           success: function (argument) {
-             if (argument.resault=='success') {
-                console.log(argument);
-                layer.msg('回复成功！',{icon:1,time:800},function(){
-                    window.location.reload();
-                  });
-              }
-              else{
-                console.log(argument);
-                layer.msg(argument.msg,{time:2000});
-              }
+           if (argument.resault=='success') {
+              console.log(argument);
+              layer.msg('回复成功！',{icon:1,time:800},function(){
+                  window.location.reload();
+                });
+            }
+            else{
+              console.log(argument);
+              layer_msg('回复失败:'+argument.msg,4);
+            }
           },
           error:function (argument) {
             console.log(argument);
-              layer.msg('回复失败！');
+              layer_msg('回复失败！',4);
           }
         });
       }
-      else
-      {
-        layer.msg('登陆后回复！');
-      } 
+    }
+    else
+    {
+      layer_msg('登陆后回复！',1);
     }
   });
 
   // 获取回贴月榜
   $.ajax({
     type:'POST',
+    async: true,
     url: "/api/blog/getsortlist.php",
     data:{"num":'12',"type":'answer'},
     success: function (res) {
@@ -369,6 +369,7 @@
   // 获取最近热帖
   $.ajax({
     type:'POST',
+    async: true,
     url: "/api/blog/getsortlist.php",
     data:{"num":'12',"type":'browse'},
     success: function (res) {
@@ -388,6 +389,7 @@
   // 获取近期热议
   $.ajax({
     type:'POST',
+    async: true,
     url: "/api/blog/getsortlist.php",
     data:{"num":'12',"type":'talk'},
     success: function (res) {

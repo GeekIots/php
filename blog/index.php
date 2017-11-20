@@ -141,6 +141,7 @@
   // 获取帖子列表
   $.ajax({
     type:'POST',
+    async: true,
     url: "../api/blog/getbloglist.php",
     data:{"num":inpagenumber,"page":_curr},
     success: function (res) {
@@ -177,6 +178,7 @@
   // 获取回贴月榜
   $.ajax({
     type:'POST',
+    async: true,
     url: "../api/blog/getsortlist.php",
     data:{"num":'12',"type":'answer'},
     success: function (res) {
@@ -195,6 +197,7 @@
   // 获取最近热帖
   $.ajax({
     type:'POST',
+    async: true,
     url: "../api/blog/getsortlist.php",
     data:{"num":'12',"type":'browse'},
     success: function (res) {
@@ -213,6 +216,7 @@
   // 获取近期热议
   $.ajax({
     type:'POST',
+    async: true,
     url: "../api/blog/getsortlist.php",
     data:{"num":'12',"type":'talk'},
     success: function (res) {
