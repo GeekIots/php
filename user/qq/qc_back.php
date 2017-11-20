@@ -9,10 +9,10 @@
 
   <script src="https://cdn.bootcss.com/vue/2.5.3/vue.js"></script>
   <link rel="stylesheet" href="/frame/layui-v2.1.0/layui/css/layui.css">
-  <link rel="stylesheet" href="/common/res/css/global.css">
+  <link rel="stylesheet" href="/frame/layui-v2.1.0/layui/css/gloabal/global.css">
   <script src="/frame/layui-v2.1.0/layui/layui.all.js"></script>
   <!-- 预加载的layui模块 -->
-  <script src="/common/layerload.js"></script>
+  <script src="/common/fun.js"></script>
   
   <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" data-appid="101435544" charset="utf-8"></script>
     <!-- data-callback="true" -->

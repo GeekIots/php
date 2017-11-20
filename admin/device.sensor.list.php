@@ -7,13 +7,13 @@
   <script src="https://cdn.bootcss.com/vue/2.4.4/vue.js"></script>  <!-- 预加载的layui模块 -->
   <link rel="stylesheet" href="/frame/layui-v2.1.0/layui/css/layui.css">
   <script src="/frame/layui-v2.1.0/layui/layui.all.js"></script>
-  <script src="/common/layerload.js"></script>
+  <script src="/common/fun.js"></script>
 </head>
 <body>
   <div id="app">
     <div class="layui-layout layui-layout-admin">
       <div class="layui-header">
-       <a href="/index.php"><img class="layui-logo" style="padding: 5px; height: 80%; " src='/common/res/images/logo.png'></a> 
+       <a href="/index.php"><img class="layui-logo" style="padding: 5px; height: 80%; " src='/image/default/header_logo.png'></a> 
         <ul class="layui-nav layui-layout-right">
           <template v-if="user.login=='true'">
             <li class="layui-nav-item">

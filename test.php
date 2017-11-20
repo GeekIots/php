@@ -5,6 +5,21 @@
   <title>测试页面 </title>
 </head>
 <body> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 <div class="main layui-clear">
 <!-- 建立视图。用于呈现渲染结果。 -->
 <div id="view"></div>
