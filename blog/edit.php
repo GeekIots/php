@@ -3,6 +3,13 @@
 <html>
 <head>
   <title>开发者社区 | 极客物联网 </title>
+  <!-- 富文本编辑器 -->
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+  <!-- END -->
 </head>
 <body> 
 <form action="">
@@ -20,7 +27,8 @@
   		    </div>
   		    <div class="layui-form-item layui-form-text">
   		      <div class="layui-input-block">
-  		        <textarea id="demo" name="contents" required lay-verify="required" placeholder="请输入内容" class="layui-textarea fly-editor" style="height: 260px;">{{d.contents}}</textarea>
+  		        <!-- <textarea id="demo" name="contents" required lay-verify="required" placeholder="请输入内容" class="layui-textarea fly-editor" style="height: 260px;">{{d.contents}}</textarea> -->
+              <div id="summernote"><p>{{d.contents}}</p></div>
   		      </div>
   		      <label for="L_content" class="layui-form-label" style="top: -2px;">描述</label>
   		    </div>
@@ -78,36 +86,46 @@
 	      var view = document.getElementById('edit_view');
 	      laytpl(getTpl).render(res, function(html){
 	        view.innerHTML = html;
-	      });
-        layedit.set({
-          uploadImage: {
-            url: '/api/upload/upload.img.php' //接口url
-            ,type: 'POST' //默认post
-            ,async:true //异步上传
-            ,data:{'type':'blog','userid':user_d.userid,'blogid':_id,'size':500}
-            }
-        });
-        
-        index = layedit.build('demo', {tool: [
-          'face' //表情
-          ,'image' //插入图片
-          ,'link' //超链接 
-          ,'code'      
-          // 'strong' //加粗
-          // ,'italic' //斜体
-          // ,'underline' //下划线
-          // ,'del' //删除线
-          // ,'|' //分割线
-          ,'left' //左对齐
-          ,'center' //居中对齐
-          ,'right' //右对齐
-          // ,'unlink' //清除链接
-          // ,'help' //帮助
-           // , 'html'
-            ]
-        });    
+	      }); 
         //刷新select选择框渲染
-        form.render('select');    
+        form.render('select'); 
+
+        // 富文本编辑器
+        $('#summernote').summernote({  
+            height: "200px",  
+            callbacks: {  
+                onImageUpload: function(files) { //the onImageUpload API  
+                    img = sendFile(files[0]);  
+            }  
+          }  
+        });  
+        
+        // 上传图片到后台
+        function sendFile(file) {  
+          data = new FormData();  
+          data.append("file", file);
+          data.append("type", 'blog');
+          data.append("userid", user_d.userid);
+          data.append("blogid", _id);
+          console.log(data);  
+          $.ajax({  
+              data: data,  
+              type: "POST",  
+              url: "/api/upload/upload.img.php",  
+              cache: false,  
+              contentType: false,  
+              processData: false,  
+              success: function(url) {
+                if (url.code==0) {
+                  $("#summernote").summernote('insertImage', url.data.src, 'image name'); // the insertImage API  
+                }  
+                else
+                {
+                  console.log(url.msg);
+                }
+              }  
+          });  
+        }   
 	    },
 	    error:function (res) {
 	        console.log('fail:',res);
@@ -119,7 +137,8 @@
     // layer.msg(JSON.stringify(data.field));
     // console.log(data.field);
     // console.log(layedit.getContent(index));
-    var content = layedit.getContent(index);
+    // var content = layedit.getContent(index);
+    var content = $('#summernote').summernote('code');
     //判断帖子内容
     if(!content)
     {

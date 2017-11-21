@@ -3,9 +3,16 @@
 <html>
 <head>
   <title>开发者社区 | 极客物联网 </title>
+  <!-- 富文本编辑器 -->
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+  <!-- END -->
 </head>
 <body>
-<div class="main layui-clear">
+<div class="main layui-clear" style="width: 80%">
   <script id="Tpl_1" type="text/html">
     <div class="wrap">
       <div class="content detail">
@@ -43,7 +50,7 @@
               {{#}}}
               
                 {{#  if(collect=="true"){ }}
-                  <button class="layui-btn layui-btn-mini jie-admin  layui-btn-danger" id="collect-btn">取消收藏</button>
+                  <button class="layui-btn layui-btn-mini jie-admin layui-btn-danger" id="collect-btn">取消收藏</button>
                 {{#  } else { }}
                   <button class="layui-btn layui-btn-mini jie-admin" id="collect-btn">收藏</button>
                 {{#  } }} 
@@ -110,7 +117,8 @@
           <div class="layui-form layui-form-pane">
               <div class="layui-form-item layui-form-text">
                 <div class="layui-input-block">
-                  <textarea id="textEdit" name="content" class="layui-textarea fly-editor"></textarea>
+                  <div id="summernote"><p>Hello geek-iot.com</p></div>
+                  <!-- <textarea id="textEdit" name="content" class="layui-textarea fly-editor"></textarea> -->
                 </div>
               </div>
               <div class="layui-form-item">
@@ -184,7 +192,7 @@
 <script>
   //获取请求帖子id
   var _id = getUrlParam('id');
-  var index;
+  // var index;
   var collect;
   // 获取是否是否已经收藏该帖
   if (user_d.login=='true') {
@@ -217,35 +225,42 @@
       laytpl(getTpl).render(res, function(html){
         view.innerHTML = html;
       });
-      layedit.set({
-        uploadImage: {
-        url: '/api/upload/upload.img.php' //接口url
-        ,type: 'POST' //默认post
-        ,async:true //异步上传
-        ,data:{'type':'answer','userid':user_d.userid,'blogid':_id,'size':100}//回帖图像最大100kb
-        }
-      });
 
-      //渲染编辑器
-      index = layedit.build('textEdit', {tool: [
-        'strong' //加粗
-        ,'face' //表情
-        ,'image' //插入图片
-        // ,'link' //超链接 
-        ,'code'      
-
-        // ,'italic' //斜体
-        // ,'underline' //下划线
-        // ,'del' //删除线
-        // ,'|' //分割线
-        // ,'left' //左对齐
-        // ,'center' //居中对齐
-        // ,'right' //右对齐
-        // ,'unlink' //清除链接
-        // ,'help' //帮助
-         // , 'html'
-        ],height: 180
-      });
+      // 富文本编辑器
+      $('#summernote').summernote({  
+          height: "150px",  
+          callbacks: {  
+              onImageUpload: function(files) { //the onImageUpload API  
+                  img = sendFile(files[0]);  
+          }  
+      }  
+      });  
+    
+     function sendFile(file) {  
+        data = new FormData();  
+        data.append("file", file);
+        data.append("type", 'answer');
+        data.append("userid", user_d.userid);
+        data.append("blogid", _id);
+        console.log(data);  
+        $.ajax({  
+            data: data,  
+            type: "POST",  
+            url: "/api/upload/upload.img.php",  
+            cache: false,  
+            contentType: false,  
+            processData: false,  
+            success: function(url) {
+              if (url.code==0) {
+                $("#summernote").summernote('insertImage', url.data.src, 'image name'); // the insertImage API  
+              }  
+              else
+              {
+                console.log(url.msg);
+              }
+            }  
+        });  
+      }  
       // 有些表单元素可能是动态插入的。这时 Form模块 的自动化渲染是会对其失效的,需要重新渲染
       form.render(); //更新
     },
@@ -306,7 +321,8 @@
     if(user_d.login === "true")
     {
       //获取编辑器内容
-      var str = layedit.getContent(index);
+      // var str = layedit.getContent(index);
+      var str = $('#summernote').summernote('code');
       if(str.length==0)
       {
         layer_msg('回复内容不能为空！');

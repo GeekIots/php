@@ -22,20 +22,43 @@
       type：default
       name：图片名称
       size：图像大小,单位kb
+    上传传感器图片：
+      type：sensor
+      userid：用户id
+      sensorid：传感器id
+      size：图像大小,单位kb
+    上传开关图片：
+      type：switch
+      userid：用户id
+      switchid：开关id
+      size：图像大小,单位kb
     */
     //获取type
     $type = get_post_para('type',true);
+
     //获取userid
     if ($type!='default') {
         $userid = get_post_para('userid',true);
         // 判断userid是否存在
         check_userid($userid,$con);     
     }
+
     //获取blogid
     if (($type=='blog')||($type=='answer')) {
         //获取blogid,获取时不需要blogid
         $blogid = get_post_para('blogid',true);
     }
+
+    //获取sensorid
+    if ($type=='sensor') {
+        $sensorid = get_post_para('sensorid',true);
+    }
+
+    //获取switchid
+    if ($type=='switch') {
+        $switchid = get_post_para('switchid',true);
+    }
+
     //获取size
     $size = get_post_para('size',false);
 ///////////////////上传图片具体操作//////////////////////////////
@@ -85,6 +108,17 @@
     if (!file_exists('../../image/default')){ 
         mkdir('../../image/default');
     }
+
+    // 如果没有文件夹则创建
+    if (!file_exists('../../image/sensor')){ 
+        mkdir('../../image/sensor');
+    }
+
+    // 如果没有文件夹则创建
+    if (!file_exists('../../image/switch')){ 
+        mkdir('../../image/switch');
+    }
+
     //上传头像
     if ($type=='avatar') {
         $file_path = '../../image/avatar';
@@ -118,6 +152,18 @@
     if ($type=='default') {
         $file_path = '../../image/default';
         $new_file_name = "$name.{$file_name_arr[1]}";
+    }
+    //上传传感器认图片
+    else
+    if ($type=='sensor') {
+        $file_path = "../../image/sensor/{$userid}";
+        $new_file_name = "$sensorid.{$file_name_arr[1]}";
+    }
+    //上传开关认图片
+    else
+    if ($type=='switch') {
+        $file_path = "../../image/switch/{$userid}";
+        $new_file_name = "$switchid.{$file_name_arr[1]}";
     }
     else
     {

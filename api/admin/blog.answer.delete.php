@@ -10,6 +10,7 @@
 
     $sql_delete = "delete from bloganswer where id=$id";  
     $res_delete = mysqli_query($con,$sql_delete); 
+
     if($res_delete) 
     {
         $myArray["resault"] = 'success';

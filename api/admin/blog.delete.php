@@ -13,8 +13,8 @@
     $res_delete = mysqli_query($con,$sql_delete); 
 
     // 删除回帖
-    $sql_delete = "delete from bloganswer where toid=$id";  
-    $res_delete = mysqli_query($con,$sql_delete);
+    $sql_del = "delete from bloganswer where toid=$id";  
+    $res_del = mysqli_query($con,$sql_del);
 
     // 删除帖子对应的图片文件夹
     delDirAndFile($_SERVER['DOCUMENT_ROOT']."/image/blog/{$id}");

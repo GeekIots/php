@@ -5,7 +5,7 @@
   <title>开发者社区 | 极客物联网</title>
 </head>
 <body>
-  <div class="main layui-clear">
+  <div class="main layui-clear" style="width: 80%">
     <!-- 主内容区 -->
     <div class="wrap">
       <div class="content">
@@ -234,4 +234,3 @@
   });
 </script>
 </html>
-

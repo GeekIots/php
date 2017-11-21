@@ -22,14 +22,6 @@
             </div>
         </div>
 
-         <div class="form-group">
-            <label class="col-sm-3 control-label">图片:</label>
-            <div class="col-sm-6">
-                <input type="text" class="form-control" id="pic" value="{{d.pic}}">
-            </div>
-            <label class="control-label" style="color: red" id="pic-msg"></label>
-        </div>
-
         <div class="form-group">
             <label class="col-sm-3 control-label">开指令:</label>
             <div class="col-sm-6">
@@ -44,7 +36,8 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-3 col-sm-10">
-                <div class="btn btn-default" id="btn-update">更新</div>
+                <div class="btn btn-default" id="btn-update-pic">更换图片</div>
+                <div class="btn btn-default" id="btn-update">提交</div>
                 <a class="btn btn-default" href="/device/management.php">取消</a>
             </div>
         </div>
@@ -91,26 +84,10 @@
     }
   });
 
-  // 监控图片输入框数据变化
-  $('#pic').bind('input propertychange', function() { 
-    // 定义一个Image对象
-    var img = new Image();
-    img.src=$('#pic').val();
-    // 加载成功
-    img.onload = function() {
-        $('#pic-show').attr('src',$('#pic').val()); 
-        $("#pic-msg").text("");
-    };
-    // 加载失败
-    img.onerror = function() {
-        $("#pic-msg").text("图片地址无效！");
-    }
-  }); 
-
   //所有的button引起的变化
   $("#btn-update").bind("click",function(){
     var name = $("#name").val();
-    var pic = $("#pic").val();
+    var pic = $("#pic-show")[0].src;
     var opencmd = $("#opencmd").val();
     var closecmd = $("#closecmd").val();
 
@@ -151,6 +128,34 @@
       }
     });
   }); 
+
+  // 更新图片
+  upload.render({
+    elem: '#btn-update-pic' //绑定元素
+    ,method:'POST'
+    ,async:true
+    ,data:{type:'switch',userid:user_d.userid,switchid:_id,'size':200}
+    ,url: '/api/upload/upload.img.php' //上传接口
+    ,before : function(){
+      //执行上传前的回调  可以判断文件后缀等等
+      layer.msg('上传中，请稍后......', {icon:16, shade:0.5, time:0});
+    }
+    ,done: function(res){
+      //上传完毕回调
+      console.log(res);
+      if(res.code != 0){
+      layer.msg(res.msg, {icon:2, shade:0.5, time:res.time});
+    }
+    else{
+        layer_msg("更新图片成功！",4);
+        layui.jquery('#pic-show').attr("src", res.msg);
+      }
+    }
+    ,error: function(res){
+      //请求异常回调
+      console.log(res);
+    }
+  });
 </script>
 
 
