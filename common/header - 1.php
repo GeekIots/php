@@ -1,4 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8">
+  <meta name="keywords" content="物联网">
+
+  <script src="https://cdn.bootcss.com/vue/2.5.3/vue.js"></script>
+
+  <link rel="stylesheet" href="/frame/layui-v2.1.0/layui/css/layui.css">
+  <link rel="stylesheet" href="/frame/layui-v2.1.0/layui/css/gloabal/global.css">
+  <script src="/frame/layui-v2.1.0/layui/layui.all.js"></script>
+
+  <!-- QQ登录插件 -->
+  <script type="text/javascript"
+  src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js" charset="utf-8"></script>
+  <style type="text/css">
+    .iconfont{
+      font-size: 18px;
+    }
+  </style>
+  <!-- 预加载的layui模块 -->
+  <script src="/common/fun.js"></script>
+</head>
+
 <div class="header">
+
   <div class="main" style="width: 90%;">
     <ul class="layui-nav" >
       <img src='/image/default/header_logo.png'>
@@ -18,11 +43,11 @@
       <!-- 模板 -->
       <script id="tpl_header" type="text/html">
         <!-- 已登录 -->
-        {{#  if(user.login === "true"){ }}
-          <a class='avatar' href='/user/home.php?userid={{user.userid}}'>
+        {{#  if(user_d.login === "true"){ }}
+          <a class='avatar' href='/user/home.php?userid={{user_d.userid}}'>
 
-          <img id='image-avatar' src='{{ user.avatar }}'>
-          <cite id='nickname'>{{ user.nickname }}</cite>
+          <img id='image-avatar' src='{{ user_d.avatar }}'>
+          <cite id='nickname'>{{ user_d.nickname }}</cite>
           <i>VIP</i>
           </a>
           <div class='nav'>
@@ -50,39 +75,43 @@
     </div>
   </div>
 </div>
+<!-- 隐藏的input，让浏览器填充，解决输入框被填充问题 -->
+<input style="display:none" type="text" name="fakeusernameremembered"/>
+<input style="display:none" type="password" name="fakepasswordremembered"/>
 <script>
+  //全局ajax设置为同步（阻塞）方式
+  // $.ajaxSetup({
+  //   async: false //同步
+  // });
+  // 如果HTML是动态生成的，自动渲染就会失效
+  element.init();
+
   // 定义用户数据变量
-  var user;
-  // 加载需要的模块
-  layui.use(['laytpl','jquery'], function(){
-  var laytpl,$;
-  laytpl = layui.laytpl;
-  $  = layui.jquery;
+  var user_d;
+
   //获取用户登陆信息
   $.ajax({
     url: "/api/user/user.php",
-    async: false, //同步
+    async: true, //同步
     success: function (res) {
         console.log('success:',res);
-        user = res;
+        user_d = res;
         //渲染数据
         var getTpl = tpl_header.innerHTML;
         var view_header = document.getElementById('view_header');
-        laytpl(getTpl).render(user, function(html){
+        laytpl(getTpl).render(user_d, function(html){
           view_header.innerHTML = html;
         });
-      },
-      error:function (res) {
-          console.log('fail:',res);
-      }
-    });
+    },
+    error:function (res) {
+        console.log('fail:',res);
+    }
   });
-
   //QQ登录
   function qqLogin(){
     QC.Login.showPopup({
       appId:"101435544",
-      redirectURI:"http://"+location.host+"/user/qq/qc_back.php?backurl="+location.href
+      redirectURI:"http://"+window.location.host+"/user/qq/qc_back.php?backurl="+window.location.href
     });
     window.close();
   }

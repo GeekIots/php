@@ -1,5 +1,5 @@
 // 预定义全局变量
-var layer,laydate,laypage,laytpl,layim,layedit,form,upload,tree,table,element,util,flow,carousel,code,$,mobile;
+// var layer,laydate,laypage,laytpl,layim,layedit,form,upload,tree,table,element,util,flow,carousel,code,$,mobile;
 // 加载需要的模块
 // layui.use(['layer','laydate','laypage','laytpl','layim','layedit','form','upload','tree','table','element','util','flow','carousel','code','jquery','mobile'], function(){
     // layer = layui.layer;
@@ -20,25 +20,25 @@ var layer,laydate,laypage,laytpl,layim,layedit,form,upload,tree,table,element,ut
     // $  = layui.jquery;
     // mobile = layui.mobile;
 // });
-;!function(){
-  layer = layui.layer;
-  laydate = layui.laydate;
-  laypage = layui.laypage;
-  laytpl = layui.laytpl;
-  // layim = layui.layim;
-  layedit = layui.layedit;
-  form = layui.form;
-  upload = layui.upload;
-  tree = layui.tree;
-  table = layui.table;
-  element = layui.element;
-  util = layui.util;
-  flow = layui.flow;
-  carousel = layui.carousel;
-  code = layui.code;
-  $  = layui.jquery;
-  mobile = layui.mobile;
-}();
+// ;!function(){
+//   layer = layui.layer;
+//   laydate = layui.laydate;
+//   laypage = layui.laypage;
+//   laytpl = layui.laytpl;
+//   // layim = layui.layim;
+//   layedit = layui.layedit;
+//   form = layui.form;
+//   upload = layui.upload;
+//   tree = layui.tree;
+//   table = layui.table;
+//   element = layui.element;
+//   util = layui.util;
+//   flow = layui.flow;
+//   carousel = layui.carousel;
+//   code = layui.code;
+//   $  = layui.jquery;
+//   mobile = layui.mobile;
+// }();
 
 //获取url中的参数
 function getUrlParam(name) {
