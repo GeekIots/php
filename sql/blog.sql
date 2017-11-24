@@ -19,7 +19,7 @@ SET FOREIGN_KEY_CHECKS=0;
 -- Table structure for `blog`
 -- ----------------------------
 DROP TABLE IF EXISTS `blog`;
-CREATE TABLE `blog` (
+CREATE TABLE blog` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(50) DEFAULT '' COMMENT '标题',
   `dates` datetime DEFAULT NULL COMMENT '发表时间',

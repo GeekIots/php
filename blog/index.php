@@ -15,8 +15,7 @@
   <script src="/common/fun.js"></script>
 </head>
 <body>
-  <div id="app">
-    <?php require($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
+  <?php require($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
     <div class="main layui-clear" style="width: 80%">
       <!-- 主内容区 -->
       <div class="wrap">
@@ -127,8 +126,7 @@
         <div id="view_4"></div> 
       </div>
     </div>
-    <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
-  </div>
+  <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 </body>
 <script>
  // 加载需要的模块
