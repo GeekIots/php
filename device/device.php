@@ -1,3 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>删除开关 | 极客物联网</title>
+  <meta charset="utf-8">
+  <meta name="keywords" content="物联网">
+  <!-- vue -->
+  <script src="https://cdn.bootcss.com/vue/2.5.3/vue.js"></script>
+  <!-- layui -->
+  <link rel="stylesheet" href="/frame/layui-master/src/css/layui.css">
+  <link rel="stylesheet" href="/frame/layui-master/src/css/gloabal/global.css">
+  <script src="/frame/layui-master/src/layui.js"></script>
+  <!-- QQ登录 -->
+  <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js"></script>
+  <!-- 自定义函数 -->
+  <script src="/common/fun.js"></script>
+  <!-- 引入 Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <?php require($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
+
+
+
+
+
+
+
 <?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php') ?>
 <!DOCTYPE html>
 <html>

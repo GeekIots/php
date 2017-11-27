@@ -1,10 +1,24 @@
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php') ?>
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
-</head>  
+  <title>添加传感器 | 极客物联网</title>
+  <meta charset="utf-8">
+  <meta name="keywords" content="物联网">
+  <!-- vue -->
+  <script src="https://cdn.bootcss.com/vue/2.5.3/vue.js"></script>
+  <!-- layui -->
+  <link rel="stylesheet" href="/frame/layui-master/src/css/layui.css">
+  <link rel="stylesheet" href="/frame/layui-master/src/css/gloabal/global.css">
+  <script src="/frame/layui-master/src/layui.js"></script>
+  <!-- QQ登录 -->
+  <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js"></script>
+  <!-- 自定义函数 -->
+  <script src="/common/fun.js"></script>
+  <!-- 引入 Bootstrap -->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+</head>
 <body style="background: white;padding-top: 10px">
+  <?php require($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
   <div id="app">
 	<main v-if="user.login=='true'" style="padding-left: 60px;padding-right: 60px;" >
 		    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
@@ -91,8 +105,25 @@
   // 开关列表
   var switchlist;
   var sensorlist;
+  layui.use(['layer','laydate','laypage','laytpl','layedit','form','upload','tree','table','element','util','flow','carousel','code','jquery'], function(){
+    var layer,laydate,laypage,laytpl,layim,layedit,form,upload,tree,table,element,util,flow,carousel,code,$,mobile;
+    layer = layui.layer;
+    laydate = layui.laydate;
+    laypage = layui.laypage;
+    laytpl = layui.laytpl;
+    layedit = layui.layedit;
+    form = layui.form;
+    upload = layui.upload;
+    tree = layui.tree;
+    table = layui.table;
+    element = layui.element;
+    util = layui.util;
+    flow = layui.flow;
+    carousel = layui.carousel;
+    code = layui.code;
+    $  = layui.jquery;
 
-  if (user_d.login=='false') {
+  	if (user.login=='false') {
   	 //公告层
       layer.open({
         type: 1
@@ -120,8 +151,9 @@
   // 获取列表
   $.ajax({
     type:'GET',
+    async: false, //同步
     url: "/api/device/device.php",
-    data:{"device":'switch',"type":'getlist',"userid":user_d.userid},
+    data:{"device":'switch',"type":'getlist',"userid":user.userid},
     success: function (res) {
       switchlist  = res;
       console.log('switchlist:',res);
@@ -133,8 +165,9 @@
 
   $.ajax({
     type:'GET',
+    async: false, //同步
     url: "/api/device/device.php",
-    data:{"device":'sensor',"type":'getlist',"userid":user_d.userid},
+    data:{"device":'sensor',"type":'getlist',"userid":user.userid},
     success: function (res) {
       sensorlist  = res;
       console.log('sensorlist:',res);
@@ -147,9 +180,10 @@
  	new Vue({
 	el: '#app',
 	  data: {
-	  	user:user_d,
+	  	user:user,
 	    switchlist: switchlist,
 	    sensorlist:sensorlist
 	  }
 	}) 
+  });
 </script>
