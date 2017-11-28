@@ -46,6 +46,11 @@ layui.define('layer', function(exports){
           /(^\d{15}$)|(^\d{17}(x|X|\d)$)/
           ,'请输入正确的身份证号'
         ]
+        // 增加密码验证
+        ,password: [
+          /^[A-Za-z0-9]{6,20}$/
+          , "密码过于简单，请输入6-20位数字和字母组合！"
+        ]
       }
     };
   };
@@ -433,7 +438,9 @@ layui.define('layer', function(exports){
             } else if(verType === 'alert') {
               layer.alert(errorText, {title: '提示', shadeClose: true});
             } else {
-              layer.msg(errorText, {icon: 5, shift: 6});
+              // layer.msg(errorText, {icon: 5, shift: 6});
+              // 更改错误提示画面
+              layer.alert(errorText, {title: '提示',skin: 'layui-layer-molv',anim: 6});
             }
             if(!device.android && !device.ios) item.focus(); //非移动设备自动定位焦点
             othis.addClass(DANGER);
