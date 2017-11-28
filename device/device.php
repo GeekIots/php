@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>删除开关 | 极客物联网</title>
+  <title>设备控制台 | 极客物联网</title>
   <meta charset="utf-8">
   <meta name="keywords" content="物联网">
   <!-- vue -->
@@ -14,25 +14,6 @@
   <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js"></script>
   <!-- 自定义函数 -->
   <script src="/common/fun.js"></script>
-  <!-- 引入 Bootstrap -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-  <?php require($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
-
-
-
-
-
-
-
-<?php include($_SERVER['DOCUMENT_ROOT'].'/common/header.php') ?>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>设备控制台 | 极客物联网</title>
-  <!-- 腾讯地图 -->
-  <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script> 
   <!-- 引入 Bootstrap -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   <style type="text/css">
@@ -96,8 +77,8 @@
   </style>
 </head>
 <body>
+  <?php require($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
   <script id="moduel" type="text/html">
-
     {{#  layui.each(switchlist.list, function(index, item){ }}
       <div class="container" style="margin-left: 8%;padding-top: 10px;padding-bottom: 10px;">
          <div class="row">
@@ -191,7 +172,26 @@
 </body>
 </html> 
 <script>
-  if (user_d.login=='false') {
+  // 开关列表
+  var switchlist;
+  layui.use(['layer','laydate','laypage','laytpl','layedit','form','upload','tree','table','element','util','flow','carousel','code','jquery'], function(){
+      var layer,laydate,laypage,laytpl,layim,layedit,form,upload,tree,table,element,util,flow,carousel,code,$,mobile;
+      layer = layui.layer;
+      laydate = layui.laydate;
+      laypage = layui.laypage;
+      laytpl = layui.laytpl;
+      layedit = layui.layedit;
+      form = layui.form;
+      upload = layui.upload;
+      tree = layui.tree;
+      table = layui.table;
+      element = layui.element;
+      util = layui.util;
+      flow = layui.flow;
+      carousel = layui.carousel;
+      code = layui.code;
+      $  = layui.jquery;
+      if (user.login=='false') {
      //公告层
       layer.open({
         type: 1
@@ -215,75 +215,75 @@
           });
         }
       });
-  }
-  else
-  {
-    // 开关列表
-    var switchlist;
-    // 获取列表
-    $.ajax({
-      type:'GET',
-      url: "/api/device/device.php",
-      data:{"device":'switch',"type":'getlist',"userid":user_d.userid},
-      success: function (res) {
-        switchlist  = res;
-        console.log('switchlist:',res);
-
-      },
-      error:function (res) {
-        console.log('fail:',res);
-      }
-    });
-
-    //渲染数据
-    var getTpl = moduel.innerHTML;
-    var view = document.getElementById('view');
-    laytpl(getTpl).render(switchlist, function(html){
-      view.innerHTML = html;
-    });
-
-    //所有的button引起的变化
-    $(":button").bind("click",function(){
-      var wait;
-      var stop=false;
-      get_code_time = function (o) { 
-        if (!stop) {
-          // o.text('响应:'+wait/100+'s');
-          o.text(wait/100+'s');
-              wait++;  
-              setTimeout(function() {  
-                  get_code_time(o)  
-              }, 10)  
-        }
-      }  
-      //打印引起事件的标签信息
-      console.log('click:', this);
-      var id = $(this).attr('id');
-      var cmd = $(this).attr('name');
-      console.log('id:', id);
-      console.log('cmd:', cmd);
-      // $("#msg"+id).text("等待响应...");
-      wait = 0;
-      stop=false;
-      get_code_time($("#msg"+id));
-        // 发送指令并等待响应
-        $.ajax({
-        async: true,
-        url: "/api/device/device.php?device=switch&type=set&userid="+user_d.userid+"&id="+id+"&cmd="+cmd,
+    }
+    else
+    {
+      // 获取列表
+      $.ajax({
+        type:'GET',
+        async: false, //同步
+        url: "/api/device/device.php",
+        data:{"device":'switch',"type":'getlist',"userid":user.userid},
         success: function (res) {
-          console.log('success:',res);
-          stop=true;
-          $("#msg"+id).text(res.return+' '+$("#msg"+id).text());
-          $("#heat"+id).text(parseInt($("#heat"+id).text())+1);
-          $("#latest"+id).text(res.latest);
-          $("#state"+id).text(cmd);
+          switchlist  = res;
+          console.log('switchlist:',res);
+
         },
         error:function (res) {
           console.log('fail:',res);
-          $("#msg"+id).text(res.return);
-          stop=true;
         }
       });
-    }); 
-  } 
+
+      //渲染数据
+      var getTpl = moduel.innerHTML;
+      var view = document.getElementById('view');
+      laytpl(getTpl).render(switchlist, function(html){
+        view.innerHTML = html;
+      });
+
+      //所有的button引起的变化
+      $(":button").bind("click",function(){
+        var wait;
+        var stop=false;
+        get_code_time = function (o) { 
+          if (!stop) {
+            // o.text('响应:'+wait/100+'s');
+            o.text(wait/100+'s');
+                wait++;  
+                setTimeout(function() {  
+                    get_code_time(o)  
+                }, 10)  
+          }
+        }  
+        //打印引起事件的标签信息
+        console.log('click:', this);
+        var id = $(this).attr('id');
+        var cmd = $(this).attr('name');
+        console.log('id:', id);
+        console.log('cmd:', cmd);
+        // $("#msg"+id).text("等待响应...");
+        wait = 0;
+        stop=false;
+        get_code_time($("#msg"+id));
+          // 发送指令并等待响应
+          $.ajax({
+          async: true,
+          url: "/api/device/device.php?device=switch&type=set&userid="+user.userid+"&id="+id+"&cmd="+cmd,
+          success: function (res) {
+            console.log('success:',res);
+            stop=true;
+            $("#msg"+id).text(res.return+' '+$("#msg"+id).text());
+            $("#heat"+id).text(parseInt($("#heat"+id).text())+1);
+            $("#latest"+id).text(res.latest);
+            $("#state"+id).text(cmd);
+          },
+          error:function (res) {
+            console.log('fail:',res);
+            $("#msg"+id).text(res.return);
+            stop=true;
+          }
+        });
+      }); 
+    } 
+  }); 
 </script>

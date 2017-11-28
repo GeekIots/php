@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>添加传感器 | 极客物联网</title>
+  <title>设备管理 | 极客物联网</title>
   <meta charset="utf-8">
   <meta name="keywords" content="物联网">
   <!-- vue -->
@@ -14,8 +14,6 @@
   <script type="text/javascript" src="http://qzonestyle.gtimg.cn/qzone/openapi/qc_loader.js"></script>
   <!-- 自定义函数 -->
   <script src="/common/fun.js"></script>
-  <!-- 引入 Bootstrap -->
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body style="background: white;padding-top: 10px">
   <?php require($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
