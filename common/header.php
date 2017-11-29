@@ -1,5 +1,5 @@
-<div class="header">
-  <div class="main" style="width: 90%;">
+<div class="header" style="display: block;">
+  <div  style="width: 90%;">
     <ul class="layui-nav" >
       <img src='/image/default/header_logo.png'>
       <li class="layui-nav-item"><a href="/index.php" class="iconfont">首页</a></li>

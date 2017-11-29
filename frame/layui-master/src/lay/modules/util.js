@@ -95,6 +95,7 @@ layui.define('jquery', function(exports){
     
     //某个时间在当前时间的多久前
     ,timeAgo: function(time, onlyDate){
+      var time = new Date(Date.parse(time.replace(/-/g, '/').replace(/T/g, ' ')));
       var that = this
       ,arr = [[], []]
       ,stamp = new Date().getTime() - new Date(time).getTime();
