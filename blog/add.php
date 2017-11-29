@@ -38,7 +38,7 @@
             <div class="layui-form-item layui-form-text">
               <div class="layui-input-block">
                 <!-- <textarea id="demo" name="content"  placeholder="请输入内容" class="layui-textarea fly-editor" style="height: 260px;"></textarea> -->
-                <div id="summernote"><p placeholder="请输入内容！"></p></div>
+                <div id="summernote"></div>
               </div>
               <label for="L_content" class="layui-form-label" style="top: -2px;">描述</label>
             </div>
@@ -98,14 +98,14 @@
     $  = layui.jquery;
 
     // 有些表单元素可能是动态插入的。这时 Form模块 的自动化渲染是会对其失效的,需要重新渲染
-    form.render(); //更新
-
+    // form.render(); //更新
+  
     // 富文本编辑器
     $('#summernote').summernote({  
         height: "200px",  
         callbacks: {  
-            onImageUpload: function(files) { //the onImageUpload API  
-                img = sendFile(files[0]);  
+          onImageUpload: function(files) { //the onImageUpload API  
+          img = sendFile(files[0]);  
         }  
       }  
     });  
@@ -115,24 +115,28 @@
       data = new FormData();  
       data.append("file", file);
       data.append("type", 'blog');
-      data.append("userid", user_d.userid);
+      data.append("userid", user.userid);
       data.append("blogid", timestamp);
-      console.log(data);  
+      console.log('data:',data);  
       $.ajax({  
           data: data,  
           type: "POST",  
-          url: "/api/upload/upload.img.php",  
+          url: "/api/upload/upload.img.php",
+          async: true,   
           cache: false,  
           contentType: false,  
           processData: false,  
           success: function(url) {
             if (url.code==0) {
-              $("#summernote").summernote('insertImage', url.data.src, 'image name'); // the insertImage API  
+              $("#summernote").summernote('editor.insertImage', url.data.src, url.data.title);
             }  
             else
             {
+              layer_msg(url.msg);
               console.log(url.msg);
             }
+            // layer_msg(url.msg);
+            console.log('url:',url);
           }  
       });  
     }
@@ -159,6 +163,7 @@
         $.ajax({
           type:'POST',
           url: "/api/blog/new.php",
+          async: true, 
           data:{'id':timestamp,'title':data.field.title,'contents':content,'classify':data.field.class,'userid':user.userid},
            success: function (argument) {
             if (argument.resault=='success') {

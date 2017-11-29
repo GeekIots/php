@@ -136,7 +136,7 @@
             data = new FormData();  
             data.append("file", file);
             data.append("type", 'blog');
-            data.append("userid", user_d.userid);
+            data.append("userid", user.userid);
             data.append("blogid", _id);
             console.log(data);  
             $.ajax({  
@@ -148,7 +148,7 @@
                 processData: false,  
                 success: function(url) {
                   if (url.code==0) {
-                    $("#summernote").summernote('insertImage', url.data.src, 'image name'); // the insertImage API  
+                    $("#summernote").summernote('editor.insertImage', url.data.src, url.data.src, url.data.title); // the insertImage API  
                   }  
                   else
                   {

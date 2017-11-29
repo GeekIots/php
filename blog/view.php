@@ -16,7 +16,7 @@
 </head>
 <body>
   <?php require($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
-    <div class="main layui-clear">
+    <div class="main layui-clear" style="width: 80%">
       <script id="Tpl_1" type="text/html">
         <div class="wrap">
           <div class="content detail">
