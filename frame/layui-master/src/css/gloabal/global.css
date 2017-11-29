@@ -293,7 +293,7 @@ body .fly-user-main{position: relative; width: 1085px; min-height: 600px; margin
 .detail-hits span{margin-top: 0; font-size: 12px;}
 .detail-hits .layui-btn{border-radius: 0;}
 .detail-hits .layui-btn+.layui-btn{margin-left: 5px;}
-.detail-hits .jie-admin{margin-right: 1px;}
+.detail-hits .jie-admin{margin-right: 1px;height: 22px;line-height: 22px;}
 .detail-body{margin: 20px 0 50px; min-height: 202px; line-height:26px; font-size:16px; word-wrap: break-word;}
 .detail-body p{margin-bottom:15px;}
 .detail-body a{color:#4f99cf;}
