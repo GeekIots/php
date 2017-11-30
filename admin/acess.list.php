@@ -28,11 +28,11 @@
               <dd><a href="/admin/user.list.php">用户列表</a></dd>
             </dl>
           </li>
-          <li class="layui-nav-item layui-nav-itemed">
+          <li class="layui-nav-item">
             <a href="javascript:;">信息管理</a>
             <dl class="layui-nav-child">
               <dd><a href="/admin/info.wxin.php">小程序信息</a></dd>
-              <dd class="layui-bg-green"><a href="javascript:;">网站信息</a></dd>
+              <dd><a href="/admin/info.web.php">网站信息</a></dd>
             </dl>
           </li>
           <li class="layui-nav-item">
@@ -40,6 +40,7 @@
             <dl class="layui-nav-child">
               <dd><a href="/admin/blog.list.php">帖子列表</a></dd>
               <dd><a href="/admin/blog.answer.list.php">回帖列表</a></dd>
+            </dl>
           </li>
           <li class="layui-nav-item">
             <a href="javascript:;">设备管理</a>
@@ -48,16 +49,15 @@
               <dd><a href="/admin/device.sensor.list.php">传感器</a></dd>
             </dl>
           </li>
-          <li class="layui-nav-item">
+          <li class="layui-nav-item  layui-nav-itemed">
             <a href="javascript:;">站点统计</a>
             <dl class="layui-nav-child">
-              <dd><a href="/admin/acess.list.php">访问列表</a></dd>
+              <dd class="layui-bg-green"><a href="javascript:;">访问列表</a></dd>
             </dl>
           </li>
         </ul>
       </div>
     </div>
-    
     <div class="layui-body" style="padding: 20px;">
       <!-- 内容主体区域 -->
       <table class="layui-table" id='laytable' lay-filter="tabetool">
@@ -97,15 +97,16 @@
     table.render({
       elem: '#laytable'
       ,loading: true
-      ,url:'/api/admin/info.web.php'
-      ,async:true
+      ,url:'/api/admin/access.count.php?type=get&sort=list'
       ,height: 500
       ,cols: [[ //标题栏
       {checkbox: true, LAY_CHECKED: true} //默认全选
-      ,{field: 'id', title: 'ID', width: 50, sort: true}
-      ,{field: 'name', title: '名称', width: 80, sort: true}
-      ,{field: 'des', title: '简介', width: 120, sort: true}
-      ,{field: 'content', title: '内容', width: 200, sort: true}
+      ,{field: 'id', title: 'ID', width: 80, sort: true}
+      ,{field: 'country', title: '国家', width: 80, sort: true}
+      ,{field: 'province', title: '省份', width: 80, sort: true}
+      ,{field: 'city', title: '城市', width: 80, sort: true}
+      ,{field: 'nowurl', title: '页面', width: 260, sort: true}
+      ,{field: 'fromurl', title: '访问来源', width: 260, sort: true}
       ,{field: 'dates', title: '更新时间', width: 180, sort: true}
       ,{field:'right', title: '操作', width:260,toolbar:"#barDemo"}
       ]] 
@@ -127,29 +128,15 @@
       var tr = obj.tr; //获得当前行 tr 的DOM对象
      
       if(layEvent === 'detail'){ //查看
-          console.log(data);
-          // window.location.href="/blog/view.php?id="+data.id; 
+      	layer.alert('编辑行：<br>'+ JSON.stringify(data));
+        console.log(data);
       } else if(layEvent === 'del'){ //删除
-        layer.confirm('暂时不支持删除！', function(index){
-          // obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-          layer.close(index);
-          //向服务端发送删除指令
-          // $.ajax({
-          //   url: "/api/admin/blog.delete.php?id="+data.id,
-          //   async: true, //同步
-          //   success: function (res) {console.log('success:',res);layer.msg('删除成功！');},
-          //   error:function (res) {console.log('fail:',res);layer.msg('删除失败！');}
-          // });
-        });
+        
       } else if(layEvent === 'edit'){ //编辑
         layer.alert('编辑行：<br>'+ JSON.stringify(data));
-        //同步更新缓存对应的值
-        // obj.update({
-        //   nickname: '123'
-        // });
       }
     });
-    element.init(); 
+   element.init(); 
   });
 </script>
 </body>

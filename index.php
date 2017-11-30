@@ -3,10 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="keywords" content="物联网">
+  <title>极客物联网</title>
   <!-- vue -->
   <script src="https://cdn.bootcss.com/vue/2.5.3/vue.js"></script>
   <!-- layui -->
   <link rel="stylesheet" href="/frame/layui-master/src/css/layui.css">
+  <link rel="stylesheet" href="/frame/layui-master/src/css/lay-icon.css">
   <link rel="stylesheet" href="/frame/layui-master/src/css/gloabal/global.css">
   <script src="/frame/layui-master/src/layui.js"></script>
   <!-- QQ登录 -->
@@ -14,27 +16,41 @@
   <!-- 自定义函数 -->
   <script src="/common/fun.js"></script>
 </head>
-<body style="background-color: white" >
+<body style="background-color: white;" >
   <?php require($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
-  <div class="main layui-clear">
-    <!-- 轮播图 -->
-	  <div class="layui-carousel" id="test4">
-  		<div carousel-item>
-    		<div><img src="http://s2.mogucdn.com/mlcdn/c45406/170714_2f9k4a3lgdfb80cie2g7aaba8l4ag_778x440.jpg"></div>
-    		<div><img src="http://s10.mogucdn.com/mlcdn/c45406/170710_3a6jf5f0j24bgcc3i3f36el2a2ckj_778x440.jpg"></div>
-    		<div><img src="http://s10.mogucdn.com/mlcdn/c45406/170714_5e8867724c4bfae8ka6l3a5274h0h_778x440.jpg"></div>
-    		<div><img src="http://s3.mogucdn.com/mlcdn/c45406/170609_83i077ikhb3023kch5gah5b2il9k3_778x440.jpg"></div>
-    		<div><img src="http://s10.mogucdn.com/mlcdn/c45406/170714_8d301bj507l9la1cjccbabg433beh_778x440.jpg"></div>
-    		<div><img src="http://s10.mogucdn.com/mlcdn/c45406/170710_4kaiaee4j39899b08abc685j2ehk1_778x440.jpg"></div>
-    		<div><img src="http://s10.mogucdn.com/mlcdn/c45406/170710_31a9gb225bga4agf4c9b25a8c8924_778x440.jpg"></div>
-    	</div>
+    <div style=" background-color:#23262E ;transform: 0.5;padding-top: 220px; text-align: center;">
+
+	    <h2 style="font-size: 50px;font-family:Arial;color:rgba(255,255,255,0.8); ">快速、高效、跨平台的云平台解决方案</h2>
+	    <div id="count" style="color:rgba(255,255,255,0.8); padding-top: 160px;padding-bottom: 50px;">
+	    	<div id="count"></div>
+	    </div>
+	</div>
+
+	<div class="layui-container" style="padding-top: 80px;">   
+	  <div class="layui-row" style="line-height: 70px; padding-bottom: 80px;" >
+	    <div class="layui-col-md6">
+	        <div style="font-size: 24px;color: #0e83cd;font-family:sans-serif;"><i class="layui-icon" style="font-size: 24px; color: #1E9FFF;">&#xe681;</i>&nbsp超快响应速度
+	  		</div>
+	        <div style="font-size: 16px;font-family:sans-serif;line-height: 30px;padding-right: 60px;padding-left: 40px;text-indent: 2em;">极客云精简的API让用户快速接入云端，开关类设备响应速度快达0.1秒。</div>
+	    </div>
+	    <div class="layui-col-md6">
+	        <div style="font-size: 24px;color: #0e83cd;font-family:sans-serif;"><i class="layui-icon" style="font-size: 24px; color: #1E9FFF;">&#xe636;</i>&nbsp多平台支持
+	  		</div>
+	        <div style="font-size: 16px;font-family:sans-serif;line-height: 30px;padding-right: 60px;padding-left: 40px;text-indent: 2em;">极客云支持STM32、51单片机、8266、Arduino、树莓派等硬件设备，同时也支持Web、Android和IOS等APP个性开发。</div>
+	    </div>
 	  </div>
-
-    <!-- 主体介绍 -->
-    <div id="app">
-      <div v-html="message.contents"></div>
-    </div>
-
+	  <div class="layui-row" style="line-height: 70px; padding-bottom: 80px;" >
+	  		<div class="layui-col-md6">
+		        <div style="font-size: 24px;color: #0e83cd;font-family:sans-serif;"><i class="layui-icon" style="font-size: 24px; color: #1E9FFF;">&#xe715;</i>&nbsp标准库函数支持
+		  		</div>
+		        <div style="font-size: 16px;font-family:sans-serif;line-height: 30px;padding-right: 60px;padding-left: 40px;text-indent: 2em;">极客云向用户提供整套完整库函数，用户只需要调用库函数，就可以轻松控制远程设备，上传采集的温湿度及GPS信息。</div>
+		    </div>
+		    <div class="layui-col-md6">
+		        <div style="font-size: 24px;color: #0e83cd;font-family:sans-serif;"><i class="layui-icon" style="font-size: 24px; color: #1E9FFF;">&#xe64e;</i>&nbsp丰富的案例、软件下载
+		  		</div>
+		        <div style="font-size: 16px;font-family:sans-serif;line-height: 30px;padding-right: 60px;padding-left: 40px;text-indent: 2em;">极客云为用户提供了零基础入门的应用案例，100%开源，共享于Github；同时还编写了PC端调试工具，方便用户模拟硬件设备接入！</div>
+		    </div>
+	    </div>
 	</div>
   <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 </body>
@@ -72,23 +88,15 @@
     // ,full: true
   });
 
-  // 获取帖子主体
+  // 获取点击量
   $.ajax({
     type:'POST',
-    url: "/api/blog/getblog.php",
+    url: "/api/admin/access.count.php",
     async: true,
-    data:{"id":'6'},
+    data:{type:'get',sort:'count'},
     success: function (res) {
       console.log('success:',res);
-
-      //渲染数据
-      new Vue({
-        el: '#app',
-        data: {
-          message: res
-        }
-      })
-
+      $("#count").html('<div id="count" class="layui-btn layui-btn-sm layui-btn-primary" style="font-size: 18px;"><span class="layui-icon layui-icon-star-fill" ></span><span></span>Click&nbsp'+res.count+'</div>');
     }
   });
 

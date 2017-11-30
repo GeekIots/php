@@ -49,6 +49,12 @@
               <dd class="layui-bg-green"><a href="/admin/device.sensor.list.php">传感器</a></dd>
             </dl>
           </li>
+          <li class="layui-nav-item">
+            <a href="javascript:;">站点统计</a>
+            <dl class="layui-nav-child">
+              <dd><a href="/admin/acess.list.php">访问列表</a></dd>
+            </dl>
+          </li>
         </ul>
       </div>
     </div>

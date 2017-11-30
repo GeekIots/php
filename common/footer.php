@@ -1,13 +1,15 @@
-<div class="footer">
+
+<div class="footer" style="position:absolute;bottom:0px;width: 100%;padding-top: 10px;">
   <p>
-    <a href="/index.php">极客社区</a> 2017 &copy; <a href="http://www.geek-iot.com/">geek-iot.com</a>
+    &copy;2017 <a href="/blog/index.php">极客社区</a>  <a href="/index.php">geek-iot.com</a>
   </p>
   <p>
   	<a href="mailto:sunyiming537@126.com" target="_blank">联系邮箱</a>
   </p>
 </div>
-<!-- 百度推送 -->
+
 <script type="text/javascript">
+	// 百度推送
 	(function(){
 	    var bp = document.createElement('script');
 	    var curProtocol = window.location.protocol.split(':')[0];

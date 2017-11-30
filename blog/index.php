@@ -16,7 +16,7 @@
 </head>
 <body>
   <?php require($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
-    <div class="main layui-clear" style="width: 80%">
+    <div class="main layui-clear" style="width: 80%;padding-top: 5px;">
       <!-- 主内容区 -->
       <div class="wrap">
         <div class="content">

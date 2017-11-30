@@ -52,4 +52,27 @@
     </div>
   <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 </body>
+<script>
+ // 加载需要的模块
+ layui.use(['layer','laydate','laypage','laytpl','layedit','form','upload','tree','table','element','util','flow','carousel','code','jquery'], function(){
+  var layer,laydate,laypage,laytpl,layim,layedit,form,upload,tree,table,element,util,flow,carousel,code,$,mobile;
+  layer = layui.layer;
+  laydate = layui.laydate;
+  laypage = layui.laypage;
+  laytpl = layui.laytpl;
+  layedit = layui.layedit;
+  form = layui.form;
+  upload = layui.upload;
+  tree = layui.tree;
+  table = layui.table;
+  element = layui.element;
+  util = layui.util;
+  flow = layui.flow;
+  carousel = layui.carousel;
+  code = layui.code;
+  $  = layui.jquery;
+ 
+});
+</script>
 </html>
+
