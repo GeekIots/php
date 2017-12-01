@@ -90,9 +90,9 @@
     var iscount = true;
     // 读取本地数据
     var localcount = layui.data('count');
-    console.log('localcount:',localcount);
-    console.log('nowurl:',nowurl);
-    console.log('fromurl:',fromurl);
+    // console.log('localcount:',localcount);
+    // console.log('nowurl:',nowurl);
+    // console.log('fromurl:',fromurl);
    if (localcount) {
       if ((localcount.nowurl==nowurl)&&(localcount.fromurl==fromurl)) {
         // 当前页面刷新，不计

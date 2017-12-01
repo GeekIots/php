@@ -157,10 +157,10 @@
                         <span>
                           {{# if(user.qq_openid){ }}
                              已成功绑定，您可以使用QQ帐号直接登录，当然，您也可以</span>
-                            <a onclick="qqlogin_remove()" class="acc-unbind" type="qq_id">解除绑定</a>
+                            <a  href="#" style="cursor:hand;" id="acc-bind">解除绑定</a>
                           {{# }else{ }}
                             您还未绑定，绑定后您可以使用QQ帐号直接登录</span>
-                            <a onclick="qqLogin()" class="acc-unbind" type="qq_id">立即绑定</a>
+                            <a  href="#" onclick="qqLogin()" id="acc-unbind">立即绑定</a>
                           {{#  } }}
                       </li>
                     </ul>
@@ -175,7 +175,6 @@
     <div id="view"></div> 
   <?php include($_SERVER['DOCUMENT_ROOT'].'/common/footer.php') ?>
 <script>
-  //渲染数据
  // 加载需要的模块
  layui.use(['layer','laydate','laypage','laytpl','layedit','form','upload','tree','table','element','util','flow','carousel','code','jquery'], function(){
     var layer,laydate,laypage,laytpl,layim,layedit,form,upload,tree,table,element,util,flow,carousel,code,$,mobile;
@@ -312,12 +311,11 @@
       return false;
     });
 
-    // 解除QQ绑定
-    function qqlogin_remove()
-    {
-      layer.confirm('确定解绑当前QQ？', {
+    // 监听解除绑定
+    $("#acc-bind").click(function() {  
+       layer.confirm('确定解绑当前QQ？', {
         btn: ['很确定','再想想'] 
-      }, function(index, layero){
+        }, function(index, layero){
         // layer.msg('确定');
         //更改密码
         $.ajax({
@@ -328,7 +326,7 @@
           success: function (argument) {
              if (argument.resault=='success') {
                   layer.confirm("解绑成功", {btn: ['知道了']});
-                  window.reload();
+                  window.location.href=window.location.href; 
               }
               else{
                 // 提示错误信息
@@ -341,11 +339,10 @@
             layer.msg('修改失败,请稍后再试！');
           }
         }); 
-      }, function(index){
-        // layer.msg('取消');
-
       });
-    }
+    })
+    // 监听绑定
+
   });  
 </script>
 </body>
