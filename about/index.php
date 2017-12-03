@@ -18,6 +18,22 @@
   <?php require($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
     <div class="main fly-user-main layui-clear">
       <ul class="layui-timeline">
+
+        <li class="layui-timeline-item">
+          <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+            <div class="layui-timeline-content layui-text">
+              <h3 class="layui-timeline-title">2017年12月2日</h3>
+              <p>
+                    开通QQ登录功能，方便用户快速登录
+                <br>增加开关设备页面控制
+                <br>增加页面查看温湿度传感器
+                <br>增加微信小程序控制和查看设备（微信搜索‘极客物联网’）
+                <br>修复若干bug，优化界面
+              </p>
+            </div>
+          </i>
+        </li>
+
         <li class="layui-timeline-item">
           <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
             <div class="layui-timeline-content layui-text">
@@ -30,6 +46,8 @@
             </div>
           </i>
         </li>
+
+
         <li class="layui-timeline-item">
           <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
           <div class="layui-timeline-content layui-text">

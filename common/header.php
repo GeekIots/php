@@ -15,6 +15,10 @@
           </dl>
         </li>
         <li class="layui-nav-item"><a href="/about/index.php" class="iconfont">智能硬件</a></li>
+        <li class="layui-nav-item">
+          <a href="/doc/" class="iconfont">文档</a>
+        </li>
+        <li class="layui-nav-item"><a href="/about/index.php" class="iconfont">示例</a></li>
         <li class="layui-nav-item"><a href="/about/index.php" class="iconfont">关于</a></li>
         <div class="nav-user">
           <!-- 已登录 -->
@@ -130,7 +134,7 @@
     }
 
     if (fromurl!=''&&(nowurl!=fromurl)&&iscount) {
-      if(isContains(fromurl,'geek-iot')||isContains(fromurl,'location')){  
+      if(isContains(fromurl,'geek-iot')||isContains(fromurl,'localhost')){  
         //来自于本网站url  
         fromurl = '站内->'+fromurl;
       } 

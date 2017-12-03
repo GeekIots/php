@@ -128,12 +128,5 @@
       }    
       return false;
     });
-
-    //判断是否敲击了Enter键 
-    $(document).keyup(function(event){ 
-        if(event.keyCode ==13){ 
-          $("#login-btn").trigger("click"); 
-        } 
-    });
   });
 </script>
