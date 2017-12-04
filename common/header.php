@@ -16,7 +16,7 @@
         </li>
         <li class="layui-nav-item"><a href="/about/index.php" class="iconfont">智能硬件</a></li>
         <li class="layui-nav-item">
-          <a href="/doc/" class="iconfont">文档</a>
+          <a href="/showdoc/index.php?s=/1" class="iconfont" target = "_blank">文档</a>
         </li>
         <li class="layui-nav-item"><a href="/about/index.php" class="iconfont">示例</a></li>
         <li class="layui-nav-item"><a href="/about/index.php" class="iconfont">关于</a></li>

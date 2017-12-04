@@ -7,16 +7,16 @@
 <head>
     <title>markdown编辑器</title>
     <meta charset="utf-8">  
-    <script src="../../frame/markdown/marked.js"></script>
-    <link rel="stylesheet" href="../../frame/markdown/src/styles/github.css">
-    <script src="../../frame/markdown/highlight.min.js"></script>
+    <script src="/frame/markdown/marked.js"></script>
+    <link rel="stylesheet" href="/frame/markdown/src/styles/github.css">
+    <script src="/frame/markdown/highlight.min.js"></script>
 </head>
 <body>
     <div style="padding-left: 2%;padding-right: 2%;padding-top: 1%;">
       <div><h2 style="float: left;padding-left: 0%;color: orange;">源代码:</h2><h2 style="float: right;padding-right: 38%; color: orange;">效果预览:</h2></div>
 	    <textarea class="form-control"  id="txt" style="width: 50%;height: 600px;float: left; resize: none;font-size: 20px;" placeholder="请输入Markdown代码" onscroll="Fun_scroll_md()"></textarea>
       
-	    <div class="form-control" style="width: 49%;float: right;border:1px solid lightgray; height:600px;word-wrap:break-word;padding: 2%;" >
+	    <div class="form-control" style="width: 40%;float: right;border:1px solid lightgray; height:600px;word-wrap:break-word;padding: 2%;" >
 	    <div style="overflow-y:auto;overflow-x: hidden; margin:-10px; height: 104%;" id="content" onscroll="Fun_scroll_html()"></div>
 	    </div>
     </div>
