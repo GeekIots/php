@@ -31,6 +31,16 @@
         $password = $_GET['password'];
     }
 
+    //获取位置
+    $city = $_POST['city'];
+    if (empty($city)) {
+        $city = $_GET['city'];
+    }
+    if (empty($city)) {
+        $city = " ";
+    }
+
+
     // 随机生成唯一id作为用户的身份id
     $userid = '';
 
@@ -67,13 +77,13 @@
                         $psw = md5($password);
                         // 根据毫秒级时间戳生成唯一id作为用户的身份id，共计13位
                         $userid = uuid();
-                        $sql_insert = "insert into user (nickname,password,email,userid,qq_openid,avatar,regtime) values('$nickname','$psw','$email','$userid','$qq_openid','$avatar',now())";  
+                        $sql_insert = "insert into user (nickname,password,email,city,userid,qq_openid,avatar,regtime) values('$nickname','$psw','$email','$city','$userid','$qq_openid','$avatar',now())";  
                         if(mysqli_query($con,$sql_insert))
                         {
                             //注册成功
                             $myArray["resault"] = 'success';
                             sendmail($email,'极客物联网注册认证！',"恭喜您成为极客物联网会员，<a href='http://www.geek-iot.com/api/user/register.check.php?userid={$userid}'>立刻激活</a>");
-                            sendmail("15339287330@126.com", "新会员注册通知！","昵称:".$nickname.",用户ID:".$userid.",注册邮箱:".$email);
+                            sendmail("15339287330@126.com", "新会员注册通知！","昵称:".$nickname.",用户ID:".$userid.",注册邮箱:".$email.",位置信息:".$city.",注册时间:".date("Y-m-d H:i:s"));
                             // 目前是以邮箱登录,userid是唯一标志
                             $_SESSION['login'] = $userid;
                         }  

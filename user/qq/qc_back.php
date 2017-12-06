@@ -243,7 +243,7 @@
         $.ajax({
           type:'POST',
           url: "/api/user/register.php",
-          data:{'email':data.field.email,'nickname':data.field.nickname,'password':data.field.pass,'qq_openid':qq_openid,'avatar':qq_info.figureurl_qq_2},
+          data:{'email':data.field.email,'nickname':data.field.nickname,'password':data.field.pass,'city':user_location,'qq_openid':qq_openid,'avatar':qq_info.figureurl_qq_2},
            success: function (argument) {
             var backurl = getUrlParam('backurl');
             if(!backurl)backurl = '/index.php';

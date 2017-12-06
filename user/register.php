@@ -115,10 +115,12 @@
       }
       else
       {
+        //加载层
+        layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
         $.ajax({
           type:'POST',
           url: "/api/user/register.php",
-          data:{'email':data.field.email,'nickname':data.field.nickname,'password':data.field.pass},
+          data:{'email':data.field.email,'nickname':data.field.nickname,'password':data.field.pass,'city':user_location},
            success: function (argument) {
             var backurl = getUrlParam('backurl');
             if(!backurl)backurl = '/index.php';

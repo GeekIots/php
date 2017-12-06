@@ -102,9 +102,8 @@
       ,cols: [[ //标题栏
       {checkbox: true, LAY_CHECKED: true} //默认全选
       ,{field: 'id', title: 'ID', width: 80, sort: true}
-      ,{field: 'country', title: '国家', width: 80, sort: true}
-      ,{field: 'province', title: '省份', width: 80, sort: true}
-      ,{field: 'city', title: '城市', width: 80, sort: true}
+      ,{field: 'nickname', title: '昵称', width: 120, sort: true}
+      ,{field: 'city', title: '城市', width: 160, sort: true}
       ,{field: 'nowurl', title: '页面', width: 260, sort: true}
       ,{field: 'fromurl', title: '访问来源', width: 260, sort: true}
       ,{field: 'dates', title: '更新时间', width: 180, sort: true}
