@@ -161,12 +161,12 @@
         
         //判断访问者身份
         var user_nickname;
-        if (user) {user_nickname=user.nickname}
+        if (user.nickname) {user_nickname=user.nickname}
           else user_nickname = '游客';
 
         $.ajax({
           url: "/api/admin/access.count.php",
-          data:{nickname:user_nickname,type:'set',city:user_location,nowurl:nowurl,fromurl:fromurl},
+          data:{'nickname':user_nickname,type:'set','city':user_location,'nowurl':nowurl,'fromurl':fromurl},
           async: true, 
           success: function (res) {
               console.log('访客计数:',res);
