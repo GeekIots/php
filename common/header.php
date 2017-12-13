@@ -166,7 +166,7 @@
 
         $.ajax({
           url: "/api/admin/access.count.php",
-          data:{nickname:user.nickname,type:'set',city:user_location,nowurl:nowurl,fromurl:fromurl},
+          data:{nickname:user_nickname,type:'set',city:user_location,nowurl:nowurl,fromurl:fromurl},
           async: true, 
           success: function (res) {
               console.log('访客计数:',res);
