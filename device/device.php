@@ -112,20 +112,7 @@
                <div class="row dev_title_color">
                 <h4>设备信息</h4>
                </div>
-
-                <div class="row dev_border_Top">
-                  <div class="col-md-5 dev_border_list_BR">
-                     <div class="dev_info_list">
-                     <p>控制次数:</p>
-                     </div>
-                  </div>
-                  <div class="col-md-7 dev_border_list_B" >
-                     <div class="dev_info_list">
-                     <p id="heat{{item.id}}">{{item.heat}}</p>
-                     </div>
-                  </div>
-               </div>
-               <div class="row">
+               <div class="row dev_border_Top">
                   <div class="col-md-5 dev_border_list_BR">
                      <div class="dev_info_list">
                      <p>设备ID:</p>
@@ -137,6 +124,19 @@
                      </div>
                   </div>
                </div>
+                <div class="row">
+                  <div class="col-md-5 dev_border_list_BR">
+                     <div class="dev_info_list">
+                     <p>控制次数:</p>
+                     </div>
+                  </div>
+                  <div class="col-md-7 dev_border_list_B" >
+                     <div class="dev_info_list">
+                     <p id="heat{{item.id}}">{{item.heat}}</p>
+                     </div>
+                  </div>
+               </div>
+             
            <div class="row">
                   <div class="col-md-5 dev_border_list_BR">
                      <div class="dev_info_list">
