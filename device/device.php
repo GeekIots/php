@@ -128,12 +128,12 @@
                <div class="row">
                   <div class="col-md-5 dev_border_list_BR">
                      <div class="dev_info_list">
-                     <p>是否在线:</p>
+                     <p>设备ID:</p>
                      </div>
                   </div>
                   <div class="col-md-7 dev_border_list_B">
                      <div class="dev_info_list">
-                     <p>{{item.online}}</p>
+                     <p>{{item.id}}</p>
                      </div>
                   </div>
                </div>
