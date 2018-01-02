@@ -62,6 +62,14 @@
   var laytpl,$;
   laytpl = layui.laytpl;
   $  = layui.jquery;
+
+  // 域名不是geek-iot时自动跳转
+  if (!(isContains(window.location.href,'geek-iot')||isContains(window.location.href,'localhost')))
+  {
+    window.location.href = "http://geek-iot.com";
+  }
+  
+
   //获取用户登陆信息
   $.ajax({
     url: "/api/user/user.php",
