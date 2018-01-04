@@ -40,7 +40,7 @@
         <p class="fly-home-info">
           <!-- <i class="iconfont icon-zuichun" title="飞吻"></i><span style="color: #FF7200;">67206飞吻</span> -->
           <i class="iconfont icon-shijian"></i><span>{{ layui.util.timeAgo(user.datetime)}} 加入</span>
-          <i class="iconfont icon-chengshi"></i><span>来自{{user.city}}.{{user.city}}</span>
+          <i class="iconfont icon-chengshi"></i><span>来自{{user.city}}</span>
         </p>
         <p class="fly-home-info"><i class="iconfont"></i><span>用户ID:{{user.userid}}</span></p>
         <p class="fly-home-sign">（{{user.signature}}）</p>

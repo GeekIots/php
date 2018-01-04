@@ -98,6 +98,7 @@
       carousel = layui.carousel;
       code = layui.code;
       $  = layui.jquery;
+
     //监听注册
     form.on('submit(register-btn)', function(data){
       // layer.msg(JSON.stringify(data.field));
@@ -115,12 +116,16 @@
       }
       else
       {
+        // 读取本地数据
+        user_location = layui.data('user_location');
+        console.log('注册',user_location);
+
         //加载层
         layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
         $.ajax({
           type:'POST',
           url: "/api/user/register.php",
-          data:{'email':data.field.email,'nickname':data.field.nickname,'password':data.field.pass,'city':user_location},
+          data:{'email':data.field.email,'nickname':data.field.nickname,'password':data.field.pass,'city':user_location.location},
            success: function (argument) {
             var backurl = getUrlParam('backurl');
             if(!backurl)backurl = '/index.php';

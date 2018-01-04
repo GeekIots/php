@@ -240,10 +240,13 @@
       }
       else
       {
+      // 读取本地数据
+        user_location = layui.data('user_location');
+        console.log('注册',user_location);
         $.ajax({
           type:'POST',
           url: "/api/user/register.php",
-          data:{'email':data.field.email,'nickname':data.field.nickname,'password':data.field.pass,'city':user_location,'qq_openid':qq_openid,'avatar':qq_info.figureurl_qq_2},
+          data:{'email':data.field.email,'nickname':data.field.nickname,'password':data.field.pass,'city':user_location.location,'qq_openid':qq_openid,'avatar':qq_info.figureurl_qq_2},
            success: function (argument) {
             var backurl = getUrlParam('backurl');
             if(!backurl)backurl = '/index.php';

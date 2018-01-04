@@ -144,48 +144,92 @@
     }
 
     // 获取地区
-    $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js', function(res) {
-      console.log('remote_ip_info:'+remote_ip_info);
-      var res = remote_ip_info;
-      if (res.ret == '1') {
-          //存储到全局变量,修改位置信息格式为 “陕西·西安”
-          user_location=res.country+"·"+res.province.replace(/省/, "")+"·"+res.city.replace(/市/, "");
-       }
-       else
-       {
-        user_location = '火星';
-       }
-       console.log("位置："+user_location);
+    // 读取本地数据
+   user_location = layui.data('user_location');
+   if (user_location.location) {
+      if (fromurl!=''&&(nowurl!=fromurl)&&iscount) {
+          if(isContains(fromurl,'geek-iot')||isContains(fromurl,'localhost')){  
+            //来自于本网站url  
+            fromurl = '站内->'+fromurl;
+          } 
+          else
+          {
+            fromurl = '外网->'+fromurl;
+          }
+          
+          //判断访问者身份
+          var user_nickname;
+          if (user.nickname) {user_nickname=user.nickname}
+            else user_nickname = '游客';
 
-       if (fromurl!=''&&(nowurl!=fromurl)&&iscount) {
-        if(isContains(fromurl,'geek-iot')||isContains(fromurl,'localhost')){  
-          //来自于本网站url  
-          fromurl = '站内->'+fromurl;
-        } 
-        else
-        {
-          fromurl = '外网->'+fromurl;
-        }
-        
-        //判断访问者身份
-        var user_nickname;
-        if (user.nickname) {user_nickname=user.nickname}
-          else user_nickname = '游客';
-
-        $.ajax({
-          url: "/api/admin/access.count.php",
-          data:{'nickname':user_nickname,type:'set','city':user_location,'nowurl':nowurl,'fromurl':fromurl},
-          async: true, 
-          success: function (res) {
-              console.log('访客计数:',res);
-            },
-            error:function (res) {
+          $.ajax({
+            url: "/api/admin/access.count.php",
+            data:{'nickname':user_nickname,type:'set','city':user_location.location,'nowurl':nowurl,'fromurl':fromurl},
+            async: true, 
+            success: function (res) {
                 console.log('访客计数:',res);
-            }
-        });     
-      }
-    }); 
-  });
+              },
+              error:function (res) {
+                  console.log('访客计数:',res);
+              }
+          });     
+        }
+    }
+    else
+    {
+      
+      // 未检测到，获取
+      $.getScript('http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js', function(res) {
+        console.log('remote_ip_info:'+remote_ip_info);
+        var res = remote_ip_info;
+        if (res.ret == '1') {
+            //存储到全局变量,修改位置信息格式为 “陕西·西安”
+            user_location=res.country+"·"+res.province.replace(/省/, "")+"·"+res.city.replace(/市/, "");
+         }
+         else
+         {
+          user_location = '火星';
+         }
+
+         //存储到本地 
+        layui.data('user_location', {
+          key: 'location',
+          value: user_location
+        });
+
+         user_location = layui.data('user_location');
+         console.log("位置："+user_location.location);
+
+         if (fromurl!=''&&(nowurl!=fromurl)&&iscount) {
+          if(isContains(fromurl,'geek-iot')||isContains(fromurl,'localhost')){  
+            //来自于本网站url  
+            fromurl = '站内->'+fromurl;
+          } 
+          else
+          {
+            fromurl = '外网->'+fromurl;
+          }
+          
+          //判断访问者身份
+          var user_nickname;
+          if (user.nickname) {user_nickname=user.nickname}
+            else user_nickname = '游客';
+
+          $.ajax({
+            url: "/api/admin/access.count.php",
+            data:{'nickname':user_nickname,type:'set','city':user_location.location,'nowurl':nowurl,'fromurl':fromurl},
+            async: true, 
+            success: function (res) {
+                console.log('访客计数:',res);
+              },
+              error:function (res) {
+                  console.log('访客计数:',res);
+              }
+          });     
+        }
+      }); 
+    }
+}); 
 
   //QQ登录
   function qqLogin(){
@@ -196,4 +240,5 @@
     window.close();
   }
 </script>
-</script>
+
+

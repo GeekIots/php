@@ -17,6 +17,15 @@
 </head>
 <body>
   <?php require($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
+  <script type="text/javascript">
+    // 判断是否位管理员
+    if (!user) {
+      window.location.href = "/";
+    }
+    if (user.level=='admin-1') {
+      window.location.href = "/";
+    }
+  </script>
   <div class="layui-layout layui-layout-admin">
     <div class="layui-side layui-bg-black">
       <div class="layui-side-scroll">
