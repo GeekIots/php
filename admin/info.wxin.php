@@ -19,12 +19,25 @@
   <?php require($_SERVER['DOCUMENT_ROOT'].'/common/header.php'); ?>
   <script type="text/javascript">
     // 判断是否位管理员
-    if (!user) {
-      window.location.href = "/";
-    }
-    if (user.level!='admin-1') {
-      window.location.href = "/";
-    }
+    layui.use(['jquery'], function(){
+    $  = layui.jquery;
+    $.ajax({
+      url: "/api/user/user.php",
+      async: false, //同步
+      success: function (res) {
+          console.log('success:',res);
+        if (!res) {
+          window.location.href = "/";
+        }
+        if (res.level!='admin-1') {
+          window.location.href = "/";
+        }
+      },
+      error:function (res) {
+          window.location.href = "/";
+      }
+    });
+  });
   </script>
   <div class="layui-layout layui-layout-admin">
     <div class="layui-side layui-bg-black">
