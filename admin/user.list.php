@@ -22,7 +22,7 @@
     if (!user) {
       window.location.href = "/";
     }
-    if (user.level=='admin-1') {
+    if (user.level!='admin-1') {
       window.location.href = "/";
     }
   </script>
