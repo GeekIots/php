@@ -18,7 +18,7 @@
         <li class="layui-nav-item">
           <a href="/showdoc/index.php?s=/1&page_id=2" class="iconfont" target = "_blank">文档</a>
         </li>
-        <li class="layui-nav-item"><a href="/about/index.php" class="iconfont">示例</a></li>
+        <li class="layui-nav-item"><a href="http://geek-iot.com/blog/view.php?id=1513558692059" class="iconfont">示例</a></li>
         <li class="layui-nav-item"><a href="/about/index.php" class="iconfont">关于</a></li>
         <div class="nav-user">
           <!-- 已登录 -->
