@@ -18,8 +18,8 @@
 <!--         <li class="layui-nav-item">
           <a href="/showdoc/index.php?s=/1&page_id=2" class="iconfont" target = "_blank">文档</a>
         </li> -->
-        <li class="layui-nav-item"><a href="http://geek-iot.com/forum/forum.php?mod=viewthread&tid=4&page=1&extra=#pid5" class="iconfont">示例</a></li>
-        <li class="layui-nav-item"><a href="/blog/index.php" class="iconfont" target = "_blank">社区</a></li>
+        <li class="layui-nav-item"><a href="http://geek-iot.com/forum/forum.php?mod=viewthread&tid=4&page=1&extra=#pid5" class="iconfont" target = "_blank">示例</a></li>
+        <li class="layui-nav-item"><a href="/forum" class="iconfont" target = "_blank">社区</a></li>
         <li class="layui-nav-item"><a href="/about/index.php" class="iconfont">关于</a></li>
         <div class="nav-user">
           <!-- 已登录 -->
