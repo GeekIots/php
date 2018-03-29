@@ -1,0 +1,72 @@
+<!--{template common/header}-->
+<link id="style_css" rel="stylesheet" type="text/css" href="{STATICURL}topic/t1/style.css?{VERHASH}">
+<script type="text/javascript" src="{$_G['style']['styleimgdir']}/extend/80051/js/jquery.js"></script>
+<script type="text/javascript" src="{$_G['style']['styleimgdir']}/extend/80051/js/t9_slider.js"></script>
+<script language="javascript" >var jq = jQuery.noConflict();</script>
+<link rel="stylesheet" type="text/css" href="{$_G['style']['styleimgdir']}/extend/80051/css/extend.css" />
+<style id="diy_style" type="text/css"></style>
+<div id="widgets">
+</div>
+<div class="wp">
+	<!--[diy=diypage]-->
+	<div id="diypage" class="area">
+		<div id="frame1" class="frame move-span frame-1 cl">
+			<div class="frame-title title" id="frame1"><span class="titletext">{lang frame}</span></div>
+			<div id="frame1_left" class="column frame-1-c"></div>
+		</div>
+	</div>
+	<!--[/diy]-->
+</div>
+</div>
+<div class="t9_extend_80051_1"><!--[diy=test999_cn_extend_80051_1]--><div id="test999_cn_extend_80051_1" class="area"></div><!--[/diy]--></div>
+
+<div class="t9_extend_80051_0 wp">
+	<div class="t9_extend_80051_2"><!--[diy=test999_cn_extend_80051_2]--><div id="test999_cn_extend_80051_2" class="area"></div><!--[/diy]--></div>
+	<div class="t9_extend_80051_3">
+		<div class="t9_extend_80051_3-1"><!--[diy=test999_cn_extend_80051_3-1]--><div id="test999_cn_extend_80051_3-1" class="area"></div><!--[/diy]--></div>
+		<div class="t9_extend_80051_3-2"><!--[diy=test999_cn_extend_80051_3-2]--><div id="test999_cn_extend_80051_3-2" class="area"></div><!--[/diy]--></div>
+		<div class="t9_cle"></div>
+	</div>
+	<div class="t9_extend_80051_4"><!--[diy=test999_cn_extend_80051_4]--><div id="test999_cn_extend_80051_4" class="area"></div><!--[/diy]--></div>
+	<div class="t9_extend_80051_5">
+		<div class="t9_extend_80051_3-1 t9_extend_80051_5-1"><!--[diy=test999_cn_extend_80051_5]--><div id="test999_cn_extend_80051_5" class="area"></div><!--[/diy]--></div>
+		<div class="t9_extend_80051_3-2 t9_extend_80051_5-2"><!--[diy=test999_cn_extend_80051_5-2]--><div id="test999_cn_extend_80051_5-2" class="area"></div><!--[/diy]--></div>
+		<div class="t9_cle"></div>
+	</div>
+	<div class="t9_extend_80051_6"><!--[diy=test999_cn_extend_80051_6]--><div id="test999_cn_extend_80051_6" class="area"></div><!--[/diy]--></div>
+	<div class="t9_extend_80051_7">
+		<div class="t9_extend_80051_3-1 t9_extend_80051_7-1"><!--[diy=test999_cn_extend_80051_7]--><div id="test999_cn_extend_80051_7" class="area"></div><!--[/diy]--></div>
+		<div class="t9_extend_80051_3-2 t9_extend_80051_7-2"><!--[diy=test999_cn_extend_80051_7-2]--><div id="test999_cn_extend_80051_7-2" class="area"></div><!--[/diy]--></div>
+		<div class="t9_cle"></div>
+	</div>
+	<div class="t9_extend_80051_8"><!--[diy=test999_cn_extend_80051_8]--><div id="test999_cn_extend_80051_8" class="area"></div><!--[/diy]--></div>
+	<div class="t9_extend_80051_9">
+		<div class="t9_extend_80051_9-1"><!--[diy=test999_cn_extend_80051_9-1]--><div id="test999_cn_extend_80051_9-1" class="area"></div><!--[/diy]--></div>
+		<div class="t9_extend_80051_9-2"><!--[diy=test999_cn_extend_80051_9-2]--><div id="test999_cn_extend_80051_9-2" class="area"></div><!--[/diy]--></div>
+		<div class="t9_extend_80051_9-3"><!--[diy=test999_cn_extend_80051_9-3]--><div id="test999_cn_extend_80051_9-3" class="area"></div><!--[/diy]--></div>
+		<div class="t9_cle"></div>
+	</div>
+	<div class="t9_cle"></div>
+</div>
+
+<div class="wp">
+	<!--[diy=diy1]--><div id="diy1" class="area"></div><!--[/diy]-->
+</div>
+
+<script type="text/javascript">
+	jQuery(".t9_slideshow li").first().before( jQuery(".t9_slideshow li").last() );
+	jQuery(".t9_slider_box").hover(function(){ jQuery(this).find(".arrow").stop(true,true).fadeIn(300) },function(){ jQuery(this).find(".arrow").fadeOut(300) });
+	jQuery(".t9_slider_box").slide({ titCell:".t9_slidebar ul", mainCell:".t9_slideshow ul", effect:"leftLoop",  autoPlay:true, vis:1, autoPage:true, trigger:"click"});
+</script>
+
+<!--{if $topic['allowcomment']==1}-->
+{eval
+	$data = &$topic;
+	$common_url = "portal.php?mod=comment&id=$topicid&idtype=topicid";
+	$form_url = "portal.php?mod=portalcp&ac=comment";
+	$commentlist = portaltopicgetcomment($topicid);	}
+	<!--{template portal/portal_comment}-->
+	<!--{/if}-->
+</div>
+<script src="misc.php?mod=diyhelp&action=get&type=topic&diy=yes&topicid=$topicid&r={echo random(4)}" type="text/javascript"></script>
+<!--{template common/footer}-->

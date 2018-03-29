@@ -1,0 +1,53 @@
+<!--{if $_G['uid']}-->
+<div id="um">
+	<p>	
+		<a href="home.php?mod=spacecp&ac=usergroup" class="t9_icon t9_group">$_G[group][grouptitle]<!--{if $_G[member]['freeze']}--><span class="xi1">({lang freeze})</span><!--{/if}--></a>
+		<a href="home.php?mod=space&uid=$_G[uid]" target="_blank" title="{lang visit_my_space}" class="t9_icon t9_space">¸öÈË¿Õ¼ä</a>
+		<a href="javascript:;" id="myitem" onmouseover="showMenu({'ctrlid':'myitem'});" class="t9_icon t9_myitem showmenu">{lang myitem}</a>
+		<a href="home.php?mod=spacecp" class="t9_icon t9_setup">{lang setup}</a>
+		<a href="home.php?mod=space&do=pm" id="pm_ntc" class="t9_icon t9_pm{if $_G[member][newpm]} t9_new{/if}">{lang pm_center}</a>
+		<a href="home.php?mod=space&do=notice" id="myprompt" class="t9_icon t9_newprompt a{if $_G[member][newprompt]} t9_new{/if}">{lang remind}<!--{if $_G[member][newprompt]}-->($_G[member][newprompt])<!--{/if}--></a><span id="myprompt_check"></span>
+		<!--{if empty($_G['cookie']['ignore_notice']) && ($_G[member][newpm] || $_G[member][newprompt_num][follower] || $_G[member][newprompt_num][follow] || $_G[member][newprompt])}--><script language="javascript">delayShow($('myprompt'), function() {showMenu({'ctrlid':'myprompt','duration':3})});</script><!--{/if}-->
+		<!--{if $_G['setting']['taskon'] && !empty($_G['cookie']['taskdoing_'.$_G['uid']])}-->
+		<a href="home.php?mod=task&item=doing" id="task_ntc" class="t9_icon t9_task t9_new">{lang task_doing}</a>
+		<!--{/if}-->
+		<!--{if ($_G['group']['allowmanagearticle'] || $_G['group']['allowpostarticle'] || $_G['group']['allowdiy'] || getstatus($_G['member']['allowadmincp'], 4) || getstatus($_G['member']['allowadmincp'], 6) || getstatus($_G['member']['allowadmincp'], 2) || getstatus($_G['member']['allowadmincp'], 3))}-->
+		<a href="portal.php?mod=portalcp" class="t9_icon t9_pmanage"><!--{if $_G['setting']['portalstatus'] }-->{lang portal_manage}<!--{else}-->{lang portal_block_manage}<!--{/if}--></a>
+		<!--{/if}-->
+		<!--{if $_G['uid'] && $_G['group']['radminid'] > 1}-->
+		<a href="forum.php?mod=modcp&fid=$_G[fid]" target="_blank" class="t9_icon t9_fmanage">{lang forum_manager}</a>
+		<!--{/if}-->
+		<!--{if $_G['uid'] && getstatus($_G['member']['allowadmincp'], 1)}-->
+		<a href="admin.php" target="_blank" class="t9_icon t9_admincp">{lang admincp}</a>
+		<!--{/if}-->
+		<!--{hook/global_usernav_extra1}-->
+		<!--{hook/global_usernav_extra2}-->
+		<!--{hook/global_usernav_extra3}-->
+		<!--{hook/global_usernav_extra4}-->
+		<a href="home.php?mod=spacecp&ac=credit&showcredit=1" class="t9_icon t9_credits">{lang credits}: $_G[member][credits]</a>
+        <!--{if check_diy_perm($topic)}--><a href="javascript:saveUserdata('diy_advance_mode', '');openDiy();" class="t9_icon t9_diy">DIY</a><!--{/if}-->
+		<a href="member.php?mod=logging&action=logout&formhash={FORMHASH}" class="t9_icon t9_logout">{lang logout}</a>
+	</p>
+</div>
+<!--{elseif !empty($_G['cookie']['loginuser'])}-->
+<p>
+	<strong><a id="loginuser" class="noborder"><!--{echo dhtmlspecialchars($_G['cookie']['loginuser'])}--></a></strong>
+	<a href="member.php?mod=logging&action=login" onclick="showWindow('login', this.href)">{lang activation}</a>
+	<a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a>
+</p>
+<!--{elseif !$_G[connectguest]}-->
+<!--{template member/login_simple}-->
+<!--{else}-->
+<div id="um">
+	<div class="avt y"><!--{avatar(0,small)}--></div>
+	<p>
+		<strong class="vwmy qq">{$_G[member][username]}</strong>
+		<!--{hook/global_usernav_extra1}-->
+		<a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a>
+	</p>
+	<p>
+		<a href="home.php?mod=spacecp&ac=credit&showcredit=1">{lang credits}: 0</a>
+		{lang usergroup}: $_G[group][grouptitle]
+	</p>
+</div>
+<!--{/if}-->

@@ -1,0 +1,69 @@
+<!--{template common/header}-->
+<div id="pt" class="bm cl">
+	<div class="z">
+		<a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a> <em>&rsaquo;</em> $topic[title]
+	</div>
+</div>
+<link id="style_css" rel="stylesheet" type="text/css" href="{STATICURL}topic/t1/style.css?{VERHASH}">
+<link rel="stylesheet" type="text/css" href="{$_G['style']['styleimgdir']}/extend/80049/css/extend.css" />
+<style id="diy_style" type="text/css"></style>
+<div id="widgets">
+</div>
+<div class="wp">
+	<!--[diy=diypage]-->
+	<div id="diypage" class="area">
+		<div id="frame1" class="frame move-span frame-1 cl">
+			<div class="frame-title title" id="frame1"><span class="titletext">{lang frame}</span></div>
+			<div id="frame1_left" class="column frame-1-c"></div>
+		</div>
+	</div>
+	<!--[/diy]-->
+
+	<div class="t9_extend_80049_0">
+		<div class="t9_extend_80049_1"><!--[diy=test999_cn_extend_80049_1]--><div id="test999_cn_extend_80049_1" class="area"></div><!--[/diy]--></div>
+
+		<div class="t9_extend_80049_2">
+
+			<div class="t9_extend_80049_3">
+				<div class="t9_extend_80049_4"><!--[diy=test999_cn_extend_80049_4]--><div id="test999_cn_extend_80049_4" class="area"></div><!--[/diy]--></div>
+				<div class="t9_extend_80049_5"><!--[diy=test999_cn_extend_80049_5]--><div id="test999_cn_extend_80049_5" class="area"></div><!--[/diy]--></div>
+				<div class="t9_extend_80049_6"><!--[diy=test999_cn_extend_80049_6]--><div id="test999_cn_extend_80049_6" class="area"></div><!--[/diy]--></div>
+			</div>
+
+			<div class="t9_extend_80049_7">
+				<div class="t9_extend_80049_8">
+					<div class="frame">
+						<a class="t9_icon t9_btn" onclick="showWindow('nav', this.href, 'get', 0)" href="forum.php?mod=misc&action=nav">·¢±íÐÂÌû</a>
+					</div>
+				</div>
+				<div class="t9_extend_80049_9"><!--[diy=test999_cn_extend_80049_9]--><div id="test999_cn_extend_80049_9" class="area"></div><!--[/diy]--></div>
+				<div class="t9_extend_80049_10"><!--[diy=test999_cn_extend_80049_10]--><div id="test999_cn_extend_80049_10" class="area"></div><!--[/diy]--></div>
+				<div class="t9_extend_80049_11"><!--[diy=test999_cn_extend_80049_11]--><div id="test999_cn_extend_80049_11" class="area"></div><!--[/diy]--></div>
+				<div class="t9_extend_80049_12"><!--[diy=test999_cn_extend_80049_12]--><div id="test999_cn_extend_80049_12" class="area"></div><!--[/diy]--></div>
+				<div class="t9_extend_80049_13"><!--[diy=test999_cn_extend_80049_13]--><div id="test999_cn_extend_80049_13" class="area"></div><!--[/diy]--></div>
+				<div class="t9_extend_80049_14"><!--[diy=test999_cn_extend_80049_14]--><div id="test999_cn_extend_80049_14" class="area"></div><!--[/diy]--></div>
+				<div class="t9_extend_80049_15"><!--[diy=test999_cn_extend_80049_15]--><div id="test999_cn_extend_80049_15" class="area"></div><!--[/diy]--></div>
+				<div class="t9_extend_80049_16"><!--[diy=test999_cn_extend_80049_16]--><div id="test999_cn_extend_80049_16" class="area"></div><!--[/diy]--></div>
+				<div class="t9_extend_80049_17"><!--[diy=test999_cn_extend_80049_17]--><div id="test999_cn_extend_80049_17" class="area"></div><!--[/diy]--></div>
+			</div>
+
+			<div class="t9_cle"></div>
+		</div>
+
+		<div class="t9_extend_80049_18"><!--[diy=test999_cn_extend_80049_18]--><div id="test999_cn_extend_80049_18" class="area"></div><!--[/diy]--></div>
+
+		<div class="t9_extend_80049_19"><!--[diy=test999_cn_extend_80049_19]--><div id="test999_cn_extend_80049_19" class="area"></div><!--[/diy]--></div>
+		<div class="t9_cle"></div>
+	</div>
+
+	<!--{if $topic['allowcomment']==1}-->
+	{eval
+	$data = &$topic;
+	$common_url = "portal.php?mod=comment&id=$topicid&idtype=topicid";
+	$form_url = "portal.php?mod=portalcp&ac=comment";
+	$commentlist = portaltopicgetcomment($topicid);	}
+	<!--{template portal/portal_comment}-->
+	<!--{/if}-->
+</div>
+<script src="misc.php?mod=diyhelp&action=get&type=topic&diy=yes&topicid=$topicid&r={echo random(4)}" type="text/javascript"></script>
+<!--{template common/footer}-->

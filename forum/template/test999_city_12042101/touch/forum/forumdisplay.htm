@@ -1,0 +1,91 @@
+<!--{template common/header}-->
+<!--{if !$_GET["device"]}-->
+<script>location="forum.php?mod=forumdisplay"+"&fid="+$_G[fid]+"&device="+document.body.clientWidth+"&mobile=2"{if $_GET[page]}+"&page=$_GET[page]"{/if};</script>
+<!--{/if}-->
+<header class="header">
+	<div class="nav">
+		<div class="icon_edit y"><a href="forum.php?mod=post&action=newthread&fid=$_G[fid]" title="{lang send_threads}"><span class="none">{lang send_threads}</span></a></div>
+		<a href="forum.php?forumlist=1" class="z t9_icon t9_btn_back"><</a>
+		<!--{if $subexists && $_G['page'] == 1}-->
+		<span class="display name vm" href="#subname_list">
+			<h2 class="tit"><!--{eval echo strip_tags($_G['forum']['name']) ? strip_tags($_G['forum']['name']) : $_G['forum']['name'];}--></h2>
+		</span>
+		<!--{else}-->
+		<span class="name">
+			<!--{eval echo strip_tags($_G['forum']['name']) ? strip_tags($_G['forum']['name']) : $_G['forum']['name'];}-->
+		</span>
+		<!--{/if}-->
+
+	</div>
+</header>
+<!--{if $t9_forum_animated == "1"}-->
+<link rel="stylesheet" href="{$_G['style']['styleimgdir']}/css/animate.min.css">
+<script src="{$_G['style']['styleimgdir']}/js/wow.min.js"></script>
+<script>
+	var wow = new WOW({boxClass: 't9_animated_box',});wow.init();
+</script>
+<!--{/if}-->
+<!--{if $subexists && $_G['page'] == 1}-->
+<div id="subname_list" class="t9_subname_list">
+	<ul>
+		<!--{loop $sublist $key $sub}-->
+		<!--{eval $key = $key+1;$t9_color=$t9_color_rand[rand($key,16)];}-->
+		<li{if $t9_forum_animated == "1"}  class="t9_animated_box bounceInDown" data-wow-delay=".{$key}s"{/if}>
+		<a href="forum.php?mod=forumdisplay&fid={$sub[fid]}" style="background: {$t9_color}">{$sub['name']}</a>
+	</li>
+	<!--{/loop}-->
+</ul>
+</div>
+<!--{/if}-->
+
+<!--{hook/forumdisplay_top_mobile}-->
+<!-- main threadlist start -->
+<!--{if !$subforumonly}-->
+<div class="threadlist">
+	<ul>
+		<!--{if $_G['forum_threadcount']}-->
+		<!--{loop $_G['forum_threadlist'] $key $thread}-->
+		<!--{if !$_G['setting']['mobile']['mobiledisplayorder3'] && $thread['displayorder'] > 0}-->
+		{eval continue;}
+		<!--{/if}-->
+		<!--{if $thread['displayorder'] > 0 && !$displayorder_thread}-->
+		{eval $displayorder_thread = 1;}
+		<!--{/if}-->
+		<!--{if $thread['moved']}-->
+		<!--{eval $thread[tid]=$thread[closed];}-->
+		<!--{/if}-->
+		<li>
+			<!--{hook/forumdisplay_thread_mobile $key}-->
+			<a href="forum.php?mod=viewthread&tid=$thread[tid]&extra=$extra" $thread[highlight] >
+				<!--{if $thread['attachment'] == 2 && $_G['setting']['mobile']['mobilesimpletype'] == 0 && $t9_list_picmode == 1}-->
+			 <!--{eval $t9_img_cover = DB::result_first("SELECT attachment FROM ".DB::table('forum_threadimage')." WHERE `tid` = $thread[tid]");
+                $t9_img_cover_aidtable_l = substr($thread[tid], -1);
+                $t9_img_cover_aidtable = "forum_attachment_".$t9_img_cover_aidtable_l;
+                $t9_img_aid = DB::result_first("SELECT aid FROM ".DB::table($t9_img_cover_aidtable)." WHERE `attachment` = '$t9_img_cover'");
+                $t9_img_w = $_GET[device]-40;
+                $t9_img_h = number_format($t9_img_w*9/16);}-->
+                <div class="t9_n_img" style="height:{$t9_img_h}px"><img src="{echo getforumimg({$t9_img_aid},0,$t9_img_w,$t9_img_h)}" /></div>
+                <!--{/if}-->
+                <span{if in_array($thread['displayorder'], array(1, 2, 3, 4)) || $thread['digest'] > 0} style="padding-left:22px"{/if}>{$thread[subject]}</span>
+                <span class="by t9_icon">$thread[author]</span>
+            </a>
+            <span class="num t9_icon">{$thread[replies]}</span>
+            <!--{if in_array($thread['displayorder'], array(1, 2, 3, 4))}-->
+            <span class="icon_top t9_displayorder t9_icon">¶¥</span>
+            <!--{elseif $thread['digest'] > 0}-->
+            <span class="icon_top t9_digest t9_icon">¾«</span>
+            <!--{/if}-->
+        </li>
+        <!--{/loop}-->
+        <!--{else}-->
+        <li class="t9_no_thread">{lang forum_nothreads}</li>
+        <!--{/if}-->
+    </ul>
+</div>
+$multipage
+<!--{/if}-->
+<!-- main threadlist end -->
+<!--{hook/forumdisplay_bottom_mobile}-->
+<div class="pullrefresh" style="display:none;"></div>
+<!--{template common/footer}-->
+

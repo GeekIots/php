@@ -1,0 +1,71 @@
+<!--{template common/header}-->
+<link id="style_css" rel="stylesheet" type="text/css" href="{STATICURL}topic/t1/style.css?{VERHASH}">
+<link rel="stylesheet" type="text/css" href="{$_G['style']['styleimgdir']}/extend/80005/css/extend.css" />
+<style id="diy_style" type="text/css"></style>
+<div id="widgets">
+</div>
+<div class="wp">
+	<!--[diy=diypage]-->
+	<div id="diypage" class="area">
+		<div id="frame1" class="frame move-span frame-1 cl">
+			<div class="frame-title title" id="frame1"><span class="titletext">{lang frame}</span></div>
+			<div id="frame1_left" class="column frame-1-c"></div>
+		</div>
+	</div>
+	<!--[/diy]-->
+</div>
+
+<div class="t9_1407201700">
+	<div class="t9_1407201701"><!--[diy=test999_cn_1407201701]--><div id="test999_cn_1407201701" class="area"></div><!--[/diy]--></div>
+	<div class="t9_1407201702"><!--[diy=test999_cn_1407201702]--><div id="test999_cn_1407201702" class="area"></div><!--[/diy]--></div>
+	<div class="t9_1407201703"><!--[diy=test999_cn_1407201703]--><div id="test999_cn_1407201703" class="area"></div><!--[/diy]--></div>
+	<div class="t9_1407201704">
+		<div class="t9_1407201705"><!--[diy=test999_cn_1407201705]--><div id="test999_cn_1407201705" class="area"></div><!--[/diy]--></div>
+		<div class="t9_cle"></div>
+		<div class="t9_1407201706"><!--[diy=test999_cn_1407201706]--><div id="test999_cn_1407201706" class="area"></div><!--[/diy]--></div>
+		<div class="t9_1407201707">
+			<div class="t9_1407201708"><!--[diy=test999_cn_1407201708]--><div id="test999_cn_1407201708" class="area"></div><!--[/diy]--></div>
+			<div class="t9_1407201709"><!--[diy=test999_cn_1407201709]--><div id="test999_cn_1407201709" class="area"></div><!--[/diy]--></div>
+		</div>
+		<div class="t9_cle"></div>
+	</div>
+	<div class="t9_1407201710">
+		<div class="t9_1407201711"><!--[diy=test999_cn_1407201711]--><div id="test999_cn_1407201711" class="area"></div><!--[/diy]--></div>
+		<div class="t9_1407201712"><!--[diy=test999_cn_1407201712]--><div id="test999_cn_1407201712" class="area"></div><!--[/diy]--></div>
+		<div class="t9_cle"></div>
+	</div>
+	<div class="t9_1407201713"><!--[diy=test999_cn_1407201713]--><div id="test999_cn_1407201713" class="area"></div><!--[/diy]--></div>
+	<div class="t9_1407201714"><!--[diy=test999_cn_1407201714]--><div id="test999_cn_1407201714" class="area"></div><!--[/diy]--></div>
+	<div class="t9_1407201715"><!--[diy=test999_cn_1407201715]--><div id="test999_cn_1407201715" class="area"></div><!--[/diy]--></div>
+	<div class="t9_1407201716">
+		<div class="t9_1407201717"><!--[diy=test999_cn_1407201717]--><div id="test999_cn_1407201717" class="area"></div><!--[/diy]--></div>
+		<div class="t9_cle"></div>
+		<div class="t9_1407201718"><!--[diy=test999_cn_1407201718]--><div id="test999_cn_1407201718" class="area"></div><!--[/diy]--></div>
+		<div class="t9_1407201719"><!--[diy=test999_cn_1407201719]--><div id="test999_cn_1407201719" class="area"></div><!--[/diy]--></div>
+		<div class="t9_cle"></div>
+	</div>
+	<div class="t9_1407201720"><!--[diy=test999_cn_1407201720]--><div id="test999_cn_1407201720" class="area"></div><!--[/diy]--></div>
+	<div class="t9_1407201721">
+		<div class="t9_1407201722"><!--[diy=test999_cn_1407201722]--><div id="test999_cn_1407201722" class="area"></div><!--[/diy]--></div>
+		<div class="t9_1407201723"><!--[diy=test999_cn_1407201723]--><div id="test999_cn_1407201723" class="area"></div><!--[/diy]--></div>
+		<div class="t9_1407201724"><!--[diy=test999_cn_1407201724]--><div id="test999_cn_1407201724" class="area"></div><!--[/diy]--></div>
+		<div class="t9_cle"></div>
+	</div>
+	<div class="t9_cle"></div>
+</div>
+
+<div class="wp">
+	<!--[diy=diy1]--><div id="diy1" class="area"></div><!--[/diy]-->
+</div>
+
+<!--{if $topic['allowcomment']==1}-->
+{eval
+	$data = &$topic;
+	$common_url = "portal.php?mod=comment&id=$topicid&idtype=topicid";
+	$form_url = "portal.php?mod=portalcp&ac=comment";
+	$commentlist = portaltopicgetcomment($topicid);	}
+	<!--{template portal/portal_comment}-->
+	<!--{/if}-->
+</div>
+<script src="misc.php?mod=diyhelp&action=get&type=topic&diy=yes&topicid=$topicid&r={echo random(4)}" type="text/javascript"></script>
+<!--{template common/footer}-->

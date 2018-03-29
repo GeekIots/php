@@ -1,0 +1,21 @@
+<!--ÍÆ¼ö°æ¿é-->
+<!--{eval 
+  loadcache('forums'); 
+  $rmdnum=6;
+  $recommend_fids=array();
+}-->
+<div class="mwt-panel">
+  <div class="mwt-head">ÍÆ¼ö°æ¿é</div>
+  <div class="mwt-body" style="padding-bottom:7px;">
+	<div class="subforum">
+    <!--{loop $_G['cache']['forums'] $fid $forum}-->
+	  <!--{if $forum['type']!='group' && $rmdnum>0}-->
+        <!--{if empty($recommend_fids) || in_array($fid,$recommend_fids)}-->
+          <a href="forum.php?mod=forumdisplay&fid={$fid}">{$forum['name']}</a>
+	      {eval --$rmdnum;}
+        <!--{/if}-->
+      <!--{/if}-->
+    <!--{/loop}-->
+	</div>
+  </div>
+</div>

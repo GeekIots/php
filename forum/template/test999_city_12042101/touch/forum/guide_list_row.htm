@@ -1,0 +1,36 @@
+                <!--{if $list['threadcount']}-->
+                <ul class="hotlist">
+                    <!--{loop $list['threadlist'] $key $thread}-->
+                    <!--{eval $key = $key+1;}-->
+                    <li>
+                        <a href="forum.php?mod=viewthread&tid=$thread[tid]&fromguid=hot&{if $_GET['archiveid']}archiveid={$_GET['archiveid']}&{/if}extra=$extra">
+                <!--{if $thread['attachment'] == 2 && $_G['setting']['mobile']['mobilesimpletype'] == 0 && $t9_guide_picmode == 1}-->
+                <!--{eval $t9_img_cover = DB::result_first("SELECT attachment FROM ".DB::table('forum_threadimage')." WHERE `tid` = $thread[tid]");
+                $t9_img_cover_aidtable_l = substr($thread[tid], -1);
+                $t9_img_cover_aidtable = "forum_attachment_".$t9_img_cover_aidtable_l;
+                $t9_img_aid = DB::result_first("SELECT aid FROM ".DB::table($t9_img_cover_aidtable)." WHERE `attachment` = '$t9_img_cover'");
+                $t9_img_w = $_GET[device]-40;
+                $t9_img_h = number_format($t9_img_w*9/16);}-->
+                <div class="t9_n_img" style="height:{$t9_img_h}px"><img src="{echo getforumimg({$t9_img_aid},0,$t9_img_w,$t9_img_h)}" /></div>
+                <!--{/if}-->
+                <!--{if !$thread['forumstick'] && $thread['closed'] > 1 && ($thread['isgroup'] == 1 || $thread['fid'] != $_G['fid'])}-->
+                <!--{eval $thread[tid]=$thread[closed];}-->
+                <!--{/if}-->
+                <span{if $thread['digest'] > 0 && $t9_guide_picmode != "1"} style="padding-left:22px"{/if}>
+                $thread[typehtml] $thread[sorthtml]
+                $thread[subject]
+                </span>
+                <p>
+                    <span class="t9_icon by">$thread[author]</span>
+                    <span class="t9_icon num"><!--{if $thread['isgroup'] != 1}-->$thread[replies]<!--{else}-->{$groupnames[$thread[tid]][replies]}<!--{/if}--></span>
+                </p>
+                <!--{if $thread['digest'] > 0}-->
+                <span class="icon_top"{if $t9_guide_picmode != "1"} style="top:14px"{/if}>¾«</span>
+                <!--{/if}-->
+            </a>
+        </li>
+        <!--{/loop}-->
+    </ul>
+    <!--{else}-->
+    <div class="t9_notice">{lang guide_nothreads}</div>
+                <!--{/if}-->

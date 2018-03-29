@@ -5,7 +5,7 @@
       <ul class="layui-nav" style="background-color:#23262E;" >
         <img src='/image/default/header_logo.png'>
         <li class="layui-nav-item"><a href="/index.php" class="iconfont">首页</a></li>
-        <li class="layui-nav-item"><a href="/blog/index.php" class="iconfont" target = "_blank">社区</a></li>
+        
         <li class="layui-nav-item">
           <a href="javascript:;" class="iconfont">控制台</a>
           <dl class="layui-nav-child">
@@ -14,11 +14,12 @@
             <a href="/device/management.php" class="iconfont">设备管理</a>
           </dl>
         </li>
-        <li class="layui-nav-item"><a href="/about/index.php" class="iconfont">智能硬件</a></li>
-        <li class="layui-nav-item">
+       <!--  <li class="layui-nav-item"><a href="/about/index.php" class="iconfont">智能硬件</a></li> -->
+<!--         <li class="layui-nav-item">
           <a href="/showdoc/index.php?s=/1&page_id=2" class="iconfont" target = "_blank">文档</a>
-        </li>
-        <li class="layui-nav-item"><a href="http://geek-iot.com/blog/view.php?id=1513558692059" class="iconfont">示例</a></li>
+        </li> -->
+        <li class="layui-nav-item"><a href="http://geek-iot.com/forum/forum.php?mod=viewthread&tid=4&page=1&extra=#pid5" class="iconfont">示例</a></li>
+        <li class="layui-nav-item"><a href="/blog/index.php" class="iconfont" target = "_blank">社区</a></li>
         <li class="layui-nav-item"><a href="/about/index.php" class="iconfont">关于</a></li>
         <div class="nav-user">
           <!-- 已登录 -->

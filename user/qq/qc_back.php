@@ -43,7 +43,7 @@
                     <div class="layui-form-item">
                       <label for="L_nickname" class="layui-form-label">昵称</label>
                       <div class="layui-input-inline">
-                        <input type="text" id="Reg_nickname" name="username" required lay-verify="required" autocomplete="off" class="layui-input" value="{{qq_info.nickname}}" >
+                        <input type="text" id="Reg_nickname" name="nickname" required lay-verify="required" autocomplete="off" class="layui-input" value="{{qq_info.nickname}}" >
                       </div>
                     </div>
 
